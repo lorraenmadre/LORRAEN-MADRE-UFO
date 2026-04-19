@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User account information and Google Drive mapping.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "googleRefreshToken": { "type": "string" },
+        "rootFolderId": { "type": "string" },
+        "folderMap": {
+          "type": "object",
+          "description": "Mapping from section key to Google Drive folder ID."
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Document": {
+      "title": "Document",
+      "description": "Metadata for a generated Google Doc.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "docId": { "type": "string" },
+        "docType": { "type": "string" },
+        "sectionKey": { "type": "string" },
+        "folderId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "docId", "docType", "sectionKey"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Stores user profiles and OAuth connection state."
+    },
+    "/users/{userId}/documents/{docId}": {
+      "schema": "Document",
+      "description": "Stores metadata of documents created by the user."
+    }
+  }
+}
