@@ -6,48 +6,82 @@ import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, LayoutGrid, Info, LogOut, ChevronRight, Check } from 'lucide-react';
-import { auth } from './firebase';
-import { 
-  signInWithPopup, 
-  GoogleAuthProvider, 
-  onAuthStateChanged, 
-  signOut,
-  User 
-} from 'firebase/auth';
+
+type FirebaseUser = { uid: string } & Record<string, unknown>;
 
 export default function App() {
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'framework' | 'business'>('framework');
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<FirebaseUser | null>(null);
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [isAuthReady, setIsAuthReady] = useState(false);
+  const [authWarning, setAuthWarning] = useState<string | null>(null);
   const [googleConnected, setGoogleConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (u) => {
-      setUser(u);
-      setIsAuthReady(true);
-      if (u) {
-        // Sync with backend session
-        await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ uid: u.uid })
-        });
-        checkGoogleConnection();
+    let unsubscribe: (() => void) | undefined;
+    let isMounted = true;
+
+    const authFallback = window.setTimeout(() => {
+      if (isMounted) {
+        setIsAuthReady(true);
+        setAuthWarning('Authentication is still being configured. Public preview is available.');
       }
-    });
+    }, 2500);
+
+    async function initializeAuth() {
+      try {
+        const [{ auth }, { onAuthStateChanged }] = await Promise.all([
+          import('./firebase'),
+          import('firebase/auth'),
+        ]);
+
+        unsubscribe = onAuthStateChanged(auth, async (u) => {
+          if (!isMounted) return;
+
+          setUser(u as FirebaseUser | null);
+          setIsAuthReady(true);
+          window.clearTimeout(authFallback);
+
+          if (u) {
+            try {
+              await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ uid: u.uid }),
+              });
+              checkGoogleConnection();
+            } catch (error) {
+              console.error('Failed to sync backend session', error);
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Auth failed to initialize', error);
+        if (isMounted) {
+          setAuthWarning('Authentication is not ready yet. Use public preview while setup is completed.');
+          setIsAuthReady(true);
+          window.clearTimeout(authFallback);
+        }
+      }
+    }
+
+    initializeAuth();
 
     const handleOAuthMessage = (event: MessageEvent) => {
       if (event.data?.type === 'OAUTH_AUTH_SUCCESS') {
         checkGoogleConnection();
       }
     };
+
     window.addEventListener('message', handleOAuthMessage);
 
     return () => {
-      unsubscribe();
+      isMounted = false;
+      window.clearTimeout(authFallback);
+      unsubscribe?.();
       window.removeEventListener('message', handleOAuthMessage);
     };
   }, []);
@@ -56,18 +90,24 @@ export default function App() {
     try {
       const res = await fetch('/api/auth/status');
       const data = await res.json();
-      setGoogleConnected(data.googleConnected);
+      setGoogleConnected(Boolean(data.googleConnected));
     } catch (error) {
       console.error('Failed to check connection status', error);
     }
   };
 
   const handleLogin = async () => {
-    const provider = new GoogleAuthProvider();
     try {
+      const [{ auth }, { signInWithPopup, GoogleAuthProvider }] = await Promise.all([
+        import('./firebase'),
+        import('firebase/auth'),
+      ]);
+
+      const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
     } catch (error) {
       console.error('Login failed', error);
+      setAuthWarning('Sign-in is not fully configured yet. Public preview remains available.');
     }
   };
 
@@ -76,15 +116,30 @@ export default function App() {
     try {
       const res = await fetch('/api/auth/google/url');
       const { url } = await res.json();
+      if (!url) throw new Error('Missing Google OAuth URL');
       window.open(url, 'google_auth', 'width=600,height=700');
     } catch (error) {
       console.error('Failed to start Google connection', error);
+      setAuthWarning('Google Drive connection is not ready yet. Continue using public preview.');
     } finally {
       setIsConnecting(false);
     }
   };
 
-  const handleLogout = () => signOut(auth);
+  const handleLogout = async () => {
+    try {
+      const [{ auth }, { signOut }] = await Promise.all([
+        import('./firebase'),
+        import('firebase/auth'),
+      ]);
+      await signOut(auth);
+    } catch (error) {
+      console.error('Sign out failed', error);
+    } finally {
+      setIsPreviewMode(false);
+      setUser(null);
+    }
+  };
 
   useEffect(() => {
     (window as any).dispatchAddSatellite = (newSat: Entity) => {
@@ -98,21 +153,32 @@ export default function App() {
     };
   }, []);
 
-  if (!isAuthReady) return <div className="min-h-screen bg-white flex items-center justify-center font-mono text-[10px] uppercase tracking-widest">Waking Lorraine...</div>;
+  if (!isAuthReady) return <div className="min-h-screen bg-white flex items-center justify-center font-mono text-[10px] uppercase tracking-widest">Waking Lorraen...</div>;
 
-  if (!user) {
+  if (!user && !isPreviewMode) {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center space-y-12">
         <div className="space-y-4">
           <h1 className="text-6xl md:text-8xl font-spectral tracking-tighter">LORRAEN MADRE</h1>
           <p className="text-[10px] uppercase tracking-[0.5em] text-gray-400">Universal Family Office Framework</p>
+          {authWarning && (
+            <p className="max-w-lg mx-auto text-xs text-gray-500 leading-relaxed">{authWarning}</p>
+          )}
         </div>
-        <button 
-          onClick={handleLogin}
-          className="border border-black px-12 py-4 text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-all"
-        >
-          Sign into Orbit
-        </button>
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <button 
+            onClick={handleLogin}
+            className="border border-black px-12 py-4 text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-all"
+          >
+            Sign into Orbit
+          </button>
+          <button 
+            onClick={() => setIsPreviewMode(true)}
+            className="border border-gray-300 px-12 py-4 text-[10px] uppercase tracking-widest font-bold hover:border-black transition-all"
+          >
+            Enter Public Preview
+          </button>
+        </div>
       </div>
     );
   }
@@ -163,7 +229,7 @@ export default function App() {
                   <div className="w-px h-4 bg-gray-300 mx-2 self-center" />
                   <button 
                     onClick={handleLogout}
-                    title="Sign Out"
+                    title={isPreviewMode ? 'Exit Preview' : 'Sign Out'}
                     className="p-1.5 opacity-40 hover:opacity-100 transition-opacity"
                   >
                     <LogOut className="w-4 h-4" />
@@ -173,7 +239,13 @@ export default function App() {
             </header>
 
             {/* Google Drive Connection Bar */}
-            {!googleConnected && (
+            {isPreviewMode && (
+              <div className="bg-gray-100 text-gray-700 py-3 px-6 text-center text-[10px] uppercase tracking-[0.3em] font-bold">
+                Public Preview Mode — sign in later to unlock Google Drive vault actions.
+              </div>
+            )}
+
+            {!isPreviewMode && !googleConnected && (
               <div className="bg-black text-white py-3 px-6 text-center text-[10px] uppercase tracking-[0.3em] font-bold flex items-center justify-center gap-4">
                 <span>Unlock the Vault: Connect to Google Drive to generate real documents.</span>
                 <button 
@@ -185,7 +257,7 @@ export default function App() {
                 </button>
               </div>
             )}
-            {googleConnected && (
+            {!isPreviewMode && googleConnected && (
                <div className="bg-green-50 text-green-700 py-3 px-6 text-center text-[10px] uppercase tracking-[0.3em] font-bold flex items-center justify-center gap-2">
                  <Check className="w-3 h-3" />
                  <span>Vault Synced with Google Drive</span>
@@ -264,7 +336,7 @@ export default function App() {
                 It does not constitute financial, medical, or legal advice. 
                 If you require professional advice in any of these areas, please consult with an AI assistant within the system for direction to the appropriate affiliates who can service those specific needs.
               </p>
-              <p className="text-[8px] text-gray-300 uppercase tracking-widest">© 2026 LORRAINE MADRE | WishWell individual flow</p>
+              <p className="text-[8px] text-gray-300 uppercase tracking-widest">© 2026 LORRAEN MADRE | WishWell individual flow</p>
             </div>
           </motion.div>
         ) : (
