@@ -16,6 +16,8 @@ HIGH_STAKES_WORDS = [
     "court",
     "custody",
     "medical",
+    "health",
+    "healthcare",
     "therapy",
     "insurance",
     "safety",
@@ -24,6 +26,9 @@ HIGH_STAKES_WORDS = [
     "benefits",
     "credit",
     "tax",
+    "money",
+    "financial",
+    "banking",
 ]
 
 
