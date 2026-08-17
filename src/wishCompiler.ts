@@ -28,6 +28,8 @@ const HIGH_STAKES_WORDS = [
   'court',
   'custody',
   'medical',
+  'health',
+  'healthcare',
   'therapy',
   'insurance',
   'safety',
@@ -36,6 +38,9 @@ const HIGH_STAKES_WORDS = [
   'benefits',
   'credit',
   'tax',
+  'money',
+  'financial',
+  'banking',
 ];
 
 // A simple lookup table connects ordinary language to WISH WELL houses.
