@@ -21,6 +21,14 @@ service cloud.firestore {
         allow read: if isOwner(userId);
         allow write: if isOwner(userId);
       }
+
+      // Mona Lisa Connect: the client reads its own connection status.
+      // Writes come only from the server (Admin SDK bypasses these rules)
+      // via the Nango / Canopy webhooks — never from the browser.
+      match /connections/{connectorKey} {
+        allow read: if isOwner(userId);
+        allow write: if false;
+      }
     }
   }
 }

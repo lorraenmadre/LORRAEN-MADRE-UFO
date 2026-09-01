@@ -6,3 +6,10 @@ coverage/
 *.log
 .env*
 !.env.example
+service-account.json
+*-service-account.json
+# never commit a Firebase / GCP service account key
+*-adminsdk-*.json
+gen-lang-client-*.json
+*serviceaccount*.json
+.nvmrc.local

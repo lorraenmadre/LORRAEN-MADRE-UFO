@@ -4,6 +4,7 @@ import { INITIAL_ENTITIES } from './constants';
 import EcosystemMap from './components/EcosystemMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
+import ConnectDashboard from './connect/ConnectDashboard';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, LayoutGrid, Info, LogOut, ChevronRight, Check } from 'lucide-react';
 
@@ -12,7 +13,7 @@ type FirebaseUser = { uid: string } & Record<string, unknown>;
 export default function App() {
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<'framework' | 'business'>('framework');
+  const [viewMode, setViewMode] = useState<'framework' | 'business' | 'connect'>('framework');
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [isAuthReady, setIsAuthReady] = useState(false);
@@ -33,15 +34,20 @@ export default function App() {
 
     async function initializeAuth() {
       try {
-        const [{ auth }, { onAuthStateChanged }] = await Promise.all([
+        const [{ auth }, { onAuthStateChanged, getRedirectResult }] = await Promise.all([
           import('./firebase'),
           import('firebase/auth'),
         ]);
 
+        // Finish any pending redirect sign-in (no-op on a normal load).
+        getRedirectResult(auth).catch((error) => {
+          console.error('Redirect sign-in failed', error);
+        });
+
         unsubscribe = onAuthStateChanged(auth, async (u) => {
           if (!isMounted) return;
 
-          setUser(u as FirebaseUser | null);
+          setUser(u as unknown as FirebaseUser | null);
           setIsAuthReady(true);
           window.clearTimeout(authFallback);
 
@@ -98,13 +104,25 @@ export default function App() {
 
   const handleLogin = async () => {
     try {
-      const [{ auth }, { signInWithPopup, GoogleAuthProvider }] = await Promise.all([
-        import('./firebase'),
-        import('firebase/auth'),
-      ]);
+      const [{ auth }, { signInWithPopup, signInWithRedirect, GoogleAuthProvider }] =
+        await Promise.all([import('./firebase'), import('firebase/auth')]);
 
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (popupError) {
+        // Popups get blocked by some browsers / COOP; fall back to redirect.
+        const code = (popupError as { code?: string })?.code;
+        if (
+          code === 'auth/popup-blocked' ||
+          code === 'auth/popup-closed-by-user' ||
+          code === 'auth/cancelled-popup-request'
+        ) {
+          await signInWithRedirect(auth, provider);
+        } else {
+          throw popupError;
+        }
+      }
     } catch (error) {
       console.error('Login failed', error);
       setAuthWarning('Sign-in is not fully configured yet. Public preview remains available.');
@@ -220,11 +238,17 @@ export default function App() {
                   >
                     Framework
                   </button>
-                  <button 
+                  <button
                     onClick={() => setViewMode('business')}
                     className={`px-4 py-1.5 text-[10px] uppercase tracking-widest transition-all ${viewMode === 'business' ? 'bg-white shadow-sm font-bold' : 'opacity-40'}`}
                   >
                     My Business
+                  </button>
+                  <button
+                    onClick={() => setViewMode('connect')}
+                    className={`px-4 py-1.5 text-[10px] uppercase tracking-widest transition-all ${viewMode === 'connect' ? 'bg-white shadow-sm font-bold' : 'opacity-40'}`}
+                  >
+                    Connections
                   </button>
                   <div className="w-px h-4 bg-gray-300 mx-2 self-center" />
                   <button 
@@ -238,6 +262,10 @@ export default function App() {
               </div>
             </header>
 
+            {viewMode === 'connect' ? (
+              <ConnectDashboard uid={user?.uid ?? null} previewMode={isPreviewMode} />
+            ) : (
+             <>
             {/* Google Drive Connection Bar */}
             {isPreviewMode && (
               <div className="bg-gray-100 text-gray-700 py-3 px-6 text-center text-[10px] uppercase tracking-[0.3em] font-bold">
@@ -338,6 +366,8 @@ export default function App() {
               </p>
               <p className="text-[8px] text-gray-300 uppercase tracking-widest">© 2026 LORRAEN MADRE | WishWell individual flow</p>
             </div>
+             </>
+            )}
           </motion.div>
         ) : (
           <motion.div
