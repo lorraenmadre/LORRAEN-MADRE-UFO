@@ -1,0 +1,35 @@
+# Render Blueprint — one-click deploy of the UFO app (Express + built Vite SPA).
+# In Render: New + -> Blueprint -> pick this repo. Render reads this file, then
+# prompts you for the secret values (the ones marked sync:false) and the
+# service-account.json secret file.
+services:
+  - type: web
+    name: lorraen-madre-ufo
+    runtime: docker
+    plan: free
+    branch: feat/mona-lisa-connect
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NANGO_HOST
+        value: https://api.nango.dev
+      - key: FIREBASE_PROJECT_ID
+        value: gen-lang-client-0315145662
+      - key: FIRESTORE_DATABASE_ID
+        value: ai-studio-3076a6e6-4299-41a2-b5a8-ecbe3cd8816c
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: /etc/secrets/service-account.json
+      - key: CANOPY_BASE
+        value: https://sandbox.usecanopy.com/api/v1.0.0
+      # Prompted in the Render dashboard on first deploy:
+      - key: NANGO_SECRET_KEY
+        sync: false
+      - key: CONNECT_WEBHOOK_SECRET
+        sync: false
+      - key: SESSION_SECRET
+        sync: false
+      - key: APP_URL          # set to the Render URL after the first deploy
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
