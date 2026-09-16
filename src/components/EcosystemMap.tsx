@@ -44,7 +44,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
   const holding = entities.find(e => e.type === 'holding_company');
   const northNode = entities.find(e => e.type === 'north_node');
   const southNode = entities.find(e => e.type === 'south_node');
-  const planets = entities.filter(e => e.type === 'planet');
+  const planets = entities.filter(e => e.type === 'planet' || e.type === 'asteroid');
   const dinosaurs = entities.filter(e => e.type === 'dinosaur');
   const satellites = entities.filter(e => e.type === 'satellite');
 
@@ -52,19 +52,24 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
     const configs: Record<string, { tag: string; icon: React.ReactNode }> = {
       'trust': { tag: 'The Trust', icon: <ShieldCheck className="w-3 h-3" /> },
       'church': { tag: 'The Church', icon: <Crown className="w-3 h-3" /> },
-      'holding': { tag: 'Holding Company', icon: <Orbit className="w-3 h-3" /> },
+      'holding': { tag: 'UFO / Mothership', icon: <Orbit className="w-3 h-3" /> },
       'north-node': { tag: 'Retirement Plan', icon: <Anchor className="w-3 h-3" /> },
       'south-node': { tag: 'Nonprofit Foundation', icon: <Heart className="w-3 h-3" /> },
       'sun': { tag: 'Brand Identity', icon: <Sun className="w-3 h-3" /> },
-      'moon': { tag: 'Story Production', icon: <Moon className="w-3 h-3" /> },
+      'moon': { tag: 'Home Economics', icon: <Moon className="w-3 h-3" /> },
       'mars': { tag: 'Business Activation', icon: <Zap className="w-3 h-3" /> },
-      'mercury': { tag: 'Marketing Technology', icon: <Cpu className="w-3 h-3" /> },
+      'mercury': { tag: 'Integrated Marketing', icon: <Cpu className="w-3 h-3" /> },
       'venus': { tag: 'Content Library', icon: <Library className="w-3 h-3" /> },
-      'saturn': { tag: 'Digital Organization Architecture', icon: <Layers className="w-3 h-3" /> },
+      'saturn': { tag: 'Digital Organization', icon: <Layers className="w-3 h-3" /> },
       'jupiter': { tag: 'Capital Container', icon: <Coins className="w-3 h-3" /> },
       'neptune': { tag: 'The Movie', icon: <Film className="w-3 h-3" /> },
-      'uranus': { tag: 'SAS Membership', icon: <AppWindow className="w-3 h-3" /> },
-      'pluto': { tag: 'AI Agency', icon: <Bot className="w-3 h-3" /> },
+      'uranus': { tag: 'Function to confirm', icon: <AppWindow className="w-3 h-3" /> },
+      'pluto': { tag: 'Acquisition', icon: <Bot className="w-3 h-3" /> },
+      'earth': { tag: '24-hour Routine', icon: <Globe className="w-3 h-3" /> },
+      'lilith': { tag: 'Special Projects', icon: <Target className="w-3 h-3" /> },
+      'chiron': { tag: 'Healing Journey', icon: <Heart className="w-3 h-3" /> },
+      'juno': { tag: 'Relationship Status / Goal', icon: <Users className="w-3 h-3" /> },
+      'vesta': { tag: 'Passion / Talent', icon: <Zap className="w-3 h-3" /> },
     };
 
     const config = configs[entity.id] || { tag: entity.type.replace('_', ' '), icon: null };
@@ -156,8 +161,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
     <div className="max-w-7xl mx-auto px-6 py-12 space-y-16">
       {/* Top Governance */}
       <div className="flex flex-col items-center space-y-4">
-        <EntityBox entity={trust} className="w-64 text-center" />
-        <div className="w-px h-8 bg-black opacity-20" />
+        {trust && <EntityBox entity={trust} className="w-64 text-center" />}
         <EntityBox entity={church} className="w-64 text-center" />
         <div className="w-px h-8 bg-black opacity-20" />
         <EntityBox entity={holding} className="w-64 text-center" />
@@ -166,7 +170,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
       {/* Nodes and Planets */}
       <div className="grid grid-cols-12 gap-8">
         {/* South Node (Left) */}
-        <div className="col-span-2 flex flex-col justify-center">
+        <div className="col-span-12 lg:col-span-2 flex flex-col justify-center">
           <EntityBox entity={southNode} className="h-48 border-dashed" />
           <div className="mt-4 text-center">
             <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-black">Mission</p>
@@ -174,14 +178,14 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
         </div>
 
         {/* Planets (Center) */}
-        <div className="col-span-8 grid grid-cols-3 gap-4">
+        <div className="col-span-12 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {planets.map(planet => (
             <EntityBox key={planet.id} entity={planet} className="h-40" />
           ))}
         </div>
 
         {/* North Node (Right) */}
-        <div className="col-span-2 flex flex-col justify-center">
+        <div className="col-span-12 lg:col-span-2 flex flex-col justify-center">
           <EntityBox entity={northNode} className="h-48 border-dashed" />
           <div className="mt-4 text-center">
             <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-black">Vision</p>
@@ -191,7 +195,8 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
 
       {/* Dinosaurs / Technical Domains */}
       <div className="pt-12 border-t border-gray-100">
-        <h4 className="text-sm uppercase tracking-[0.3em] font-bold mb-8 text-center text-gray-400">Domains (Technical Identities)</h4>
+        <h4 className="text-sm uppercase tracking-[0.3em] font-bold mb-4 text-center">Dinosaurs — Zodiac + Platform + Identity</h4>
+        <p className="text-base text-center text-gray-600 mb-8">House 3 holds the registry. These agent identities are defined, not deployed. House numbering and marked spellings await confirmation.</p>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {dinosaurs.map(dino => (
             <motion.button
@@ -206,6 +211,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   <span className="text-[9px] text-gray-400">{dino.house}</span>
                 </div>
                 <h5 className="font-spectral font-medium">{dino.name}</h5>
+                <p className="text-sm mt-2">{dino.platform}</p>
               </div>
               <ProgressBar progress={calculateProgress(dino)} />
             </motion.button>
@@ -216,8 +222,8 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
       {/* Offerings (Business Seeds) */}
       <div className="pt-12 border-t border-gray-100">
         <div className="flex flex-col items-center mb-8">
-          <h4 className="text-sm uppercase tracking-[0.3em] font-bold text-gray-400">Offerings (Seeds)</h4>
-          <p className="text-[10px] uppercase text-gray-400 tracking-widest mt-2">Transactional units growing inside planetary buckets</p>
+          <h4 className="text-sm uppercase tracking-[0.3em] font-bold">House Products</h4>
+          <p className="text-base text-gray-600 mt-2">Twelve entry points into the UFO. House 13 is you, choosing in the present.</p>
         </div>
         
         <div className="flex flex-wrap justify-center gap-6">
@@ -247,6 +253,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   <div className="px-6 py-4 flex flex-col items-center text-center">
                     <Briefcase className={`w-4 h-4 mb-2 ${isArchived ? 'text-gray-300' : 'text-black'}`} />
                     <span className={`font-spectral text-sm transition-all ${isArchived ? '' : 'font-medium'}`}>{offering.name}</span>
+                    <span className="text-sm mt-2">{offering.house} · {offering.platform}</span>
                     <div className="w-full mt-2">
                        <ProgressBar progress={progress} color={barColor} />
                     </div>
@@ -300,7 +307,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
         <div className="flex flex-col items-center mb-12">
           <h4 className="text-sm uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Satellites (Radar & Coordination)</h4>
           <p className="text-[10px] uppercase text-gray-400 tracking-widest max-w-md text-center opacity-60">
-            External programs, products, or agencies keeping radar on the UFO.
+            External entities you choose to connect to your UFO. An API or Composio connection is optional; a manual handoff can keep a satellite in the loop.
           </p>
         </div>
         
@@ -321,7 +328,8 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
               <div>
                 {sat.logoUrl && <img src={sat.logoUrl} className="w-12 h-12 object-contain mb-4" referrerPolicy="no-referrer" />}
                 <h5 className="font-spectral text-lg font-medium leading-tight">{sat.name}</h5>
-                <p className="text-[9px] uppercase tracking-widest text-gray-400 mt-2">Active Satellite</p>
+                <p className="text-sm text-gray-600 mt-2">{sat.status || 'Registered — not connected'}</p>
+                <p className="text-sm mt-2">{sat.connectionMethod || 'Connection method to define'}</p>
               </div>
               <ProgressBar progress={calculateProgress(sat)} />
             </motion.button>
@@ -339,7 +347,9 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   id: newId,
                   type: 'satellite',
                   name,
-                  description: 'A newly integrated coordinate in your UFO radar.'
+                  description: 'External entity registered for this session. Define its purpose, handoff owner, inputs and outputs before execution.',
+                  status: 'Registered — not connected',
+                  connectionMethod: 'Manual handoff to define'
                 });
               }
             }}

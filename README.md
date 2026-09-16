@@ -1,277 +1,310 @@
-# LORRAEN MADRE UFO
+# LORRAEN MADRE — UFO operating README
 
-**TIME . space + Story**
+Version: 2026-09-16.1. Source: founder's September 16, 2026 instructions, attached transcript and subsequent corrections. Explicit spellings override speech-to-text variants. This map supersedes conflicting older product, house and planetary mappings.
 
-LORRAEN MADRE UFO is the public-facing Universal Family Office interface for the WISH WELL operating system. It is designed to help a person move from a wish, story, or signal into a structured family-office-style container with documents, tasks, templates, AI communication, and execution pathways.
+## Identity
 
-This repository is the software mirror for the Lorraen Madre ecosystem: a platform where the user can explore the UFO roadmap, connect Google, create or map a Drive vault, sort work through the WISH WELL houses, and eventually route ideas into tools like Fruitful Frameworks, Dream Backlog, Monday.com, New Castle, Canva, and GitHub.
+LORRAEN MADRE helps mothers create their own motherships to navigate and build their UFO. Sterling Drive Consulting is the founder’s mothership, not the public brand.
 
-## Project Purpose
+- Brand / Sun: **LORRAEN MADRE**.
+- Founder’s mothership / holding company / UFO: **Sterling Drive Consulting**.
+- UFO means **Universal Family Office**. Customers create their own motherships; do not copy the founder's entity identity into customer ownership records.
+- Queen / church: **Lilys of the Wishwell**.
+- Earth / 24-hour routine: **Honey from the Rock**.
+- There is no “solar system” organizational layer.
+- Functional portfolio placements do not establish legal ownership, incorporation, tax status or partner agreements.
+- Portfolio projects use a six-month plan and Lean Value Canvas. The plan lives in its planet tab and is referenced from House 1.
 
-The UFO is not just a dashboard. It is a container for turning story into structure.
+## System objects
 
-The intended flow is:
-
-1. A user enters the Lorraen Madre platform.
-2. The user explores the UFO roadmap and WISH WELL system.
-3. The user connects Google / Gmail.
-4. A personal UFO vault is created or mapped in Google Drive.
-5. The user's documents, wishes, tasks, templates, and outputs are organized through the WISH WELL houses.
-6. Dream fragments and rabbit holes are captured in Trello as the Dream Backlog.
-7. Approved backlog items move into Monday.com for execution.
-8. Legal and document-heavy work routes into New Castle.
-9. Public assets move into Canva.
-10. Software projects become GitHub repos or issues.
-
-## Core System Map
-
-| Layer | Role |
+| Object | Definition |
 |---|---|
-| **Lorraen Madre** | Public front door and TIME . space + Story design studio |
-| **UFO** | Personal Universal Family Office container |
-| **WISH WELL** | 12/13-house operating system for life, business, documentation, and strategy |
-| **Fruitful Frameworks** | Notion headquarters for AI communication, systems, prompts, decisions, and frameworks |
-| **Google Drive** | User-owned document vault and output storage |
-| **Trello / Dream Backlog** | Rabbit-hole capture layer for wishes, ideas, story sparks, and triggered thoughts |
-| **Monday.com** | Execution layer for approved backlog items, projects, sprints, owners, and timelines |
-| **New Castle** | Legal/document shell for intake, summaries, case timelines, and drafts |
-| **Canva** | Visual and public asset layer |
-| **GitHub** | Technical mirror for apps, repos, product development, and automation logic |
+| House | Permanent department and its dashboard cadence. |
+| Portfolio placement | Business function assigned to a named project/entity. |
+| Product | Customer-facing entry point into a house; separate from portfolio placement. |
+| Agent | Worker with responsibility, inputs, permitted actions and completion evidence. |
+| Dinosaur | Agent with zodiac archetype, platform and distinct public identity; registry in House 3. |
+| Engine | 24-hour workflow coordinating agent execution; accountability in House 7. |
+| Satellite | Any external entity connected to a UFO, through an API, connector, files or manual handoff. |
+| House 13 / Creation | The person choosing how to act in the present across the twelve houses. |
 
-## WISH WELL House Structure
+## Planetary portfolio
 
-The platform organizes life and work through a 12/13-house architecture:
+| Tag | Function | Project / entity | Notes |
+|---|---|---|---|
+| Queen | Church | Lilys of the Wishwell | User-named church; do not infer legal ownership links. |
+| UFO | Holding company / mothership | Sterling Drive Consulting | The founder's mothership. LORRAEN MADRE helps others create their own. |
+| Earth | 24-hour routine | Honey from the Rock | Daily routine; distinct from individual execution engines. |
+| Sun | Brand identity | LORRAEN MADRE | Primary brand, domain and marketing/work funnel. |
+| Moon | Home economics | Miss Honey’s Home Economics | Current name for the home economics project. |
+| Mars | Business activation | OMW.life | Family business to teach and hand down to the children. |
+| Venus | Content libraries | Ninth House Homeschool | Portfolio project; separate from the House 9 book product. |
+| Mercury | Integrated marketing | Wishwell Code | Integrated marketing project. |
+| Saturn | Digital organization | Globe Life / American Income Life | User's named project placement; not a claim that the UFO owns these companies. |
+| Jupiter | Capital container | Honey + Higher Grounds | Proposed cafe acquisition with coworking and a banking concept; not an operating bank. |
+| Neptune | Movie | Soulbait | Film project. |
+| Uranus | Function not confirmed | Soup Club | Named project confirmed; do not substitute an inferred function. |
+| Pluto | Acquisition | Clips Capacity | Re-education software; do not equate it with the foundation's possible boarding business. |
+| Lilith | Special projects | Mona Lily | Named special-project placement. |
+| Chiron | Healing journey | Not assigned | Personal project name not yet provided. |
+| Juno | Relationship status/goal | Not assigned | Personal project name not yet provided. |
+| Vesta | Passion/talent | Not assigned | Personal project name not yet provided. |
+| North Node | Retirement plan | Sunshine Pocket Therapy | Proposed ERP benefits package: insurance, telemedicine and legal coordination for Universal Family Office design. |
+| South Node | Foundation | Tooth and Nail Foundation | Animal care and protective programs; possible animal boarding acquisition. |
 
-| House | Function |
+Chiron, Juno and Vesta functions are confirmed; personal names are not supplied. Soup Club's Uranus placement is confirmed; do not invent its functional label.
+
+## House-product-cadence chart
+
+| House | Department | Product | Platform | Cadence |
+|---|---|---|---|---|
+| 1 | Family Business | LORRAEN MADRE | Website | Six months |
+| 2 | Treasury | Woo Woo Watch | Apple Watch | Hourly view |
+| 3 | Telecommunications | Wish Well GPT | GPT | Moon-phase ERP cycle |
+| 4 | Holistic Home Health | The Cookbook | Claude + physical/digital cookbook | Monthly |
+| 5 | Work and Play | The Pride | Slack | Biweekly sprint + daily scorecard |
+| 6 | Systems and Habits | Fruitful Frameworks | Notion | Weekly |
+| 7 | Engines and Accountability | Newcastle | Google | 24-hour engine loop |
+| 8 | Risk and Exits | Mona Lisa Smile | Miro | Dated life events |
+| 9 | Trust, Travel and Therapy | Lady and the Wish Book | Amazon book series/store | Quarterly / 90 days |
+| 10 | Story and Standards | Dream Backlog | Trello | Intentions; cadence not specified |
+| 11 | Community Network | Water Wine | GoHighLevel | CRM; cadence not specified |
+| 12 | Mind, Body, Soul Activation | Jungle Book | Unassigned | Whole-system integration |
+| 13 | Creation | Not assigned | Not assigned | Present moment |
+
+### House 1 — Family Business
+
+Help mothers create their own motherships and navigate/build their UFO. Read each six-month project plan and Lean Value Canvas from its planet tab.
+
+### House 2 — Treasury
+
+Cash, credit and crypto; hourly trade opportunity view. Watch concept displays moon phase and red/green/yellow/gray timing.
+
+### House 3 — Telecommunications
+
+Software/hardware maintenance, subscriptions, energy usage, caps and limitations. Home of the dinosaur and satellite registries.
+
+### House 4 — Holistic Home Health
+
+Claude interaction, collaborative food and technology recipes; Soup Club offshoots. Calendar grid organized by lines of care.
+
+### House 5 — Work and Play
+
+Existing standup, introspection, retrospection and review ceremonies; four daily blocks with timing signals; task selection across all planning cadences and weekdays.
+
+### House 6 — Systems and Habits
+
+Every house has all seven weekday dashboards, filtered to its area of life and linked to canonical records.
+
+### House 7 — Engines and Accountability
+
+Daily agent execution for content, leads, trading or other defined workflows. Receipts and accountability use House 5 timing.
+
+### House 8 — Risk and Exits
+
+Past, current and anticipated transformations: marriage, birth, moving, job loss, anniversaries and trauma milestones. Link insurance, risk and exit plans; not routine appointments.
+
+### House 9 — Trust, Travel and Therapy
+
+Equinox/solstice board meetings with travel, trust education, therapy and feelings-wheel records; goals on a 90-day cycle. Family trust education applies regardless of school type.
+
+### House 10 — Story and Standards
+
+Capture intentions and wishes. Goals, intentions and manifestations are distinct linked objects.
+
+### House 11 — Community Network
+
+GoHighLevel CRM template and connected relationship views in Notion.
+
+### House 12 — Mind, Body, Soul Activation
+
+Stories and manifestations across all houses. Three general manifestations per house become mantras; goals can support them. One existing manifestation page is intended for this.
+
+### House 13 — Creation
+
+You are the 13th house: choice, action or inaction, and how you manage the twelve houses now. Keep the principle; do not invent a separate product or platform.
+
+House 12 integrates all houses. Jungle Book's platform is unassigned. House 13 remains the human choice principle, without a separate product/platform. OMW.life is Mars/business activation; Ninth House Homeschool is Venus/content libraries. Those portfolio assignments do not replace the House 1 and House 9 products.
+
+## Weekly rhythm inside every house
+
+| Day | Theme | Scope |
+|---|---|---|
+| Sunday | Planning and Praise | Gratitude, reflection, worship and weekly productivity planning. |
+| Monday | Clean and Care | Laundry, skincare, haircare, cleaning and daily/weekly/monthly/yearly maintenance. |
+| Tuesday | Work and Sell | Grants, sales pipelines, proposals and revenue activity. |
+| Wednesday | Read and Write | Books, courses, research, academia, learning and writing. |
+| Thursday | Money and Motives | Financial review, savings, vision, goals, gratitude and money recaps. |
+| Friday | Content and Connect | Content production, connections, outreach, dates and relationship plans. |
+| Saturday | Food and Fitness | Meal planning, food preparation, workout planning and exercise. |
+
+Every operating house has all seven days. A weekday is a management lens, not exclusive ownership or a rule preventing urgent work on other days. Use filtered connected views of canonical records; do not create seven independent task copies.
+
+## Dinosaurs
+
+| Zodiac | Platform | Identity | Confirmation |
+|---|---|---|---|
+| Gemini | Shopify | Sanctuary Self | Confirmed platform/sign; Gemini first-house statement retained separately. |
+| Cancer | Amazon | Miss Honey | Confirmed |
+| Leo | Google | LORRAEN MADRE | Sign inferred from sequence; Google fifth-house rule stated by user; do not resolve house conflict automatically. |
+| Virgo | Substack | Paradise Quick | Transcript spelling unconfirmed. |
+| Libra | LinkedIn | Rael / Rael E Mar | Exact current profile spelling unconfirmed. |
+| Scorpio | Spotify | Madre Madre | Sign inferred from sequence; podcast and possibly songs. |
+| Sagittarius | Discord | Killer Jean / Killer Janine | User gave alternatives; unresolved. |
+| Capricorn | TikTok | Y-B-E-88 cents | Transcript ambiguous; exact name/handle unconfirmed. |
+| Aquarius | GoHighLevel | Light Scouts | Confirmed |
+| Pisces | Meta | Saint Madre Ray | Transcript spelling unconfirmed. |
+| Aries | Slack | Lisi | Transcript spelling unconfirmed. |
+| Taurus | YouTube | On Our Guard | Confirmed |
+
+Definitions do not prove deployed agents or connected accounts. Leo and Scorpio are inferred from sequence. Keep unresolved spellings exactly marked. Store zodiac, platform, registry house and personal chart house separately: “Gemini is my first house” conflicts with later Google/fifth-house and Substack/sixth-house references. Do not invent house routing to resolve that.
+
+## Satellites
+
+| Name | Purpose | Status | Route | Notes |
+|---|---|---|---|---|
+| OpenAI | AI interaction and Wish Well GPT | Registered | Manual / configured tools | User-requested satellite; app API connection not verified. |
+| OpenCase AI | External case-work tool | User-reported use | Manual handoff | User uses it; no Composio/API connection assumed. Define approved input, handoff owner and returned output. |
+| Spring Code | Purpose to confirm | Placeholder | Unassigned | User does not currently use it; included as an assumed example. Exact vendor identity unverified. |
+| Claude | Cookbook interaction and implementation assistance | Planned | Manual / configured tools | House 4 interaction; no automatic connection claimed. |
+| Globe Life / American Income Life | Proposed insurance delivery partner | Proposed partner | Unassigned | For Sunshine Pocket Therapy; partnership and benefits not verified. |
+| Impact Health USA | Proposed telemedicine delivery partner | Proposed partner | Unassigned | For Sunshine Pocket Therapy; partnership and benefits not verified. |
+| WealthCouncil | Proposed legal delivery partner | Proposed partner | Unassigned | For Sunshine Pocket Therapy; service arrangement not verified. |
+
+Existing Notion, Google, Trello, Slack, Shopify, Amazon, Miro, GoHighLevel and Composio records remain separate systems. A product/platform mapping does not verify a connection.
+
+### Custom satellite process
+
+1. Register exact external entity name and purpose.
+2. Link houses, projects, responsible agents and engines.
+3. Choose the available route: connector, API, webhook, file exchange, supported browser assistance or manual handoff.
+4. Define approved inputs, accountable person, expected output, due condition and receipt.
+5. Verify the authority for external actions; a requested draft does not authorize sending.
+6. Complete one permitted handoff and save output evidence.
+7. Mark the route verified only after that evidence. Manual routes remain valid.
+
+OpenCase AI example: prepare the agreed input, assign the external step to its human owner, wait for the returned summary/document, and validate the receipt before continuing. No API or Composio integration is assumed.
+
+Spring Code is an intentional placeholder. No URL, vendor identity, account or capability has been invented.
+
+## Daily scorecard and engines
+
+Earth is the overall routine; House 5 supplies sprint tasks and timing; House 6 supplies weekly views; House 7 coordinates execution.
+
+| Block | Local clock time |
 |---|---|
-| House 1 | Identity, timing, family business, UFO entry, New Castle connection |
-| House 2 | Value, assets, money movement, pricing, offers |
-| House 3 | Energy, technology, communication, domains, AI connectors |
-| House 4 | Home, holistic health, care, food, household wellness |
-| House 5 | Play, work, projects, creative production |
-| House 6 | Systems, habits, Fruitful Frameworks, SOPs, weekly operating rhythm |
-| House 7 | Contracts, daily accountability, agreements, scorecards |
-| House 8 | Risk, insurance, protection, safety, compliance |
-| House 9 | Trust, travel, therapy, education, research, curriculum |
-| House 10 | Story, legacy, public authority, press, standards |
-| House 11 | Community, network, sponsors, partners, allies |
-| House 12 | Mind, body, soul, spiritual practice, nervous system regulation |
-| House 13 | Creation, alchemy, meta-templates, wish-to-deal process |
+| Night | 00:00–06:00 |
+| Morning | 06:00–12:00 |
+| Afternoon | 12:00–18:00 |
+| Evening | 18:00–24:00 |
 
-## UFO Planetary Alignment Layer
+Use the person's IANA timezone and local clock boundaries, including daylight-saving changes. Timing colors are red, green, yellow and gray. Existing user preference: dawn/dusk golden hours and overlapping signal windows are yellow; otherwise neutral periods are gray. Verified source rules must supply actual red/green windows. Missing or stale source/date/location/timezone must show “awaiting verified timing,” not invented windows. Timing is guidance, not permission to trade, spend, publish or send.
 
-The UFO also uses a planetary operating layer where each planet or point represents a functional department or product lane.
+### Proposed engine contract for Claude
 
-| Planet / Point | Function |
+This is a build specification, not evidence of running automation.
+
+Required fields: engine ID; purpose; house/project links; responsible agents/dinosaurs; satellites; local date/timezone; trigger; input references; timing-source freshness; permitted actions; completion criteria; approval/handoff state; run ID; output receipts; retries; next run/carry-forward.
+
+Daily loop:
+1. Read six-month projects, quarterly goals, monthly care, weekly themes, sprint tasks and life events.
+2. Select work by dependencies, deadlines, capacity, permissions and weekday theme.
+3. Apply verified House 5 timing guidance.
+4. Execute within scope or create a manual handoff.
+5. Record owner, actual completion time and evidence.
+6. Mark completed, waiting, failed or carried forward; never silently drop unfinished work.
+7. Close the scorecard and prepare the next daily cycle.
+
+Use an idempotency key per engine/date/task/action to avoid duplicate side effects on retry. Run state is separate from timing color.
+
+Examples:
+- Content: task → draft → asset → review → authorized publication → receipt.
+- Leads: criteria → research → qualification → CRM draft → authorized outreach or human handoff.
+- Trading: timestamped signal → analysis → risk/permission check → user decision. This map grants no trading authority.
+- Care: due maintenance/appointment → preparation → person/satellite handoff → completion record.
+
+Agent registry: ID, role, houses, projects, dinosaur identity, platform, inputs, triggers, satellites, permitted actions, expected outputs, owner/escalation, execution state and evidence. Defined responsibilities may each have an agent; creating a record does not deploy it.
+
+### Proposed lunar ERP task grouping
+
+Use actual verified moon-phase transitions, not a fixed four-week calendar. These assignments are implementation proposals pending refinement.
+
+| Phase | Proposed work |
 |---|---|
-| Sun | Brand identity and public front door |
-| Moon | AI video, testimony, emotional proof, story production |
-| Mercury | Internal logic, system framework, communication |
-| Venus | Content library, education, beauty, relational design |
-| Mars | Business activation, movement, execution |
-| Jupiter | Capital container, expansion, funding logic |
-| Saturn | Digital architecture, stewardship, structure |
-| Uranus | Membership, SaaS, future community |
-| Neptune | Myth, movie, immersive story world |
-| Pluto | AI agentic framework and transformation logic |
-| North Node | Future vision and long-term security |
-| South Node | Nonprofit mission and release point |
-| Chiron | Core wound, healing architecture, wound-to-wisdom logic |
-| Part of Fortune | Trust key and prosperity through alignment |
-| Comet | Charter, timing, covenant, and governance trail |
+| New moon | Inventory software/hardware, subscriptions, renewals, energy budgets and planned changes. |
+| Waxing moon | Implement permitted updates, organize libraries and document integrations. |
+| Full moon | Review usage, spend, energy, caps, account health and workflow results. |
+| Waning moon | Repair, consolidate and prepare cleanup; cancellations/deletions retain their permissions. |
 
-## Google Drive Vault Structure
+Store source, phase timestamp, timezone, task, owner and receipt. Missing phase data means unscheduled, not guessed.
 
-When a user connects Google, the intended vault root is:
+## Notion mapping
 
-```text
-00_LORRAEN_MADRE_UFO_HOME
-```
+HQ: https://www.notion.so/37133041ac6f815a90e5e84440cdc8fc
 
-Starter folder structure:
+House 06: https://www.notion.so/3da33041ac6f818abaebf0fb971480ec
 
-```text
-00_START_HERE
-01_UFO_PROFILE
-02_WISH_WELL_HOUSES
-03_NEW_CASTLE_CONNECTION
-04_TEMPLATES_AND_OUTPUTS
-05_AI_COMMUNICATION_LOGS
-06_SHARED_EXPORTS
-99_ARCHIVE
-```
+Existing connection registry: collection://e32f55d9-1b3b-4fb0-b991-47c1582f66b1
 
-The first expansion priority is:
+Reuse pages, databases and native references; preserve their history and child pages.
 
-1. UFO Profile + Planetary Alignments
-2. House 1: Identity / Timing / Family Business
-3. House 6: Systems / Habits / Fruitful Frameworks
-4. New Castle Connection
-5. Dream Backlog to Monday.com execution flow
+Recommended relationships:
+- Portfolio → function/symbol → six-month cycle → Lean Value Canvas → tasks.
+- House → product/platform → cadence → seven weekday views.
+- Dinosaur → zodiac/platform/identity → agent.
+- Engine → agents/satellites → daily run → scorecard → receipt.
+- Care appointment → line of care → calendar.
+- Life event → date → risk/insurance/exit plan. Do not assume insurance eligibility.
+- Quarterly review → travel/trust education/therapy → private feelings record → 90-day goals.
+- Three manifestations per house → mantras → supporting goals → intentions/tasks.
 
-## Dream Backlog to Monday.com Execution
+Keep private personal care, legal case and financial records out of the public app and public GitHub. This map contains structures and program concepts only.
 
-Trello acts as the Dream Backlog.
+## Next project — Sunshine Pocket Therapy
 
-It catches wishes, rabbit holes, story fragments, research trails, product ideas, symbols, triggered thoughts, and creative sparks before they take over the day.
+North Node / retirement plan. Proposed ERP benefits package combining insurance, telemedicine, legal coordination and Universal Family Office design.
 
-Monday.com acts as the execution layer.
+Intended partners: Globe Life / American Income Life, Impact Health USA and WealthCouncil. These are proposed arrangements, not verified agreements.
 
-A Trello card becomes a Monday.com item only when it has:
+Prospective first group: the NFL. No customer, endorsement, affiliation or league agreement is asserted.
 
-1. A clear next action.
-2. A WISH WELL house assignment.
-3. A reason to leave the rabbit hole.
-4. A real execution destination.
+Next deliverables:
+1. Package brief: audience, family needs, coordination scope, partner-provided services, exclusions and assumptions.
+2. Website: program concept and inquiry path; no invented prices, coverage, eligibility or endorsement.
+3. Proposal: pilot scope, accountable providers, handoffs, data boundaries, measurable outcomes and validated costs.
+4. Confirm partner terms, availability and service responsibility before selling specific benefits.
 
-Suggested Monday.com receiving groups:
+No outreach or enrollment is authorized merely by recording the proposal.
 
-```text
-Body / Home / Regulation
-Legal / Admin / New Castle
-UFO Build
-Content / Canva / Public Assets
-Outreach / Partnerships
-Money / Grants / Capital
-Kids / School / Family
-Research / Papers / Doctrine
-GitHub / Product Development
-```
+## Unresolved decisions
 
-## New Castle Connection
+- Dinosaur spellings marked unconfirmed must not be normalized silently.
+- Gemini first-house statement conflicts with later dinosaur house-number references; store signs/platforms separately from house routing.
+- Jungle Book has no selected platform.
+- House 13 has no separate product/platform; it represents the person choosing in the present.
+- Uranus function and personal names for Chiron, Juno and Vesta remain unconfirmed.
+- Existing sprint dates/ceremony times and lunar-phase task assignments must be verified before scheduling.
 
-New Castle is the legal/document shell. It connects through House 1 because House 1 holds identity, timing, family business, entity structure, and the first container.
+Also verify line-of-care calendar IDs, sprint anchor dates, ceremony times and lunar assignments before scheduling.
 
-Intended New Castle functions:
+## App and version control
 
-- Legal intake
-- Uploaded documents
-- Document summaries
-- Case timelines
-- Legal templates
-- Task extraction
-- Output drafts
-- Routing documents into the correct WISH WELL house
+`src/ufo-system.json` is the canonical map. `src/constants.ts` derives founder example entities. `OperatingMap.tsx` presents products/cadences, weekday rhythm, engines and satellites. AI context consumes the same map.
 
-## Current Technical Stack
+Existing stack: React, TypeScript, Vite, Express, Firebase and Google integrations. Preserve authentication and user data. Content updates do not prove OAuth, AI credentials, Google export or background agents function.
 
-This app currently uses:
+Current preview entity edits and added satellites are session-only; do not claim permanent saves. Notion and GitHub changes are independently persisted; no automatic continuous synchronization is implemented here.
 
-- React
-- TypeScript
-- Vite
-- Express
-- Firebase Auth
-- Google OAuth flow
-- Google APIs
-- Gemini / Google GenAI
-- Tailwind-related tooling
-- Lucide icons
-- Motion animations
-
-## Current App Concepts
-
-The repo currently includes concepts such as:
-
-- Ecosystem map
-- Entity snapshots
-- Lorraen Madre chat
-- Initial entity map
-- Google connection state
-- Firebase sign-in
-- Framework / business view modes
-
-## Local Development
-
-### Prerequisites
-
-- Node.js
-- npm
-- Gemini API key
-- Firebase configuration
-- Google OAuth credentials if testing Google connection flows
-
-### Install dependencies
-
+Development:
 ```bash
-npm install
-```
-
-### Environment setup
-
-Create a `.env.local` file and add the required environment variables.
-
-At minimum:
-
-```bash
-GEMINI_API_KEY=your_key_here
-```
-
-Additional Firebase and Google OAuth variables may be required depending on the local configuration.
-
-### Run locally
-
-```bash
+npm ci
+npm run lint
+npm run build
 npm run dev
 ```
 
-### Build
+Use existing environment configuration and never commit credentials. Keep app, README and Notion map on the same version.
 
-```bash
-npm run build
-```
+## Changelog — 2026-09-16
 
-### Type check / lint
-
-```bash
-npm run lint
-```
-
-## Product Roadmap
-
-Near-term priorities:
-
-1. Rewrite generic starter language across the app into Lorraen Madre / UFO language.
-2. Add a clear onboarding path for Google connection.
-3. Define the Google Drive vault creation or mapping flow.
-4. Add WISH WELL house routing for user documents and tasks.
-5. Add Fruitful Frameworks as the AI communication HQ.
-6. Add Dream Backlog logic for wishes and rabbit holes.
-7. Add Monday.com execution mapping for approved tasks.
-8. Define New Castle document intake and routing.
-9. Add README-linked documentation under `/docs`.
-10. Prepare the app for real user testing.
-
-Recommended documentation files to add next:
-
-```text
-docs/fruitful-frameworks-vault-map.md
-docs/dream-backlog-to-monday-flow.md
-docs/new-castle-document-routing.md
-docs/wish-well-house-index.md
-docs/google-drive-vault-structure.md
-```
-
-## Important Notes
-
-This project touches life organization, family office modeling, legal document organization, therapy-adjacent support systems, and financial planning concepts. It is a platform and documentation architecture, not a replacement for licensed legal, medical, mental health, tax, or financial advice.
-
-## Project Identity
-
-Lorraen Madre is a TIME . space + Story design studio building Universal Family Office systems through the WISH WELL framework.
-
-The UFO is the operating container.
-
-WISH WELL is the house system.
-
-Fruitful Frameworks is the AI communication headquarters.
-
-Dream Backlog catches the wish.
-
-Monday.com executes the task.
-
-New Castle protects the document trail.
-
-Google Drive holds the vault.
-
-GitHub makes the system buildable.
+Corrected brand/mothership distinction, portfolio names/functions, twelve products, Claude Cookbook, house cadences, weekly themes, dinosaur identities, satellite definition, OpenAI/OpenCase AI/Spring Code records, daily engines, House 12 platform gap, House 13 agency, and Sunshine Pocket Therapy proposal priority.

@@ -1,0 +1,536 @@
+{
+  "version": "2026-09-16.1",
+  "brand": "LORRAEN MADRE",
+  "mothership": "Sterling Drive Consulting",
+  "structure": "Universal Family Office (UFO)",
+  "identity": "LORRAEN MADRE helps mothers create their own motherships to navigate and build their UFO. Sterling Drive Consulting is the founder’s mothership, not the public brand.",
+  "houses": [
+    {
+      "number": 1,
+      "department": "Family Business",
+      "product": "LORRAEN MADRE",
+      "platform": "Website",
+      "cadence": "Six months",
+      "description": "Help mothers create their own motherships and navigate/build their UFO. Read each six-month project plan and Lean Value Canvas from its planet tab."
+    },
+    {
+      "number": 2,
+      "department": "Treasury",
+      "product": "Woo Woo Watch",
+      "platform": "Apple Watch",
+      "cadence": "Hourly view",
+      "description": "Cash, credit and crypto; hourly trade opportunity view. Watch concept displays moon phase and red/green/yellow/gray timing."
+    },
+    {
+      "number": 3,
+      "department": "Telecommunications",
+      "product": "Wish Well GPT",
+      "platform": "GPT",
+      "cadence": "Moon-phase ERP cycle",
+      "description": "Software/hardware maintenance, subscriptions, energy usage, caps and limitations. Home of the dinosaur and satellite registries."
+    },
+    {
+      "number": 4,
+      "department": "Holistic Home Health",
+      "product": "The Cookbook",
+      "platform": "Claude + physical/digital cookbook",
+      "cadence": "Monthly",
+      "description": "Claude interaction, collaborative food and technology recipes; Soup Club offshoots. Calendar grid organized by lines of care."
+    },
+    {
+      "number": 5,
+      "department": "Work and Play",
+      "product": "The Pride",
+      "platform": "Slack",
+      "cadence": "Biweekly sprint + daily scorecard",
+      "description": "Existing standup, introspection, retrospection and review ceremonies; four daily blocks with timing signals; task selection across all planning cadences and weekdays."
+    },
+    {
+      "number": 6,
+      "department": "Systems and Habits",
+      "product": "Fruitful Frameworks",
+      "platform": "Notion",
+      "cadence": "Weekly",
+      "description": "Every house has all seven weekday dashboards, filtered to its area of life and linked to canonical records."
+    },
+    {
+      "number": 7,
+      "department": "Engines and Accountability",
+      "product": "Newcastle",
+      "platform": "Google",
+      "cadence": "24-hour engine loop",
+      "description": "Daily agent execution for content, leads, trading or other defined workflows. Receipts and accountability use House 5 timing."
+    },
+    {
+      "number": 8,
+      "department": "Risk and Exits",
+      "product": "Mona Lisa Smile",
+      "platform": "Miro",
+      "cadence": "Dated life events",
+      "description": "Past, current and anticipated transformations: marriage, birth, moving, job loss, anniversaries and trauma milestones. Link insurance, risk and exit plans; not routine appointments."
+    },
+    {
+      "number": 9,
+      "department": "Trust, Travel and Therapy",
+      "product": "Lady and the Wish Book",
+      "platform": "Amazon book series/store",
+      "cadence": "Quarterly / 90 days",
+      "description": "Equinox/solstice board meetings with travel, trust education, therapy and feelings-wheel records; goals on a 90-day cycle. Family trust education applies regardless of school type."
+    },
+    {
+      "number": 10,
+      "department": "Story and Standards",
+      "product": "Dream Backlog",
+      "platform": "Trello",
+      "cadence": "Intentions; cadence not specified",
+      "description": "Capture intentions and wishes. Goals, intentions and manifestations are distinct linked objects."
+    },
+    {
+      "number": 11,
+      "department": "Community Network",
+      "product": "Water Wine",
+      "platform": "GoHighLevel",
+      "cadence": "CRM; cadence not specified",
+      "description": "GoHighLevel CRM template and connected relationship views in Notion."
+    },
+    {
+      "number": 12,
+      "department": "Mind, Body, Soul Activation",
+      "product": "Jungle Book",
+      "platform": "Unassigned",
+      "cadence": "Whole-system integration",
+      "description": "Stories and manifestations across all houses. Three general manifestations per house become mantras; goals can support them. One existing manifestation page is intended for this."
+    },
+    {
+      "number": 13,
+      "department": "Creation",
+      "product": null,
+      "platform": null,
+      "cadence": "Present moment",
+      "description": "You are the 13th house: choice, action or inaction, and how you manage the twelve houses now. Keep the principle; do not invent a separate product or platform."
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "church",
+      "type": "church",
+      "symbol": "Queen",
+      "role": "Church",
+      "name": "Lilys of the Wishwell",
+      "description": "User-named church; do not infer legal ownership links.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "holding",
+      "type": "holding_company",
+      "symbol": "UFO",
+      "role": "Holding company / mothership",
+      "name": "Sterling Drive Consulting",
+      "description": "The founder's mothership. LORRAEN MADRE helps others create their own.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "earth",
+      "type": "planet",
+      "symbol": "Earth",
+      "role": "24-hour routine",
+      "name": "Honey from the Rock",
+      "description": "Daily routine; distinct from individual execution engines.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "sun",
+      "type": "planet",
+      "symbol": "Sun",
+      "role": "Brand identity",
+      "name": "LORRAEN MADRE",
+      "description": "Primary brand, domain and marketing/work funnel.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "moon",
+      "type": "planet",
+      "symbol": "Moon",
+      "role": "Home economics",
+      "name": "Miss Honey’s Home Economics",
+      "description": "Current name for the home economics project.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "mars",
+      "type": "planet",
+      "symbol": "Mars",
+      "role": "Business activation",
+      "name": "OMW.life",
+      "description": "Family business to teach and hand down to the children.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "venus",
+      "type": "planet",
+      "symbol": "Venus",
+      "role": "Content libraries",
+      "name": "Ninth House Homeschool",
+      "description": "Portfolio project; separate from the House 9 book product.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "mercury",
+      "type": "planet",
+      "symbol": "Mercury",
+      "role": "Integrated marketing",
+      "name": "Wishwell Code",
+      "description": "Integrated marketing project.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "saturn",
+      "type": "planet",
+      "symbol": "Saturn",
+      "role": "Digital organization",
+      "name": "Globe Life / American Income Life",
+      "description": "User's named project placement; not a claim that the UFO owns these companies.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "jupiter",
+      "type": "planet",
+      "symbol": "Jupiter",
+      "role": "Capital container",
+      "name": "Honey + Higher Grounds",
+      "description": "Proposed cafe acquisition with coworking and a banking concept; not an operating bank.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "neptune",
+      "type": "planet",
+      "symbol": "Neptune",
+      "role": "Movie",
+      "name": "Soulbait",
+      "description": "Film project.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "uranus",
+      "type": "planet",
+      "symbol": "Uranus",
+      "role": "Function not confirmed",
+      "name": "Soup Club",
+      "description": "Named project confirmed; do not substitute an inferred function.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "pluto",
+      "type": "planet",
+      "symbol": "Pluto",
+      "role": "Acquisition",
+      "name": "Clips Capacity",
+      "description": "Re-education software; do not equate it with the foundation's possible boarding business.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "lilith",
+      "type": "asteroid",
+      "symbol": "Lilith",
+      "role": "Special projects",
+      "name": "Mona Lily",
+      "description": "Named special-project placement.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "chiron",
+      "type": "asteroid",
+      "symbol": "Chiron",
+      "role": "Healing journey",
+      "name": null,
+      "description": "Personal project name not yet provided.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "juno",
+      "type": "asteroid",
+      "symbol": "Juno",
+      "role": "Relationship status/goal",
+      "name": null,
+      "description": "Personal project name not yet provided.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "vesta",
+      "type": "asteroid",
+      "symbol": "Vesta",
+      "role": "Passion/talent",
+      "name": null,
+      "description": "Personal project name not yet provided.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "north-node",
+      "type": "north_node",
+      "symbol": "North Node",
+      "role": "Retirement plan",
+      "name": "Sunshine Pocket Therapy",
+      "description": "Proposed ERP benefits package: insurance, telemedicine and legal coordination for Universal Family Office design.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    },
+    {
+      "id": "south-node",
+      "type": "south_node",
+      "symbol": "South Node",
+      "role": "Foundation",
+      "name": "Tooth and Nail Foundation",
+      "description": "Animal care and protective programs; possible animal boarding acquisition.",
+      "cadence": "Six-month project plan + Lean Value Canvas"
+    }
+  ],
+  "dinosaurs": [
+    {
+      "zodiac": "Gemini",
+      "platform": "Shopify",
+      "name": "Sanctuary Self",
+      "note": "Confirmed platform/sign; Gemini first-house statement retained separately.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Cancer",
+      "platform": "Amazon",
+      "name": "Miss Honey",
+      "note": "Confirmed",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Leo",
+      "platform": "Google",
+      "name": "LORRAEN MADRE",
+      "note": "Sign inferred from sequence; Google fifth-house rule stated by user; do not resolve house conflict automatically.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Virgo",
+      "platform": "Substack",
+      "name": "Paradise Quick",
+      "note": "Transcript spelling unconfirmed.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Libra",
+      "platform": "LinkedIn",
+      "name": "Rael / Rael E Mar",
+      "note": "Exact current profile spelling unconfirmed.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Scorpio",
+      "platform": "Spotify",
+      "name": "Madre Madre",
+      "note": "Sign inferred from sequence; podcast and possibly songs.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Sagittarius",
+      "platform": "Discord",
+      "name": "Killer Jean / Killer Janine",
+      "note": "User gave alternatives; unresolved.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Capricorn",
+      "platform": "TikTok",
+      "name": "Y-B-E-88 cents",
+      "note": "Transcript ambiguous; exact name/handle unconfirmed.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Aquarius",
+      "platform": "GoHighLevel",
+      "name": "Light Scouts",
+      "note": "Confirmed",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Pisces",
+      "platform": "Meta",
+      "name": "Saint Madre Ray",
+      "note": "Transcript spelling unconfirmed.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Aries",
+      "platform": "Slack",
+      "name": "Lisi",
+      "note": "Transcript spelling unconfirmed.",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    },
+    {
+      "zodiac": "Taurus",
+      "platform": "YouTube",
+      "name": "On Our Guard",
+      "note": "Confirmed",
+      "registryHouse": 3,
+      "executionStatus": "Defined; not deployed"
+    }
+  ],
+  "weekdays": [
+    {
+      "day": "Sunday",
+      "theme": "Planning and Praise",
+      "scope": "Gratitude, reflection, worship and weekly productivity planning."
+    },
+    {
+      "day": "Monday",
+      "theme": "Clean and Care",
+      "scope": "Laundry, skincare, haircare, cleaning and daily/weekly/monthly/yearly maintenance."
+    },
+    {
+      "day": "Tuesday",
+      "theme": "Work and Sell",
+      "scope": "Grants, sales pipelines, proposals and revenue activity."
+    },
+    {
+      "day": "Wednesday",
+      "theme": "Read and Write",
+      "scope": "Books, courses, research, academia, learning and writing."
+    },
+    {
+      "day": "Thursday",
+      "theme": "Money and Motives",
+      "scope": "Financial review, savings, vision, goals, gratitude and money recaps."
+    },
+    {
+      "day": "Friday",
+      "theme": "Content and Connect",
+      "scope": "Content production, connections, outreach, dates and relationship plans."
+    },
+    {
+      "day": "Saturday",
+      "theme": "Food and Fitness",
+      "scope": "Meal planning, food preparation, workout planning and exercise."
+    }
+  ],
+  "satellites": [
+    {
+      "name": "OpenAI",
+      "role": "AI interaction and Wish Well GPT",
+      "status": "Registered",
+      "method": "Manual / configured tools",
+      "notes": "User-requested satellite; app API connection not verified."
+    },
+    {
+      "name": "OpenCase AI",
+      "role": "External case-work tool",
+      "status": "User-reported use",
+      "method": "Manual handoff",
+      "notes": "User uses it; no Composio/API connection assumed. Define approved input, handoff owner and returned output."
+    },
+    {
+      "name": "Spring Code",
+      "role": "Purpose to confirm",
+      "status": "Placeholder",
+      "method": "Unassigned",
+      "notes": "User does not currently use it; included as an assumed example. Exact vendor identity unverified."
+    },
+    {
+      "name": "Claude",
+      "role": "Cookbook interaction and implementation assistance",
+      "status": "Planned",
+      "method": "Manual / configured tools",
+      "notes": "House 4 interaction; no automatic connection claimed."
+    },
+    {
+      "name": "Globe Life / American Income Life",
+      "role": "Proposed insurance delivery partner",
+      "status": "Proposed partner",
+      "method": "Unassigned",
+      "notes": "For Sunshine Pocket Therapy; partnership and benefits not verified."
+    },
+    {
+      "name": "Impact Health USA",
+      "role": "Proposed telemedicine delivery partner",
+      "status": "Proposed partner",
+      "method": "Unassigned",
+      "notes": "For Sunshine Pocket Therapy; partnership and benefits not verified."
+    },
+    {
+      "name": "WealthCouncil",
+      "role": "Proposed legal delivery partner",
+      "status": "Proposed partner",
+      "method": "Unassigned",
+      "notes": "For Sunshine Pocket Therapy; service arrangement not verified."
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Night",
+      "start": "00:00",
+      "end": "06:00"
+    },
+    {
+      "name": "Morning",
+      "start": "06:00",
+      "end": "12:00"
+    },
+    {
+      "name": "Afternoon",
+      "start": "12:00",
+      "end": "18:00"
+    },
+    {
+      "name": "Evening",
+      "start": "18:00",
+      "end": "24:00"
+    }
+  ],
+  "engine": {
+    "house": 7,
+    "timingHouse": 5,
+    "routine": "Honey from the Rock",
+    "definition": "A 24-hour workflow in which agents execute defined tasks and return completion evidence.",
+    "states": [
+      "queued",
+      "ready",
+      "running",
+      "waiting_for_human",
+      "completed",
+      "failed",
+      "carried_forward"
+    ],
+    "status": "Specification; no background engines deployed"
+  },
+  "nextProject": {
+    "name": "Sunshine Pocket Therapy",
+    "placement": "North Node — retirement plan",
+    "stage": "Package and website proposal next",
+    "audience": "NFL — prospective first group, not a signed customer",
+    "components": [
+      "Insurance",
+      "Telemedicine",
+      "Legal coordination",
+      "Universal Family Office design"
+    ],
+    "partners": [
+      "Globe Life / American Income Life",
+      "Impact Health USA",
+      "WealthCouncil"
+    ],
+    "status": "Concept; partner agreements, prices, scope and eligibility unconfirmed"
+  },
+  "unresolved": [
+    "Dinosaur spellings marked unconfirmed must not be normalized silently.",
+    "Gemini first-house statement conflicts with later dinosaur house-number references; store signs/platforms separately from house routing.",
+    "Jungle Book has no selected platform.",
+    "House 13 has no separate product/platform; it represents the person choosing in the present.",
+    "Uranus function and personal names for Chiron, Juno and Vesta remain unconfirmed.",
+    "Existing sprint dates/ceremony times and lunar-phase task assignments must be verified before scheduling."
+  ]
+}

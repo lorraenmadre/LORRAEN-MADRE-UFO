@@ -113,7 +113,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate }: Props) {
       councilMembers: council,
       vaultDocuments: vaultDocs 
     });
-    alert("Updated and Saved.");
+    alert("Updated for this session. Permanent saving is not connected yet.");
   };
 
   const renderLVC = () => {
@@ -199,10 +199,18 @@ export default function EntitySnapshot({ entity, onBack, onUpdate }: Props) {
             )}
           </div>
         </div>
-        <LorraineMadreChat context={`Entity being viewed: ${entity.name} (${entity.type}). Description: ${entity.description}. You are LORRAINE MADRE.`} />
+        <LorraineMadreChat context={`Entity being viewed: ${entity.name} (${entity.type}). Description: ${entity.description}. You are LORRAEN MADRE.`} />
       </div>
 
       <div className="max-w-5xl mx-auto px-6 space-y-24">
+        <section className="border-b border-gray-200 pb-8 space-y-3">
+          <p className="text-base leading-relaxed">{entity.description}</p>
+          {entity.house && <p>Department: {entity.house}</p>}
+          {entity.platform && <p>Platform: {entity.platform}</p>}
+          {entity.cadence && <p>Cadence: {entity.cadence}</p>}
+          {entity.status && <p>Status: {entity.status}</p>}
+          {entity.connectionMethod && <p>Connection: {entity.connectionMethod}</p>}
+        </section>
         {/* Special Section: Trust Vault */}
         {entity.type === 'trust' && (
           <section className="space-y-8 p-12 border-2 border-black bg-gray-50">

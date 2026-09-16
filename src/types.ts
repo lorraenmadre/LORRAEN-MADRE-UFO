@@ -26,6 +26,10 @@ export interface Entity {
   parentPlanetId?: string; // for offerings/dinosaurs
   zodiacSign?: string; // for dinosaurs
   house?: string; // for dinosaurs/planets (mapped to departments)
+  platform?: string;
+  cadence?: string;
+  status?: string;
+  connectionMethod?: string;
   
   // Dynamic AI content
   leanValueCanvas?: string;

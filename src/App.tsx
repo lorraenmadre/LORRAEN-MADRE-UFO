@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Entity } from './types';
 import { INITIAL_ENTITIES } from './constants';
 import EcosystemMap from './components/EcosystemMap';
+import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, LayoutGrid, Info, LogOut, ChevronRight, Check } from 'lucide-react';
 
-type FirebaseUser = { uid: string } & Record<string, unknown>;
+type FirebaseUser = { uid: string };
 
 export default function App() {
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<'framework' | 'business'>('framework');
+  const [viewMode, setViewMode] = useState<'framework' | 'business'>('business');
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [isAuthReady, setIsAuthReady] = useState(false);
@@ -186,7 +187,7 @@ export default function App() {
   const displayEntities = viewMode === 'framework' 
     ? entities.map(e => ({
         ...e,
-        name: e.symbol || e.type.replace('_', ' ').toUpperCase(),
+        name: e.symbol || e.name,
       }))
     : entities;
 
@@ -224,7 +225,7 @@ export default function App() {
                     onClick={() => setViewMode('business')}
                     className={`px-4 py-1.5 text-[10px] uppercase tracking-widest transition-all ${viewMode === 'business' ? 'bg-white shadow-sm font-bold' : 'opacity-40'}`}
                   >
-                    My Business
+                    Founder’s Example
                   </button>
                   <div className="w-px h-4 bg-gray-300 mx-2 self-center" />
                   <button 
@@ -281,10 +282,11 @@ export default function App() {
                 <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-gray-500">Visual Roadmap of Your Universal Family Office</p>
               </div>
               <p className="max-w-xl text-gray-400 font-spectral text-lg italic mt-4 opacity-60">
-                Naming and claiming your world.
+                LORRAEN MADRE is the brand. Sterling Drive Consulting is the founder’s mothership / UFO.
               </p>
             </div>
 
+            <OperatingMap />
             {/* The Map */}
             <EcosystemMap 
               entities={displayEntities} 
@@ -320,14 +322,14 @@ export default function App() {
                   <div className="w-2 h-2 border border-black rounded-full" />
                   <h4 className="text-[10px] uppercase tracking-widest font-bold">Offerings</h4>
                 </div>
-                <p className="text-xs text-gray-500 leading-relaxed">Offerings are transactional units—seeds that grow inside planetary buckets. They have customer journeys and benefit maps.</p>
+                <p className="text-base text-gray-500 leading-relaxed">House products are the entry points into the twelve departments. Portfolio placements describe separate business functions.</p>
               </div>
               <div className="space-y-4">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-2 h-2 bg-gray-200" />
                   <h4 className="text-[10px] uppercase tracking-widest font-bold">Dinosaurs</h4>
                 </div>
-                <p className="text-xs text-gray-500 leading-relaxed">Technical identifies (AI) mapped to zodiac signs and houses acting as departments.</p>
+                <p className="text-base text-gray-500 leading-relaxed">Dinosaurs are agents with zodiac archetypes, platform assignments and distinct brand identities. Their registry lives in House 3.</p>
               </div>
             </footer>
             <div className="max-w-7xl mx-auto px-6 py-12 border-t border-gray-100 text-center space-y-4">

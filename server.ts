@@ -224,7 +224,7 @@ async function startServer() {
     // 1. Create Root Folder
     const rootResponse = await drive.files.create({
       requestBody: {
-        name: 'Lorraine Madre Universal Office',
+        name: 'LORRAEN MADRE Universal Family Office',
         mimeType: 'application/vnd.google-apps.folder',
       },
       fields: 'id',
