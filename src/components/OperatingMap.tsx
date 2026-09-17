@@ -40,7 +40,7 @@ export default function OperatingMap() {
       <p className="mt-4">OpenCase AI is user-reported in use with a manual handoff to define. Spring Code is a placeholder, not a working connection. New satellites added in this preview last only for the current session.</p>
     </details>
     <details className="border border-black p-5">
-      <summary className="cursor-pointer text-xl font-spectral">Next project — Sunshine Pocket Therapy</summary>
+      <summary className="cursor-pointer text-xl font-spectral">Pilot Protection</summary>
       <p className="mt-5">North Node / retirement plan. A proposed family-office benefits package combining insurance, telemedicine, legal coordination and Universal Family Office design.</p>
       <p className="mt-3">Proposed delivery partners: Globe Life / American Income Life, Impact Health USA and WealthCouncil. Partner agreements, service scope, eligibility and prices are not yet confirmed.</p>
       <p className="mt-3">Next deliverables: package concept, website and proposal. The NFL is the prospective first group; no affiliation or signed customer relationship is claimed.</p>

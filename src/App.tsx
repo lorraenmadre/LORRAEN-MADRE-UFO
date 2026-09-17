@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Entity } from './types';
-import { INITIAL_ENTITIES } from './constants';
+import { INITIAL_ENTITIES, CLEAN_ENTITIES } from './constants';
 import EcosystemMap from './components/EcosystemMap';
+import OrbitMap from './components/OrbitMap';
+import CleanOutline from './components/CleanOutline';
 import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
+import MothershipInstructions from './components/MothershipInstructions';
+import ActionPills from './components/ActionPills';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, LayoutGrid, Info, LogOut, ChevronRight, Check } from 'lucide-react';
 
@@ -12,6 +16,8 @@ type FirebaseUser = { uid: string };
 
 export default function App() {
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
+  const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
+  const [mapLayout, setMapLayout] = useState<'orbit' | 'outline'>('orbit');
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'framework' | 'business'>('business');
   const [user, setUser] = useState<FirebaseUser | null>(null);
@@ -160,7 +166,7 @@ export default function App() {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center space-y-12">
         <div className="space-y-4">
-          <h1 className="text-6xl md:text-8xl font-spectral tracking-tighter">LORRAEN MADRE</h1>
+          <h1 className="text-6xl md:text-8xl font-belleza tracking-tight">LORRAEN MADRE</h1>
           <p className="text-[10px] uppercase tracking-[0.5em] text-gray-400">Universal Family Office Framework</p>
           {authWarning && (
             <p className="max-w-lg mx-auto text-xs text-gray-500 leading-relaxed">{authWarning}</p>
@@ -184,17 +190,11 @@ export default function App() {
     );
   }
 
-  const displayEntities = viewMode === 'framework' 
-    ? entities.map(e => ({
-        ...e,
-        name: e.symbol || e.name,
-      }))
-    : entities;
-
-  const selectedEntity = entities.find(e => e.id === selectedEntityId);
-
+  const displayEntities = viewMode === 'framework' ? cleanEntities : entities;
+  const selectedEntity = displayEntities.find(e => e.id === selectedEntityId);
   const handleUpdateEntity = (updatedEntity: Entity) => {
-    setEntities(prev => prev.map(e => e.id === updatedEntity.id ? updatedEntity : e));
+    const update = viewMode === 'framework' ? setCleanEntities : setEntities;
+    update(prev => prev.map(e => e.id === updatedEntity.id ? updatedEntity : e));
   };
 
   return (
@@ -210,9 +210,9 @@ export default function App() {
           >
             {/* Nav Header */}
             <header className="border-b border-gray-100 py-4 px-6 sticky top-0 bg-white/80 backdrop-blur-md z-50">
-              <div className="max-w-7xl mx-auto flex justify-between items-center">
+              <div className="max-w-7xl mx-auto flex flex-wrap gap-4 justify-between items-center">
                 <div className="flex items-center gap-4">
-                  <h1 className="text-2xl font-spectral tracking-tighter hover:italic cursor-default font-bold">LORRAEN MADRE</h1>
+                  <h1 className="text-2xl font-belleza tracking-tight cursor-default">LORRAEN MADRE</h1>
                 </div>
                 <div className="flex bg-gray-100 rounded-none p-1">
                   <button 
@@ -281,57 +281,49 @@ export default function App() {
                 <div className="h-px w-8 bg-gray-200" />
                 <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-gray-500">Visual Roadmap of Your Universal Family Office</p>
               </div>
-              <p className="max-w-xl text-gray-400 font-spectral text-lg italic mt-4 opacity-60">
-                LORRAEN MADRE is the brand. Sterling Drive Consulting is the founder’s mothership / UFO.
-              </p>
+              <MothershipInstructions
+                currentMothershipName={displayEntities.find(e => e.type === 'holding_company')?.name || 'Sterling Drive Consulting'}
+                onUpdateMothershipName={(name) => {
+                  const holdingEntity = displayEntities.find(e => e.type === 'holding_company');
+                  if (holdingEntity) {
+                    handleUpdateEntity({ ...holdingEntity, name });
+                  }
+                }}
+                onExploreOrbit={() => setMapLayout('orbit')}
+                onOpenFramework={() => setViewMode('framework')}
+              />
             </div>
 
-            <OperatingMap />
-            {/* The Map */}
-            <EcosystemMap 
-              entities={displayEntities} 
-              onSelect={(id) => setSelectedEntityId(id)} 
-            />
+            <div className="max-w-7xl mx-auto px-6 pb-8 flex flex-wrap items-center gap-3">
+              {(['orbit', 'outline'] as const).map(layout => <button key={layout} aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`border border-black rounded-full px-5 py-2 text-sm ${mapLayout === layout ? 'bg-black text-white' : ''}`}>{layout === 'orbit' ? 'Orbit view' : 'Outline view'}</button>)}
+              <p className="text-xs text-gray-500">{viewMode === 'framework' ? 'Your clean framework — changes stay separate from the founder example.' : 'The founder’s example — explore each workspace.'} Edits last for this session.</p>
+            </div>
+            {mapLayout === 'orbit' ? <OrbitMap entities={displayEntities} onSelect={setSelectedEntityId} /> : viewMode === 'framework' ? <CleanOutline entities={displayEntities} onSelect={setSelectedEntityId} /> : <EcosystemMap entities={displayEntities} onSelect={setSelectedEntityId} />}
+            {viewMode === 'business' && <OperatingMap />}
 
-            {/* Newcastle Connection Footer */}
-            <div className="max-w-7xl mx-auto px-6 py-24 flex flex-col items-end border-t border-gray-100 mt-20">
-              <div className="text-right space-y-8">
-                <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">Connect with Newcastle</h4>
-                <div className="flex flex-col md:flex-row items-center justify-end gap-6">
-                  <a href="#" className="px-8 py-3 bg-red-600 text-white rounded-full text-[10px] uppercase tracking-widest font-bold shadow-lg hover:bg-red-700 transition-all hover:scale-105 active:scale-95">
-                    Get a Castle
-                  </a>
-                  <a href="#" className="px-8 py-3 bg-blue-600 text-white rounded-full text-[10px] uppercase tracking-widest font-bold shadow-lg hover:bg-blue-700 transition-all hover:scale-105 active:scale-95">
-                    Become an Affiliate
-                  </a>
-                </div>
+            {/* Newcastle Connection Section - Screenshot CTA Styling */}
+            <div className="max-w-7xl mx-auto px-6 py-20 border-t border-gray-100 mt-20">
+              <div className="flex flex-col items-center text-center space-y-6">
+                <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold text-gray-400">
+                  Connect with Newcastle · Activate Your Orbit
+                </h4>
+                <ActionPills
+                  designLabel="DESIGN"
+                  workLabel="WORK"
+                  playLabel="PLAY"
+                  onDesign={() => {
+                    window.scrollTo({ top: 400, behavior: 'smooth' });
+                  }}
+                  onWork={() => {
+                    setViewMode('framework');
+                  }}
+                  onPlay={() => {
+                    setMapLayout('orbit');
+                  }}
+                />
               </div>
             </div>
 
-            {/* Legend / Info */}
-            <footer className="max-w-7xl mx-auto px-6 pt-12 border-t border-gray-100 grid grid-cols-1 md:grid-cols-3 gap-12 pb-12">
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 bg-black rounded-full" />
-                  <h4 className="text-[10px] uppercase tracking-widest font-bold">Planets</h4>
-                </div>
-                <p className="text-xs text-gray-500 leading-relaxed">Planets represent the primary functional ventures and story buckets. They hold the larger mission of each office.</p>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 border border-black rounded-full" />
-                  <h4 className="text-[10px] uppercase tracking-widest font-bold">Offerings</h4>
-                </div>
-                <p className="text-base text-gray-500 leading-relaxed">House products are the entry points into the twelve departments. Portfolio placements describe separate business functions.</p>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 bg-gray-200" />
-                  <h4 className="text-[10px] uppercase tracking-widest font-bold">Dinosaurs</h4>
-                </div>
-                <p className="text-base text-gray-500 leading-relaxed">Dinosaurs are agents with zodiac archetypes, platform assignments and distinct brand identities. Their registry lives in House 3.</p>
-              </div>
-            </footer>
             <div className="max-w-7xl mx-auto px-6 py-12 border-t border-gray-100 text-center space-y-4">
               <p className="text-[9px] uppercase tracking-[0.2em] text-gray-400 leading-relaxed max-w-3xl mx-auto">
                 Disclaimer: This application is a framework designed to help organize information within the WishWell system. 
@@ -349,7 +341,8 @@ export default function App() {
             exit={{ opacity: 0, x: -20 }}
           >
             <EntitySnapshot 
-              entity={selectedEntity!} 
+              entity={selectedEntity!}
+              clean={viewMode === 'framework'}
               onBack={() => setSelectedEntityId(null)}
               onUpdate={handleUpdateEntity}
             />
