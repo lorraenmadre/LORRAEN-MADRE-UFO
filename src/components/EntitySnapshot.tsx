@@ -26,11 +26,12 @@ import LorraineMadreChat from './LorraineMadreChat';
 
 interface Props {
   entity: Entity;
+  clean?: boolean;
   onBack: () => void;
   onUpdate: (updatedEntity: Entity) => void;
 }
 
-export default function EntitySnapshot({ entity, onBack, onUpdate }: Props) {
+export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false }: Props) {
   const [isGeneratingLVC, setIsGeneratingLVC] = useState(false);
   const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
   const [intentions, setIntentions] = useState(entity.intentions || '');
@@ -181,7 +182,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate }: Props) {
             Back to Map
           </button>
           <div className="text-center">
-            <h2 className="text-xl font-spectral font-medium uppercase tracking-[0.2em]">{entity.name}</h2>
+            <h2 className="text-xl font-spectral font-medium uppercase tracking-[0.2em]">{entity.name || entity.symbol || entity.zodiacSign || entity.house || 'Your workspace'}</h2>
             <p className="text-[9px] uppercase tracking-widest text-gray-400">
               {entity.type === 'dinosaur' ? 'Technical Domain' : entity.type.replace('_', ' ')}
             </p>
@@ -204,7 +205,12 @@ export default function EntitySnapshot({ entity, onBack, onUpdate }: Props) {
 
       <div className="max-w-5xl mx-auto px-6 space-y-24">
         <section className="border-b border-gray-200 pb-8 space-y-3">
-          <p className="text-base leading-relaxed">{entity.description}</p>
+          <label className="block text-sm">Name
+            <input aria-label="Workspace name" value={entity.name} onChange={e => onUpdate({ ...entity, name: e.target.value })} className="block mt-2 w-full border border-gray-300 p-3" />
+          </label>
+          <label className="block text-sm">Description
+            <textarea aria-label="Workspace description" value={entity.description} onChange={e => onUpdate({ ...entity, description: e.target.value })} className="block mt-2 w-full border border-gray-300 p-3" rows={3} />
+          </label>
           {entity.house && <p>Department: {entity.house}</p>}
           {entity.platform && <p>Platform: {entity.platform}</p>}
           {entity.cadence && <p>Cadence: {entity.cadence}</p>}
@@ -285,15 +291,15 @@ export default function EntitySnapshot({ entity, onBack, onUpdate }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-12 border-b border-gray-100">
           <div className="space-y-4">
             <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-300">Nature</h4>
-            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelNature || "A fundamental force in the garden."}</p>
+            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelNature || (clean ? "" : "A fundamental force in the garden.")}</p>
           </div>
           <div className="space-y-4">
             <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-300">Astrology</h4>
-            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelAstrology || "The planetary alignment of this office."}</p>
+            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelAstrology || (clean ? "" : "The planetary alignment of this office.")}</p>
           </div>
           <div className="space-y-4">
             <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-300">System</h4>
-            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelSystem || "The functional branch of the logic."}</p>
+            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelSystem || (clean ? "" : "The functional branch of the logic.")}</p>
           </div>
         </div>
 
@@ -327,7 +333,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate }: Props) {
         </section>
 
         {/* Story Card Video Placeholder */}
-        {entity.type === 'planet' && (
+        {entity.type === 'planet' && !clean && (
           <section className="space-y-6">
             <h3 className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">The Story Card</h3>
             <div 
@@ -361,17 +367,17 @@ export default function EntitySnapshot({ entity, onBack, onUpdate }: Props) {
               <div className="text-center p-6 border-r border-gray-200 last:border-0">
                 <Users className="w-6 h-6 mx-auto mb-2 opacity-50" />
                 <h5 className="text-[10px] uppercase tracking-widest mb-1">Acquisition Cost</h5>
-                <p className="font-spectral text-xl">{entity.customerAcquisitionCost || "$0 to obtain"}</p>
+                <p className="font-spectral text-xl">{entity.customerAcquisitionCost || (clean ? "" : "$0 to obtain")}</p>
               </div>
               <div className="text-center p-6 border-r border-gray-200 last:border-0">
                 <TrendingUp className="w-6 h-6 mx-auto mb-2 opacity-50" />
                 <h5 className="text-[10px] uppercase tracking-widest mb-1">Maintenance</h5>
-                <p className="font-spectral text-xl">{entity.maintenanceCost || "$0 to hold"}</p>
+                <p className="font-spectral text-xl">{entity.maintenanceCost || (clean ? "" : "$0 to hold")}</p>
               </div>
               <div className="text-center p-6">
                 <Zap className="w-6 h-6 mx-auto mb-2 opacity-50" />
                 <h5 className="text-[10px] uppercase tracking-widest mb-1">Core Benefit</h5>
-                <p className="font-spectral text-xl">{entity.benefit || "Pure activation"}</p>
+                <p className="font-spectral text-xl">{entity.benefit || (clean ? "" : "Pure activation")}</p>
               </div>
             </div>
           </section>

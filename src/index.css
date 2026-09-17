@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
+  --font-belleza: "Belleza", sans-serif;
   --font-spectral: "Spectral", serif;
   --font-montserrat: "Montserrat", sans-serif;
   --font-times: "Times New Roman", serif;
@@ -24,3 +25,22 @@
 .minimal-border-bold {
   border: 1px solid black;
 }
+
+.orbit-scroll { overflow-x: auto; background: #fff; }
+.orbit-stage { position: relative; width: 1000px; height: 740px; margin: auto; }
+.orbit-lines { position: absolute; inset: 0; width: 100%; height: 100%; color: #aaa; }
+.orbit-sun { position: absolute; left: 450px; top: 320px; width: 100px; height: 100px; border: 1px solid #111; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; background: white; z-index: 2; }
+.orbit-sun strong { font-family: var(--font-belleza); font-size: 10px; max-width: 85px; }
+.orbit-track { position: absolute; left: 500px; top: 370px; transform: scaleY(.68); pointer-events: none; }
+.orbit-arm { animation: orbit-turn var(--period) linear infinite; animation-delay: var(--phase); }
+.orbit-position { transform: translateX(var(--radius)); }
+.orbit-counter { animation: orbit-turn var(--period) linear infinite reverse; animation-delay: var(--phase); }
+.orbit-planet { position: absolute; transform: translate(-50%, -50%) scaleY(1.470588); display: flex; align-items: center; gap: 7px; background: white; border: 1px solid #111; border-radius: 30px; padding: 10px 14px; font-size: 12px; pointer-events: auto; min-height: 44px; white-space: nowrap; }
+.orbit-dot { width: 12px; height: 12px; border: 1px solid black; border-radius: 50%; }
+.orbit-planet:hover, .orbit-sun:hover { background: #eee; }
+.orbit-stage:hover .orbit-arm, .orbit-stage:hover .orbit-counter,
+.orbit-stage:focus-within .orbit-arm, .orbit-stage:focus-within .orbit-counter,
+.orbit-stage.is-paused .orbit-arm, .orbit-stage.is-paused .orbit-counter { animation-play-state: paused; }
+@keyframes orbit-turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .orbit-arm, .orbit-counter { animation-play-state: paused; } }
+button:focus-visible, textarea:focus-visible { outline: 2px solid #111; outline-offset: 4px; }

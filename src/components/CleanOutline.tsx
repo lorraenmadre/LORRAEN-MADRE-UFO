@@ -1,0 +1,6 @@
+import React from 'react';
+import { Entity } from '../types';
+export default function CleanOutline({ entities, onSelect }: { entities: Entity[]; onSelect: (id: string) => void }) {
+  const groups = [ ['Portfolio', entities.filter(e => !['offering', 'satellite', 'dinosaur'].includes(e.type))], ['Offering seeds', entities.filter(e => e.type === 'offering')], ['Zodiac dinosaurs', entities.filter(e => e.type === 'dinosaur')], ['Satellites', entities.filter(e => e.type === 'satellite')] ] as const;
+  return <section className="max-w-7xl mx-auto px-6 space-y-10" aria-label="Clean framework outline">{groups.map(([title, items]) => <section key={title}><h2 className="text-2xl mb-5">{title}</h2><div className="grid grid-cols-2 md:grid-cols-4 gap-4">{items.map((e, i) => <button key={e.id} onClick={() => onSelect(e.id)} aria-label={`Open ${e.symbol || e.zodiacSign || e.house || `${title} ${i + 1}`}`} className="border border-black min-h-36 p-5 text-left hover:bg-gray-50"><span className="text-xs uppercase tracking-widest text-gray-500">{e.symbol || e.zodiacSign || e.house || `Satellite ${i + 1}`}</span><span className="block mt-5 min-h-6">{e.name}</span></button>)}</div></section>)}</section>;
+}

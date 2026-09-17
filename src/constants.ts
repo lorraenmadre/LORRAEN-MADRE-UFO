@@ -28,3 +28,10 @@ export const INITIAL_ENTITIES: Entity[] = [
 ];
 
 export const UFO_CONTEXT = JSON.stringify(system);
+
+// Empty customer fields are independent from the founder example.
+export const CLEAN_ENTITIES: Entity[] = INITIAL_ENTITIES.map(e => ({
+  id: e.id, type: e.type, symbol: e.symbol, zodiacSign: e.zodiacSign,
+  house: e.house, name: '', description: '',
+  ...(e.type === 'church' ? { councilMembers: Array(12).fill('') } : {}),
+}));

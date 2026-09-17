@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Entity } from './types';
-import { INITIAL_ENTITIES } from './constants';
+import { INITIAL_ENTITIES, CLEAN_ENTITIES } from './constants';
 import EcosystemMap from './components/EcosystemMap';
+import OrbitMap from './components/OrbitMap';
+import CleanOutline from './components/CleanOutline';
 import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
@@ -12,6 +14,8 @@ type FirebaseUser = { uid: string };
 
 export default function App() {
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
+  const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
+  const [mapLayout, setMapLayout] = useState<'orbit' | 'outline'>('orbit');
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'framework' | 'business'>('business');
   const [user, setUser] = useState<FirebaseUser | null>(null);
@@ -160,7 +164,7 @@ export default function App() {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center space-y-12">
         <div className="space-y-4">
-          <h1 className="text-6xl md:text-8xl font-spectral tracking-tighter">LORRAEN MADRE</h1>
+          <h1 className="text-6xl md:text-8xl font-belleza tracking-tight">LORRAEN MADRE</h1>
           <p className="text-[10px] uppercase tracking-[0.5em] text-gray-400">Universal Family Office Framework</p>
           {authWarning && (
             <p className="max-w-lg mx-auto text-xs text-gray-500 leading-relaxed">{authWarning}</p>
@@ -184,17 +188,11 @@ export default function App() {
     );
   }
 
-  const displayEntities = viewMode === 'framework' 
-    ? entities.map(e => ({
-        ...e,
-        name: e.symbol || e.name,
-      }))
-    : entities;
-
-  const selectedEntity = entities.find(e => e.id === selectedEntityId);
-
+  const displayEntities = viewMode === 'framework' ? cleanEntities : entities;
+  const selectedEntity = displayEntities.find(e => e.id === selectedEntityId);
   const handleUpdateEntity = (updatedEntity: Entity) => {
-    setEntities(prev => prev.map(e => e.id === updatedEntity.id ? updatedEntity : e));
+    const update = viewMode === 'framework' ? setCleanEntities : setEntities;
+    update(prev => prev.map(e => e.id === updatedEntity.id ? updatedEntity : e));
   };
 
   return (
@@ -210,9 +208,9 @@ export default function App() {
           >
             {/* Nav Header */}
             <header className="border-b border-gray-100 py-4 px-6 sticky top-0 bg-white/80 backdrop-blur-md z-50">
-              <div className="max-w-7xl mx-auto flex justify-between items-center">
+              <div className="max-w-7xl mx-auto flex flex-wrap gap-4 justify-between items-center">
                 <div className="flex items-center gap-4">
-                  <h1 className="text-2xl font-spectral tracking-tighter hover:italic cursor-default font-bold">LORRAEN MADRE</h1>
+                  <h1 className="text-2xl font-belleza tracking-tight cursor-default">LORRAEN MADRE</h1>
                 </div>
                 <div className="flex bg-gray-100 rounded-none p-1">
                   <button 
@@ -286,12 +284,12 @@ export default function App() {
               </p>
             </div>
 
-            <OperatingMap />
-            {/* The Map */}
-            <EcosystemMap 
-              entities={displayEntities} 
-              onSelect={(id) => setSelectedEntityId(id)} 
-            />
+            <div className="max-w-7xl mx-auto px-6 pb-8 flex flex-wrap items-center gap-3">
+              {(['orbit', 'outline'] as const).map(layout => <button key={layout} aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`border border-black rounded-full px-5 py-2 text-sm ${mapLayout === layout ? 'bg-black text-white' : ''}`}>{layout === 'orbit' ? 'Orbit view' : 'Outline view'}</button>)}
+              <p className="text-xs text-gray-500">{viewMode === 'framework' ? 'Your clean framework — changes stay separate from the founder example.' : 'The founder’s example — explore each workspace.'} Edits last for this session.</p>
+            </div>
+            {mapLayout === 'orbit' ? <OrbitMap entities={displayEntities} onSelect={setSelectedEntityId} /> : viewMode === 'framework' ? <CleanOutline entities={displayEntities} onSelect={setSelectedEntityId} /> : <EcosystemMap entities={displayEntities} onSelect={setSelectedEntityId} />}
+            {viewMode === 'business' && <OperatingMap />}
 
             {/* Newcastle Connection Footer */}
             <div className="max-w-7xl mx-auto px-6 py-24 flex flex-col items-end border-t border-gray-100 mt-20">
@@ -349,7 +347,8 @@ export default function App() {
             exit={{ opacity: 0, x: -20 }}
           >
             <EntitySnapshot 
-              entity={selectedEntity!} 
+              entity={selectedEntity!}
+              clean={viewMode === 'framework'}
               onBack={() => setSelectedEntityId(null)}
               onUpdate={handleUpdateEntity}
             />
