@@ -1,5 +1,11 @@
 import React from 'react';
 
+// Sitewide CTA rule (Rae, 2026-09-23). Inside the app:
+// Design -> book time with Rae (Calendly), Work -> the network form, Play -> the Library.
+export const APP_DESIGN_URL = 'https://calendly.com/lorraen-madre';
+export const WORK_URL = 'https://www.lorraenmadre.com/connect';
+export const PLAY_URL = 'https://www.lorraenmadre.com/library';
+
 interface ActionPillsProps {
   onDesign?: () => void;
   onWork?: () => void;
@@ -21,9 +27,9 @@ export default function ActionPills({
   designLabel = 'DESIGN',
   workLabel = 'WORK',
   playLabel = 'PLAY',
-  designHref,
-  workHref,
-  playHref,
+  designHref = APP_DESIGN_URL,
+  workHref = WORK_URL,
+  playHref = PLAY_URL,
   className = '',
   stacked = false,
 }: ActionPillsProps) {
