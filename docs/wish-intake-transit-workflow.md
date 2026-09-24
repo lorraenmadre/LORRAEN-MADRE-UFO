@@ -48,3 +48,14 @@ Do not send brand pitches during this routing test.
 - Symphony MCP connection list currently exposes TikTok. Other integrations are being assessed with Symphony; absence from that MCP list is not evidence that all native integrations are absent.
 - Direct WhatsApp Business connection is not active here.
 - Gantt UI, full House dashboards, task dispatch, receipt synchronization and messaging intake adapters have not been built by this specification.
+
+## Symphony assessment returned
+Symphony reports a live Trello read through its own connection and a live Slack channel lookup. These are agent-reported read results, not evidence of a successful card write.
+Three DREAM BACKLOG candidate boards:
+- https://trello.com/b/aSGnrrPl — 68f8e6dfd08498a00a823ba7
+- https://trello.com/b/MV0nVCXR — 6980f8c3e7b96b40ea335603
+- https://trello.com/b/H0J9Tvph — 6980f8c09ab5477ec7a3ce7e
+The reported board labels use older NORTH=To Do and SOUTH=Done conventions. Do not silently adopt those labels or rename populated lists without reviewing card meaning. Canonical task state and House classification are separate fields; moving a card between state lists must not erase its House.
+User must identify the pilot board before a write. A test card should initially be placed in the chosen board's Rabbit Hole/intake list, with proposed House 5 operational classification and SOUTH/to_do metadata, until status-list migration is reviewed.
+Symphony reports UGC assets and agents exist but no WISH WELL wish-routing workflow or tested inbound wish automation. Conversational messaging with Symphony is not proof of a webhook or task-routing pipeline.
+Initial test wish: use the founder's UGC goal quoted in this specification, marked as a proposed test derived from her request. Preserve this conversation as source; do not fabricate a native WhatsApp message ID. Return the actual card URL before sending the Slack receipt.
