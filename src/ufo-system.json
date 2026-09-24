@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-16.1",
+  "version": "2026-09-24.1",
   "brand": "LORRAEN MADRE",
   "mothership": "Sterling Drive Consulting",
   "structure": "Universal Family Office (UFO)",
@@ -23,11 +23,11 @@
     },
     {
       "number": 3,
-      "department": "Telecommunications",
+      "department": "Goals and Cycly ERP",
       "product": "Wish Well GPT",
       "platform": "GPT",
-      "cadence": "Moon-phase ERP cycle",
-      "description": "Software/hardware maintenance, subscriptions, energy usage, caps and limitations. Home of the dinosaur and satellite registries."
+      "cadence": "Cycly: three four-week operating cycles",
+      "description": "Define a SMART Goal with eight measurable Outcomes in House 8 and one quarterly Mandalart Plan in House 9. Repeat eight ERP stages across three cycles. Keep astronomical timing separate."
     },
     {
       "number": 4,
@@ -63,19 +63,19 @@
     },
     {
       "number": 8,
-      "department": "Risk and Exits",
+      "department": "Outcomes, Protection and Exits",
       "product": "Mona Lisa Smile",
       "platform": "Miro",
-      "cadence": "Dated life events",
-      "description": "Past, current and anticipated transformations: marriage, birth, moving, job loss, anniversaries and trauma milestones. Link insurance, risk and exit plans; not routine appointments."
+      "cadence": "Event-triggered outcome assessment",
+      "description": "Own the eight measurable Outcomes per Goal, their evidence, protection, risks and exit decision rules. Events trigger review; task completion alone does not prove an Outcome."
     },
     {
       "number": 9,
-      "department": "Trust, Travel and Therapy",
+      "department": "Quarterly Plans: Trust, Travel and Therapy",
       "product": "Lady and the Wish Book",
       "platform": "Amazon book series/store",
-      "cadence": "Quarterly / 90 days",
-      "description": "Equinox/solstice board meetings with travel, trust education, therapy and feelings-wheel records; goals on a 90-day cycle. Family trust education applies regardless of school type."
+      "cadence": "Quarterly; three operating cycles",
+      "description": "Coordinate one Goal, eight Outcomes and 64 task spaces in a 9x9 Mandalart grid. Link economic, natural-disaster and provisional personal/family-disruption plans to trust, travel and therapy."
     },
     {
       "number": 10,
@@ -467,6 +467,27 @@
       "status": "Proposed partner",
       "method": "Unassigned",
       "notes": "For Sunshine Pocket Therapy; service arrangement not verified."
+    },
+    {
+      "name": "Symphony",
+      "role": "UGC brand opportunity and outreach workflow",
+      "status": "User-reported or proposed; unverified",
+      "method": "Not verified",
+      "notes": "No active integration or completed work inferred from registration."
+    },
+    {
+      "name": "Polar",
+      "role": "Assistant onboarding and handoffs",
+      "status": "User-reported or proposed; unverified",
+      "method": "Not verified",
+      "notes": "No active integration or completed work inferred from registration."
+    },
+    {
+      "name": "MakeThis",
+      "role": "Proposed customized client delivery",
+      "status": "User-reported or proposed; unverified",
+      "method": "Not verified",
+      "notes": "No active integration or completed work inferred from registration."
     }
   ],
   "blocks": [
@@ -532,5 +553,80 @@
     "House 13 has no separate product/platform; it represents the person choosing in the present.",
     "Uranus function and personal names for Chiron, Juno and Vesta remain unconfirmed.",
     "Existing sprint dates/ceremony times and lunar-phase task assignments must be verified before scheduling."
-  ]
+  ],
+  "planning": {
+    "version": "2026-09-24.1",
+    "scope": "Houses 3, 8, 9 operational correction",
+    "goal_house": 3,
+    "outcome_house": 8,
+    "plan_house": 9,
+    "task_house": 5,
+    "grid": {
+      "name": "Mandalart",
+      "rows": 9,
+      "columns": 9,
+      "goals_per_plan": 1,
+      "outcomes_per_goal": 8,
+      "task_slots_per_outcome": 8,
+      "task_slots_total": 64,
+      "outcome_appearances": 16,
+      "unique_records_when_full": 73
+    },
+    "timing": {
+      "operating_cycles": 3,
+      "weeks_per_operating_cycle": 4,
+      "stages_per_cycle": 8,
+      "astronomical_timestamps": "must be verified separately"
+    },
+    "baseline_plan_categories": [
+      "economic_resilience",
+      "natural_disaster_readiness",
+      "personal_family_disruption_provisional"
+    ],
+    "goal_limit": null,
+    "beatitude_mapping_status": "awaiting_founder_mapping",
+    "outcome_completion": "requires target evidence; task completion alone is insufficient",
+    "exit_rules": "may pause or stop before all outcomes are achieved",
+    "task_states": {
+      "south": "to_do",
+      "east": "in_progress",
+      "north": "testing",
+      "west": "waiting",
+      "done": "complete"
+    },
+    "erp_stages": [
+      {
+        "phase": "New Moon",
+        "stage": "Manifestation"
+      },
+      {
+        "phase": "Waxing Crescent",
+        "stage": "Discovery"
+      },
+      {
+        "phase": "First Quarter",
+        "stage": "Planning"
+      },
+      {
+        "phase": "Waxing Gibbous",
+        "stage": "Design"
+      },
+      {
+        "phase": "Full Moon",
+        "stage": "Intention"
+      },
+      {
+        "phase": "Waning Gibbous",
+        "stage": "Inception"
+      },
+      {
+        "phase": "Last/Third Quarter",
+        "stage": "Feedback"
+      },
+      {
+        "phase": "Waning Crescent",
+        "stage": "Execution"
+      }
+    ]
+  }
 }

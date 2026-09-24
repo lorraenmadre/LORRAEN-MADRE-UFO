@@ -1,3 +1,5 @@
+> Current planning rules: [WISH WELL 2026-09-24.1](WISH_WELL_PLANNING.md). Read this correction before older House 3/8/9 definitions.
+
 # LORRAEN MADRE — UFO operating README
 
 Version: 2026-09-16.1. Source: founder's September 16, 2026 instructions, attached transcript and subsequent corrections. Explicit spellings override speech-to-text variants. This map supersedes conflicting older product, house and planetary mappings.
