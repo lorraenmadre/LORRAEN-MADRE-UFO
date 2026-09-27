@@ -24,8 +24,8 @@ export default function OrbitMap({ entities, onSelect }: { entities: Entity[]; o
     <section className="max-w-7xl mx-auto px-6" aria-label="Interactive orbit map">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-3xl font-spectral">Your universe, in motion.</h2>
-          <p className="text-sm text-gray-500 mt-2">Choose a planet to open its workspace. Motion pauses while you explore.</p>
+          <h2 className="text-3xl font-belleza">Your universe, in motion.</h2>
+          <p className="text-sm text-black mt-2">Choose a planet to open its workspace. Motion pauses while you explore.</p>
         </div>
         <button
           className="border border-black rounded-full px-5 py-2 text-sm hover:bg-black hover:text-white transition-colors"
@@ -45,7 +45,7 @@ export default function OrbitMap({ entities, onSelect }: { entities: Entity[]; o
           </svg>
           {sun && (
             <button
-              className={`orbit-sun ${isUnnamed(sun) ? 'border-emerald-500' : ''}`}
+              className={`orbit-sun ${isUnnamed(sun) ? 'border-[#00bf63]' : ''}`}
               onClick={() => onSelect(sun.id)}
               aria-label={`Open Sun: ${sun.name || 'empty brand identity'}`}
             >
@@ -95,7 +95,7 @@ export default function OrbitMap({ entities, onSelect }: { entities: Entity[]; o
       <div className="space-y-10 mt-12">
         {groups.map(group => (
           <section key={group.title}>
-            <h3 className="text-xl font-spectral font-medium mb-4">{group.title}</h3>
+            <h3 className="text-xl font-belleza font-medium mb-4">{group.title}</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {group.items.map((e, i) => {
                 const unnamed = isUnnamed(e);
@@ -106,21 +106,21 @@ export default function OrbitMap({ entities, onSelect }: { entities: Entity[]; o
                     aria-label={`Open ${label(e)} ${i + 1}`}
                     className={`min-h-32 border p-4 text-left transition-all ${
                       unnamed
-                        ? 'border-emerald-500/60 bg-[#0C120C] text-[#00FF66] font-mono hover:border-[#00FF66]'
+                        ? 'border-[#00bf63]/60 bg-black text-[#00bf63] font-mono hover:border-[#00bf63]'
                         : 'border-black hover:bg-gray-50 text-black'
                     }`}
                   >
-                    <span className={`block text-xs uppercase tracking-widest ${unnamed ? 'text-emerald-400' : 'text-gray-500'}`}>
+                    <span className={`block text-xs uppercase tracking-widest ${unnamed ? 'text-[#00bf63]' : 'text-black'}`}>
                       {label(e)}
                     </span>
                     {e.name && !unnamed ? (
-                      <span className="block mt-5 min-h-6 font-spectral text-base font-medium">{e.name}</span>
+                      <span className="block mt-5 min-h-6 font-belleza text-base font-medium">{e.name}</span>
                     ) : (
-                      <span className="block mt-5 min-h-6 font-mono text-xs text-[#00FF66]">
+                      <span className="block mt-5 min-h-6 font-mono text-xs text-[#00bf63]">
                         &gt; [{label(e).toUpperCase()}] <span className="animate-pulse">_</span>
                       </span>
                     )}
-                    {e.platform && <span className={`block text-xs mt-2 ${unnamed ? 'text-emerald-500/70' : 'text-gray-500'}`}>{e.platform}</span>}
+                    {e.platform && <span className={`block text-xs mt-2 ${unnamed ? 'text-[#00bf63]' : 'text-black'}`}>{e.platform}</span>}
                   </button>
                 );
               })}

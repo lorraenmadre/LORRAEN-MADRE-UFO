@@ -120,12 +120,12 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
   const renderLVC = () => {
     if (!entity.leanValueCanvas) return (
       <div className="p-12 text-center border border-dashed border-gray-200">
-        <Sparkles className="w-8 h-8 mx-auto mb-4 text-gray-300" />
-        <p className="font-spectral text-gray-500 mb-4 italic">The canvas is blank. Let AI architect the value.</p>
+        <Sparkles className="w-8 h-8 mx-auto mb-4 text-black" />
+        <p className="font-belleza text-black mb-4 italic">The canvas is blank. Let AI architect the value.</p>
         <button 
           onClick={handleGenerateLVC}
           disabled={isGeneratingLVC}
-          className="px-6 py-2 bg-black text-white text-[10px] uppercase tracking-widest hover:bg-gray-800 disabled:bg-gray-400"
+          className="px-6 py-2 bg-black text-white text-[10px] uppercase tracking-widest hover:bg-[#111111] disabled:opacity-40"
         >
           {isGeneratingLVC ? 'Architecting...' : 'Generate Lean Value Canvas'}
         </button>
@@ -137,7 +137,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-black border border-black shadow-lg">
         {Object.entries(lvc).map(([key, value]) => (
           <div key={key} className="bg-white p-6 min-h-[160px]">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-2">{key.replace(/([A-Z])/g, ' $1')}</h4>
+            <h4 className="text-[10px] uppercase tracking-widest font-bold text-black mb-2">{key.replace(/([A-Z])/g, ' $1')}</h4>
             <p className="text-sm leading-relaxed">{value as string}</p>
           </div>
         ))}
@@ -149,7 +149,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
     const title = entity.summaryTitleOverride || 'Executive Summary';
     if (!entity.executiveSummary) return (
       <div className="p-12 text-center border border-dashed border-gray-100">
-        <FileText className="w-8 h-8 mx-auto mb-4 text-gray-300" />
+        <FileText className="w-8 h-8 mx-auto mb-4 text-black" />
         <button 
           onClick={handleGenerateSummary}
           disabled={isGeneratingSummary}
@@ -165,8 +165,8 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
       <div className="space-y-8 max-w-2xl mx-auto py-8">
         {Object.entries(summary).map(([key, value]) => (
           <div key={key} className="space-y-2">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-400">{key}</h4>
-            <p className="font-spectral text-2xl leading-relaxed text-gray-800">{value as string}</p>
+            <h4 className="text-[10px] uppercase tracking-widest font-bold text-black">{key}</h4>
+            <p className="font-belleza text-2xl leading-relaxed text-black">{value as string}</p>
           </div>
         ))}
       </div>
@@ -177,18 +177,18 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
     <div className="min-h-screen bg-white pb-24">
       <div className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 mb-8">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <button onClick={onBack} className="flex items-center gap-2 text-xs uppercase tracking-widest hover:underline text-gray-400 hover:text-black transition-colors">
+          <button onClick={onBack} className="flex items-center gap-2 text-xs uppercase tracking-widest hover:underline text-black hover:text-black transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Back to Map
           </button>
           <div className="text-center">
-            <h2 className="text-xl font-spectral font-medium uppercase tracking-[0.2em]">{entity.name || entity.symbol || entity.zodiacSign || entity.house || 'Your workspace'}</h2>
-            <p className="text-[9px] uppercase tracking-widest text-gray-400">
+            <h2 className="text-xl font-belleza font-medium uppercase tracking-[0.2em]">{entity.name || entity.symbol || entity.zodiacSign || entity.house || 'Your workspace'}</h2>
+            <p className="text-[9px] uppercase tracking-widest text-black">
               {entity.type === 'dinosaur' ? 'Technical Domain' : entity.type.replace('_', ' ')}
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <label className="cursor-pointer group flex items-center gap-2 text-[10px] uppercase tracking-widest text-gray-400 hover:text-black transition-colors">
+            <label className="cursor-pointer group flex items-center gap-2 text-[10px] uppercase tracking-widest text-black hover:text-black transition-colors">
               <Upload className="w-3 h-3 group-hover:scale-110 transition-transform" />
               <span>Logo</span>
               <input type="file" className="hidden" accept="image/*" onChange={handleLogoUpload} />
@@ -223,9 +223,9 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-4">
                 <Lock className="w-8 h-8" />
-                <h3 className="text-4xl font-spectral">The Trust Vault</h3>
+                <h3 className="text-4xl font-belleza">The Trust Vault</h3>
               </div>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400">Secure Documentation</p>
+              <p className="text-[10px] uppercase tracking-widest text-black">Secure Documentation</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
@@ -248,9 +248,9 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
             </div>
 
             <div className="space-y-2">
-              <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Current Holdings</h4>
+              <h4 className="text-[10px] uppercase tracking-widest font-bold text-black mb-4">Current Holdings</h4>
               <div className="p-12 text-center border border-dashed border-gray-200">
-                <p className="font-spectral italic text-gray-400">No documents in the vault yet.</p>
+                <p className="font-belleza italic text-black">No documents in the vault yet.</p>
               </div>
             </div>
           </section>
@@ -260,13 +260,13 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
         {entity.type === 'church' && (
           <section className="space-y-12">
             <div className="text-center space-y-4">
-              <h3 className="text-4xl font-spectral">Micro-Church Council</h3>
-              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">Identification of the 12</p>
+              <h3 className="text-4xl font-belleza">Micro-Church Council</h3>
+              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-black">Identification of the 12</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {council.map((member, i) => (
                 <div key={i} className="space-y-2">
-                  <label className="text-[9px] uppercase tracking-widest font-bold text-gray-300">Slot {i + 1}</label>
+                  <label className="text-[9px] uppercase tracking-widest font-bold text-black">Slot {i + 1}</label>
                   <div className="relative group">
                     <UserPlus className="absolute left-3 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-200 group-focus-within:text-black" />
                     <input 
@@ -278,7 +278,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
                         setCouncil(newCouncil);
                       }}
                       placeholder="Identify member..."
-                      className="w-full bg-white border border-gray-100 p-3 pl-8 text-sm focus:outline-none focus:border-black font-spectral italic"
+                      className="w-full bg-white border border-gray-100 p-3 pl-8 text-sm focus:outline-none focus:border-black font-belleza italic"
                     />
                   </div>
                 </div>
@@ -290,42 +290,42 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
         {/* Ontology Header */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-12 border-b border-gray-100">
           <div className="space-y-4">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-300">Nature</h4>
-            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelNature || (clean ? "" : "A fundamental force in the garden.")}</p>
+            <h4 className="text-[10px] uppercase tracking-widest font-bold text-black">Nature</h4>
+            <p className="font-belleza text-lg italic leading-snug">{entity.highLevelNature || (clean ? "" : "A fundamental force in the garden.")}</p>
           </div>
           <div className="space-y-4">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-300">Astrology</h4>
-            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelAstrology || (clean ? "" : "The planetary alignment of this office.")}</p>
+            <h4 className="text-[10px] uppercase tracking-widest font-bold text-black">Astrology</h4>
+            <p className="font-belleza text-lg italic leading-snug">{entity.highLevelAstrology || (clean ? "" : "The planetary alignment of this office.")}</p>
           </div>
           <div className="space-y-4">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-gray-300">System</h4>
-            <p className="font-spectral text-lg italic leading-snug">{entity.highLevelSystem || (clean ? "" : "The functional branch of the logic.")}</p>
+            <h4 className="text-[10px] uppercase tracking-widest font-bold text-black">System</h4>
+            <p className="font-belleza text-lg italic leading-snug">{entity.highLevelSystem || (clean ? "" : "The functional branch of the logic.")}</p>
           </div>
         </div>
 
         {/* Name and Claim */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-4">
-            <h3 className="text-2xl font-spectral mb-4 italic">Name & Claim: Intentions</h3>
+            <h3 className="text-2xl font-belleza mb-4 italic">Name & Claim: Intentions</h3>
             <textarea 
               value={intentions}
               onChange={(e) => setIntentions(e.target.value)}
               placeholder="What do you claim for this space?"
-              className="w-full h-40 p-4 font-spectral text-xl border border-gray-100 focus:border-black focus:outline-none transition-all resize-none"
+              className="w-full h-40 p-4 font-belleza text-xl border border-gray-100 focus:border-black focus:outline-none transition-all resize-none"
             />
           </div>
           <div className="space-y-4">
-            <h3 className="text-2xl font-spectral mb-4 italic">Manifestations</h3>
+            <h3 className="text-2xl font-belleza mb-4 italic">Manifestations</h3>
             <textarea 
               value={manifestations}
               onChange={(e) => setManifestations(e.target.value)}
               placeholder="How does it show up in the world?"
-              className="w-full h-40 p-4 font-spectral text-xl border border-gray-100 focus:border-black focus:outline-none transition-all resize-none"
+              className="w-full h-40 p-4 font-belleza text-xl border border-gray-100 focus:border-black focus:outline-none transition-all resize-none"
             />
           </div>
           <button 
             onClick={saveClaims}
-            className="md:col-span-2 flex items-center justify-center gap-2 py-4 bg-black text-white text-[10px] uppercase tracking-widest hover:bg-gray-900 transition-colors"
+            className="md:col-span-2 flex items-center justify-center gap-2 py-4 bg-black text-white text-[10px] uppercase tracking-widest hover:bg-[#111111] transition-colors"
           >
             <Save className="w-4 h-4" />
             Claim and Save
@@ -335,7 +335,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
         {/* Story Card Video Placeholder */}
         {entity.type === 'planet' && !clean && (
           <section className="space-y-6">
-            <h3 className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">The Story Card</h3>
+            <h3 className="text-[10px] uppercase tracking-[0.3em] font-bold text-black">The Story Card</h3>
             <div 
               className="relative w-full aspect-video bg-gray-100 border border-gray-200 overflow-hidden group cursor-pointer"
               onClick={() => alert("Playing Story Video...")}
@@ -353,7 +353,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
               </div>
               <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity">
                 <span className="text-[10px] uppercase tracking-widest text-white drop-shadow-md">Play Story Narrative</span>
-                <span className="font-spectral italic text-white text-sm">Design Time, Space + Story</span>
+                <span className="font-belleza italic text-white text-sm">Design Time, Space + Story</span>
               </div>
             </div>
           </section>
@@ -362,22 +362,22 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
         {/* Specialized Sections */}
         {entity.type === 'offering' && (
           <section className="space-y-8 p-12 bg-gray-50 border border-gray-100">
-            <h3 className="text-3xl font-spectral text-center">User Journey & Economics</h3>
+            <h3 className="text-3xl font-belleza text-center">User Journey & Economics</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center p-6 border-r border-gray-200 last:border-0">
                 <Users className="w-6 h-6 mx-auto mb-2 opacity-50" />
                 <h5 className="text-[10px] uppercase tracking-widest mb-1">Acquisition Cost</h5>
-                <p className="font-spectral text-xl">{entity.customerAcquisitionCost || (clean ? "" : "$0 to obtain")}</p>
+                <p className="font-belleza text-xl">{entity.customerAcquisitionCost || (clean ? "" : "$0 to obtain")}</p>
               </div>
               <div className="text-center p-6 border-r border-gray-200 last:border-0">
                 <TrendingUp className="w-6 h-6 mx-auto mb-2 opacity-50" />
                 <h5 className="text-[10px] uppercase tracking-widest mb-1">Maintenance</h5>
-                <p className="font-spectral text-xl">{entity.maintenanceCost || (clean ? "" : "$0 to hold")}</p>
+                <p className="font-belleza text-xl">{entity.maintenanceCost || (clean ? "" : "$0 to hold")}</p>
               </div>
               <div className="text-center p-6">
                 <Zap className="w-6 h-6 mx-auto mb-2 opacity-50" />
                 <h5 className="text-[10px] uppercase tracking-widest mb-1">Core Benefit</h5>
-                <p className="font-spectral text-xl">{entity.benefit || (clean ? "" : "Pure activation")}</p>
+                <p className="font-belleza text-xl">{entity.benefit || (clean ? "" : "Pure activation")}</p>
               </div>
             </div>
           </section>
@@ -386,34 +386,34 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
         {(entity.type === 'north_node' || entity.type === 'south_node') && (
           <section className="space-y-12">
             <div className="p-12 border-2 border-black text-center bg-gray-50">
-               <h3 className="text-4xl font-spectral mb-6">{entity.type === 'north_node' ? 'Executive Vision: Retirement & Funding' : 'Executive Mission: Nonprofit & Sustainability'}</h3>
-               <p className="font-spectral text-2xl italic leading-relaxed text-gray-800">{entity.strategy}</p>
+               <h3 className="text-4xl font-belleza mb-6">{entity.type === 'north_node' ? 'Executive Vision: Retirement & Funding' : 'Executive Mission: Nonprofit & Sustainability'}</h3>
+               <p className="font-belleza text-2xl italic leading-relaxed text-black">{entity.strategy}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="space-y-6">
-                <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400 border-b border-gray-100 pb-2">Funding Strategies</h4>
+                <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-black border-b border-gray-100 pb-2">Funding Strategies</h4>
                 <ul className="space-y-4">
                   {(entity.fundingStrategies || []).map((s, i) => (
                     <li key={i} className="flex gap-4 group">
-                      <span className="text-gray-300 font-mono text-xs mt-1">0{i+1}</span>
-                      <p className="font-spectral text-xl leading-tight group-hover:italic transition-all">{s}</p>
+                      <span className="text-black font-mono text-xs mt-1">0{i+1}</span>
+                      <p className="font-belleza text-xl leading-tight group-hover:italic transition-all">{s}</p>
                     </li>
                   ))}
-                  {!entity.fundingStrategies?.length && <p className="font-spectral italic text-gray-400">Strategies pending architecture...</p>}
+                  {!entity.fundingStrategies?.length && <p className="font-belleza italic text-black">Strategies pending architecture...</p>}
                 </ul>
               </div>
 
               <div className="space-y-6">
-                <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400 border-b border-gray-100 pb-2">Long-term Security Goals</h4>
+                <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-black border-b border-gray-100 pb-2">Long-term Security Goals</h4>
                 <ul className="space-y-4">
                   {(entity.securityGoals || []).map((g, i) => (
                     <li key={i} className="flex gap-4 group">
-                      <span className="text-gray-300 font-mono text-xs mt-1">0{i+1}</span>
-                      <p className="font-spectral text-xl leading-tight group-hover:italic transition-all">{g}</p>
+                      <span className="text-black font-mono text-xs mt-1">0{i+1}</span>
+                      <p className="font-belleza text-xl leading-tight group-hover:italic transition-all">{g}</p>
                     </li>
                   ))}
-                  {!entity.securityGoals?.length && <p className="font-spectral italic text-gray-400">Goals pending definition...</p>}
+                  {!entity.securityGoals?.length && <p className="font-belleza italic text-black">Goals pending definition...</p>}
                 </ul>
               </div>
             </div>
@@ -424,7 +424,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
         <section className="space-y-12">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-4xl font-spectral">Lean Value Canvas</h3>
+              <h3 className="text-4xl font-belleza">Lean Value Canvas</h3>
               <div className="flex items-center gap-4">
                 {entity.leanValueCanvas && (
                   <button 
@@ -452,7 +452,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
 
           <div className="space-y-4 pt-12 border-t border-gray-100">
             <div className="flex items-center justify-between">
-              <h3 className="text-4xl font-spectral">Executive Summary</h3>
+              <h3 className="text-4xl font-belleza">Executive Summary</h3>
               <div className="flex items-center gap-4">
                 {entity.executiveSummary && (
                   <button 

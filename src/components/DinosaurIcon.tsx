@@ -17,7 +17,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Velociraptor',
     code: 'ARI',
     symbol: 'ARI',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   taurus: {
@@ -26,7 +26,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Ankylosaurus',
     code: 'TAU',
     symbol: 'TAU',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   gemini: {
@@ -35,7 +35,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Pterodactyl',
     code: 'GEM',
     symbol: 'GEM',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   cancer: {
@@ -44,7 +44,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Brachiosaurus',
     code: 'CAN',
     symbol: 'CAN',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   leo: {
@@ -53,7 +53,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'T-Rex',
     code: 'LEO',
     symbol: 'LEO',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   virgo: {
@@ -62,7 +62,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Triceratops',
     code: 'VIR',
     symbol: 'VIR',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   libra: {
@@ -71,7 +71,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Parasaurolophus',
     code: 'LIB',
     symbol: 'LIB',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   scorpio: {
@@ -80,7 +80,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Spinosaurus',
     code: 'SCO',
     symbol: 'SCO',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   sagittarius: {
@@ -89,7 +89,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Dilophosaurus',
     code: 'SAG',
     symbol: 'SAG',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   capricorn: {
@@ -98,7 +98,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Pachycephalosaurus',
     code: 'CAP',
     symbol: 'CAP',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   aquarius: {
@@ -107,7 +107,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Plesiosaur',
     code: 'AQU',
     symbol: 'AQU',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   },
   pisces: {
@@ -116,12 +116,12 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
     species: 'Mosasaur',
     code: 'PIS',
     symbol: 'PIS',
-    bg: 'bg-gray-50 text-gray-500 border-gray-200',
+    bg: 'bg-gray-50 text-black border-gray-200',
     color: '#6B7280'
   }
 };
 
-export function ZodiacGlyph({ sign, className = "w-3.5 h-3.5 text-gray-500" }: { sign: string; className?: string }) {
+export function ZodiacGlyph({ sign, className = "w-3.5 h-3.5 text-black" }: { sign: string; className?: string }) {
   const key = sign.toLowerCase().trim();
   switch (key) {
     case 'aries':
@@ -257,11 +257,11 @@ export default function DinosaurIcon({ zodiac, house, size = 'sm', showLabel = f
   return (
     <div className="inline-flex items-center gap-1.5" title={`${dino.zodiac} (${dino.species}) — ${dino.name}`}>
       <div className={`rounded-full flex items-center justify-center border font-bold ${dino.bg} ${iconSizes[size]}`}>
-        <ZodiacGlyph sign={dino.zodiac} className={`${glyphSizes[size]} text-gray-500`} />
+        <ZodiacGlyph sign={dino.zodiac} className={`${glyphSizes[size]} text-black`} />
       </div>
       {showLabel && (
-        <span className="text-[10px] tracking-wider uppercase font-semibold text-gray-700">
-          {dino.species} <span className="text-gray-400">({dino.zodiac})</span>
+        <span className="text-[10px] tracking-wider uppercase font-semibold text-black">
+          {dino.species} <span className="text-black">({dino.zodiac})</span>
         </span>
       )}
     </div>

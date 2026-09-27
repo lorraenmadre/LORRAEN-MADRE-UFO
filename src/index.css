@@ -1,25 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* LORRAEN MADRE Brand Codex — same system as the voice (CarPlay) app.
+   Website/UFO = white surface. Belleza headings, Mulish body, Figtree controls,
+   Courier New green (#00bf63) only on black terminal surfaces.
+   Text is black or white only. Pills: white, blue #004aad, red #f41c1c — black outline. */
+@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Figtree:wght@500;600;700&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-belleza: "Belleza", sans-serif;
-  --font-spectral: "Spectral", serif;
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-times: "Times New Roman", serif;
+  --font-mulish: "Mulish", system-ui, sans-serif;
+  --font-figtree: "Figtree", system-ui, sans-serif;
+  --font-sans: "Mulish", system-ui, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  /* legacy names kept so older classes still land on the brand fonts */
+  --font-spectral: "Belleza", sans-serif;
+  --font-montserrat: "Mulish", system-ui, sans-serif;
+  --font-times: "Belleza", sans-serif;
+
+  --color-lm-red: #f41c1c;
+  --color-lm-blue: #004aad;
+  --color-lm-green: #00bf63;
+  --color-lm-ink: #111111;
+}
+
+:root {
+  --lm-red: #f41c1c;
+  --lm-blue: #004aad;
+  --lm-green: #00bf63;
+  --lm-line: rgba(17, 17, 17, 0.14);
 }
 
 @layer base {
   body {
-    @apply bg-white text-black font-montserrat antialiased;
+    @apply bg-white text-black antialiased;
+    font-family: var(--font-mulish);
+    font-size: 16px;
+    line-height: 1.55;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-spectral font-medium;
+    font-family: var(--font-belleza);
+    font-weight: 400;
+    font-synthesis: none;
+    letter-spacing: 0;
+  }
+
+  button, input, select, textarea, label {
+    font-family: var(--font-figtree);
   }
 }
 
+/* Brand floor for tiny labels: controls/labels stay readable (≥13px). */
+.text-\[8px\], .text-\[9px\], .text-\[10px\] { font-size: 0.8125rem !important; }
+.text-\[11px\] { font-size: 0.875rem !important; }
+
+/* Belleza has no italic; keep italics from faking a slant on headings. */
+h1 .italic, h2 .italic, h3 .italic, h1.italic, h2.italic, h3.italic { font-style: normal; }
+
+/* Terminal text: Courier New, green, only on black. */
+.font-mono { font-family: var(--font-mono); }
+
 .minimal-border {
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid var(--lm-line);
 }
 
 .minimal-border-bold {
@@ -28,19 +69,38 @@
 
 .orbit-scroll { overflow-x: auto; background: #fff; }
 .orbit-stage { position: relative; width: 1000px; height: 740px; margin: auto; }
-.orbit-lines { position: absolute; inset: 0; width: 100%; height: 100%; color: #aaa; }
+.orbit-lines { position: absolute; inset: 0; width: 100%; height: 100%; color: rgba(17,17,17,.35); }
 .orbit-sun { position: absolute; left: 450px; top: 320px; width: 100px; height: 100px; border: 1px solid #111; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; background: white; z-index: 2; }
-.orbit-sun strong { font-family: var(--font-belleza); font-size: 10px; max-width: 85px; }
+.orbit-sun strong { font-family: var(--font-belleza); font-weight: 400; font-size: 11px; max-width: 85px; }
 .orbit-track { position: absolute; left: 500px; top: 370px; transform: scaleY(.68); pointer-events: none; }
 .orbit-arm { animation: orbit-turn var(--period) linear infinite; animation-delay: var(--phase); }
 .orbit-position { transform: translateX(var(--radius)); }
 .orbit-counter { animation: orbit-turn var(--period) linear infinite reverse; animation-delay: var(--phase); }
-.orbit-planet { position: absolute; transform: translate(-50%, -50%) scaleY(1.470588); display: flex; align-items: center; gap: 7px; background: white; border: 1px solid #111; border-radius: 30px; padding: 10px 14px; font-size: 12px; pointer-events: auto; min-height: 44px; white-space: nowrap; }
+.orbit-planet { position: absolute; transform: translate(-50%, -50%) scaleY(1.470588); display: flex; align-items: center; gap: 7px; background: white; border: 1px solid #111; border-radius: 30px; padding: 10px 14px; font-family: var(--font-figtree); font-weight: 600; font-size: 13px; pointer-events: auto; min-height: 44px; white-space: nowrap; }
 .orbit-dot { width: 12px; height: 12px; border: 1px solid black; border-radius: 50%; }
-.orbit-planet:hover, .orbit-sun:hover { background: #eee; }
+.orbit-planet:hover, .orbit-sun:hover { background: #111; color: #fff; }
 .orbit-stage:hover .orbit-arm, .orbit-stage:hover .orbit-counter,
 .orbit-stage:focus-within .orbit-arm, .orbit-stage:focus-within .orbit-counter,
 .orbit-stage.is-paused .orbit-arm, .orbit-stage.is-paused .orbit-counter { animation-play-state: paused; }
 @keyframes orbit-turn { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .orbit-arm, .orbit-counter { animation-play-state: paused; } }
-button:focus-visible, textarea:focus-visible { outline: 2px solid #111; outline-offset: 4px; }
+button:focus-visible, textarea:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #111; outline-offset: 4px; }
+
+/* Shared header pills (same as the voice app and lorraenmadre.com). */
+.lm-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0.625rem 1.125rem; border-radius: 999px;
+  border: 1px solid #000; font-family: var(--font-figtree); font-weight: 600; font-size: 0.875rem;
+  text-decoration: none; letter-spacing: 0.02em;
+}
+.lm-pill-white { background: #fff; color: #111; }
+.lm-pill-blue { background: var(--lm-blue); color: #fff; }
+.lm-pill-red { background: var(--lm-red); color: #111; }
+.lm-pill:hover, .lm-pill:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000; outline: none; }
+
+/* Green terminal capsule, black surface. */
+.lm-terminal {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.375rem 0.875rem; border-radius: 999px; background: #000;
+  color: var(--lm-green); font-family: var(--font-mono); font-size: 0.875rem;
+}

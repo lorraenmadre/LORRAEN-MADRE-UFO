@@ -1,0 +1,144 @@
+/* Drawn for a black panel: white lines, black/white checker rings, red and blue as small accents only. */
+.wheel {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+
+.inkCell {
+  fill: #111111;
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 1;
+}
+
+.ivoryCell {
+  fill: #ffffff;
+  stroke: #111111;
+  stroke-width: 1;
+}
+
+.onInk {
+  fill: #ffffff;
+}
+
+.onIvory {
+  fill: #111111;
+}
+
+.signGlyph {
+  font-size: 28px;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-family: var(--font-mulish);
+}
+
+.houseNum {
+  font-family: var(--font-figtree);
+  font-size: 17px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.spoke {
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 1;
+}
+
+.ascLine {
+  stroke: var(--lm-red);
+  stroke-width: 2.5;
+  stroke-dasharray: 6 5;
+}
+
+.track {
+  cursor: pointer;
+}
+
+.trackLine {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 1;
+}
+
+.pastPath {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 2 6;
+}
+
+.futurePath {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.retroDot {
+  fill: var(--lm-red);
+}
+
+.overlayMark {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+}
+
+.bodyDisc {
+  fill: #ffffff;
+  stroke: #111111;
+  stroke-width: 2;
+}
+
+.bodyGlyph {
+  fill: #111111;
+  font-size: 15px;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  font-family: var(--font-mulish);
+}
+
+.hit {
+  fill: transparent;
+}
+
+.trackSel .trackLine {
+  stroke: rgba(255, 255, 255, 0.55);
+}
+
+.trackSel .bodyDisc {
+  stroke: var(--lm-blue);
+  stroke-width: 4;
+}
+
+.center {
+  fill: #111111;
+  stroke: rgba(255, 255, 255, 0.5);
+}
+
+.centerTop {
+  fill: #ffffff;
+  font-family: var(--font-figtree);
+  font-weight: 500;
+  font-size: 18px;
+  text-anchor: middle;
+}
+
+.centerMain {
+  fill: #ffffff;
+  font-family: var(--font-belleza);
+  font-size: 36px;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.centerSub {
+  fill: var(--lm-green);
+  font-family: var(--font-mono);
+  font-size: 17px;
+  text-anchor: middle;
+}

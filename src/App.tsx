@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Entity } from './types';
 import { INITIAL_ENTITIES, CLEAN_ENTITIES } from './constants';
-import EcosystemMap from './components/EcosystemMap';
-import OrbitMap from './components/OrbitMap';
-import CleanOutline from './components/CleanOutline';
+import SpaceBoard from './components/SpaceBoard';
+import TimeView from './components/TimeView';
+import ClaimSections from './components/ClaimSections';
 import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
@@ -17,7 +17,7 @@ type FirebaseUser = { uid: string };
 export default function App() {
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
-  const [mapLayout, setMapLayout] = useState<'orbit' | 'outline'>('orbit');
+  const [mapLayout, setMapLayout] = useState<'space' | 'time'>('space');
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'framework' | 'business'>('business');
   const [user, setUser] = useState<FirebaseUser | null>(null);
@@ -160,30 +160,30 @@ export default function App() {
     };
   }, []);
 
-  if (!isAuthReady) return <div className="min-h-screen bg-white flex items-center justify-center font-mono text-[10px] uppercase tracking-widest">Waking Lorraen...</div>;
+  if (!isAuthReady) return <div className="min-h-screen bg-white flex items-center justify-center"><span className="lm-terminal">&gt; waking lorraen</span></div>;
 
   if (!user && !isPreviewMode) {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center space-y-12">
         <div className="space-y-4">
-          <h1 className="text-6xl md:text-8xl font-belleza tracking-tight">LORRAEN MADRE</h1>
-          <p className="text-[10px] uppercase tracking-[0.5em] text-gray-400">Universal Family Office Framework</p>
+          <h1 className="text-4xl md:text-5xl font-belleza uppercase tracking-[0.06em]">LORRAEN MADRE</h1>
+          <p className="text-sm uppercase tracking-[0.24em] font-figtree font-semibold">Universal Family Office</p>
           {authWarning && (
-            <p className="max-w-lg mx-auto text-xs text-gray-500 leading-relaxed">{authWarning}</p>
+            <p className="max-w-lg mx-auto text-xs text-black leading-relaxed">{authWarning}</p>
           )}
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <button 
             onClick={handleLogin}
-            className="border border-black px-12 py-4 text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-all"
+            className="lm-pill lm-pill-white px-8"
           >
-            Sign into Orbit
+            Continue with Google
           </button>
           <button 
             onClick={() => setIsPreviewMode(true)}
-            className="border border-gray-300 px-12 py-4 text-[10px] uppercase tracking-widest font-bold hover:border-black transition-all"
+            className="min-h-[44px] px-4 font-figtree font-semibold text-sm underline underline-offset-4"
           >
-            Enter Public Preview
+            Look around first
           </button>
         </div>
       </div>
@@ -209,40 +209,44 @@ export default function App() {
             className="pb-20"
           >
             {/* Nav Header */}
-            <header className="border-b border-gray-100 py-4 px-6 sticky top-0 bg-white/80 backdrop-blur-md z-50">
+            <header className="border-b border-black/15 py-4 px-6 sticky top-0 bg-white z-50">
               <div className="max-w-7xl mx-auto flex flex-wrap gap-4 justify-between items-center">
                 <div className="flex items-center gap-4">
-                  <h1 className="text-2xl font-belleza tracking-tight cursor-default">LORRAEN MADRE</h1>
+                  <a href="https://lorraenmadre.com/" className="text-2xl font-belleza uppercase tracking-[0.06em] no-underline text-black">LORRAEN MADRE</a>
                 </div>
-                <div className="flex bg-gray-100 rounded-none p-1">
+                <div className="flex flex-wrap items-center gap-3">
+                  <ActionPills className="!justify-end" />
+                  <div className="flex items-center border border-black rounded-full p-1">
                   <button 
                     onClick={() => setViewMode('framework')}
-                    className={`px-4 py-1.5 text-[10px] uppercase tracking-widest transition-all ${viewMode === 'framework' ? 'bg-white shadow-sm font-bold' : 'opacity-40'}`}
+                    aria-pressed={viewMode === 'framework'} className={`min-h-[36px] px-4 rounded-full font-figtree font-semibold text-sm transition-all ${viewMode === 'framework' ? 'bg-black text-white' : 'text-black'}`}
                   >
                     Framework
                   </button>
                   <button 
                     onClick={() => setViewMode('business')}
-                    className={`px-4 py-1.5 text-[10px] uppercase tracking-widest transition-all ${viewMode === 'business' ? 'bg-white shadow-sm font-bold' : 'opacity-40'}`}
+                    aria-pressed={viewMode === 'business'} className={`min-h-[36px] px-4 rounded-full font-figtree font-semibold text-sm transition-all ${viewMode === 'business' ? 'bg-black text-white' : 'text-black'}`}
                   >
                     Founder’s Example
                   </button>
-                  <div className="w-px h-4 bg-gray-300 mx-2 self-center" />
+                  <div className="w-px h-4 bg-black/20 mx-2 self-center" />
                   <button 
                     onClick={handleLogout}
                     title={isPreviewMode ? 'Exit Preview' : 'Sign Out'}
-                    className="p-1.5 opacity-40 hover:opacity-100 transition-opacity"
+                    aria-label={isPreviewMode ? 'Exit preview' : 'Sign out'}
+                    className="min-h-[36px] min-w-[36px] flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors"
                   >
                     <LogOut className="w-4 h-4" />
                   </button>
+                  </div>
                 </div>
               </div>
             </header>
 
             {/* Google Drive Connection Bar */}
             {isPreviewMode && (
-              <div className="bg-gray-100 text-gray-700 py-3 px-6 text-center text-[10px] uppercase tracking-[0.3em] font-bold">
-                Public Preview Mode — sign in later to unlock Google Drive vault actions.
+              <div className="bg-black py-3 px-6 text-center font-mono text-sm text-[#00bf63]">
+                &gt; preview: you're looking at Lorraen's UFO. Sign in to make it yours.
               </div>
             )}
 
@@ -259,9 +263,9 @@ export default function App() {
               </div>
             )}
             {!isPreviewMode && googleConnected && (
-               <div className="bg-green-50 text-green-700 py-3 px-6 text-center text-[10px] uppercase tracking-[0.3em] font-bold flex items-center justify-center gap-2">
+               <div className="bg-black text-[#00bf63] font-mono text-sm py-3 px-6 text-center flex items-center justify-center gap-2">
                  <Check className="w-3 h-3" />
-                 <span>Vault Synced with Google Drive</span>
+                 <span>&gt; vault synced with google drive</span>
                </div>
             )}
 
@@ -270,16 +274,16 @@ export default function App() {
 
             {/* Title Section */}
             <div className="max-w-7xl mx-auto text-left py-20 px-6">
-              <p className="text-[10px] uppercase tracking-[0.5em] text-gray-400 mb-6">a WishWell system</p>
-              <h2 className="text-4xl md:text-6xl font-spectral leading-[1.1] tracking-tighter mb-2">
+              <p className="text-[10px] uppercase tracking-[0.5em] text-black mb-6">a WishWell system</p>
+              <h2 className="text-3xl md:text-4xl font-belleza leading-[1.18] mb-2">
                 Design happily ever after <span className="italic text-black">with</span>
               </h2>
-              <h3 className="text-4xl md:text-6xl font-spectral italic text-black tracking-tighter normal-case">
+              <h3 className="text-3xl md:text-4xl font-belleza text-black normal-case">
                 TIME . <span className="lowercase">space</span> + Story
               </h3>
               <div className="flex items-center gap-4 mt-12">
                 <div className="h-px w-8 bg-gray-200" />
-                <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-gray-500">Visual Roadmap of Your Universal Family Office</p>
+                <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-black">Visual Roadmap of Your Universal Family Office</p>
               </div>
               <MothershipInstructions
                 currentMothershipName={displayEntities.find(e => e.type === 'holding_company')?.name || 'Sterling Drive Consulting'}
@@ -289,28 +293,38 @@ export default function App() {
                     handleUpdateEntity({ ...holdingEntity, name });
                   }
                 }}
-                onExploreOrbit={() => setMapLayout('orbit')}
+                onExploreOrbit={() => setMapLayout('space')}
                 onOpenFramework={() => setViewMode('framework')}
               />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 pb-8 flex flex-wrap items-center gap-3">
-              {(['orbit', 'outline'] as const).map(layout => <button key={layout} aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`border border-black rounded-full px-5 py-2 text-sm ${mapLayout === layout ? 'bg-black text-white' : ''}`}>{layout === 'orbit' ? 'Orbit view' : 'Outline view'}</button>)}
-              <p className="text-xs text-gray-500">{viewMode === 'framework' ? 'Your clean framework — changes stay separate from the founder example.' : 'The founder’s example — explore each workspace.'} Edits last for this session.</p>
+            <div className="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap items-center gap-3">
+              <div className="flex items-center border border-black rounded-full p-1" role="group" aria-label="View">
+                {(['time', 'space'] as const).map(layout => (
+                  <button key={layout} type="button" aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`min-h-[40px] px-5 rounded-full font-figtree font-semibold text-sm uppercase tracking-[0.24em] ${mapLayout === layout ? 'bg-black text-white' : 'text-black'}`}>
+                    {layout === 'time' ? 'Time' : 'Space'}
+                  </button>
+                ))}
+              </div>
+              <p className="text-sm">{viewMode === 'framework' ? 'Your framework — type a name into any black box to claim it.' : 'The founder’s example — explore each space.'} Edits last for this session.</p>
             </div>
-            {mapLayout === 'orbit' ? <OrbitMap entities={displayEntities} onSelect={setSelectedEntityId} /> : viewMode === 'framework' ? <CleanOutline entities={displayEntities} onSelect={setSelectedEntityId} /> : <EcosystemMap entities={displayEntities} onSelect={setSelectedEntityId} />}
+            <div className="max-w-7xl mx-auto px-6 pb-16">
+              {mapLayout === 'space'
+                ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
+                : <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} />}
+            </div>
+            <div className="max-w-7xl mx-auto px-6 pb-8">
+              <ClaimSections entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
+            </div>
             {viewMode === 'business' && <OperatingMap />}
 
             {/* Newcastle Connection Section - Screenshot CTA Styling */}
             <div className="max-w-7xl mx-auto px-6 py-20 border-t border-gray-100 mt-20">
               <div className="flex flex-col items-center text-center space-y-6">
-                <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold text-gray-400">
+                <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold text-black">
                   Connect with Newcastle · Activate Your Orbit
                 </h4>
                 <ActionPills
-                  designLabel="DESIGN"
-                  workLabel="WORK"
-                  playLabel="PLAY"
                   onDesign={() => {
                     window.scrollTo({ top: 400, behavior: 'smooth' });
                   }}
@@ -318,19 +332,19 @@ export default function App() {
                     setViewMode('framework');
                   }}
                   onPlay={() => {
-                    setMapLayout('orbit');
+                    setMapLayout('space');
                   }}
                 />
               </div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 py-12 border-t border-gray-100 text-center space-y-4">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-gray-400 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-[9px] uppercase tracking-[0.2em] text-black leading-relaxed max-w-3xl mx-auto">
                 Disclaimer: This application is a framework designed to help organize information within the WishWell system. 
                 It does not constitute financial, medical, or legal advice. 
                 If you require professional advice in any of these areas, please consult with an AI assistant within the system for direction to the appropriate affiliates who can service those specific needs.
               </p>
-              <p className="text-[8px] text-gray-300 uppercase tracking-widest">© 2026 LORRAEN MADRE | WishWell individual flow</p>
+              <p className="text-[8px] text-black uppercase tracking-widest">© 2026 LORRAEN MADRE | WishWell individual flow</p>
             </div>
           </motion.div>
         ) : (
