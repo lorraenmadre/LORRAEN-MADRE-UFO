@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Entity } from './types';
 import { INITIAL_ENTITIES, CLEAN_ENTITIES } from './constants';
-import EcosystemMap from './components/EcosystemMap';
-import OrbitMap from './components/OrbitMap';
-import CleanOutline from './components/CleanOutline';
+import SpaceBoard from './components/SpaceBoard';
+import TimeView from './components/TimeView';
+import ClaimSections from './components/ClaimSections';
 import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
@@ -17,7 +17,7 @@ type FirebaseUser = { uid: string };
 export default function App() {
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
-  const [mapLayout, setMapLayout] = useState<'orbit' | 'outline'>('orbit');
+  const [mapLayout, setMapLayout] = useState<'space' | 'time'>('space');
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'framework' | 'business'>('business');
   const [user, setUser] = useState<FirebaseUser | null>(null);
@@ -293,16 +293,29 @@ export default function App() {
                     handleUpdateEntity({ ...holdingEntity, name });
                   }
                 }}
-                onExploreOrbit={() => setMapLayout('orbit')}
+                onExploreOrbit={() => setMapLayout('space')}
                 onOpenFramework={() => setViewMode('framework')}
               />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 pb-8 flex flex-wrap items-center gap-3">
-              {(['orbit', 'outline'] as const).map(layout => <button key={layout} aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`border border-black rounded-full px-5 py-2 text-sm ${mapLayout === layout ? 'bg-black text-white' : ''}`}>{layout === 'orbit' ? 'Orbit view' : 'Outline view'}</button>)}
-              <p className="text-xs text-black">{viewMode === 'framework' ? 'Your clean framework — changes stay separate from the founder example.' : 'The founder’s example — explore each workspace.'} Edits last for this session.</p>
+            <div className="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap items-center gap-3">
+              <div className="flex items-center border border-black rounded-full p-1" role="group" aria-label="View">
+                {(['time', 'space'] as const).map(layout => (
+                  <button key={layout} type="button" aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`min-h-[40px] px-5 rounded-full font-figtree font-semibold text-sm uppercase tracking-[0.24em] ${mapLayout === layout ? 'bg-black text-white' : 'text-black'}`}>
+                    {layout === 'time' ? 'Time' : 'Space'}
+                  </button>
+                ))}
+              </div>
+              <p className="text-sm">{viewMode === 'framework' ? 'Your framework — type a name into any black box to claim it.' : 'The founder’s example — explore each space.'} Edits last for this session.</p>
             </div>
-            {mapLayout === 'orbit' ? <OrbitMap entities={displayEntities} onSelect={setSelectedEntityId} /> : viewMode === 'framework' ? <CleanOutline entities={displayEntities} onSelect={setSelectedEntityId} /> : <EcosystemMap entities={displayEntities} onSelect={setSelectedEntityId} />}
+            <div className="max-w-7xl mx-auto px-6 pb-16">
+              {mapLayout === 'space'
+                ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
+                : <TimeView entities={displayEntities} onSelect={setSelectedEntityId} />}
+            </div>
+            <div className="max-w-7xl mx-auto px-6 pb-8">
+              <ClaimSections entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
+            </div>
             {viewMode === 'business' && <OperatingMap />}
 
             {/* Newcastle Connection Section - Screenshot CTA Styling */}
@@ -319,7 +332,7 @@ export default function App() {
                     setViewMode('framework');
                   }}
                   onPlay={() => {
-                    setMapLayout('orbit');
+                    setMapLayout('space');
                   }}
                 />
               </div>

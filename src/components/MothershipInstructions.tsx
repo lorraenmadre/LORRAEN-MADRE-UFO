@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Compass, Sparkles, ChevronDown, ChevronUp, Shield, Orbit, Bot, Globe, Check } from 'lucide-react';
-import ActionPills from './ActionPills';
+import { Sparkles, Check } from 'lucide-react';
+import { START_STEPS, START_FALLBACK_URL } from '../startLinks';
 
 interface MothershipInstructionsProps {
   currentMothershipName?: string;
@@ -16,7 +15,6 @@ export default function MothershipInstructions({
   onExploreOrbit,
   onOpenFramework,
 }: MothershipInstructionsProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const [editingName, setEditingName] = useState(false);
   const [tempName, setTempName] = useState(currentMothershipName);
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -31,57 +29,6 @@ export default function MothershipInstructions({
     }
   };
 
-  const steps = [
-    {
-      step: '01',
-      title: 'Name and Claim Your Mothership',
-      subtitle: 'Anchor the Identity',
-      icon: <Sparkles className="w-4 h-4 text-black" />,
-      description:
-        'Choose a sovereign, generational name for your mothership entity. This is the root holding vehicle from which all 12 houses and ventures orbit.',
-    },
-    {
-      step: '02',
-      title: 'Form the Protective Triad',
-      subtitle: 'Trust · Church · Holding',
-      icon: <Shield className="w-4 h-4 text-black" />,
-      description:
-        'Establish your Trust for asset preservation, your Church for spiritual and cultural values, and your Holding Company (Mothership) for active operations.',
-    },
-    {
-      step: '03',
-      title: 'Chart the North and South Nodes',
-      subtitle: 'Vision & Mission Alignment',
-      icon: <Compass className="w-4 h-4 text-black" />,
-      description:
-        'Define your North Node (the forward-looking retirement, benefit and legacy packages) and South Node (the charitable foundation and protective roots).',
-    },
-    {
-      step: '04',
-      title: 'Furnish the 12 Operating Houses',
-      subtitle: 'House Products & Cadences',
-      icon: <Orbit className="w-4 h-4 text-black" />,
-      description:
-        'Assign a tangible house product, technical platform, and review cadence to each department—from Treasury and Holistic Health to Systems and Story.',
-    },
-    {
-      step: '05',
-      title: 'Deploy Dinosaur Agents & Satellites',
-      subtitle: 'Execution & Coordination',
-      icon: <Bot className="w-4 h-4 text-black" />,
-      description:
-        'Assign platform-specific Zodiac Dinosaur agents to run repetitive workflows. Tether external Satellites with clear input/output handoffs.',
-    },
-    {
-      step: '06',
-      title: 'Command from House 13 (Creation)',
-      subtitle: 'You in the Present Moment',
-      icon: <Globe className="w-4 h-4 text-black" />,
-      description:
-        'You are the 13th house: choice, action, and active presence across all twelve houses. The system serves your daily rhythm, not vice versa.',
-    },
-  ];
-
   return (
     <div className="border border-black bg-white shadow-xs p-6 md:p-8 mt-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-gray-100">
@@ -94,7 +41,7 @@ export default function MothershipInstructions({
             Name and claim your world.
           </h3>
           <p className="text-sm text-black max-w-2xl leading-relaxed">
-            Every sovereign family office begins with an intentional mothership. Follow these instructions to structure your governance, orbit, and execution agents.
+            Every family office begins with a mothership. Start these six in order, then name and claim every box below.
           </p>
         </div>
 
@@ -155,66 +102,24 @@ export default function MothershipInstructions({
         </div>
       </div>
 
-      {/* Accordion toggle for step-by-step instructions */}
-      <div className="pt-4">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-between w-full text-left py-2 group cursor-pointer"
-        >
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-black group-hover:text-black flex items-center gap-2">
-            <span>Instructions for designing a mothership</span>
-            <span className="text-[10px] font-mono text-black">({steps.length} steps)</span>
-          </span>
-          <span className="p-1 rounded border border-gray-200 group-hover:border-black transition-colors">
-            {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-          </span>
-        </button>
-
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="overflow-hidden pt-4"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2 pb-6">
-                {steps.map((item) => (
-                  <div
-                    key={item.step}
-                    className="border border-gray-200 p-4 bg-gray-50/50 hover:bg-white hover:border-black transition-all flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs font-mono font-bold text-black">{item.step}</span>
-                        <div className="p-1.5 bg-white border border-gray-100 rounded-full">{item.icon}</div>
-                      </div>
-                      <h4 className="font-belleza font-semibold text-base mb-1">{item.title}</h4>
-                      <p className="text-[10px] font-mono uppercase tracking-widest text-black mb-2">{item.subtitle}</p>
-                      <p className="text-xs text-black leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Action Pills in screenshot style */}
-              <div className="pt-6 border-t border-gray-100 flex flex-col items-center gap-3 text-center">
-                <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-black">
-                  Execute Your Universe
-                </span>
-                <ActionPills
-                  onDesign={() => {
-                    setEditingName(true);
-                    window.scrollTo({ top: 400, behavior: 'smooth' });
-                  }}
-                  onWork={onOpenFramework}
-                  onPlay={onExploreOrbit}
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      {/* Start your mothership: six click-through setups, in order */}
+      <div className="pt-6">
+        <p className="font-figtree font-semibold text-sm uppercase tracking-[0.12em] mb-4">Start your mothership · 6 steps</p>
+        <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {START_STEPS.map((s, i) => {
+            const href = s.url || START_FALLBACK_URL;
+            return (
+              <li key={s.id} className="border border-black rounded-xl p-5 flex flex-col gap-2">
+                <span className="lm-terminal self-start">&gt; {String(i + 1).padStart(2, '0')} · {s.who.toLowerCase()}</span>
+                <h4 className="font-belleza text-xl mt-1">{s.title}</h4>
+                <p className="text-sm leading-relaxed">{s.description}</p>
+                <a href={href} target="_blank" rel="noopener noreferrer" className="lm-pill lm-pill-white mt-auto self-start">
+                  {s.url ? s.cta : 'Request setup'}
+                </a>
+              </li>
+            );
+          })}
+        </ol>
       </div>
     </div>
   );

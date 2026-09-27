@@ -1,0 +1,51 @@
+.wrap { display: flex; flex-direction: column; gap: 1rem; }
+.head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.h2 { margin: 0; font-family: var(--font-belleza); font-weight: 400; font-size: clamp(1.5rem, 1.25rem + 1vw, 1.75rem); }
+.controls { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.segment { display: inline-flex; border: 1px solid #111111; border-radius: 999px; padding: 3px; }
+.segment button { min-height: 38px; padding: 0 0.875rem; border-radius: 999px; border: none; background: transparent; color: #111111; font-family: var(--font-figtree); font-weight: 600; font-size: 0.875rem; cursor: pointer; }
+.segment button.on { background: #111111; color: #ffffff; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr); gap: 2rem; align-items: start; }
+.wheelWrap { display: flex; flex-direction: column; gap: 1rem; max-width: 760px; width: 100%; margin-inline: auto; }
+/* The sky sits on a black panel, same as the voice app. */
+.wheelPanel { background: #111111; color: #ffffff; border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.legend { margin: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem 0.75rem; font-family: var(--font-mulish); font-size: 0.875rem; color: #ffffff; }
+.legendPast, .legendFuture, .legendRetro { display: inline-block; width: 22px; height: 6px; border-radius: 999px; margin-left: 0.5rem; }
+.legendPast { background: repeating-linear-gradient(90deg, rgba(255,255,255,0.5) 0 3px, transparent 3px 7px); }
+.legendFuture { background: #ffffff; }
+.legendRetro { width: 8px; height: 8px; background: var(--lm-red); }
+
+.scrub { display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem; border: 1px solid #111111; border-radius: 12px; }
+.scrubHead { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
+.scrubLabel { font-family: var(--font-figtree); font-weight: 600; font-size: 0.875rem; }
+.scrubDate { font-family: var(--font-mulish); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+.range { width: 100%; accent-color: #111111; min-height: 28px; }
+.ticks { position: relative; height: 1.25rem; }
+.ticks span { position: absolute; transform: translateX(-50%); font-family: var(--font-figtree); font-size: 0.8125rem; }
+
+.panel { display: flex; flex-direction: column; gap: 1.5rem; }
+.why { padding: 1.5rem; border: 1px solid #111111; border-radius: 12px; }
+.eyebrow { font-family: var(--font-figtree); font-weight: 600; font-size: 0.875rem; }
+.whyTitle { margin: 0.5rem 0; font-family: var(--font-belleza); font-weight: 400; font-size: 1.375rem; line-height: 1.25; }
+.whyText { margin: 0; font-family: var(--font-mulish); font-size: 1rem; line-height: 1.55; }
+.open { margin-top: 1rem; min-height: 44px; padding: 0 1.125rem; border-radius: 999px; border: 1px solid #000; background: #111111; color: #ffffff; font-family: var(--font-figtree); font-weight: 600; font-size: 0.875rem; cursor: pointer; }
+
+.table { list-style: none; margin: 0; padding: 0; border-top: 1px solid #111111; }
+.row { display: grid; grid-template-columns: 2rem 1fr auto 3rem; align-items: center; gap: 0.75rem; width: 100%; min-height: 44px; padding: 0.5rem 0.75rem; background: none; border: none; border-bottom: 1px solid var(--lm-line); color: inherit; cursor: pointer; text-align: left; }
+.rowSel { box-shadow: inset 4px 0 0 var(--lm-blue); font-weight: 600; }
+.glyph { font-size: 1.25rem; text-align: center; }
+.bodyName { font-family: var(--font-mulish); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.r { font-style: normal; font-family: var(--font-figtree); font-weight: 600; font-size: 0.8125rem; margin-left: 0.5rem; padding: 0 4px; border: 1px solid #111111; border-radius: 4px; }
+.pos, .house { font-family: var(--font-mulish); font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+.house { text-align: right; font-weight: 600; }
+
+.eventsTitle { margin: 0 0 0.75rem; font-family: var(--font-belleza); font-weight: 400; font-size: 1.5rem; }
+.events { list-style: none; margin: 0; padding: 0; max-height: 22rem; overflow-y: auto; border-top: 1px solid #111111; }
+.event { display: grid; grid-template-columns: 4rem 1.6rem 1fr; align-items: center; gap: 0.5rem; width: 100%; min-height: 44px; padding: 0.5rem 0.75rem; background: none; border: none; border-bottom: 1px solid var(--lm-line); color: inherit; text-align: left; cursor: pointer; }
+.event:hover .eventText { text-decoration: underline; }
+.eventDate { font-family: var(--font-figtree); font-weight: 600; font-size: 0.875rem; }
+.eventText { font-family: var(--font-mulish); font-size: 1rem; }
+.footnote { margin: 0; font-family: var(--font-mulish); font-size: 0.875rem; line-height: 1.5; }
+
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
