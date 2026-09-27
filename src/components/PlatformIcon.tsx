@@ -67,7 +67,7 @@ export default function PlatformIcon({ platform, className = 'w-5 h-5', size = 2
     return (
       <div 
         style={{ width: size, height: size }} 
-        className={`flex items-center justify-center rounded bg-gray-100 text-[9px] font-mono uppercase text-gray-500 font-bold ${className}`}
+        className={`flex items-center justify-center rounded bg-gray-100 text-[9px] font-mono uppercase text-black font-bold ${className}`}
         title={platform}
       >
         {platform.slice(0, 2)}

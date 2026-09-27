@@ -151,9 +151,9 @@
       "id": "moon",
       "type": "planet",
       "symbol": "Moon",
-      "role": "Home economics",
+      "role": "AI home economics framework",
       "name": "Miss Honey’s Home Economics",
-      "description": "Current name for the home economics project.",
+      "description": "The AI agency: an AI framework for home economics.",
       "cadence": "Six-month project plan + Lean Value Canvas"
     },
     {
@@ -214,9 +214,9 @@
       "id": "uranus",
       "type": "planet",
       "symbol": "Uranus",
-      "role": "Function not confirmed",
+      "role": "SaaS membership",
       "name": "Soup Club",
-      "description": "Named project confirmed; do not substitute an inferred function.",
+      "description": "SaaS membership placement confirmed 2026-09-26.",
       "cadence": "Six-month project plan + Lean Value Canvas"
     },
     {
@@ -551,7 +551,7 @@
     "Gemini first-house statement conflicts with later dinosaur house-number references; store signs/platforms separately from house routing.",
     "Jungle Book has no selected platform.",
     "House 13 has no separate product/platform; it represents the person choosing in the present.",
-    "Uranus function and personal names for Chiron, Juno and Vesta remain unconfirmed.",
+    "Personal project names for Chiron, Juno and Vesta remain unconfirmed.",
     "Existing sprint dates/ceremony times and lunar-phase task assignments must be verified before scheduling."
   ],
   "planning": {

@@ -16,7 +16,6 @@ import {
   Layers,
   Check,
   Terminal,
-  HelpCircle,
   ExternalLink
 } from 'lucide-react';
 import PlatformIcon from './PlatformIcon';
@@ -75,14 +74,14 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
       'north-node': { tag: 'Retirement Plan', icon: <Anchor className="w-3.5 h-3.5" /> },
       'south-node': { tag: 'Nonprofit Foundation', icon: <Heart className="w-3.5 h-3.5" /> },
       'sun': { tag: 'Brand Identity', icon: <Sparkles className="w-3.5 h-3.5" /> },
-      'moon': { tag: 'Home Economics', icon: <Layers className="w-3.5 h-3.5" /> },
+      'moon': { tag: 'AI Home Ec Framework', icon: <Layers className="w-3.5 h-3.5" /> },
       'mars': { tag: 'Business Activation', icon: <Sparkles className="w-3.5 h-3.5" /> },
       'mercury': { tag: 'Integrated Marketing', icon: <Sparkles className="w-3.5 h-3.5" /> },
       'venus': { tag: 'Content Library', icon: <Layers className="w-3.5 h-3.5" /> },
       'saturn': { tag: 'Digital Organization', icon: <Layers className="w-3.5 h-3.5" /> },
       'jupiter': { tag: 'Capital Container', icon: <Sparkles className="w-3.5 h-3.5" /> },
       'neptune': { tag: 'The Movie', icon: <Sparkles className="w-3.5 h-3.5" /> },
-      'uranus': { tag: 'Function to confirm', icon: <HelpCircle className="w-3.5 h-3.5" /> },
+      'uranus': { tag: 'SaaS Membership', icon: <Layers className="w-3.5 h-3.5" /> },
       'pluto': { tag: 'Acquisition', icon: <Sparkles className="w-3.5 h-3.5" /> },
       'earth': { tag: '24-hour Routine', icon: <Sparkles className="w-3.5 h-3.5" /> },
       'lilith': { tag: 'Special Projects', icon: <Sparkles className="w-3.5 h-3.5" /> },
@@ -126,7 +125,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
         initial={{ width: 0 }}
         animate={{ width: `${progress}%` }}
         className={`h-full transition-all duration-500 rounded-full ${
-          color === 'red' ? 'bg-[#E51818]' :
+          color === 'red' ? 'bg-[#f41c1c]' :
           color === 'yellow' ? 'bg-[#F59E0B]' :
           color === 'green' ? 'bg-[#10B981]' :
           color === 'black' ? 'bg-black' :
@@ -149,39 +148,39 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
         <motion.button
           whileHover={{ scale: 1.02 }}
           onClick={() => onSelect(entity.id)}
-          className={`p-4 border border-emerald-500/60 bg-[#0C120C] text-left flex flex-col justify-between group relative overflow-hidden font-mono shadow-xs transition-all ${className}`}
+          className={`p-4 border border-[#00bf63]/60 bg-black text-left flex flex-col justify-between group relative overflow-hidden font-mono shadow-xs transition-all ${className}`}
         >
           <div className="z-10 relative w-full">
             <div className="flex justify-between items-start mb-3">
               <div className="flex items-center gap-1.5 min-w-0">
-                <Terminal className="w-3.5 h-3.5 text-[#00FF66]" />
-                <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-emerald-400/80 truncate">
+                <Terminal className="w-3.5 h-3.5 text-[#00bf63]" />
+                <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#00bf63] truncate">
                   {config.tag}
                 </span>
               </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#00FF66] opacity-40 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#00bf63] opacity-40 group-hover:opacity-100 transition-opacity flex-shrink-0" />
             </div>
 
             <div className="space-y-1 my-2">
-              <div className="text-[9px] text-emerald-500/60 uppercase tracking-widest flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00FF66] animate-ping" />
+              <div className="text-[9px] text-[#00bf63] uppercase tracking-widest flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00bf63] animate-ping" />
                 <span>UNCLAIMED // INPUT NEEDED</span>
               </div>
-              <h3 className="text-sm md:text-base font-bold text-[#00FF66] tracking-wide break-words">
+              <h3 className="text-sm md:text-base font-bold text-[#00bf63] tracking-wide break-words">
                 &gt; {genericName}
-                <span className="inline-block w-2 h-3.5 ml-1 bg-[#00FF66] animate-pulse align-middle" />
+                <span className="inline-block w-2 h-3.5 ml-1 bg-[#00bf63] animate-pulse align-middle" />
               </h3>
-              {entity.symbol && <p className="text-[10px] text-emerald-500/70 italic">Archetype: {entity.symbol}</p>}
+              {entity.symbol && <p className="text-[10px] text-[#00bf63] italic">Archetype: {entity.symbol}</p>}
             </div>
           </div>
 
-          <div className="w-full mt-2 pt-2 border-t border-emerald-950">
-            <div className="flex justify-between items-center text-[9px] text-emerald-500/80 mb-1">
+          <div className="w-full mt-2 pt-2 border-t border-white/15">
+            <div className="flex justify-between items-center text-[9px] text-[#00bf63] mb-1">
               <span>INITIALIZING</span>
               <span>{progress}%</span>
             </div>
-            <div className="w-full h-[2px] bg-emerald-950 rounded-full overflow-hidden">
-              <div style={{ width: `${progress}%` }} className="h-full bg-[#00FF66]" />
+            <div className="w-full h-[2px] bg-white/15 rounded-full overflow-hidden">
+              <div style={{ width: `${progress}%` }} className="h-full bg-[#00bf63]" />
             </div>
           </div>
         </motion.button>
@@ -198,7 +197,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
           <div className="flex justify-between items-start mb-3">
             <div className="flex items-center gap-1.5 min-w-0">
               <span className="text-black/40">{config.icon}</span>
-              <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-gray-500 truncate">
+              <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-black truncate">
                 {config.tag}
               </span>
             </div>
@@ -209,8 +208,8 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
               <img src={entity.logoUrl} className="w-10 h-10 object-contain" referrerPolicy="no-referrer" alt="" />
             ) : null}
             <div className="min-w-0">
-              <h3 className="text-lg md:text-xl font-spectral font-medium leading-snug truncate">{entity.name}</h3>
-              {entity.symbol && <p className="text-[10px] italic text-gray-400 font-montserrat">{entity.symbol}</p>}
+              <h3 className="text-lg md:text-xl font-belleza font-medium leading-snug truncate">{entity.name}</h3>
+              {entity.symbol && <p className="text-[10px] italic text-black font-mulish">{entity.symbol}</p>}
             </div>
           </div>
         </div>
@@ -225,10 +224,10 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
       {/* 1. Governance Triad */}
       <div className="flex flex-col items-center space-y-4">
         <div className="text-center mb-2">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400 block mb-1">
+          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-black block mb-1">
             Triad of Protection & Sovereignty
           </span>
-          <h3 className="font-spectral text-2xl">Mothership Core</h3>
+          <h3 className="font-belleza text-2xl">Mothership Core</h3>
         </div>
         {trust && <EntityBox entity={trust} className="w-72 text-center" />}
         <EntityBox entity={church} className="w-72 text-center" />
@@ -245,11 +244,11 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
               <h4 className="text-sm uppercase tracking-[0.3em] font-bold">Planets & Astrological Nodes</h4>
             </div>
             {/* Section description moved directly here from footer */}
-            <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
+            <p className="text-sm text-black leading-relaxed max-w-2xl">
               Planets represent the primary functional ventures and story buckets. They hold the larger mission of each office.
             </p>
           </div>
-          <div className="text-xs font-mono text-gray-400">
+          <div className="text-xs font-mono text-black">
             12 Planetary Positions · Vision & Mission Polarized
           </div>
         </div>
@@ -260,7 +259,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
             <EntityBox entity={southNode} className="h-48 border-dashed" />
             <div className="mt-3 text-center">
               <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-black">Mission</p>
-              <span className="text-[9px] text-gray-400 font-mono">South Node Root</span>
+              <span className="text-[9px] text-black font-mono">South Node Root</span>
             </div>
           </div>
 
@@ -276,7 +275,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
             <EntityBox entity={northNode} className="h-48 border-dashed" />
             <div className="mt-3 text-center">
               <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-black">Vision</p>
-              <span className="text-[9px] text-gray-400 font-mono">North Node Horizon</span>
+              <span className="text-[9px] text-black font-mono">North Node Horizon</span>
             </div>
           </div>
         </div>
@@ -291,14 +290,14 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
               <h4 className="text-sm uppercase tracking-[0.3em] font-bold">House Products</h4>
             </div>
             {/* Section description moved directly here from footer */}
-            <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
+            <p className="text-sm text-black leading-relaxed max-w-2xl">
               House products are the entry points into the twelve departments. Portfolio placements describe separate business functions.
             </p>
           </div>
-          <div className="text-xs text-gray-500 font-mono flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" /> &gt;75%
+          <div className="text-xs text-black font-mono flex items-center gap-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#00bf63]" /> &gt;75%
             <span className="inline-block w-2 h-2 rounded-full bg-amber-400 ml-2" /> 40–75%
-            <span className="inline-block w-2 h-2 rounded-full bg-red-500 ml-2" /> &lt;40%
+            <span className="inline-block w-2 h-2 rounded-full bg-[#f41c1c] ml-2" /> &lt;40%
           </div>
         </div>
         
@@ -328,11 +327,11 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   <motion.button 
                     whileHover={{ scale: 1.02 }}
                     onClick={() => onSelect(offering.id)}
-                    className="w-full h-full text-left p-5 border border-emerald-500/60 bg-[#0C120C] text-[#00FF66] font-mono flex flex-col justify-between transition-all"
+                    className="w-full h-full text-left p-5 border border-[#00bf63]/60 bg-black text-[#00bf63] font-mono flex flex-col justify-between transition-all"
                   >
                     <div>
-                      <div className="flex items-center justify-between gap-2 pb-3 border-b border-emerald-950/80 mb-3">
-                        <span className="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">
+                      <div className="flex items-center justify-between gap-2 pb-3 border-b border-white/15 mb-3">
+                        <span className="text-[10px] font-bold tracking-widest text-[#00bf63] uppercase">
                           {offering.house || 'OFFERING SEED'}
                         </span>
                         <div className="flex items-center">
@@ -341,25 +340,25 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                       </div>
 
                       <div className="space-y-1.5 my-2">
-                        <div className="text-[9px] text-emerald-500/60 uppercase tracking-widest flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#00FF66] animate-ping" />
+                        <div className="text-[9px] text-[#00bf63] uppercase tracking-widest flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00bf63] animate-ping" />
                           <span>NAME_PENDING</span>
                         </div>
-                        <h5 className="font-bold text-sm text-[#00FF66] tracking-wide">
+                        <h5 className="font-bold text-sm text-[#00bf63] tracking-wide">
                           &gt; {genericName}
-                          <span className="inline-block w-2 h-3.5 ml-1 bg-[#00FF66] animate-pulse align-middle" />
+                          <span className="inline-block w-2 h-3.5 ml-1 bg-[#00bf63] animate-pulse align-middle" />
                         </h5>
-                        <p className="text-[10px] text-emerald-500/70">{offering.platform || 'Unassigned platform'}</p>
+                        <p className="text-[10px] text-[#00bf63]">{offering.platform || 'Unassigned platform'}</p>
                       </div>
                     </div>
 
-                    <div className="w-full mt-4 pt-3 border-t border-emerald-950">
-                      <div className="flex justify-between items-center text-[9px] text-emerald-400 mb-1">
+                    <div className="w-full mt-4 pt-3 border-t border-white/15">
+                      <div className="flex justify-between items-center text-[9px] text-[#00bf63] mb-1">
                         <span>COMPLETION</span>
                         <span>{progress}%</span>
                       </div>
-                      <div className="w-full h-[3px] bg-emerald-950 rounded-full overflow-hidden">
-                        <div style={{ width: `${progress}%` }} className="h-full bg-[#00FF66]" />
+                      <div className="w-full h-[3px] bg-white/15 rounded-full overflow-hidden">
+                        <div style={{ width: `${progress}%` }} className="h-full bg-[#00bf63]" />
                       </div>
                     </div>
                   </motion.button>
@@ -374,14 +373,14 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   onClick={() => onSelect(offering.id)}
                   className={`w-full h-full text-left p-5 border transition-all flex flex-col justify-between shadow-2xs ${
                     isArchived 
-                    ? 'bg-gray-100 border-gray-200 text-gray-400 opacity-60' 
+                    ? 'bg-gray-100 border-gray-200 text-black opacity-60' 
                     : 'bg-white border-black hover:border-gray-500 hover:shadow-md'
                   }`}
                 >
                   <div className="w-full">
                     {/* Header: House Tag + Platform Icon */}
                     <div className="flex items-center justify-between gap-2 pb-3 border-b border-gray-100 mb-3">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-black">
                         {offering.house || 'House Product'}
                       </span>
                       <div className="flex items-center">
@@ -392,20 +391,20 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
 
                     {/* Body: Product Name & Platform details */}
                     <div className="space-y-1">
-                      <h5 className={`font-spectral text-lg font-semibold leading-tight ${isArchived ? 'line-through' : 'text-black'}`}>
+                      <h5 className={`font-belleza text-lg font-semibold leading-tight ${isArchived ? 'line-through' : 'text-black'}`}>
                         {offering.name}
                       </h5>
                       <div className="flex items-center gap-2 pt-1">
-                        <span className="text-xs text-gray-500">{offering.platform || 'Platform'}</span>
-                        <span className="text-gray-300">·</span>
-                        <span className="text-[10px] uppercase font-mono text-gray-400">{companionDino.species}</span>
+                        <span className="text-xs text-black">{offering.platform || 'Platform'}</span>
+                        <span className="text-black">·</span>
+                        <span className="text-[10px] uppercase font-mono text-black">{companionDino.species}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Progress Bar under words */}
                   <div className="w-full mt-4 pt-3 border-t border-gray-100">
-                    <div className="flex items-center justify-between text-[9px] uppercase font-mono text-gray-400 mb-1">
+                    <div className="flex items-center justify-between text-[9px] uppercase font-mono text-black mb-1">
                       <span>Status</span>
                       <span className="font-bold">{progress}%</span>
                     </div>
@@ -425,7 +424,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   className={`absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover/offering:opacity-100 transition-all z-20 border shadow-xs ${
                     isArchived 
                     ? 'bg-black text-white border-black' 
-                    : 'bg-white text-gray-500 border-gray-300 hover:text-black hover:border-black'
+                    : 'bg-white text-black border-gray-300 hover:text-black hover:border-black'
                   }`}
                   title={isArchived ? "Restore Offering" : "Archive Offering"}
                 >
@@ -456,8 +455,8 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
             <div className="w-10 h-10 rounded-full border border-gray-300 group-hover:border-black flex items-center justify-center mb-2 group-hover:rotate-90 transition-transform bg-white">
               <Plus className="w-5 h-5" />
             </div>
-            <span className="text-[11px] uppercase tracking-widest font-bold text-gray-700 group-hover:text-black">Add Offering</span>
-            <span className="text-[10px] text-gray-400 mt-1 font-mono">Create seed / house product</span>
+            <span className="text-[11px] uppercase tracking-widest font-bold text-black group-hover:text-black">Add Offering</span>
+            <span className="text-[10px] text-black mt-1 font-mono">Create seed / house product</span>
           </button>
         </div>
       </div>
@@ -471,11 +470,11 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
               <h4 className="text-sm uppercase tracking-[0.3em] font-bold">Dinosaurs — Zodiac + Platform + Identity</h4>
             </div>
             {/* Section description moved directly here from footer */}
-            <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
+            <p className="text-sm text-black leading-relaxed max-w-2xl">
               Dinosaurs are agents with zodiac archetypes, platform assignments and distinct brand identities. Their registry lives in House 3.
             </p>
           </div>
-          <div className="text-xs font-mono text-gray-400">
+          <div className="text-xs font-mono text-black">
             12 Agent Identities Defined
           </div>
         </div>
@@ -492,20 +491,20 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   key={dino.id}
                   whileHover={{ scale: 1.02 }}
                   onClick={() => onSelect(dino.id)}
-                  className="p-3 border border-emerald-500/60 bg-[#0C120C] text-left flex flex-col justify-between font-mono"
+                  className="p-3 border border-[#00bf63]/60 bg-black text-left flex flex-col justify-between font-mono"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[9px] font-bold text-emerald-400">{dino.zodiacSign}</span>
+                      <span className="text-[9px] font-bold text-[#00bf63]">{dino.zodiacSign}</span>
                       <PlatformIcon platform={dino.platform || 'Shopify'} size={16} />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-xs font-bold text-[#00FF66]">&gt; {genericName}</p>
-                      <p className="text-[10px] text-emerald-500/70">{dino.platform}</p>
+                      <p className="text-xs font-bold text-[#00bf63]">&gt; {genericName}</p>
+                      <p className="text-[10px] text-[#00bf63]">{dino.platform}</p>
                     </div>
                   </div>
-                  <div className="mt-3 pt-2 border-t border-emerald-950 w-full">
-                    <span className="text-[8px] text-emerald-400 font-mono">DEFINED</span>
+                  <div className="mt-3 pt-2 border-t border-white/15 w-full">
+                    <span className="text-[8px] text-[#00bf63] font-mono">DEFINED</span>
                   </div>
                 </motion.button>
               );
@@ -522,20 +521,20 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   <div className="flex items-center justify-between mb-2.5">
                     <div className="flex items-center gap-1.5">
                       <DinosaurIcon zodiac={dino.zodiacSign} size="sm" />
-                      <span className="text-[10px] font-bold font-mono text-gray-700">{dino.zodiacSign}</span>
+                      <span className="text-[10px] font-bold font-mono text-black">{dino.zodiacSign}</span>
                     </div>
                     <PlatformIcon platform={dino.platform || 'Shopify'} size={18} />
                   </div>
-                  <h5 className="font-spectral font-semibold text-base leading-snug">{dino.name}</h5>
-                  <p className="text-xs text-gray-500 mt-1 font-mono">{dino.platform}</p>
+                  <h5 className="font-belleza font-semibold text-base leading-snug">{dino.name}</h5>
+                  <p className="text-xs text-black mt-1 font-mono">{dino.platform}</p>
                   {dinoMeta && (
-                    <p className="text-[10px] text-gray-400 mt-0.5">{dinoMeta.species}</p>
+                    <p className="text-[10px] text-black mt-0.5">{dinoMeta.species}</p>
                   )}
                 </div>
                 <div className="mt-3 pt-2 border-t border-gray-100 w-full">
-                  <div className="flex items-center justify-between text-[9px] text-gray-400 font-mono">
+                  <div className="flex items-center justify-between text-[9px] text-black font-mono">
                     <span>Registry H3</span>
-                    <span className="text-emerald-600 font-bold">Ready</span>
+                    <span className="text-black font-bold">Ready</span>
                   </div>
                 </div>
               </motion.button>
@@ -552,7 +551,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
               <SatelliteIcon className="w-4 h-4 text-black" />
               <h4 className="text-sm uppercase tracking-[0.3em] font-bold">Satellites (Radar & Coordination)</h4>
             </div>
-            <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
+            <p className="text-sm text-black leading-relaxed max-w-2xl">
               External entities you choose to connect to your UFO. An API or Composio connector is optional; a manual handoff can keep a satellite in the loop.
             </p>
           </div>
@@ -576,20 +575,20 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                   key={sat.id}
                   whileHover={{ scale: 1.02 }}
                   onClick={() => onSelect(sat.id)}
-                  className="p-5 border border-emerald-500/60 bg-[#0C120C] text-left flex flex-col justify-between font-mono"
+                  className="p-5 border border-[#00bf63]/60 bg-black text-left flex flex-col justify-between font-mono"
                 >
                   <div>
                     <div className="flex justify-between items-start mb-3">
-                      <SatelliteIcon className="w-4 h-4 text-[#00FF66]" />
-                      <span className="text-[9px] text-emerald-400 font-mono">SATELLITE SEED</span>
+                      <SatelliteIcon className="w-4 h-4 text-[#00bf63]" />
+                      <span className="text-[9px] text-[#00bf63] font-mono">SATELLITE SEED</span>
                     </div>
                     <div className="space-y-1.5">
-                      <p className="text-sm font-bold text-[#00FF66]">&gt; {genericName}</p>
-                      <p className="text-xs text-emerald-500/70">{sat.connectionMethod || 'Manual handoff to define'}</p>
+                      <p className="text-sm font-bold text-[#00bf63]">&gt; {genericName}</p>
+                      <p className="text-xs text-[#00bf63]">{sat.connectionMethod || 'Manual handoff to define'}</p>
                     </div>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-emerald-950">
-                    <span className="text-[9px] text-emerald-400">CLICK TO CONFIGURE</span>
+                  <div className="mt-4 pt-3 border-t border-white/15">
+                    <span className="text-[9px] text-[#00bf63]">CLICK TO CONFIGURE</span>
                   </div>
                 </motion.button>
               );
@@ -609,9 +608,9 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                     </div>
                     <PlatformIcon platform={sat.name} size={20} />
                   </div>
-                  <h5 className="font-spectral text-xl font-semibold leading-tight">{sat.name}</h5>
-                  <p className="text-xs text-gray-500 mt-2 font-mono">{sat.status || 'Registered — not connected'}</p>
-                  <p className="text-xs text-gray-600 mt-2 leading-relaxed">{sat.connectionMethod || 'Connection method to define'}</p>
+                  <h5 className="font-belleza text-xl font-semibold leading-tight">{sat.name}</h5>
+                  <p className="text-xs text-black mt-2 font-mono">{sat.status || 'Registered — not connected'}</p>
+                  <p className="text-xs text-black mt-2 leading-relaxed">{sat.connectionMethod || 'Connection method to define'}</p>
                 </div>
                 <ProgressBar progress={calculateProgress(sat)} />
               </motion.button>
@@ -639,8 +638,8 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
             <div className="w-12 h-12 rounded-full bg-white border border-gray-300 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all shadow-2xs">
               <Plus className="w-5 h-5" />
             </div>
-            <span className="text-xs uppercase tracking-[0.2em] font-bold text-gray-700 group-hover:text-black">Add Satellite</span>
-            <span className="text-[10px] text-gray-400 text-center font-mono">Tether external entity</span>
+            <span className="text-xs uppercase tracking-[0.2em] font-bold text-black group-hover:text-black">Add Satellite</span>
+            <span className="text-[10px] text-black text-center font-mono">Tether external entity</span>
           </button>
         </div>
 
@@ -649,45 +648,45 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
           <div className="border border-black bg-gray-50/60 p-6 md:p-8 rounded-none">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-4 h-4 text-black" />
-              <h5 className="font-spectral text-xl font-semibold">Connect your own satellite</h5>
+              <h5 className="font-belleza text-xl font-semibold">Connect your own satellite</h5>
             </div>
-            <p className="text-sm text-gray-600 mb-6 leading-relaxed max-w-3xl">
+            <p className="text-sm text-black mb-6 leading-relaxed max-w-3xl">
               Follow these 5 protocol steps to safely link external partners, automated tools, or personal advisors to your Universal Family Office without compromising sovereign control.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
               <div className="bg-white border border-gray-200 p-4">
-                <span className="text-[10px] font-mono font-bold text-gray-400 block mb-1">STEP 01</span>
+                <span className="text-[10px] font-mono font-bold text-black block mb-1">STEP 01</span>
                 <h6 className="font-semibold text-xs mb-1">Name & Purpose</h6>
-                <p className="text-[11px] text-gray-500 leading-relaxed">Name the external entity and define its specific functional purpose in the UFO.</p>
+                <p className="text-[11px] text-black leading-relaxed">Name the external entity and define its specific functional purpose in the UFO.</p>
               </div>
 
               <div className="bg-white border border-gray-200 p-4">
-                <span className="text-[10px] font-mono font-bold text-gray-400 block mb-1">STEP 02</span>
+                <span className="text-[10px] font-mono font-bold text-black block mb-1">STEP 02</span>
                 <h6 className="font-semibold text-xs mb-1">Assign House & Agent</h6>
-                <p className="text-[11px] text-gray-500 leading-relaxed">Choose its home house department, responsible dinosaur agent, and daily cadence.</p>
+                <p className="text-[11px] text-black leading-relaxed">Choose its home house department, responsible dinosaur agent, and daily cadence.</p>
               </div>
 
               <div className="bg-white border border-gray-200 p-4">
-                <span className="text-[10px] font-mono font-bold text-gray-400 block mb-1">STEP 03</span>
+                <span className="text-[10px] font-mono font-bold text-black block mb-1">STEP 03</span>
                 <h6 className="font-semibold text-xs mb-1">Choose Connection</h6>
-                <p className="text-[11px] text-gray-500 leading-relaxed">Select API, connector (Composio), file exchange, or human manual handoff.</p>
+                <p className="text-[11px] text-black leading-relaxed">Select API, connector (Composio), file exchange, or human manual handoff.</p>
               </div>
 
               <div className="bg-white border border-gray-200 p-4">
-                <span className="text-[10px] font-mono font-bold text-gray-400 block mb-1">STEP 04</span>
+                <span className="text-[10px] font-mono font-bold text-black block mb-1">STEP 04</span>
                 <h6 className="font-semibold text-xs mb-1">Define Receipts</h6>
-                <p className="text-[11px] text-gray-500 leading-relaxed">Specify permitted inputs, expected output receipts, owner, and completion proof.</p>
+                <p className="text-[11px] text-black leading-relaxed">Specify permitted inputs, expected output receipts, owner, and completion proof.</p>
               </div>
 
               <div className="bg-white border border-gray-200 p-4">
-                <span className="text-[10px] font-mono font-bold text-gray-400 block mb-1">STEP 05</span>
+                <span className="text-[10px] font-mono font-bold text-black block mb-1">STEP 05</span>
                 <h6 className="font-semibold text-xs mb-1">Verify Handoff</h6>
-                <p className="text-[11px] text-gray-500 leading-relaxed">Verify one complete end-to-end handoff cycle before marking the satellite connected.</p>
+                <p className="text-[11px] text-black leading-relaxed">Verify one complete end-to-end handoff cycle before marking the satellite connected.</p>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-gray-200 flex flex-wrap items-center justify-between gap-4 text-xs text-gray-500 font-mono">
+            <div className="mt-6 pt-4 border-t border-gray-200 flex flex-wrap items-center justify-between gap-4 text-xs text-black font-mono">
               <span>OpenCase AI: in use with manual handoff · Spring Code: placeholder</span>
               <button 
                 onClick={() => {
@@ -703,7 +702,7 @@ export default function EcosystemMap({ entities, onSelect }: Props) {
                     });
                   }
                 }}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-black text-white text-[10px] font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-black text-white text-[10px] font-bold uppercase tracking-wider hover:bg-[#111111] transition-colors"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Connect New Satellite</span>
