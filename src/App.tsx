@@ -311,7 +311,7 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 pb-16">
               {mapLayout === 'space'
                 ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
-                : <TimeView entities={displayEntities} onSelect={setSelectedEntityId} />}
+                : <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} />}
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-8">
               <ClaimSections entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
