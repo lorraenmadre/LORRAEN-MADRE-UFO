@@ -10,6 +10,7 @@ import LorraineMadreChat from './components/LorraineMadreChat';
 import WelcomeJourney from './components/WelcomeJourney';
 import EngineJourney from './components/EngineJourney';
 import EngineGrid from './components/EngineGrid';
+import MothershipGrid from './components/MothershipGrid';
 import VoiceOrb from './components/VoiceOrb';
 import {useJourney,JOURNEY_DAYS,addContribution} from './journey';
 import type { StoryDraft } from './components/LorraineMadreChat';
@@ -284,12 +285,11 @@ export default function App() {
               onWordsChange={words=>updateJourney({...journey,notes:{...journey.notes,[journey.day]:words}})}
               context={`Day ${journey.day+1}: ${journey.titles[journey.day]||JOURNEY_DAYS[journey.day].title}. ${JOURNEY_DAYS[journey.day].focus}. Selected component: ${journey.component||'not chosen'}. Guide the Hero, one question at a time.`}
               onContribution={words=>updateJourney(addContribution(journey,{...words,day:journey.day,component:journey.component},crypto.randomUUID(),new Date().toISOString()))}>
-            <div className="lm-component-choice"><label htmlFor="wish-component">Give this wish a home (optional)</label><select id="wish-component" value={journey.component??''} onChange={e=>updateJourney({...journey,component:e.target.value?Number(e.target.value):null})}><option value="">Keep it open for now</option>{INITIAL_ENTITIES.filter(e=>e.type==='offering').map(e=><option key={e.id} value={Number(e.id.replace('product-house-',''))}>{e.house} · {e.name}</option>)}</select><p className="lm-caption">Choose a component before keeping your contribution to light its space on the Engine.</p></div>
             </LorraineMadreChat>
             <EngineGrid journey={journey} onSelect={component=>{updateJourney({...journey,component});document.getElementById('daily-conversation')?.scrollIntoView({behavior:'smooth'});}}/>
 
 
-            <EngineJourney />
+
             {/* Title Section */}
             <div id="operating-board" className="max-w-7xl mx-auto text-left py-10 px-6">
               <p className="text-[10px] uppercase tracking-[0.5em] text-black mb-6">a WishWell system</p>
@@ -301,19 +301,9 @@ export default function App() {
               </h3>
               <div className="flex items-center gap-4 mt-12">
                 <div className="h-px w-8 bg-gray-200" />
-                <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-black">Your operating board · name and claim your universe</p>
+                <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-black">Your operating board</p>
               </div>
-              <p className="mt-6 max-w-2xl">Time follows your rhythm. Space holds your 16 Plans. Story opens Neverland, your collection of Stories. Choose a Plan space to name it; explore Wonderland below to find its product Houses.</p><details className="mt-6"><summary>Explore the mothership structure when you are ready</summary><MothershipInstructions
-                currentMothershipName={displayEntities.find(e => e.type === 'holding_company')?.name || 'Sterling Drive Consulting'}
-                onUpdateMothershipName={(name) => {
-                  const holdingEntity = displayEntities.find(e => e.type === 'holding_company');
-                  if (holdingEntity) {
-                    handleUpdateEntity({ ...holdingEntity, name });
-                  }
-                }}
-                onExploreOrbit={() => setMapLayout('space')}
-                onOpenFramework={() => setViewMode('framework')}
-              /></details>
+              <p>Your operating board: project management, climate consciousness and business analysis through Time, Space and Story.</p>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap items-center gap-3">
@@ -336,38 +326,12 @@ export default function App() {
                 </section>}
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-8">
-              <ClaimSections onAddSatellite={sat=>{const update=viewMode==='framework'?setCleanEntities:setEntities;update(prev=>[...prev,sat]);}} entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
+              <h2 className="lm-section-title">Name and claim your universe.</h2><MothershipGrid key={user?.uid||'preview'} scope={user?.uid||'preview'}/><ClaimSections onAddSatellite={sat=>{const update=viewMode==='framework'?setCleanEntities:setEntities;update(prev=>[...prev,sat]);}} entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
             </div>
             {viewMode === 'business' && <details className="max-w-7xl mx-auto px-6"><summary>Explore the full operating map</summary><OperatingMap /></details>}
 
-            {/* Newcastle Connection Section - Screenshot CTA Styling */}
-            <div className="max-w-7xl mx-auto px-6 py-20 border-t border-gray-100 mt-20">
-              <div className="flex flex-col items-center text-center space-y-6">
-                <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold text-black">
-                  Connect with Newcastle · Activate Your Orbit
-                </h4>
-                <ActionPills
-                  onDesign={() => {
-                    window.scrollTo({ top: 400, behavior: 'smooth' });
-                  }}
-                  onWork={() => {
-                    setViewMode('framework');
-                  }}
-                  onPlay={() => {
-                    setMapLayout('space');
-                  }}
-                />
-              </div>
-            </div>
+            <footer className="max-w-7xl mx-auto px-6 py-12 border-t border-gray-100"><details><summary>Privacy &amp; use of this preview</summary><p>Wishes and onboarding progress are stored in this browser. Clearing browser storage removes them. Board edits currently last for this session. Sending a message requests an AI response; speech recognition may use your browser’s speech service. Optional video stays local and is not recorded or uploaded.</p><p>This is a planning and coordination tool. AI responses and drafted work need your review. No service enrollment, professional advice, payment or external action is completed by logging a wish.</p></details><p className="lm-caption mt-4">© 2026 LORRAEN MADRE · WISH WELL</p></footer>
 
-            <div className="max-w-7xl mx-auto px-6 py-12 border-t border-gray-100 text-center space-y-4">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-black leading-relaxed max-w-3xl mx-auto">
-                Disclaimer: This application is a framework designed to help organize information within the WishWell system. 
-                It does not constitute financial, medical, or legal advice. 
-                If you require professional advice in any of these areas, please consult with an AI assistant within the system for direction to the appropriate affiliates who can service those specific needs.
-              </p>
-              <p className="text-[8px] text-black uppercase tracking-widest">© 2026 LORRAEN MADRE | WishWell individual flow</p>
-            </div>
           </motion.div>
         ) : (
           <motion.div

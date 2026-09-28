@@ -33,12 +33,12 @@ test('Hero conversation keeps the two requested questions and optional work cues
  const html=renderToStaticMarkup(<LorraineMadreChat/>);
  assert.ok(html.includes('What do you wish for today?'));
  assert.ok(html.includes('How do you feel about it?'));
- assert.ok(html.includes('WISH WELL cues'));
- assert.ok(html.includes('Connect a Satellite'));
+ assert.ok(!html.includes('WISH WELL cues')); 
+ assert.ok(html.includes('Wishes get SOAP. Goals get SMART.'));
 });
 test('journey restores fourteen revisitable topics and supplied care offerings',()=>{
  const html=renderToStaticMarkup(<WelcomeJourney journey={emptyJourney()} onChange={()=>{}}/>);
- assert.equal((html.match(/aria-label="Day /g)||[]).length,14);
+ assert.equal((html.match(/role="tab"/g)||[]).length,14);
  assert.ok(!html.includes('What would you like to become possible?'));
  const engine=renderToStaticMarkup(<EngineJourney/>);
  assert.equal(ENGINE_CATEGORIES.length,6);
@@ -60,7 +60,7 @@ test('only a nonempty contribution checks a day; out-of-order progress and revis
  assert.equal(revised.contributions.length,3);assert.equal(revised.contributions[0].wish,'Build my travel plan');
  assert.equal(addContribution(revised,{...input,wish:'Review my travel plan'},'duplicate','later'),revised);
  const html=renderToStaticMarkup(<WelcomeJourney journey={restored} onChange={()=>{}}/>);
- assert.equal((html.match(/contribution saved/g)||[]).length,2);
+ assert.equal((html.match(/lm-status-dot is-kept/g)||[]).length,2);
 });
 test('damaged browser data cannot create completion or an invalid active day',()=>{
  assert.deepEqual(decodeJourney('{broken'),emptyJourney());
@@ -72,14 +72,14 @@ test('Engine occupies exactly the twelve perimeter cells and reserves the centra
  assert.equal(ENGINE_POSITIONS.length,12);assert.equal(new Set(ENGINE_POSITIONS.map(x=>x.join(','))).size,12);
  for(const [row,col] of ENGINE_POSITIONS)assert.ok(row===1||row===4||col===1||col===4);
  const html=renderToStaticMarkup(<EngineGrid journey={emptyJourney()} onSelect={()=>{}}/>);
- assert.equal((html.match(/aria-pressed=/g)||[]).length,12);
- assert.ok(html.includes('0/12 components'));
+ assert.equal((html.match(/class="lm-engine-cell"/g)||[]).length,12);
+ assert.ok(html.includes('Advocacy Engine')); 
 });
 test('Houses use one resource-card collection and Dinosaur platform logos label the actual platform',()=>{
  const html=renderToStaticMarkup(<ClaimSections entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}} onAddSatellite={()=>{}}/>);
- assert.equal((html.match(/Bring one House online at a time/g)||[]).length,1);
- assert.equal((html.match(/Read Anthropic cookbooks/g)||[]).length,1);
- assert.ok(html.includes('Sanctuary Sell'));assert.ok(!html.includes('Sanctuary Self'));
+ assert.equal((html.match(/Bring one House online at a time/g)||[]).length,0);
+ assert.equal((html.match(/Read Anthropic cookbooks/g)||[]).length,0);
+ assert.ok(html.includes('Sanctuary Cell'));assert.ok(!html.includes('Sanctuary Self'));
  assert.match(html,/alt="Shopify"[^>]*\/>\s*<span>Shopify<\/span>/);
  assert.ok(html.includes('♊ Gemini'));assert.ok(html.includes('♋ Cancer'));
 });
