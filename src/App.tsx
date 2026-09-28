@@ -9,6 +9,9 @@ import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
 import WelcomeJourney from './components/WelcomeJourney';
 import EngineJourney from './components/EngineJourney';
+import EngineGrid from './components/EngineGrid';
+import VoiceOrb from './components/VoiceOrb';
+import {useJourney,JOURNEY_DAYS,addContribution} from './journey';
 import type { StoryDraft } from './components/LorraineMadreChat';
 import MothershipInstructions from './components/MothershipInstructions';
 import ActionPills from './components/ActionPills';
@@ -18,7 +21,6 @@ import { Globe, LayoutGrid, Info, LogOut, ChevronRight, Check } from 'lucide-rea
 type FirebaseUser = { uid: string };
 
 export default function App() {
-  const [journeyDay,setJourneyDay]=useState(0);
   const [drafts,setDrafts]=useState<StoryDraft[]>([]);
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
@@ -26,6 +28,7 @@ export default function App() {
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'framework' | 'business'>('business');
   const [user, setUser] = useState<FirebaseUser | null>(null);
+  const {data:journey,update:updateJourney,storageError}=useJourney(user?.uid||'preview');
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [isAuthReady, setIsAuthReady] = useState(false);
   const [authWarning, setAuthWarning] = useState<string | null>(null);
@@ -275,16 +278,25 @@ export default function App() {
             )}
 
             {/* Lorraine Chat Top */}
-            <WelcomeJourney day={journeyDay} setDay={setJourneyDay} /><LorraineMadreChat context={`Day ${journeyDay+1} of the 14-day UFO introduction. Address the user as Hero. Start with their wish and feeling. Use cues, not a fixed daily questionnaire.`} onCapture={d=>setDrafts(prev=>[...prev,d])} />
+            <WelcomeJourney journey={journey} onChange={updateJourney} storageError={storageError}/>
+            <LorraineMadreChat key={`${user?.uid||'preview'}-${journey.day}`} day={journey.day} dayCue={JOURNEY_DAYS[journey.day].cue}
+              initialWords={journey.notes[journey.day]}
+              onWordsChange={words=>updateJourney({...journey,notes:{...journey.notes,[journey.day]:words}})}
+              context={`Day ${journey.day+1}: ${journey.titles[journey.day]||JOURNEY_DAYS[journey.day].title}. ${JOURNEY_DAYS[journey.day].focus}. Selected component: ${journey.component||'not chosen'}. Guide the Hero, one question at a time.`}
+              onContribution={words=>updateJourney(addContribution(journey,{...words,day:journey.day,component:journey.component},crypto.randomUUID(),new Date().toISOString()))}>
+            <div className="lm-component-choice"><label htmlFor="wish-component">Give this wish a home (optional)</label><select id="wish-component" value={journey.component??''} onChange={e=>updateJourney({...journey,component:e.target.value?Number(e.target.value):null})}><option value="">Keep it open for now</option>{INITIAL_ENTITIES.filter(e=>e.type==='offering').map(e=><option key={e.id} value={Number(e.id.replace('product-house-',''))}>{e.house} · {e.name}</option>)}</select><p className="lm-caption">Choose a component before keeping your contribution to light its space on the Engine.</p></div>
+            </LorraineMadreChat>
+            <EngineGrid journey={journey} onSelect={component=>{updateJourney({...journey,component});document.getElementById('daily-conversation')?.scrollIntoView({behavior:'smooth'});}}/>
+
 
             <EngineJourney />
             {/* Title Section */}
-            <div id="operating-board" className="max-w-7xl mx-auto text-left py-20 px-6">
+            <div id="operating-board" className="max-w-7xl mx-auto text-left py-10 px-6">
               <p className="text-[10px] uppercase tracking-[0.5em] text-black mb-6">a WishWell system</p>
-              <h2 className="text-3xl md:text-4xl font-belleza leading-[1.18] mb-2">
+              <h2 className="lm-section-title">
                 Design happily ever after <span className="italic text-black">with</span>
               </h2>
-              <h3 className="text-3xl md:text-4xl font-belleza text-black normal-case">
+              <h3 className="lm-section-title">
                 TIME . <span className="lowercase">space</span> + Story
               </h3>
               <div className="flex items-center gap-4 mt-12">
@@ -312,12 +324,16 @@ export default function App() {
                   </button>
                 ))}
               </div>
-              <p className="text-sm">{viewMode === 'framework' ? 'Your framework — type a name into any black box to claim it.' : 'The founder’s example — explore each space.'} Edits last for this session.</p>
+              <p className="text-sm">{viewMode === 'framework' ? 'Your framework — type a name into any black box to claim it.' : 'The founder’s example — explore each space.'} Board edits last for this session; onboarding progress is saved on this browser.</p>
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-16">
               {mapLayout === 'space'
                 ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
-                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="text-3xl font-belleza">Neverland · your collection of Stories</h2><p>Hero, begin with the Golden Ticket and Jungle Book through the Story Calendar. Collect the moments, wishes and lessons that become your next chapter. Your own words stay attached to each draft.</p><a className="lm-pill lm-pill-white mt-4" href="https://junglebook.lorraenmadre.com/" target="_blank" rel="noopener noreferrer">Explore Jungle Book · Story Calendar</a>{drafts.length===0 ? <p className="py-8">Your first thread starts in the talk bar. Keep a Wish, clarify a Story, then choose the piece of work it needs.</p> : drafts.map(d=><article key={d.id} className="lm-story-card"><small>{d.kind} · session draft</small><p>{d.text}</p><small>{d.context}</small></article>)}</section>}
+                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="lm-section-title">Story · Neverland</h2><div className="lm-neverland-intro"><VoiceOrb allowVideo/><div><p>Hero, this is your collection of Stories: what you wished for, what you felt, what you learned and what comes next.</p><p>Golden Ticket opens the invitation. Jungle Book and the Story Calendar bring the next chapter into view.</p><a className="lm-pill lm-pill-white mt-4" href="https://junglebook.lorraenmadre.com/" target="_blank" rel="noopener noreferrer">Explore Jungle Book · Story Calendar</a><a className="lm-return-story" href="#daily-conversation">Tell the next part of your story ↑</a></div></div>
+                  {journey.contributions.length===0&&drafts.length===0?<p className="py-8">Your first thread starts in the talk bar. Keep a contribution and it will appear here.</p>:null}
+                  {[...journey.contributions].reverse().map(c=><article key={c.id} className="lm-story-card"><small>Day {c.day+1} · {c.kind} · saved on this browser{c.component?` · Component ${c.component}`:''}</small><p>{c.wish}</p>{c.feeling&&<p>How I feel: {c.feeling}</p>}<button className="lm-return-story" onClick={()=>{updateJourney({...journey,day:c.day});document.getElementById('wish-well')?.scrollIntoView({behavior:'smooth'});}}>Revisit this day ↑</button></article>)}
+                  {drafts.map(d=><article key={d.id} className="lm-story-card"><small>{d.kind} · session draft</small><p>{d.text}</p><small>{d.context}</small></article>)}
+                </section>}
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-8">
               <ClaimSections onAddSatellite={sat=>{const update=viewMode==='framework'?setCleanEntities:setEntities;update(prev=>[...prev,sat]);}} entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />

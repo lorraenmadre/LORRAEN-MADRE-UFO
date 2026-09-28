@@ -1,27 +1,31 @@
-# Voice-first UX review — September 28, 2026
+# Hero journey design review — September 28, 2026
 
-Built on main commit 30d5af6, retaining Claude’s Time view, birth-chart calculations, entity detail pages and framework data. Review branch: codex/voice-first-onboarding. Do not replace newer main changes wholesale.
+Review branch: `codex/voice-first-onboarding`; draft PR #6. Production is unchanged. Built on main 30d5af6; do not replace newer work wholesale.
 
-## Implemented
+## This revision
 
-- A fourteen-day, self-paced orientation with day markers and no prescribed daily questionnaire replaces mandatory formation steps as the first experience. The old mothership checklist is retained under disclosure.
-- Shared story/talk component on the home screen and entity detail screens: optional browser dictation, explicit stop, editable transcript, user-initiated submit, dialogue context, error recovery and typed fallback.
-- Lighter Mulish 300 AI responses, preserved line breaks and clear speaker labels.
-- Story tab collects explicitly selected draft types. Wishes, Stories, Projects, Goals, Plans, Deals, Tasks, Outcomes and Dinosaur briefs remain distinct. AI does not silently create operational records.
-- Space uses the canonical sixteen PLAN_SLOTS. Earth, Houses, agents and satellites remain available outside the Plan board.
-- Translucent gray assignment pieces and a separate gold Queen. Hover/focus shows assignment details; tap opens an editable person, role, Goals and Tasks panel.
-- Wonderland names the Houses; Rabbit Hole names the existing sky wheel. Time/Space/Story remain the main views.
-- Twenty-three original social SVG assets are reused from the website repository. Incorrect Claude→Canva and CRM→Clubhouse substitutions were removed. Platforms without a supplied matching asset use their name.
-- Gradual House links include Trello, Notion, Anthropic cookbooks and Composio. They do not pretend to be published WISH WELL template downloads or active integrations.
+- Explain the Universal Family Office before asking for input: an operating layer for family care, resources, people, technology and work. The mothership holds the universe; wishes fuel its Engine; the Hero is mind, body and soul.
+- Keep “What do you wish for today?” and “How do you feel about it?” exactly. Optional WISH WELL cues help clarify distinct Wishes, Stories, Projects, Goals, Plans, Deals, Tasks, Outcomes and agent briefs.
+- Fourteen days are revisitable topics. A checkmark requires a nonempty contribution explicitly kept or submitted for dialogue. Selecting a day or typing alone does not complete it. No timer, expiry, forced order or auto-advance.
+- Persist day selection, edited day titles, unfinished words and contribution history in versioned browser storage scoped to signed-in UID or anonymous preview. Retain earlier contributions on revision. Show an error if storage fails. No cross-device sync is claimed. Entity board edits and entity-detail drafts remain session-only.
+- Engine geometry: 4×4 outer perimeter, twelve cells, center 2×2 open. Existing product House IDs remain intact. Explicitly assigning a contribution to a component lights that cell. A story added is NOT verified provider activation.
+- Shared animated voice orb reacts to listening / thinking / kept contribution. Optional circular camera preview shows the participant locally, requests camera only on click, does not record/upload video, and stops tracks when closed/unmounted. No supplied video asset has been replaced or invented.
+- Story view is Neverland; displays saved day contributions plus session drafts, with revisit actions. Golden Ticket / Jungle Book / Story Calendar remain the introductory story route.
+- Wonderland is one collection of House resource cards: short context, product, platform, purpose, detail action and available setup/resource link. No duplicate four-card resource section.
+- Dinosaurs are living domains serving Goals, with zodiac glyphs and platform logos directly beside platform names. Shopify belongs beside Shopify, not Sanctuary Sell. Corrected the confirmed Sanctuary Self typo to Sanctuary Sell; Sanctuary Cell remains the home-server offering.
+- Time / Space / Story share heading styling. Only the Time header was consolidated; Claude’s sky math, wheel, controls and transit behavior are untouched.
+- Shared ActionPills styling updated app-wide; local callback actions now work instead of being masked by default external URLs.
 
-## Execution limits to retain in the UI
+## Day topic provenance
 
-Notes, assignments and Story drafts are session-only. Reloading loses them. No database persistence, agent activation, external task creation or automatic plan generation is claimed. Microphone availability depends on browser support and permission; browser speech recognition can use the browser provider’s speech service. No live microphone or AI-provider call was exercised during verification.
+Days 1–5 follow the explicit sequence: vision/retirement + telemedicine; UFO/holding company + legal; funding/financial; technology/domains; home server.
 
-The rejected fourteen prompts have been removed. The two opening questions are “What do you wish for today?” and “How do you feel about it?” Optional WISH WELL cues guide dialogue. Engine categories introduce Sunshine Pocket Therapy, WealthCounsel, On my way!, Sanctuary Cell, The Cookbook (tech and kitchen), and Soup Club. They are not House numbers, fixed days, verified partnerships or active enrollment. Neverland collects Stories and introduces Golden Ticket / Jungle Book / Story Calendar. Satellite creation adds session-only records in the selected framework/example; Plans retain sixteen slots. A Plan retains one Goal, eight Outcome spaces and 64 Task spaces. Do not fill unknown spaces with invented work. Dinosaur briefs describe agents supporting Goals; they do not convert Goal records into agent records.
+The earlier spoken rundown had gaps around the next “small…” topic and another unnamed day. Days 6 and 8 remain editable “Your next component” spaces. Day 7 uses the stated nonprofit/foundation topic; Days 9–11 use insurance, trust/travel, and career/IP. Day 12 also remains open because the remaining numbering was unresolved. Wonderland and Neverland are editable proposed closing topics on Days 13–14, following the stated “then” transition. These day numbers do not remap canonical Houses. Do not present the gaps or proposed closing placements as an approved full curriculum.
 
-Next integration work: stable record IDs linking captured stories to existing Project/Goal/Plan/Deal/Task models; persistence scoped to the signed-in person; validated template URLs for Dream Backlog and Fruitful Frameworks; WISH WELL Cookbook download; cross-app shared voice component and a microphone test on supported devices. Person assignment fields currently record entered Goals/Tasks as text, not database relations.
+## Boundaries
+
+Provider links, partner agreements, enrollment and tool activation are not verified by a checkmark. Template URLs not supplied remain clearly labeled. No automatic medical, legal, insurance or financial action occurs. Plans retain 16 board spaces; each Plan has one Goal, eight Outcomes and 64 Task spaces. Dinosaurs support Goals rather than replacing them.
 
 ## Verification
 
-TypeScript check and production build pass. Seven tests pass, including sixteen-plan cardinality, separate Queen, correct platform matching, founder/framework isolation and existing orbit navigation. Visual browser verification of the new branch and live voice-provider testing remain outstanding. Production has not been merged or changed by this branch.
+Check TypeScript, production build and tests covering contribution completion, out-of-order resume, revision history, damaged storage, twelve-cell geometry, House resource consolidation, platform labels, CTA semantics and existing framework/board behavior. Live microphone, camera, AI provider and visual browser review are not verified. The deployed preview previously led toward protected Vercel account access and automatic approval review blocked browser access; do not bypass that restriction.

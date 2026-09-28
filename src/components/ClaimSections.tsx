@@ -1,78 +1,50 @@
-import React, { useState } from 'react';
-import { Entity } from '../types';
-import { boxLabel, boxRole, isUnnamed, orderForBoard } from '../entityOrder';
-import PlatformIcon from './PlatformIcon';
-import { slotForEntity } from '../planSlots';
-
-interface Props {
-  entities: Entity[];
-  onAddSatellite: (e:Entity)=>void;
-  onSelect: (id: string) => void;
-  onUpdate: (e: Entity) => void;
-}
-
-const SECTIONS: { key: string; title: string; note: string; match: (e: Entity) => boolean }[] = [
-  { key: 'mothership', title: 'Mothership', note: 'Your Queen and your UFO — the center everything orbits.', match: (e) => e.type === 'church' || e.type === 'holding_company' || e.type === 'trust' },
-  { key: 'planets', title: 'Plans', note: 'Choose one of your 16 standing Plan spaces and name it. Each Plan holds a Goal, Outcomes and Tasks. Naming a space does not add a seventeenth Plan.', match: (e) => !!slotForEntity(e.id) },
-  { key: 'dinosaurs', title: 'Dinosaurs', note: 'Your agents, shaped around Goals. Describe the work and review their role before activation.', match: (e) => e.type === 'dinosaur' },
-  { key: 'houses', title: 'Wonderland · Houses', note: 'Wonderland is your collection of product Houses. Explore a House to understand what it offers and which part of your work belongs there.', match: (e) => e.type === 'offering' },
-  { key: 'satellites', title: 'Satellites', note: 'Your own connections that are not already one of the common houses.', match: (e) => e.type === 'satellite' },
+import React,{useState} from 'react';
+import {Entity} from '../types';
+import {boxLabel,boxRole,isUnnamed,orderForBoard} from '../entityOrder';
+import PlatformLabel from './PlatformLabel';
+import system from '../ufo-system.json';
+import {slotForEntity} from '../planSlots';
+interface Props{entities:Entity[];onAddSatellite:(e:Entity)=>void;onSelect:(id:string)=>void;onUpdate:(e:Entity)=>void}
+const SECTIONS=[
+ {key:'mothership',title:'Mothership',note:'Your home for the whole picture. Name what is yours, describe its purpose, and fill the empty spaces as your universe takes shape.',match:(e:Entity)=>e.type==='church'||e.type==='holding_company'||e.type==='trust'},
+ {key:'planets',title:'Plans',note:'Choose and name one of your 16 Plan spaces. A Plan holds one Goal, eight Outcomes and 64 Task spaces. Keep the spaces you do not need yet open.',match:(e:Entity)=>!!slotForEntity(e.id)},
+ {key:'dinosaurs',title:'Dinosaurs · living domains',note:'Be the chief of your domains. Give each Dinosaur a Goal to support, a message to carry and a role in your marketing and technology. Good Dinosaurs serve your intentions: you shape their work and review what they do.',match:(e:Entity)=>e.type==='dinosaur'},
+ {key:'houses',title:'Wonderland · product Houses',note:'Bring one House online at a time. Each House gives part of your work a place, a product and a tool. Explore its purpose, gather what you already have, then take the next setup step.',match:(e:Entity)=>e.type==='offering'},
+ {key:'satellites',title:'Satellites',note:'Bring another person, service or tool into your universe. Name the connection, then open its card to describe its role.',match:(e:Entity)=>e.type==='satellite'},
 ];
-
-/** Name-and-claim sections under the Space / Time views. Same boxes, grouped. Unnamed boxes are terminals. */
-export default function ClaimSections({ entities, onSelect, onUpdate, onAddSatellite }: Props) {
-  const [satelliteName,setSatelliteName]=useState('');
-  const ordered = orderForBoard(entities);
-  const seen = new Set<string>();
-  return (
-    <section className="space-y-12" aria-label="Name and claim">
-      {SECTIONS.map((s) => {
-        const items = ordered.filter((e) => !seen.has(e.id) && s.match(e));
-        items.forEach((e) => seen.add(e.id));
-        if (!items.length && s.key!=='satellites') return null;
-        const claimed = items.filter((e) => !isUnnamed(e)).length;
-        return (
-          <section key={s.key} id={s.key}>
-            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-              <h2 className="text-2xl font-belleza">{s.title}</h2>
-              <span className="font-figtree font-semibold text-sm">{claimed}/{items.length} claimed</span>
-            </div>
-            <p className="text-base mb-5 max-w-2xl">{s.note}</p>
-            {s.key==='satellites'&&<form className="lm-add-satellite" onSubmit={ev=>{ev.preventDefault();if(!satelliteName.trim())return;onAddSatellite({id:`satellite-${crypto.randomUUID()}`,type:'satellite',name:satelliteName.trim(),description:'A connection named by the Hero. Choose its role and setup next.',status:'Draft · not connected'});setSatelliteName('');}}><label htmlFor="satellite-name">Name a person, service or tool to add to your universe</label><input id="satellite-name" value={satelliteName} onChange={ev=>setSatelliteName(ev.target.value)} placeholder="My new connection" required/><button className="lm-pill" disabled={!satelliteName.trim()}>Add Satellite</button><p className="lm-caption">Creates a session draft. Open its card to shape its role; no account is connected yet.</p></form>}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {items.map((e) => (isUnnamed(e) ? <ClaimCard key={e.id} e={e} onSelect={onSelect} onUpdate={onUpdate} /> : (
-                <button key={e.id} type="button" onClick={() => onSelect(e.id)} className="border border-black rounded-xl min-h-32 p-4 text-left flex flex-col gap-2 hover:bg-black hover:text-white transition-colors">
-                  <span className="font-figtree font-semibold text-xs uppercase tracking-[0.06em]">{boxLabel(e)}</span>
-                  <span className="flex items-center gap-2">{e.platform && <PlatformIcon platform={e.platform} size={28}/>}<span className="font-belleza text-lg leading-snug">{e.name}</span></span>
-                  {boxRole(e) && <span className="text-sm mt-auto">{boxRole(e)}</span>}
-                </button>
-              )))}
-            </div>{s.key==='houses'&&<div className="lm-house-links"><h3>Bring one House online at a time.</h3><p>Begin with the tool you need. Your own template links can be connected when their download editions are ready.</p>{[{name:'Trello',label:'Dream Backlog',url:'https://trello.com/',note:'Open Trello · backlog template not linked yet'},{name:'Notion',label:'Fruitful Frameworks',url:'https://www.notion.com/',note:'Open Notion · framework template not linked yet'},{name:'Claude',label:'The Cookbook',url:'https://github.com/anthropics/claude-cookbooks',note:'Read Anthropic recipes · WISH WELL edition coming later'},{name:'Composio',label:'Connect your Houses',url:'https://composio.dev/',note:'Explore connections · account setup required'}].map(x=><a key={x.name} href={x.url} target="_blank" rel="noopener noreferrer"><PlatformIcon platform={x.name} size={30}/><span>{x.label}<small>{x.note}</small></span></a>)}</div>}
-          </section>
-        );
-      })}
-    </section>
-  );
+const RESOURCES:Record<string,{url:string;label:string;note:string}>={
+ 'product-house-4':{url:'https://github.com/anthropics/claude-cookbooks',label:'Read Anthropic cookbooks',note:'Tech recipes · WISH WELL tech and kitchen edition to follow'},
+ 'product-house-6':{url:'https://www.notion.com/',label:'Open Notion',note:'Fruitful Frameworks template download not yet linked'},
+ 'product-house-10':{url:'https://trello.com/',label:'Open Trello',note:'Dream Backlog template download not yet linked'},
+ 'product-house-12':{url:'https://junglebook.lorraenmadre.com/',label:'Explore Jungle Book',note:'Golden Ticket · Story Calendar'},
+};
+const HOUSE_PURPOSES:Record<number,string>={
+ 1:'Give your family office a home. Name your mothership and organize the projects that support it.',
+ 2:'Explore your resources and timing. Keep the questions behind your money decisions in view.',
+ 3:'Clarify the change you want. Shape a Goal and the evidence that will tell you it is working.',
+ 4:'Build with practical recipes for technology, food and family life. Start with what you have.',
+ 5:'Bring your people and work together. Coordinate a sprint and keep the next action visible.',
+ 6:'Give your routines a home. Organize the repeatable ways your family office works.',
+ 7:'Coordinate the daily Engine. Keep your documents, actions and accountability connected.',
+ 8:'Know what progress looks like. Gather Outcomes, evidence, protection and exit questions.',
+ 9:'Give a Goal a Plan: eight Outcomes and 64 Task spaces, with room for trust, travel and care.',
+ 10:'Keep the wish before it gets lost. Collect your intentions and stories in the Dream Backlog.',
+ 11:'Keep your people connected. Organize relationships, conversations and the next follow-up.',
+ 12:'Gather your Stories across the Houses. Let the Story Calendar invite your next chapter.'
+};
+export default function ClaimSections({entities,onSelect,onUpdate,onAddSatellite}:Props){
+ const [satelliteName,setSatelliteName]=useState('');const ordered=orderForBoard(entities);const seen=new Set<string>();
+ return <section className="space-y-12" aria-label="Name and claim">{SECTIONS.map(s=>{
+ const items=ordered.filter(e=>!seen.has(e.id)&&s.match(e));items.forEach(e=>seen.add(e.id));if(!items.length&&s.key!=='satellites')return null;
+ return <section key={s.key} id={s.key}><div className="lm-board-heading"><h2 className="lm-section-title">{s.title}</h2><span className="lm-caption">{items.filter(e=>!isUnnamed(e)).length}/{items.length} named</span></div><p className="lm-section-description">{s.note}</p>
+ {s.key==='satellites'&&<form className="lm-add-satellite" onSubmit={ev=>{ev.preventDefault();if(!satelliteName.trim())return;onAddSatellite({id:`satellite-${crypto.randomUUID()}`,type:'satellite',name:satelliteName.trim(),description:'A connection named by the Hero. Choose its role and setup next.',status:'Draft · not connected'});setSatelliteName('');}}><label htmlFor="satellite-name">Name a connection</label><input id="satellite-name" value={satelliteName} onChange={e=>setSatelliteName(e.target.value)} placeholder="My new connection" required/><button className="lm-pill" disabled={!satelliteName.trim()}>Add Satellite</button><p className="lm-caption">Creates a session draft. No external account is connected yet.</p></form>}
+ <div className={`lm-resource-grid ${s.key==='houses'?'is-houses':''}`}>{items.map(e=>{
+ const house=system.houses.find(h=>`product-house-${h.number}`===e.id);const resource=RESOURCES[e.id];
+ if(s.key==='houses')return <article key={e.id} className="lm-resource-card"><small>{e.house} · {house?.department}</small><h3>{e.name||house?.product||'Name this House'}</h3><p>{house?HOUSE_PURPOSES[house.number]:e.description}</p><PlatformLabel platform={e.platform||house?.platform||undefined}/><div className="lm-resource-actions"><button type="button" onClick={()=>onSelect(e.id)}>{isUnnamed(e)?'Name & shape this House':'Open this House'} →</button>{resource&&<a href={resource.url} target="_blank" rel="noopener noreferrer">{resource.label} ↗</a>}</div>{resource&&<small>{resource.note}</small>}<small>Connection not verified</small></article>;
+ return isUnnamed(e)?<ClaimCard key={e.id} e={e} onSelect={onSelect} onUpdate={onUpdate}/>:<button key={e.id} type="button" onClick={()=>onSelect(e.id)} className="lm-resource-card lm-entity-card"><small>{boxLabel(e)}</small><h3>{e.name}</h3>{e.type==='dinosaur'&&<p>Shape the Goal, message and role of this domain.</p>}{e.platform?<PlatformLabel platform={e.platform}/>:<span className="lm-caption">{boxRole(e)}</span>}{e.type==='dinosaur'&&<small>{e.status||'Role to define · not activated'}</small>}</button>;
+ })}</div>{s.key==='houses'&&<p className="lm-caption mt-5"><a className="underline underline-offset-4" href="https://composio.dev/" target="_blank" rel="noopener noreferrer">Composio · explore connections between your Houses ↗</a></p>}</section>;
+ })}</section>;
 }
-
-function ClaimCard({ e, onSelect, onUpdate }: { e: Entity; onSelect: (id: string) => void; onUpdate: (e: Entity) => void }) {
-  const [value, setValue] = useState('');
-  return (
-    <form
-      className="rounded-xl min-h-32 p-4 bg-black text-white flex flex-col gap-2"
-      onSubmit={(ev) => {
-        ev.preventDefault();
-        if (value.trim()) onUpdate({ ...e, name: value.trim() });
-      }}
-    >
-      <button type="button" onClick={() => onSelect(e.id)} className="text-left font-figtree font-semibold text-xs uppercase tracking-[0.06em] hover:underline">
-        {boxLabel(e)}
-      </button>
-      {boxRole(e) && <span className="text-sm">{boxRole(e)}</span>}
-      <label className="mt-auto flex items-center gap-1 border border-white/60 rounded-md px-2 min-h-[36px] font-mono text-sm cursor-text focus-within:outline-2 focus-within:outline-white">
-        <span className="text-[#00bf63]" aria-hidden>&gt;</span>
-        <input value={value} onChange={(ev) => setValue(ev.target.value)} placeholder="name it" aria-label={`${boxLabel(e)}: name it`} className="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/75" />
-      </label>
-    </form>
-  );
+function ClaimCard({e,onSelect,onUpdate}:{e:Entity;onSelect:(id:string)=>void;onUpdate:(e:Entity)=>void}){
+ const [value,setValue]=useState('');return <form className="lm-resource-card lm-empty-card" onSubmit={ev=>{ev.preventDefault();if(value.trim())onUpdate({...e,name:value.trim()});}}><button type="button" onClick={()=>onSelect(e.id)}>{boxLabel(e)} →</button><p>{e.type==='dinosaur'?'Name your domain, then shape the Goal it serves.':boxRole(e)||'Give this part of your universe a name and purpose.'}</p><label><span className="text-[#00bf63]" aria-hidden="true">&gt; </span><input value={value} onChange={ev=>setValue(ev.target.value)} placeholder="name it" aria-label={`${boxLabel(e)}: name it`}/></label><button className="lm-claim-save" disabled={!value.trim()}>Keep name</button></form>;
 }

@@ -1,3 +1,5 @@
+import PlatformLabel from './PlatformLabel';
+import {boxLabel} from '../entityOrder';
 import React, { useState } from 'react';
 import { Entity } from '../types';
 import { motion } from 'motion/react';
@@ -214,7 +216,7 @@ export default function EntitySnapshot({ onCapture, entity, onBack, onUpdate, cl
             <textarea aria-label="Workspace description" value={entity.description} onChange={e => onUpdate({ ...entity, description: e.target.value })} className="block mt-2 w-full border border-gray-300 p-3" rows={3} />
           </label>
           {entity.house && <p>Department: {entity.house}</p>}
-          {entity.platform && <p>Platform: {entity.platform}</p>}
+          {entity.type==='dinosaur'&&<p>{boxLabel(entity)}</p>}{entity.platform && <PlatformLabel platform={entity.platform}/>}
           {entity.cadence && <p>Cadence: {entity.cadence}</p>}
           {entity.status && <p>Status: {entity.status}</p>}
           {entity.connectionMethod && <p>Connection: {entity.connectionMethod}</p>}

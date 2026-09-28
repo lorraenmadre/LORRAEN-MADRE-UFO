@@ -35,14 +35,14 @@ export function matchPlatform(platformString?: string): PlatformType | null {
   if (!platformString) return null;
   const s = platformString.toLowerCase();
   if (s.includes('amazon')) return 'amazon';
-  if (s.includes('apple') || s.includes('watch') || s.includes('ios')) return 'apple';
+  if (s.includes('apple')) return 'apple';
   if (s.includes('canva')) return 'canva';
   if (s.includes('clubhouse')) return 'clubhouse';
   if (s.includes('composio')) return 'composio';
   if (s.includes('discord')) return 'discord';
-  if (s.includes('facebook') || s.includes('meta')) return 'facebook';
-  if (s.includes('github') || s.includes('git')) return 'github';
-  if (s.includes('google') || s.includes('newcastle')) return 'google';
+  if (s.includes('facebook')) return 'facebook';
+  if (s.includes('github')) return 'github';
+  if (s.includes('google')) return 'google';
   if (s.includes('instagram')) return 'instagram';
   if (s.includes('linkedin')) return 'linkedin';
   if (s.includes('miro')) return 'miro';
@@ -52,11 +52,11 @@ export function matchPlatform(platformString?: string): PlatformType | null {
   if (s.includes('pinterest')) return 'pinterest';
   if (s.includes('shopify')) return 'shopify';
   if (s.includes('slack')) return 'slack';
-  if (s.includes('spotify') || s.includes('podcast')) return 'spotify';
+  if (s.includes('spotify')) return 'spotify';
   if (s.includes('substack')) return 'substack';
   if (s.includes('tiktok')) return 'tiktok';
   if (s.includes('trello')) return 'trello';
-  if (s.includes('youtube') || s.includes('video')) return 'youtube';
+  if (s.includes('youtube')) return 'youtube';
   return null;
 }
 
