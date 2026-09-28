@@ -6,20 +6,22 @@ import { slotForEntity } from '../planSlots';
 
 interface Props {
   entities: Entity[];
+  onAddSatellite: (e:Entity)=>void;
   onSelect: (id: string) => void;
   onUpdate: (e: Entity) => void;
 }
 
 const SECTIONS: { key: string; title: string; note: string; match: (e: Entity) => boolean }[] = [
   { key: 'mothership', title: 'Mothership', note: 'Your Queen and your UFO — the center everything orbits.', match: (e) => e.type === 'church' || e.type === 'holding_company' || e.type === 'trust' },
-  { key: 'planets', title: 'Plans', note: 'Your individual spaces — one standing plan per planet, asteroid and node.', match: (e) => !!slotForEntity(e.id) },
+  { key: 'planets', title: 'Plans', note: 'Choose one of your 16 standing Plan spaces and name it. Each Plan holds a Goal, Outcomes and Tasks. Naming a space does not add a seventeenth Plan.', match: (e) => !!slotForEntity(e.id) },
   { key: 'dinosaurs', title: 'Dinosaurs', note: 'Your agents, shaped around Goals. Describe the work and review their role before activation.', match: (e) => e.type === 'dinosaur' },
-  { key: 'houses', title: 'Wonderland · Houses', note: 'Connection resources. The voice app connects you to the right house for whatever you are working on.', match: (e) => e.type === 'offering' },
+  { key: 'houses', title: 'Wonderland · Houses', note: 'Wonderland is your collection of product Houses. Explore a House to understand what it offers and which part of your work belongs there.', match: (e) => e.type === 'offering' },
   { key: 'satellites', title: 'Satellites', note: 'Your own connections that are not already one of the common houses.', match: (e) => e.type === 'satellite' },
 ];
 
 /** Name-and-claim sections under the Space / Time views. Same boxes, grouped. Unnamed boxes are terminals. */
-export default function ClaimSections({ entities, onSelect, onUpdate }: Props) {
+export default function ClaimSections({ entities, onSelect, onUpdate, onAddSatellite }: Props) {
+  const [satelliteName,setSatelliteName]=useState('');
   const ordered = orderForBoard(entities);
   const seen = new Set<string>();
   return (
@@ -27,15 +29,16 @@ export default function ClaimSections({ entities, onSelect, onUpdate }: Props) {
       {SECTIONS.map((s) => {
         const items = ordered.filter((e) => !seen.has(e.id) && s.match(e));
         items.forEach((e) => seen.add(e.id));
-        if (!items.length) return null;
+        if (!items.length && s.key!=='satellites') return null;
         const claimed = items.filter((e) => !isUnnamed(e)).length;
         return (
-          <section key={s.key}>
+          <section key={s.key} id={s.key}>
             <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
               <h2 className="text-2xl font-belleza">{s.title}</h2>
               <span className="font-figtree font-semibold text-sm">{claimed}/{items.length} claimed</span>
             </div>
             <p className="text-base mb-5 max-w-2xl">{s.note}</p>
+            {s.key==='satellites'&&<form className="lm-add-satellite" onSubmit={ev=>{ev.preventDefault();if(!satelliteName.trim())return;onAddSatellite({id:`satellite-${crypto.randomUUID()}`,type:'satellite',name:satelliteName.trim(),description:'A connection named by the Hero. Choose its role and setup next.',status:'Draft · not connected'});setSatelliteName('');}}><label htmlFor="satellite-name">Name a person, service or tool to add to your universe</label><input id="satellite-name" value={satelliteName} onChange={ev=>setSatelliteName(ev.target.value)} placeholder="My new connection" required/><button className="lm-pill" disabled={!satelliteName.trim()}>Add Satellite</button><p className="lm-caption">Creates a session draft. Open its card to shape its role; no account is connected yet.</p></form>}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {items.map((e) => (isUnnamed(e) ? <ClaimCard key={e.id} e={e} onSelect={onSelect} onUpdate={onUpdate} /> : (
                 <button key={e.id} type="button" onClick={() => onSelect(e.id)} className="border border-black rounded-xl min-h-32 p-4 text-left flex flex-col gap-2 hover:bg-black hover:text-white transition-colors">

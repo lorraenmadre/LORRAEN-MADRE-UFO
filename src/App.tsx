@@ -8,6 +8,7 @@ import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
 import WelcomeJourney from './components/WelcomeJourney';
+import EngineJourney from './components/EngineJourney';
 import type { StoryDraft } from './components/LorraineMadreChat';
 import MothershipInstructions from './components/MothershipInstructions';
 import ActionPills from './components/ActionPills';
@@ -18,7 +19,6 @@ type FirebaseUser = { uid: string };
 
 export default function App() {
   const [journeyDay,setJourneyDay]=useState(0);
-  const [journeyNotes,setJourneyNotes]=useState<Record<number,string>>({});
   const [drafts,setDrafts]=useState<StoryDraft[]>([]);
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
@@ -275,10 +275,11 @@ export default function App() {
             )}
 
             {/* Lorraine Chat Top */}
-            <WelcomeJourney day={journeyDay} setDay={setJourneyDay} notes={journeyNotes} setNotes={setJourneyNotes} /><LorraineMadreChat context="14-day UFO onboarding. Collect the person’s own story, one question at a time." onCapture={d=>setDrafts(prev=>[...prev,d])} />
+            <WelcomeJourney day={journeyDay} setDay={setJourneyDay} /><LorraineMadreChat context={`Day ${journeyDay+1} of the 14-day UFO introduction. Address the user as Hero. Start with their wish and feeling. Use cues, not a fixed daily questionnaire.`} onCapture={d=>setDrafts(prev=>[...prev,d])} />
 
+            <EngineJourney />
             {/* Title Section */}
-            <div className="max-w-7xl mx-auto text-left py-20 px-6">
+            <div id="operating-board" className="max-w-7xl mx-auto text-left py-20 px-6">
               <p className="text-[10px] uppercase tracking-[0.5em] text-black mb-6">a WishWell system</p>
               <h2 className="text-3xl md:text-4xl font-belleza leading-[1.18] mb-2">
                 Design happily ever after <span className="italic text-black">with</span>
@@ -288,9 +289,9 @@ export default function App() {
               </h3>
               <div className="flex items-center gap-4 mt-12">
                 <div className="h-px w-8 bg-gray-200" />
-                <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-black">Visual Roadmap of Your Universal Family Office</p>
+                <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-black">Your operating board · name and claim your universe</p>
               </div>
-              <details className="mt-6"><summary>Explore the mothership structure when you are ready</summary><MothershipInstructions
+              <p className="mt-6 max-w-2xl">Time follows your rhythm. Space holds your 16 Plans. Story opens Neverland, your collection of Stories. Choose a Plan space to name it; explore Wonderland below to find its product Houses.</p><details className="mt-6"><summary>Explore the mothership structure when you are ready</summary><MothershipInstructions
                 currentMothershipName={displayEntities.find(e => e.type === 'holding_company')?.name || 'Sterling Drive Consulting'}
                 onUpdateMothershipName={(name) => {
                   const holdingEntity = displayEntities.find(e => e.type === 'holding_company');
@@ -316,10 +317,10 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 pb-16">
               {mapLayout === 'space'
                 ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
-                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="text-3xl font-belleza">Story · threads becoming work</h2><p>Your own words remain attached to each draft. Review the meaning before moving it into a connected House.</p>{drafts.length===0 ? <p className="py-8">Your first thread starts in the talk bar. Keep a Wish, clarify a Story, then choose the piece of work it needs.</p> : drafts.map(d=><article key={d.id} className="lm-story-card"><small>{d.kind} · session draft</small><p>{d.text}</p><small>{d.context}</small></article>)}</section>}
+                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="text-3xl font-belleza">Neverland · your collection of Stories</h2><p>Hero, begin with the Golden Ticket and Jungle Book through the Story Calendar. Collect the moments, wishes and lessons that become your next chapter. Your own words stay attached to each draft.</p><a className="lm-pill lm-pill-white mt-4" href="https://junglebook.lorraenmadre.com/" target="_blank" rel="noopener noreferrer">Explore Jungle Book · Story Calendar</a>{drafts.length===0 ? <p className="py-8">Your first thread starts in the talk bar. Keep a Wish, clarify a Story, then choose the piece of work it needs.</p> : drafts.map(d=><article key={d.id} className="lm-story-card"><small>{d.kind} · session draft</small><p>{d.text}</p><small>{d.context}</small></article>)}</section>}
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-8">
-              <ClaimSections entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
+              <ClaimSections onAddSatellite={sat=>{const update=viewMode==='framework'?setCleanEntities:setEntities;update(prev=>[...prev,sat]);}} entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
             </div>
             {viewMode === 'business' && <details className="max-w-7xl mx-auto px-6"><summary>Explore the full operating map</summary><OperatingMap /></details>}
 
