@@ -22,16 +22,18 @@ import {
   Upload
 } from 'lucide-react';
 import { generateLVC, generateSummary } from '../geminiService';
+import type { StoryDraft } from './LorraineMadreChat';
 import LorraineMadreChat from './LorraineMadreChat';
 
 interface Props {
+  onCapture?: (draft: StoryDraft) => void;
   entity: Entity;
   clean?: boolean;
   onBack: () => void;
   onUpdate: (updatedEntity: Entity) => void;
 }
 
-export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false }: Props) {
+export default function EntitySnapshot({ onCapture, entity, onBack, onUpdate, clean = false }: Props) {
   const [isGeneratingLVC, setIsGeneratingLVC] = useState(false);
   const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
   const [intentions, setIntentions] = useState(entity.intentions || '');
@@ -200,7 +202,7 @@ export default function EntitySnapshot({ entity, onBack, onUpdate, clean = false
             )}
           </div>
         </div>
-        <LorraineMadreChat context={`Entity being viewed: ${entity.name} (${entity.type}). Description: ${entity.description}. You are LORRAEN MADRE.`} />
+        <LorraineMadreChat onCapture={onCapture} context={`Entity being viewed: ${entity.name} (${entity.type}). Description: ${entity.description}. You are LORRAEN MADRE.`} />
       </div>
 
       <div className="max-w-5xl mx-auto px-6 space-y-24">

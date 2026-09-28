@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Entity } from '../types';
 import { boxLabel, boxRole, isUnnamed, orderForBoard } from '../entityOrder';
+import PlatformIcon from './PlatformIcon';
 import { slotForEntity } from '../planSlots';
 
 interface Props {
@@ -11,9 +12,9 @@ interface Props {
 
 const SECTIONS: { key: string; title: string; note: string; match: (e: Entity) => boolean }[] = [
   { key: 'mothership', title: 'Mothership', note: 'Your Queen and your UFO — the center everything orbits.', match: (e) => e.type === 'church' || e.type === 'holding_company' || e.type === 'trust' },
-  { key: 'planets', title: 'Planets', note: 'Your individual spaces — one standing plan per planet, asteroid and node.', match: (e) => !!slotForEntity(e.id) || e.type === 'planet' },
-  { key: 'dinosaurs', title: 'Dinosaurs', note: 'Your individual agents — one per zodiac sign, each on its own platform.', match: (e) => e.type === 'dinosaur' },
-  { key: 'houses', title: 'Houses', note: 'Connection resources. The voice app connects you to the right house for whatever you are working on.', match: (e) => e.type === 'offering' },
+  { key: 'planets', title: 'Plans', note: 'Your individual spaces — one standing plan per planet, asteroid and node.', match: (e) => !!slotForEntity(e.id) },
+  { key: 'dinosaurs', title: 'Dinosaurs', note: 'Your agents, shaped around Goals. Describe the work and review their role before activation.', match: (e) => e.type === 'dinosaur' },
+  { key: 'houses', title: 'Wonderland · Houses', note: 'Connection resources. The voice app connects you to the right house for whatever you are working on.', match: (e) => e.type === 'offering' },
   { key: 'satellites', title: 'Satellites', note: 'Your own connections that are not already one of the common houses.', match: (e) => e.type === 'satellite' },
 ];
 
@@ -39,11 +40,11 @@ export default function ClaimSections({ entities, onSelect, onUpdate }: Props) {
               {items.map((e) => (isUnnamed(e) ? <ClaimCard key={e.id} e={e} onSelect={onSelect} onUpdate={onUpdate} /> : (
                 <button key={e.id} type="button" onClick={() => onSelect(e.id)} className="border border-black rounded-xl min-h-32 p-4 text-left flex flex-col gap-2 hover:bg-black hover:text-white transition-colors">
                   <span className="font-figtree font-semibold text-xs uppercase tracking-[0.06em]">{boxLabel(e)}</span>
-                  <span className="font-belleza text-lg leading-snug">{e.name}</span>
+                  <span className="flex items-center gap-2">{e.platform && <PlatformIcon platform={e.platform} size={28}/>}<span className="font-belleza text-lg leading-snug">{e.name}</span></span>
                   {boxRole(e) && <span className="text-sm mt-auto">{boxRole(e)}</span>}
                 </button>
               )))}
-            </div>
+            </div>{s.key==='houses'&&<div className="lm-house-links"><h3>Bring one House online at a time.</h3><p>Begin with the tool you need. Your own template links can be connected when their download editions are ready.</p>{[{name:'Trello',label:'Dream Backlog',url:'https://trello.com/',note:'Open Trello · backlog template not linked yet'},{name:'Notion',label:'Fruitful Frameworks',url:'https://www.notion.com/',note:'Open Notion · framework template not linked yet'},{name:'Claude',label:'The Cookbook',url:'https://github.com/anthropics/claude-cookbooks',note:'Read Anthropic recipes · WISH WELL edition coming later'},{name:'Composio',label:'Connect your Houses',url:'https://composio.dev/',note:'Explore connections · account setup required'}].map(x=><a key={x.name} href={x.url} target="_blank" rel="noopener noreferrer"><PlatformIcon platform={x.name} size={30}/><span>{x.label}<small>{x.note}</small></span></a>)}</div>}
           </section>
         );
       })}

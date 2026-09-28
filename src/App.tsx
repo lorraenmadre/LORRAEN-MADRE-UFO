@@ -7,6 +7,8 @@ import ClaimSections from './components/ClaimSections';
 import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
+import WelcomeJourney from './components/WelcomeJourney';
+import type { StoryDraft } from './components/LorraineMadreChat';
 import MothershipInstructions from './components/MothershipInstructions';
 import ActionPills from './components/ActionPills';
 import { motion, AnimatePresence } from 'motion/react';
@@ -15,9 +17,12 @@ import { Globe, LayoutGrid, Info, LogOut, ChevronRight, Check } from 'lucide-rea
 type FirebaseUser = { uid: string };
 
 export default function App() {
+  const [journeyDay,setJourneyDay]=useState(0);
+  const [journeyNotes,setJourneyNotes]=useState<Record<number,string>>({});
+  const [drafts,setDrafts]=useState<StoryDraft[]>([]);
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
-  const [mapLayout, setMapLayout] = useState<'space' | 'time'>('space');
+  const [mapLayout, setMapLayout] = useState<'space' | 'time' | 'story'>('space');
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'framework' | 'business'>('business');
   const [user, setUser] = useState<FirebaseUser | null>(null);
@@ -270,7 +275,7 @@ export default function App() {
             )}
 
             {/* Lorraine Chat Top */}
-            <LorraineMadreChat context="General Ecosystem Navigation" />
+            <WelcomeJourney day={journeyDay} setDay={setJourneyDay} notes={journeyNotes} setNotes={setJourneyNotes} /><LorraineMadreChat context="14-day UFO onboarding. Collect the person’s own story, one question at a time." onCapture={d=>setDrafts(prev=>[...prev,d])} />
 
             {/* Title Section */}
             <div className="max-w-7xl mx-auto text-left py-20 px-6">
@@ -285,7 +290,7 @@ export default function App() {
                 <div className="h-px w-8 bg-gray-200" />
                 <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-black">Visual Roadmap of Your Universal Family Office</p>
               </div>
-              <MothershipInstructions
+              <details className="mt-6"><summary>Explore the mothership structure when you are ready</summary><MothershipInstructions
                 currentMothershipName={displayEntities.find(e => e.type === 'holding_company')?.name || 'Sterling Drive Consulting'}
                 onUpdateMothershipName={(name) => {
                   const holdingEntity = displayEntities.find(e => e.type === 'holding_company');
@@ -295,14 +300,14 @@ export default function App() {
                 }}
                 onExploreOrbit={() => setMapLayout('space')}
                 onOpenFramework={() => setViewMode('framework')}
-              />
+              /></details>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap items-center gap-3">
               <div className="flex items-center border border-black rounded-full p-1" role="group" aria-label="View">
-                {(['time', 'space'] as const).map(layout => (
+                {(['time', 'space', 'story'] as const).map(layout => (
                   <button key={layout} type="button" aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`min-h-[40px] px-5 rounded-full font-figtree font-semibold text-sm uppercase tracking-[0.24em] ${mapLayout === layout ? 'bg-black text-white' : 'text-black'}`}>
-                    {layout === 'time' ? 'Time' : 'Space'}
+                    {layout === 'time' ? 'Time' : layout === 'space' ? 'Space' : 'Story'}
                   </button>
                 ))}
               </div>
@@ -311,12 +316,12 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 pb-16">
               {mapLayout === 'space'
                 ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
-                : <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} />}
+                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="text-3xl font-belleza">Story · threads becoming work</h2><p>Your own words remain attached to each draft. Review the meaning before moving it into a connected House.</p>{drafts.length===0 ? <p className="py-8">Your first thread starts in the talk bar. Keep a Wish, clarify a Story, then choose the piece of work it needs.</p> : drafts.map(d=><article key={d.id} className="lm-story-card"><small>{d.kind} · session draft</small><p>{d.text}</p><small>{d.context}</small></article>)}</section>}
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-8">
               <ClaimSections entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
             </div>
-            {viewMode === 'business' && <OperatingMap />}
+            {viewMode === 'business' && <details className="max-w-7xl mx-auto px-6"><summary>Explore the full operating map</summary><OperatingMap /></details>}
 
             {/* Newcastle Connection Section - Screenshot CTA Styling */}
             <div className="max-w-7xl mx-auto px-6 py-20 border-t border-gray-100 mt-20">
@@ -356,6 +361,7 @@ export default function App() {
           >
             <EntitySnapshot 
               entity={selectedEntity!}
+              onCapture={d=>setDrafts(prev=>[...prev,d])}
               clean={viewMode === 'framework'}
               onBack={() => setSelectedEntityId(null)}
               onUpdate={handleUpdateEntity}
