@@ -2,7 +2,7 @@ import React from 'react';
 
 // Sitewide CTA rule (Rae, 2026-09-23). Inside the app:
 // Design -> book time with Rae (Calendly), Work -> the network form, Play -> the Library.
-// Look matches the voice app + lorraenmadre.com: white / blue / red pills, black 1px outline, Figtree.
+// Look matches the voice app + lorraenmadre.com: white / blue / red pills, equal width, soft shadow, no outline. Design text black; Work and Play text white.
 export const APP_DESIGN_URL = 'https://calendly.com/lorraen-madre';
 export const WORK_URL = 'https://www.lorraenmadre.com/connect';
 export const PLAY_URL = 'https://www.lorraenmadre.com/library';
@@ -21,11 +21,11 @@ interface ActionPillsProps {
   stacked?: boolean;
 }
 
-const base = 'lm-pill cursor-pointer select-none';
+const base = 'lm-pill lm-brand-cta cursor-pointer select-none';
 
 function Pill({ href, onClick, label, tone }: { href?: string; onClick?: () => void; label: string; tone: 'white' | 'blue' | 'red' }) {
   const cls = `${base} lm-pill-${tone}`;
-  return href ? (
+  return href && !onClick ? (
     <a href={href} className={cls}>{label}</a>
   ) : (
     <button onClick={onClick} type="button" className={cls}>{label}</button>

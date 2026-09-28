@@ -57,6 +57,7 @@ export interface Entity {
   // Logo/Icon override
   logoUrl?: string; // Data URL for uploaded logo
   isArchived?: boolean;
+  assignment?: { name: string; role: string; goals: string[]; tasks: string[]; piece: string };
 }
 
 export interface Ecosystem {

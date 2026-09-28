@@ -1,6 +1,8 @@
 import { Entity } from './types';
 import { PLAN_SLOTS, slotForEntity } from './planSlots';
 
+export const ZODIAC_GLYPHS:Record<string,string>={Aries:'♈',Taurus:'♉',Gemini:'♊',Cancer:'♋',Leo:'♌',Virgo:'♍',Libra:'♎',Scorpio:'♏',Sagittarius:'♐',Capricorn:'♑',Aquarius:'♒',Pisces:'♓'};
+
 export const isUnnamed = (e: Entity) => !e.name || !e.name.trim() || /name to be chosen/i.test(e.name) || e.name.trim() === 'None';
 
 /** Short label for a box: planet glyph + name, house number, zodiac sign or satellite. */
@@ -10,7 +12,7 @@ export const boxLabel = (e: Entity) => {
   if (e.type === 'church') return '♛ Queen';
   if (e.type === 'holding_company') return 'UFO';
   if (e.type === 'offering') return e.house || 'House';
-  if (e.type === 'dinosaur') return e.zodiacSign || 'Dinosaur';
+  if (e.type === 'dinosaur') return `${ZODIAC_GLYPHS[e.zodiacSign || ''] || ''} ${e.zodiacSign || 'Dinosaur'}`.trim();
   if (e.type === 'satellite') return 'Satellite';
   return e.symbol || e.type;
 };
