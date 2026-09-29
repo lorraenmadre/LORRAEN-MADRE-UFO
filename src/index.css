@@ -93,9 +93,9 @@ button:focus-visible, textarea:focus-visible, a:focus-visible, input:focus-visib
   border: 1px solid #000; font-family: var(--font-figtree); font-weight: 600; font-size: 0.875rem;
   text-decoration: none; letter-spacing: 0.02em;
 }
-.lm-pill-white { background: #fff; color: #111; }
-.lm-pill-blue { background: var(--lm-blue); color: #fff; }
-.lm-pill-red { background: var(--lm-red); color: #111; }
+.lm-pill-white { background: #fff; color: #111; border-color: #111; } /* white on a white page keeps a black edge so it stays visible */
+.lm-pill-blue { background: var(--lm-blue); color: #fff; border-color: var(--lm-blue); }
+.lm-pill-red { background: var(--lm-red); color: #fff; border-color: var(--lm-red); }
 .lm-pill:hover, .lm-pill:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000; outline: none; }
 
 /* Green terminal capsule, black surface. */
