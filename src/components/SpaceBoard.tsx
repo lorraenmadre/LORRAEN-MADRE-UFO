@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Entity } from '../types';
 import { boxLabel, boxRole, isUnnamed, orderForBoard } from '../entityOrder';
+import { calculateProgress } from '../progress';
+import EntityArt from './EntityArt';
 import styles from './SpaceBoard.module.css';
 
 const COLS = 8;
@@ -36,9 +38,11 @@ export default function SpaceBoard({ entities, onSelect, onUpdate }: Props) {
             if (isUnnamed(e)) return <ClaimTile key={e.id} entity={e} dark={dark} onSelect={onSelect} onUpdate={onUpdate} />;
             return (
               <button key={e.id} type="button" className={`${styles.cell} ${styles.tile} ${tone}`} onClick={() => onSelect(e.id)}>
+                <span className={styles.art} aria-hidden><EntityArt entity={e} size={26} /></span>
                 <span className={styles.label}>{boxLabel(e)}</span>
                 <span className={styles.title}>{e.name}</span>
                 <span className={styles.role}>{boxRole(e)}</span>
+                <span className={styles.meter} aria-label={`${calculateProgress(e)}% complete`}><span style={{ width: `${calculateProgress(e)}%` }} /></span>
               </button>
             );
           })}
@@ -59,6 +63,7 @@ function ClaimTile({ entity, dark, onSelect, onUpdate }: { entity: Entity; dark:
         if (name) onUpdate({ ...entity, name });
       }}
     >
+      <span className={styles.art} aria-hidden><EntityArt entity={entity} size={26} /></span>
       <button type="button" className={styles.labelBtn} onClick={() => onSelect(entity.id)}>
         {boxLabel(entity)}
       </button>

@@ -50,3 +50,14 @@
 .prompt { color: var(--lm-green); }
 .input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: #ffffff; caret-color: var(--lm-green); }
 .input::placeholder { color: rgba(255, 255, 255, 0.75); }
+
+/* Picture in the corner of each square (planet art, dinosaur, platform). */
+.art { position: absolute; top: 6px; right: 6px; display: inline-flex; align-items: center; pointer-events: none; }
+.art img { border-radius: 999px; }
+.label, .labelBtn { padding-right: 30px; }
+.dark .art :global(svg) { color: #ffffff; }
+/* How far along the box is. */
+.meter { display: block; height: 3px; border-radius: 999px; overflow: hidden; background: rgba(17, 17, 17, 0.12); }
+.meter span { display: block; height: 100%; border-radius: 999px; background: #111111; }
+.dark .meter { background: rgba(255, 255, 255, 0.25); }
+.dark .meter span { background: #ffffff; }
