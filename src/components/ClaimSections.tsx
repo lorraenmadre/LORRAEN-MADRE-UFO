@@ -44,7 +44,7 @@ const SECTIONS: { key: string; title: string; note: string; steps: string[]; mat
     note: 'Each house is an entryway: the digital product you open to manage that part of your life. The voice app sends you to the right house for whatever you are working on.',
     steps: [
       'Open a house to see its product and where it lives.',
-      'Do that house’s work there: money in the Treasury house, recipes in the Cookbook house, and so on.',
+      'Do that house’s work there: money in Woo Woo Watch, recipes in The Cookbook, and so on.',
       'Come back here to see how far along each house is.',
     ],
     match: (e) => e.type === 'offering',
