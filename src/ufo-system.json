@@ -3,7 +3,7 @@
   "brand": "LORRAEN MADRE",
   "mothership": "Sterling Drive Consulting",
   "structure": "Universal Family Office (UFO)",
-  "identity": "LORRAEN MADRE helps mothers create their own motherships to navigate and build their UFO. Sterling Drive Consulting is the founder’s mothership, not the public brand.",
+  "identity": "LORRAEN MADRE helps mothers create their own motherships to navigate and build their UFO. Sterling Drive Consulting is the founder\u2019s mothership, not the public brand.",
   "houses": [
     {
       "number": 1,
@@ -152,7 +152,7 @@
       "type": "planet",
       "symbol": "Moon",
       "role": "AI home economics framework",
-      "name": "Miss Honey’s Home Economics",
+      "name": "Miss Honey\u2019s Home Economics",
       "description": "The AI agency: an AI framework for home economics.",
       "cadence": "Six-month project plan + Lean Value Canvas"
     },
@@ -287,8 +287,8 @@
     {
       "zodiac": "Gemini",
       "platform": "Shopify",
-      "name": "Sanctuary Self",
-      "note": "Confirmed platform/sign; Gemini first-house statement retained separately.",
+      "name": "Sanctuary Cell",
+      "note": "Name confirmed by Rae, September 28, 2026.",
       "registryHouse": 3,
       "executionStatus": "Defined; not deployed"
     },
@@ -311,16 +311,16 @@
     {
       "zodiac": "Virgo",
       "platform": "Substack",
-      "name": "Paradise Quick",
-      "note": "Transcript spelling unconfirmed.",
+      "name": "Paradise Square",
+      "note": "Name confirmed by Rae, September 28, 2026.",
       "registryHouse": 3,
       "executionStatus": "Defined; not deployed"
     },
     {
       "zodiac": "Libra",
       "platform": "LinkedIn",
-      "name": "Rael / Rael E Mar",
-      "note": "Exact current profile spelling unconfirmed.",
+      "name": "Rael Emard",
+      "note": "Name confirmed by Rae, September 28, 2026.",
       "registryHouse": 3,
       "executionStatus": "Defined; not deployed"
     },
@@ -335,16 +335,16 @@
     {
       "zodiac": "Sagittarius",
       "platform": "Discord",
-      "name": "Killer Jean / Killer Janine",
-      "note": "User gave alternatives; unresolved.",
+      "name": "Killer Jeanine",
+      "note": "Name confirmed by Rae, September 28, 2026.",
       "registryHouse": 3,
       "executionStatus": "Defined; not deployed"
     },
     {
       "zodiac": "Capricorn",
       "platform": "TikTok",
-      "name": "Y-B-E-88 cents",
-      "note": "Transcript ambiguous; exact name/handle unconfirmed.",
+      "name": "YvE 88 cents",
+      "note": "Name confirmed by Rae, September 28, 2026.",
       "registryHouse": 3,
       "executionStatus": "Defined; not deployed"
     },
@@ -359,16 +359,16 @@
     {
       "zodiac": "Pisces",
       "platform": "Meta",
-      "name": "Saint Madre Ray",
-      "note": "Transcript spelling unconfirmed.",
+      "name": "@SAINT MADRE Rae",
+      "note": "Name confirmed by Rae, September 28, 2026.",
       "registryHouse": 3,
       "executionStatus": "Defined; not deployed"
     },
     {
       "zodiac": "Aries",
       "platform": "Slack",
-      "name": "Lisi",
-      "note": "Transcript spelling unconfirmed.",
+      "name": "Lisey",
+      "note": "Name confirmed by Rae, September 28, 2026.",
       "registryHouse": 3,
       "executionStatus": "Defined; not deployed"
     },
@@ -530,9 +530,9 @@
   },
   "nextProject": {
     "name": "Sunshine Pocket Therapy",
-    "placement": "North Node — retirement plan",
+    "placement": "North Node \u2014 retirement plan",
     "stage": "Package and website proposal next",
-    "audience": "NFL — prospective first group, not a signed customer",
+    "audience": "NFL \u2014 prospective first group, not a signed customer",
     "components": [
       "Insurance",
       "Telemedicine",

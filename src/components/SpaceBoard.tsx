@@ -1,85 +1,12 @@
-import React, { useState } from 'react';
-import { Entity } from '../types';
-import { boxLabel, boxRole, isUnnamed, orderForBoard } from '../entityOrder';
-import { calculateProgress } from '../progress';
+import React,{useState} from 'react';
+import {Entity} from '../types';
+import {boardCells} from '../checkerboard';
+import {boxLabel} from '../entityOrder';
+import {calculateProgress} from '../progress';
 import EntityArt from './EntityArt';
-import styles from './SpaceBoard.module.css';
-
-const COLS = 8;
-const MIN_CELLS = 64;
-
-interface Props {
-  entities: Entity[];
-  onSelect: (id: string) => void;
-  onUpdate: (e: Entity) => void;
+interface Props{entities:Entity[];onSelect:(id:string)=>void;onUpdate:(e:Entity)=>void}
+export default function SpaceBoard({entities,onSelect,onUpdate}:Props){
+ const [editing,setEditing]=useState<string|null>(null);const entity=entities.find(e=>e.id===editing);const cells=boardCells(entities);const displayed=new Set(cells.flatMap(c=>c.entity?[c.entity.id]:[]));const overflow=entities.filter(e=>!e.isArchived&&!displayed.has(e.id));
+ return <section aria-label="Space board"><div className="lm-board-heading"><div><h2 className="lm-section-title">Space · your operating board</h2><p>Houses → Planets → Dinosaurs → Connections</p></div></div><div className="lm-chess-scroll"><div className="lm-checkerboard" aria-label="Eight by eight operating board">{cells.map((cell,i)=>{const e=cell.entity;const a=e?.assignment;return <article key={i} className={`lm-checker-cell ${(Math.floor(i/8)+i%8)%2?'is-dark':''}`}><small>{cell.group} · {e?boxLabel(e):'Open space'}</small>{e?<><span className="lm-checker-art" aria-hidden="true"><EntityArt entity={e} size={24} compact/></span><button className="lm-plan-open" onClick={()=>onSelect(e.id)}>{e.name||'Name this space'}</button>{e.platform&&<span className="lm-board-platform">{e.platform}</span>}<span className="lm-checker-meter" aria-label={`${calculateProgress(e)}% complete`}><span style={{width:`${calculateProgress(e)}%`}}/></span><button className={`lm-chess ${e.type==='church'?'is-queen':''}`} onClick={()=>setEditing(e.id)} aria-label={e.type==='church'?'Queen — view or assign person':`${boxLabel(e)}: ${a?.name||'assign a person'}`}><span aria-hidden="true">{e.type==='church'?'♛':a?.piece||'♙'}</span><span className="lm-person-popover"><strong>{a?.name||'No person assigned'}</strong><br/>Goals: {a?.goals.join('; ')||'None assigned'}<br/>Tasks: {a?.tasks.join('; ')||'None assigned'}</span></button></>:<span className="lm-open-square" aria-hidden="true">·</span>}</article>})}</div></div>{overflow.length>0&&<details><summary>More connections ({overflow.length})</summary>{overflow.map(e=><button className="lm-pill lm-pill-white" key={e.id} onClick={()=>onSelect(e.id)}>{e.name||boxLabel(e)}</button>)}</details>}{entity&&<Assignment key={entity.id} entity={entity} onClose={()=>setEditing(null)} onSave={e=>{onUpdate(e);setEditing(null)}}/>}</section>
 }
-
-/** SPACE — the same true 8×8 checkerboard as the voice app. Unnamed boxes are terminals you type a name into. */
-export default function SpaceBoard({ entities, onSelect, onUpdate }: Props) {
-  const tiles = orderForBoard(entities);
-  const cells = Math.max(MIN_CELLS, Math.ceil(tiles.length / COLS) * COLS);
-  const claimed = tiles.filter((e) => !isUnnamed(e)).length;
-
-  return (
-    <section aria-label="Space board" className={styles.wrap}>
-      <div className={styles.head}>
-        <h2 className={styles.h2}>Space</h2>
-        <p className={styles.tally}>
-          {claimed}/{tiles.length} named and claimed
-        </p>
-      </div>
-      <div className={styles.scroll}>
-        <div className={styles.board} style={{ gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))` }}>
-          {Array.from({ length: cells }).map((_, i) => {
-            const dark = (Math.floor(i / COLS) + (i % COLS)) % 2 === 0;
-            const tone = dark ? styles.dark : styles.light;
-            const e = tiles[i];
-            if (!e) return <div key={i} className={`${styles.cell} ${tone}`} aria-hidden />;
-            if (isUnnamed(e)) return <ClaimTile key={e.id} entity={e} dark={dark} onSelect={onSelect} onUpdate={onUpdate} />;
-            return (
-              <button key={e.id} type="button" className={`${styles.cell} ${styles.tile} ${tone}`} onClick={() => onSelect(e.id)}>
-                <span className={styles.art} aria-hidden><EntityArt entity={e} size={26} /></span>
-                <span className={styles.label}>{boxLabel(e)}</span>
-                <span className={styles.title}>{e.name}</span>
-                <span className={styles.role}>{boxRole(e)}</span>
-                <span className={styles.meter} aria-label={`${calculateProgress(e)}% complete`}><span style={{ width: `${calculateProgress(e)}%` }} /></span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ClaimTile({ entity, dark, onSelect, onUpdate }: { entity: Entity; dark: boolean; onSelect: (id: string) => void; onUpdate: (e: Entity) => void }) {
-  const [value, setValue] = useState('');
-  return (
-    <form
-      className={`${styles.cell} ${dark ? styles.dark : styles.light}`}
-      onSubmit={(ev) => {
-        ev.preventDefault();
-        const name = value.trim();
-        if (name) onUpdate({ ...entity, name });
-      }}
-    >
-      <span className={styles.art} aria-hidden><EntityArt entity={entity} size={26} /></span>
-      <button type="button" className={styles.labelBtn} onClick={() => onSelect(entity.id)}>
-        {boxLabel(entity)}
-      </button>
-      <span className={styles.role}>{boxRole(entity) || 'unnamed'}</span>
-      <label className={styles.term}>
-        <span className={styles.prompt} aria-hidden>
-          &gt;
-        </span>
-        <input
-          value={value}
-          onChange={(ev) => setValue(ev.target.value)}
-          placeholder="name it"
-          aria-label={`${boxLabel(entity)}: name it`}
-          className={styles.input}
-        />
-      </label>
-    </form>
-  );
-}
+function Assignment({entity,onClose,onSave}:{entity:Entity;onClose:()=>void;onSave:(e:Entity)=>void}){const [name,setName]=useState(entity.assignment?.name||'');const [role,setRole]=useState(entity.assignment?.role||'');const [goals,setGoals]=useState(entity.assignment?.goals.join('\n')||'');const [tasks,setTasks]=useState(entity.assignment?.tasks.join('\n')||'');const [piece,setPiece]=useState(entity.assignment?.piece||'♙');return <section className="lm-assignment" aria-label="Person and assignments"><button className="lm-pill" onClick={onClose}>Close</button><h3>Who belongs in this space?</h3><p>{entity.name} · person details and assignments for this session</p><form onSubmit={e=>{e.preventDefault();const lines=(s:string)=>s.split('\n').map(x=>x.trim()).filter(Boolean);onSave({...entity,assignment:{name:name.trim(),role:role.trim(),goals:lines(goals),tasks:lines(tasks),piece}})}}><label>Person’s name<input required value={name} onChange={e=>setName(e.target.value)}/></label><label>Role<input value={role} onChange={e=>setRole(e.target.value)}/></label>{entity.type!=='church'&&<label>Chess piece<select value={piece} onChange={e=>setPiece(e.target.value)}>{['♙','♖','♘','♗','♔'].map(x=><option key={x}>{x}</option>)}</select></label>}<label>Assigned Goals · one per line<textarea value={goals} onChange={e=>setGoals(e.target.value)}/></label><label>Assigned Tasks · one per line<textarea value={tasks} onChange={e=>setTasks(e.target.value)}/></label><button className="lm-pill">Keep assignment</button></form></section>}
