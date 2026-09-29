@@ -1,78 +1,41 @@
-import React, { useState, useId } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { askLorraine } from '../geminiService';
-import { motion, AnimatePresence } from 'motion/react';
-
-interface Props {
-  context?: string;
-}
-
-export default function LorraineMadreChat({ context }: Props) {
-  const inputId = useId();
-  const [query, setQuery] = useState('');
-  const [response, setResponse] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleAsk = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!query.trim() || isLoading) return;
-    
-    setIsLoading(true);
-    try {
-      const res = await askLorraine(query, context);
-      setResponse(res || 'No response arrived. Please try again.');
-      setIsOpen(true);
-    } catch (error) {
-      console.error(error);
-      setResponse("I couldn’t connect just now. Your wish is still here—please try again.");
-      setIsOpen(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-8">
-      <div className="rounded-[32px] border border-black/10 bg-[#f5f5f3] p-5 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.05)]">
-        <div className="flex justify-between items-center text-sm text-black px-1 mb-5">
-          <span className="font-belleza text-xl">Lorraen Madre</span>
-          <span role="status" className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-black" />{isLoading ? 'thinking' : 'ready when you are'}</span>
-        </div>
-        <form onSubmit={handleAsk} className="rounded-[24px] border border-black/15 bg-white p-5 sm:p-7">
-          <label htmlFor={inputId} className="block text-xl font-semibold mb-5">What is your wish today?</label>
-          <textarea id={inputId} value={query} onChange={e => setQuery(e.target.value)} placeholder="Turn a dream into a real plan..." rows={5} className="w-full resize-y min-h-40 text-xl placeholder:text-black focus:outline-none" />
-          <div className="border-t border-black/10 pt-5 mt-4 flex flex-wrap items-center justify-between gap-4">
-            <p className="text-sm text-black max-w-72">Start messy. We can make sense of it together.</p>
-            <button type="submit" disabled={isLoading || !query.trim()} className="flex items-center gap-3 rounded-full bg-black text-white px-6 py-3 disabled:bg-neutral-400 disabled:cursor-not-allowed">{isLoading ? 'Thinking...' : 'Begin'}<ArrowRight className="w-5 h-5" /></button>
-          </div>
-        </form>
-        <button type="button" onClick={() => { setQuery('I have a dream that needs a real plan.'); document.getElementById(inputId)?.focus(); }} className="mt-4 rounded-2xl bg-black/5 px-5 py-4 text-left w-full text-black hover:bg-black/10">a dream that needs a real plan</button>
-      </div>
-
-      <AnimatePresence>
-        {isOpen && response && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            role="status" aria-live="polite" className="mt-4 p-6 bg-white border border-black rounded-2xl shadow-xl relative"
-          >
-            <button 
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-xs uppercase tracking-widest hover:underline"
-            >
-              Close
-            </button>
-            <div className="prose prose-sm max-w-none font-medium text-black leading-relaxed">
-              <div className="flex items-start gap-3 mb-2">
-                <span className="text-[10px] uppercase tracking-widest bg-black text-white px-2 py-0.5">LORRAEN MADRE</span>
-              </div>
-              <p className="font-belleza text-xl leading-snug">{response}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
+import React,{useState,useRef,useEffect,useId} from 'react';
+import {askLorraine} from '../geminiService';
+import VoiceOrb from './VoiceOrb';
+export type StoryDraft={id:string;text:string;kind:string;context:string};
+type Words={wish:string;feeling:string};
+interface Props {context?:string;onCapture?:(draft:StoryDraft)=>void;initialWords?:Words;onWordsChange?:(words:Words)=>void;onContribution?:(words:Words&{kind:string})=>boolean;day?:number;dayCue?:string;children?:React.ReactNode}
+const CUES:Record<string,string>={'Tell my story':'What happened, and what would you like to happen next?','Imagine a goal':'What change would matter to you—and how would you recognize it?','Shape a project':'What do you want to build or bring into being?','Explore an offering or deal':'What could you offer, to whom, and what would an agreement need?','Find my next task':'What is one action that could move your wish forward?','Connect a Satellite':'Which person, service or tool belongs in your universe?'};
+export default function LorraineMadreChat({context='Your UFO',onCapture,initialWords,onWordsChange,onContribution,day,dayCue,children}:Props){
+ const id=useId();const [query,setQuery]=useState(initialWords?.wish||'');const [feeling,setFeeling]=useState(initialWords?.feeling||'');const [cue,setCue]=useState('');const [messages,setMessages]=useState<{role:string;text:string}[]>([]);const [busy,setBusy]=useState(false);const [listening,setListening]=useState(false);const [notice,setNotice]=useState('');const [kind,setKind]=useState('Wish');const [saved,setSaved]=useState(false);const recognition=useRef<any>(null);const words=useRef({wish:query,feeling});
+ useEffect(()=>()=>recognition.current?.abort(),[]);
+ const change=(next:Words)=>{words.current=next;setQuery(next.wish);setFeeling(next.feeling);setSaved(false);onWordsChange?.(next);};
+ const talk=()=>{
+  if(listening){recognition.current?.stop();return;}
+  const C=(window as any).SpeechRecognition||(window as any).webkitSpeechRecognition;
+  if(!C){setNotice('Voice dictation is unavailable in this browser. You can type your story below.');return;}
+  const r=new C();recognition.current=r;r.lang=navigator.language;r.interimResults=false;r.continuous=false;
+  r.onresult=(e:any)=>change({...words.current,wish:[words.current.wish,e.results[0][0].transcript].filter(Boolean).join(' ')});
+  r.onend=()=>setListening(false);r.onerror=()=>{setListening(false);setNotice('The microphone could not listen. Check permission or keep typing.');};
+  try{r.start();setListening(true);setNotice('Listening. Review your words before keeping or sending them.');}catch{setNotice('The microphone could not start. Please try typing.');}
+ };
+ const keep=()=>{
+  if(!query.trim())return false;
+  recognition.current?.stop();
+  if(onContribution){const persisted=onContribution({wish:query,feeling,kind});setSaved(persisted);setNotice(persisted?`Day ${(day??0)+1} contribution saved. You can return and build on it anytime on this browser.`:'Your contribution is in memory, but this browser could not save it. Keep this page open.');return persisted;}
+  onCapture?.({id:crypto.randomUUID(),text:[query.trim(),feeling.trim()?`How I feel: ${feeling.trim()}`:null].filter(Boolean).join('\n\n'),kind,context});
+  setSaved(true);setNotice(`${kind} draft kept in this session’s Neverland Story board.`);return true;
+ };
+ const submit=async(e:React.FormEvent)=>{
+  e.preventDefault();if(!query.trim()||busy)return;recognition.current?.stop();if(onContribution||onCapture)keep();
+  const text=[query.trim(),feeling.trim()?`How I feel: ${feeling.trim()}`:null].filter(Boolean).join('\n\n');setBusy(true);setMessages(m=>[...m,{role:'Hero',text}]);
+  try{const reply=await askLorraine(text,`${context}\nWISH WELL cue: ${CUES[cue]||dayCue||'Listen first; clarify the right piece of work together.'}\nConversation so far: ${messages.slice(-8).map(m=>m.role+': '+m.text).join('\n')}`);setMessages(m=>[...m,{role:'Lorraen',text:reply||'Hero, what would you like to make clearer first?'}]);}
+  catch{setNotice('The conversation service is unavailable. Your words are still here. Your wish was logged locally; an AI reply is not available right now.');}finally{setBusy(false);}
+ };
+ return <section className="lm-dialogue" id={onContribution?'daily-conversation':undefined} aria-label={`Story and talk: ${context}`}>
+ <div className="lm-dialogue-top"><span>LORRAEN MADRE</span><span role="status">{listening?'listening':busy?'considering your story':'ready when you are'}</span></div>
+ <div className="lm-orb-opening"><VoiceOrb state={listening?'listening':busy?'thinking':saved?'saved':'ready'}/><h2 className="lm-section-title">What do you wish for today?</h2><p>Dump, vent, or simply talk. I’ll ask questions along the way.</p><p className="lm-orb-whisper">Wishes get SOAP. Goals get SMART. You don’t have to get the words right.</p></div>
+ <div className="lm-thread" aria-live="polite">{messages.map((m,i)=><article key={i} className={m.role==='Lorraen'?'lm-ai-response':'lm-human-response'}><small>{m.role}</small><p>{m.text}</p></article>)}</div>
+ <form onSubmit={submit}><label htmlFor={id}>Your wish or story</label><textarea id={id} value={query} onChange={e=>change({wish:e.target.value,feeling})} placeholder="I wish…" rows={2}/><label htmlFor={`${id}-feeling`}>How do you feel about it?</label><textarea id={`${id}-feeling`} value={feeling} onChange={e=>change({wish:query,feeling:e.target.value})} placeholder="Excited, unsure, hopeful… in your own words." rows={2}/><div className="lm-talk-actions"><button type="button" onClick={talk} aria-pressed={listening} className="lm-pill lm-pill-white">{listening?'Stop listening':'Talk out loud'}</button><button className="lm-pill" disabled={busy||!query.trim()}>{busy?'Thinking…':'Send wish ↑'}</button></div></form>
+ {notice&&<p role="status" className="lm-save-notice">{notice}</p>}
+ </section>;
 }

@@ -31,7 +31,7 @@ export const ZODIAC_DINOSAURS: Record<string, DinosaurData> = {
   },
   gemini: {
     zodiac: 'Gemini',
-    name: 'Sanctuary Self',
+    name: 'Sanctuary Sell',
     species: 'Pterodactyl',
     code: 'GEM',
     symbol: 'GEM',
