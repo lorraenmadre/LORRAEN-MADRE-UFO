@@ -9,12 +9,15 @@ import PlatformIcon, { matchPlatform } from './PlatformIcon';
 const PLANET_ART = new Set(['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'earth']);
 
 /** The picture for a box: planet artwork, dinosaur + platform, or the house's platform logo. */
-export default function EntityArt({ entity, size = 32 }: { entity: Entity; size?: number }) {
+export default function EntityArt({ entity, size = 32, compact = false }: { entity: Entity; size?: number; compact?: boolean }) {
   const slot = slotForEntity(entity.id);
   if (PLANET_ART.has(entity.id)) {
     return <img src={`/planets/lm-planet-${entity.id}.webp`} alt="" width={size} height={size} style={{ width: size, height: size, objectFit: 'contain' }} />;
   }
   if (slot) return <span aria-hidden style={{ fontSize: size * 0.7, lineHeight: 1 }}>{slot.glyph}</span>;
+  if (entity.type === 'dinosaur' && compact) {
+    return matchPlatform(entity.platform) ? <PlatformIcon platform={entity.platform!} size={Math.round(size * 0.75)} /> : null;
+  }
   if (entity.type === 'dinosaur') {
     return (
       <span className="inline-flex items-center gap-1">

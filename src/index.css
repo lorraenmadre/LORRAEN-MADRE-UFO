@@ -251,3 +251,8 @@ html { scroll-behavior: smooth; }
 .lm-checker-cell>small{padding-right:28px}
 .lm-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .lm-steps{list-style:decimal;padding-left:1.25rem;margin:10px 0 20px;max-width:48rem;display:grid;gap:4px;font-size:14px}
+
+.lm-gate-progress{appearance:none;-webkit-appearance:none;border:0;border-radius:999px;background:#ecece8;overflow:hidden;accent-color:var(--gate,#111)}
+.lm-gate-progress::-webkit-progress-bar{background:#ecece8;border-radius:999px}
+.lm-gate-progress::-webkit-progress-value{background:var(--gate,#111);border-radius:999px}
+.lm-gate-progress::-moz-progress-bar{background:var(--gate,#111);border-radius:999px}
