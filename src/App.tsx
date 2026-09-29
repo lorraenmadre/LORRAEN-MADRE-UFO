@@ -8,6 +8,7 @@ import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
 import LorraineMadreChat from './components/LorraineMadreChat';
 import WelcomeJourney from './components/WelcomeJourney';
+import GateOnboarding from './components/GateOnboarding';
 import EngineJourney from './components/EngineJourney';
 import EngineGrid from './components/EngineGrid';
 import MothershipGrid from './components/MothershipGrid';
@@ -23,6 +24,7 @@ type FirebaseUser = { uid: string };
 
 export default function App() {
   const [drafts,setDrafts]=useState<StoryDraft[]>([]);
+  const [gateDrafts,setGateDrafts]=useState<StoryDraft[]>([]);
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
   const [mapLayout, setMapLayout] = useState<'space' | 'time' | 'story'>('space');
@@ -279,13 +281,7 @@ export default function App() {
             )}
 
             {/* Lorraine Chat Top */}
-            <WelcomeJourney journey={journey} onChange={updateJourney} storageError={storageError}/>
-            <LorraineMadreChat key={`${user?.uid||'preview'}-${journey.day}`} day={journey.day} dayCue={JOURNEY_DAYS[journey.day].cue}
-              initialWords={journey.notes[journey.day]}
-              onWordsChange={words=>updateJourney({...journey,notes:{...journey.notes,[journey.day]:words}})}
-              context={`Day ${journey.day+1}: ${journey.titles[journey.day]||JOURNEY_DAYS[journey.day].title}. ${JOURNEY_DAYS[journey.day].focus}. Selected component: ${journey.component||'not chosen'}. Guide the Hero, one question at a time.`}
-              onContribution={words=>updateJourney(addContribution(journey,{...words,day:journey.day,component:journey.component},crypto.randomUUID(),new Date().toISOString()))}>
-            </LorraineMadreChat>
+            <GateOnboarding key={user?.uid||'preview'} scope={user?.uid||'preview'} onHistory={setGateDrafts}/>
             <EngineGrid journey={journey} onSelect={component=>{updateJourney({...journey,component});document.getElementById('daily-conversation')?.scrollIntoView({behavior:'smooth'});}}/>
 
 
@@ -320,9 +316,9 @@ export default function App() {
               {mapLayout === 'space'
                 ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
                 : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="lm-section-title">Story · Neverland</h2><div className="lm-neverland-intro"><VoiceOrb allowVideo/><div><p>Hero, this is your collection of Stories: what you wished for, what you felt, what you learned and what comes next.</p><p>Golden Ticket opens the invitation. Jungle Book and the Story Calendar bring the next chapter into view.</p><a className="lm-pill lm-pill-white mt-4" href="https://junglebook.lorraenmadre.com/" target="_blank" rel="noopener noreferrer">Explore Jungle Book · Story Calendar</a><a className="lm-return-story" href="#daily-conversation">Tell the next part of your story ↑</a></div></div>
-                  {journey.contributions.length===0&&drafts.length===0?<p className="py-8">Your first thread starts in the talk bar. Keep a contribution and it will appear here.</p>:null}
+                  {journey.contributions.length===0&&drafts.length===0&&gateDrafts.length===0?<p className="py-8">Your first thread starts in the talk bar. Keep a contribution and it will appear here.</p>:null}
                   {[...journey.contributions].reverse().map(c=><article key={c.id} className="lm-story-card"><small>Day {c.day+1} · {c.kind} · saved on this browser{c.component?` · Component ${c.component}`:''}</small><p>{c.wish}</p>{c.feeling&&<p>How I feel: {c.feeling}</p>}<button className="lm-return-story" onClick={()=>{updateJourney({...journey,day:c.day});document.getElementById('wish-well')?.scrollIntoView({behavior:'smooth'});}}>Revisit this day ↑</button></article>)}
-                  {drafts.map(d=><article key={d.id} className="lm-story-card"><small>{d.kind} · session draft</small><p>{d.text}</p><small>{d.context}</small></article>)}
+                  {[...gateDrafts,...drafts].map(d=><article key={d.id} className="lm-story-card"><small>{d.kind} · session draft</small><p>{d.text}</p><small>{d.context}</small></article>)}
                 </section>}
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-8">
