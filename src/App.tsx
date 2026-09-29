@@ -13,6 +13,7 @@ import EngineJourney from './components/EngineJourney';
 import EngineGrid from './components/EngineGrid';
 import MothershipGrid from './components/MothershipGrid';
 import VoiceOrb from './components/VoiceOrb';
+import StoryThread from './components/StoryThread';
 import {useJourney,JOURNEY_DAYS,addContribution} from './journey';
 import type { StoryDraft } from './components/LorraineMadreChat';
 import MothershipInstructions from './components/MothershipInstructions';
@@ -282,7 +283,7 @@ export default function App() {
 
             {/* Lorraine Chat Top */}
             <GateOnboarding key={user?.uid||'preview'} scope={user?.uid||'preview'} onHistory={setGateDrafts}/>
-            <EngineGrid journey={journey} onSelect={component=>{updateJourney({...journey,component});document.getElementById('daily-conversation')?.scrollIntoView({behavior:'smooth'});}}/>
+            <EngineGrid journey={journey} onSelect={component=>{updateJourney({...journey,component});}} onOpenHouse={id=>{setSelectedEntityId(id);window.scrollTo({top:0});}}/>
 
 
 
@@ -315,11 +316,10 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 pb-16">
               {mapLayout === 'space'
                 ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
-                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="lm-section-title">Story · Neverland</h2><div className="lm-neverland-intro"><VoiceOrb allowVideo/><div><p>Hero, this is your collection of Stories: what you wished for, what you felt, what you learned and what comes next.</p><p>Golden Ticket opens the invitation. Jungle Book and the Story Calendar bring the next chapter into view.</p><a className="lm-pill lm-pill-white mt-4" href="https://junglebook.lorraenmadre.com/" target="_blank" rel="noopener noreferrer">Explore Jungle Book · Story Calendar</a><a className="lm-return-story" href="#daily-conversation">Tell the next part of your story ↑</a></div></div>
-                  {journey.contributions.length===0&&drafts.length===0&&gateDrafts.length===0?<p className="py-8">Your first thread starts in the talk bar. Keep a contribution and it will appear here.</p>:null}
-                  {[...journey.contributions].reverse().map(c=><article key={c.id} className="lm-story-card"><small>Day {c.day+1} · {c.kind} · saved on this browser{c.component?` · Component ${c.component}`:''}</small><p>{c.wish}</p>{c.feeling&&<p>How I feel: {c.feeling}</p>}<button className="lm-return-story" onClick={()=>{updateJourney({...journey,day:c.day});document.getElementById('wish-well')?.scrollIntoView({behavior:'smooth'});}}>Revisit this day ↑</button></article>)}
-                  {[...gateDrafts,...drafts].map(d=><article key={d.id} className="lm-story-card"><small>{d.kind} · session draft</small><p>{d.text}</p><small>{d.context}</small></article>)}
-                </section>}
+                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="lm-section-title">Story · Neverland</h2><p className="lm-section-description">Every wish you share is one entry in your story, stacked in order like a conversation.</p><StoryThread scope={user?.uid||'preview'} entries={[
+                  ...journey.contributions.map(c=>({id:c.id,at:c.createdAt,who:'Hero' as const,label:`Day ${c.day+1} · ${c.kind}`,text:[c.wish,c.feeling?`How I feel: ${c.feeling}`:''].filter(Boolean).join('\n\n')})),
+                  ...[...gateDrafts,...drafts].map(d=>({id:d.id,at:d.at,who:'Hero' as const,label:d.context.split(' · ')[0]||d.kind,text:d.text})),
+                ]}/></section>}
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-8">
               <h2 className="lm-section-title">Name and claim your universe.</h2><MothershipInstructions

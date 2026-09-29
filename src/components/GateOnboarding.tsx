@@ -7,7 +7,7 @@ export function GateTree({state,onSelect}:{state:GateState;onSelect:(key:string)
 }
 export default function GateOnboarding({scope,onHistory}:{scope:string;onHistory?:(drafts:StoryDraft[])=>void}){
  const key=`wishwell:gates:v1:${scope}`;const [state,setState]=useState<GateState>(()=>{try{return readGates(localStorage.getItem(key));}catch{return readGates(null);}});const [error,setError]=useState('');
- useEffect(()=>{onHistory?.(GATES.flatMap(g=>(state.records[g.key]?.history||[]).map((h,i)=>({id:`gate-${g.key}-${i}-${h.at}`,text:[h.wish,h.feeling?`How I feel: ${h.feeling}`:''].filter(Boolean).join('\n\n'),kind:'Wish',context:`${g.title} · saved on this browser`}))));},[state]);
+ useEffect(()=>{onHistory?.(GATES.flatMap(g=>(state.records[g.key]?.history||[]).map((h,i)=>({id:`gate-${g.key}-${i}-${h.at}`,at:h.at,text:[h.wish,h.feeling?`How I feel: ${h.feeling}`:''].filter(Boolean).join('\n\n'),kind:'Wish',context:`${g.title} · saved on this browser`}))));},[state]);
  const save=(next:GateState)=>{setState(next);try{localStorage.setItem(key,JSON.stringify(next));setError('');return true;}catch{setError('Progress is in memory only: this browser could not save it.');return false;}};
  const current=GATES.find(g=>g.key===state.selected)!;const day=GATES.indexOf(current);const record=state.records[current.key]||{wish:'',feeling:''};
  const update=(r:GateRecord)=>save({...state,records:{...state.records,[current.key]:r}});
