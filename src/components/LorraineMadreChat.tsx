@@ -1,7 +1,7 @@
 import React,{useState,useRef,useEffect,useId} from 'react';
 import {askLorraine} from '../geminiService';
 import VoiceOrb from './VoiceOrb';
-export type StoryDraft={id:string;text:string;kind:string;context:string};
+export type StoryDraft={id:string;text:string;kind:string;context:string;at?:string};
 type Words={wish:string;feeling:string};
 interface Props {context?:string;onCapture?:(draft:StoryDraft)=>void;initialWords?:Words;onWordsChange?:(words:Words)=>void;onContribution?:(words:Words&{kind:string})=>boolean;day?:number;dayCue?:string;children?:React.ReactNode}
 const CUES:Record<string,string>={'Tell my story':'What happened, and what would you like to happen next?','Imagine a goal':'What change would matter to you—and how would you recognize it?','Shape a project':'What do you want to build or bring into being?','Explore an offering or deal':'What could you offer, to whom, and what would an agreement need?','Find my next task':'What is one action that could move your wish forward?','Connect a Satellite':'Which person, service or tool belongs in your universe?'};
@@ -22,7 +22,7 @@ export default function LorraineMadreChat({context='Your UFO',onCapture,initialW
   if(!query.trim())return false;
   recognition.current?.stop();
   if(onContribution){const persisted=onContribution({wish:query,feeling,kind});setSaved(persisted);setNotice(persisted?`Day ${(day??0)+1} contribution saved. You can return and build on it anytime on this browser.`:'Your contribution is in memory, but this browser could not save it. Keep this page open.');return persisted;}
-  onCapture?.({id:crypto.randomUUID(),text:[query.trim(),feeling.trim()?`How I feel: ${feeling.trim()}`:null].filter(Boolean).join('\n\n'),kind,context});
+  onCapture?.({id:crypto.randomUUID(),at:new Date().toISOString(),text:[query.trim(),feeling.trim()?`How I feel: ${feeling.trim()}`:null].filter(Boolean).join('\n\n'),kind,context});
   setSaved(true);setNotice(`${kind} draft kept in this session’s Neverland Story board.`);return true;
  };
  const submit=async(e:React.FormEvent)=>{
