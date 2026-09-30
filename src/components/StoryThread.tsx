@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import VoiceOrb from './VoiceOrb';
 import { askLorraine } from '../geminiService';
+import { VOICE_MEDIA } from '../voiceMedia';
 
 /** One line in the Story thread: something the Hero said, or Lorraen's reply. */
 export type ThreadEntry = { id: string; at?: string; who: 'Hero' | 'Lorraen'; label: string; text: string };
@@ -20,6 +21,46 @@ function readSaved(key: string): ThreadEntry[] {
   }
 }
 
+/** Entries dissolve as they scroll up under the orb, like the voice app. */
+function useThreadFade(stack: React.RefObject<HTMLDivElement | null>, dock: React.RefObject<HTMLDivElement | null>, count: number) {
+  useEffect(() => {
+    const el = stack.current;
+    if (!el || typeof window === 'undefined') return;
+    let raf = 0;
+    const paint = () => {
+      raf = 0;
+      const line = Math.max(dock.current?.getBoundingClientRect().bottom ?? 0, window.innerHeight * 0.18);
+      const zone = Math.max(120, window.innerHeight * 0.28);
+      for (const child of Array.from(el.children) as HTMLElement[]) {
+        if (!child.classList.contains('lm-thread-entry')) continue;
+        const r = child.getBoundingClientRect();
+        const t = Math.min(1, Math.max(0, (r.top + r.height * 0.5 - line) / zone));
+        child.style.opacity = t >= 1 ? '' : String(t);
+        child.style.transform = t >= 1 ? '' : `translateY(${(1 - t) * -10}px) scale(${0.96 + t * 0.04})`;
+        child.style.filter = t >= 1 ? '' : `blur(${(1 - t) * 3}px)`;
+      }
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(paint); };
+    paint();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, [stack, dock, count]);
+}
+
+function StorySky() {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    try {
+      if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) v.pause?.();
+      else { const p = v.play?.(); if (p && typeof p.catch === 'function') p.catch(() => {}); }
+    } catch { /* jsdom */ }
+  }, []);
+  return <div className="lm-thread-sky" aria-hidden="true"><video ref={ref} src={VOICE_MEDIA.sky} poster={VOICE_MEDIA.skyPoster} muted loop playsInline autoPlay preload="auto" /><span /></div>;
+}
+
 /**
  * STORY — every wish is one entry, stacked oldest to newest like an AI chat thread.
  * The orb stays glowing at the top and answers to voice (listening) and replies (thinking).
@@ -34,12 +75,16 @@ export default function StoryThread({ scope, entries }: { scope: string; entries
   const rec = useRef<any>(null);
   const end = useRef<HTMLDivElement>(null);
   const grew = useRef(false);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const dockRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => () => rec.current?.abort(), []);
   useEffect(() => { setSaved(readSaved(key)); }, [key]);
 
   const all = [...entries, ...saved].sort((a, b) => (a.at || '').localeCompare(b.at || ''));
   useEffect(() => { if (grew.current) end.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, [all.length]);
+
+  useThreadFade(stackRef, dockRef, all.length + (busy ? 1 : 0));
 
   const add = (e: ThreadEntry) => {
     grew.current = true;
@@ -82,10 +127,11 @@ export default function StoryThread({ scope, entries }: { scope: string; entries
   const state = listening ? 'listening' : busy ? 'thinking' : 'ready';
   return (
     <section className="lm-story-thread" aria-label="Story thread">
-      <div className="lm-thread-orb">
+      <StorySky />
+      <div className="lm-thread-orb" ref={dockRef}>
         <VoiceOrb state={state} small />
       </div>
-      <div className="lm-thread-stack" aria-live="polite">
+      <div className="lm-thread-stack" aria-live="polite" ref={stackRef}>
         {all.length === 0 ? (
           <p className="lm-thread-empty">Your thread starts with your first wish. Talk or type below, or answer a question on the map above.</p>
         ) : all.map((e) => (
