@@ -3,15 +3,15 @@
   "brand": "LORRAEN MADRE",
   "mothership": "Sterling Drive Consulting",
   "structure": "Universal Family Office (UFO)",
-  "identity": "LORRAEN MADRE helps mothers create their own motherships to navigate and build their UFO. Sterling Drive Consulting is the founder\u2019s mothership, not the public brand.",
+  "identity": "LORRAEN MADRE helps mothers create their own motherships to navigate and build their UFO. Sterling Drive Consulting is the founder’s mothership, not the public brand.",
   "houses": [
     {
       "number": 1,
       "department": "Family Business",
-      "product": "LORRAEN MADRE",
+      "product": "omw.life",
       "platform": "Website",
       "cadence": "Six months",
-      "description": "Help mothers create their own motherships and navigate/build their UFO. Read each six-month project plan and Lean Value Canvas from its planet tab."
+      "description": "OMW · Miami Family Travel Club. Recurring family routes and travel coordination; the first product you download when you activate your mothership."
     },
     {
       "number": 2,
@@ -152,7 +152,7 @@
       "type": "planet",
       "symbol": "Moon",
       "role": "AI home economics framework",
-      "name": "Miss Honey\u2019s Home Economics",
+      "name": "Miss Honey’s Home Economics",
       "description": "The AI agency: an AI framework for home economics.",
       "cadence": "Six-month project plan + Lean Value Canvas"
     },
@@ -530,9 +530,9 @@
   },
   "nextProject": {
     "name": "Sunshine Pocket Therapy",
-    "placement": "North Node \u2014 retirement plan",
+    "placement": "North Node — retirement plan",
     "stage": "Package and website proposal next",
-    "audience": "NFL \u2014 prospective first group, not a signed customer",
+    "audience": "NFL — prospective first group, not a signed customer",
     "components": [
       "Insurance",
       "Telemedicine",

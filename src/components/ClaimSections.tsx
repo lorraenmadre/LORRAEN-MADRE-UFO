@@ -6,6 +6,7 @@ import system from '../ufo-system.json';
 import {slotForEntity} from '../planSlots';
 import {calculateProgress} from '../progress';
 import EntityArt,{Progress} from './EntityArt';
+import {RESOURCES,HOUSE_PURPOSES} from '../houseLinks';
 interface Props{entities:Entity[];onAddSatellite:(e:Entity)=>void;onSelect:(id:string)=>void;onUpdate:(e:Entity)=>void}
 const STEPS:Record<string,string[]>={
  planets:['Name the project that lives on this planet.','Set one goal for the next six months: what will be true, how you will measure it, and by when.','Build it out in the voice app: 1 goal, 8 outcomes, 64 tasks.','Check the Time view to see when the planet is lit, and push it forward then.'],
@@ -17,29 +18,8 @@ const SECTIONS=[
  {key:'mothership',title:'Mothership',note:'Your home for the whole picture. Name what is yours, describe its purpose, and fill the empty spaces as your universe takes shape.',match:(e:Entity)=>e.type==='church'||e.type==='holding_company'||e.type==='trust'},
  {key:'planets',title:'Planets · projects',note:'Each planet is a Project that runs on a six-month cadence. Choose a planet and build its Project: clarify the Goal, develop a Plan and its task spaces, then shape the Lean Value Canvas.',match:(e:Entity)=>!!slotForEntity(e.id)},
  {key:'dinosaurs',title:'Dinosaurs · living domains',note:'Each Dinosaur connects one social media account to run one domain of your family office. Its zodiac sign sets its voice; its platform is where it works. Name it and shape the Goal it supports.',match:(e:Entity)=>e.type==='dinosaur'},
- {key:'houses',title:'Wonderland · product Houses',note:'Bring one House online at a time. Each House gives part of your work a place, a product and a tool. Explore its purpose, gather what you already have, then take the next setup step.',match:(e:Entity)=>e.type==='offering'},
  {key:'satellites',title:'Satellites',note:'Satellites are external connections needed to run your personal AI—services, tools or people not already included in your setup. Add one, then define what it connects and why.',match:(e:Entity)=>e.type==='satellite'},
 ];
-const RESOURCES:Record<string,{url:string;label:string;note:string}>={
- 'product-house-4':{url:'https://github.com/anthropics/claude-cookbooks',label:'Read Anthropic cookbooks',note:'Tech recipes · WISH WELL tech and kitchen edition to follow'},
- 'product-house-6':{url:'https://www.notion.com/',label:'Open Notion',note:'Fruitful Frameworks template download not yet linked'},
- 'product-house-10':{url:'https://trello.com/',label:'Open Trello',note:'Dream Backlog template download not yet linked'},
- 'product-house-12':{url:'https://junglebook.lorraenmadre.com/',label:'Explore Jungle Book',note:'Golden Ticket · Story Calendar'},
-};
-const HOUSE_PURPOSES:Record<number,string>={
- 1:'Give your family office a home. Name your mothership and organize the projects that support it.',
- 2:'Explore your resources and timing. Keep the questions behind your money decisions in view.',
- 3:'Clarify the change you want. Shape a Goal and the evidence that will tell you it is working.',
- 4:'Build with practical recipes for technology, food and family life. Start with what you have.',
- 5:'Bring your people and work together. Coordinate a sprint and keep the next action visible.',
- 6:'Give your routines a home. Organize the repeatable ways your family office works.',
- 7:'Coordinate the daily Engine. Keep your documents, actions and accountability connected.',
- 8:'Know what progress looks like. Gather Outcomes, evidence, protection and exit questions.',
- 9:'Give a Goal a Plan: eight Outcomes and 64 Task spaces, with room for trust, travel and care.',
- 10:'Keep the wish before it gets lost. Collect your intentions and stories in the Dream Backlog.',
- 11:'Keep your people connected. Organize relationships, conversations and the next follow-up.',
- 12:'Gather your Stories across the Houses. Let the Story Calendar invite your next chapter.'
-};
 export default function ClaimSections({entities,onSelect,onUpdate,onAddSatellite}:Props){
  const [satelliteName,setSatelliteName]=useState('');const ordered=orderForBoard(entities);const seen=new Set<string>();
  return <section className="space-y-12" aria-label="Name and claim">{SECTIONS.map(s=>{

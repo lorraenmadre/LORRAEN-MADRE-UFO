@@ -11,12 +11,10 @@ import WelcomeJourney from './components/WelcomeJourney';
 import GateOnboarding from './components/GateOnboarding';
 import EngineJourney from './components/EngineJourney';
 import EngineGrid from './components/EngineGrid';
-import MothershipGrid from './components/MothershipGrid';
 import VoiceOrb from './components/VoiceOrb';
 import StoryThread from './components/StoryThread';
 import {useJourney,JOURNEY_DAYS,addContribution} from './journey';
 import type { StoryDraft } from './components/LorraineMadreChat';
-import MothershipInstructions from './components/MothershipInstructions';
 import ActionPills from './components/ActionPills';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, LayoutGrid, Info, LogOut, ChevronRight, Check } from 'lucide-react';
@@ -283,7 +281,7 @@ export default function App() {
 
             {/* Lorraine Chat Top */}
             <GateOnboarding key={user?.uid||'preview'} scope={user?.uid||'preview'} onHistory={setGateDrafts}/>
-            <EngineGrid journey={journey} onSelect={component=>{updateJourney({...journey,component});}} onOpenHouse={id=>{setSelectedEntityId(id);window.scrollTo({top:0});}}/>
+            <EngineGrid scope={user?.uid||'preview'} journey={journey} onSelect={component=>{updateJourney({...journey,component});}} onOpenHouse={id=>{setSelectedEntityId(id);window.scrollTo({top:0});}}/>
 
 
 
@@ -322,15 +320,7 @@ export default function App() {
                 ]}/></section>}
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-8">
-              <h2 className="lm-section-title">Name and claim your universe.</h2><MothershipInstructions
-                currentMothershipName={displayEntities.find(e => e.type === 'holding_company')?.name || 'Sterling Drive Consulting'}
-                onUpdateMothershipName={(name) => {
-                  const holdingEntity = displayEntities.find(e => e.type === 'holding_company');
-                  if (holdingEntity) handleUpdateEntity({ ...holdingEntity, name });
-                }}
-                onExploreOrbit={() => setMapLayout('space')}
-                onOpenFramework={() => setViewMode('framework')}
-              /><MothershipGrid key={user?.uid||'preview'} scope={user?.uid||'preview'}/><ClaimSections onAddSatellite={sat=>{const update=viewMode==='framework'?setCleanEntities:setEntities;update(prev=>[...prev,sat]);}} entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
+              <ClaimSections onAddSatellite={sat=>{const update=viewMode==='framework'?setCleanEntities:setEntities;update(prev=>[...prev,sat]);}} entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
             </div>
             {viewMode === 'business' && <details className="max-w-7xl mx-auto px-6"><summary>Explore the full operating map</summary><OperatingMap /></details>}
 

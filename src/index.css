@@ -327,3 +327,10 @@ html { scroll-behavior: smooth; }
 .lm-engine-detail small{font-family:var(--font-figtree);font-weight:700;letter-spacing:.08em}
 .lm-engine-detail h3{font-family:var(--font-belleza);font-size:26px;margin:0}
 .lm-engine-detail-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Mothership matrix: each House shows its part, its product and whether it is activated. */
+.lm-matrix>.lm-engine-cell em{font-style:normal;margin-top:auto;font-family:var(--font-figtree);font-weight:600;font-size:clamp(11px,1.3vw,14px)}
+.lm-engine-detail label{display:grid;gap:6px;font-family:var(--font-figtree);font-weight:600;font-size:14px}
+.lm-engine-detail input:not([type=checkbox]),.lm-engine-detail textarea{width:100%;border:1px solid #111;border-radius:8px;padding:10px 12px;font-family:var(--font-mulish);font-weight:400;font-size:16px;background:#fff;color:#111}
+.lm-engine-detail .lm-engine-check{display:flex;align-items:center;gap:10px}
+@media(max-width:640px){.lm-matrix>.lm-engine-cell span{display:none}}
