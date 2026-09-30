@@ -75,13 +75,13 @@ test('Engine occupies exactly the twelve perimeter cells and reserves the centra
  for(const [row,col] of ENGINE_POSITIONS)assert.ok(row===1||row===4||col===1||col===4);
  const html=renderToStaticMarkup(<EngineGrid journey={emptyJourney()} onSelect={()=>{}}/>);
  assert.equal((html.match(/class="lm-engine-cell"/g)||[]).length,12);
- assert.ok(html.includes('Advocacy Engine')); 
+ assert.ok(html.includes('Mothership'));assert.ok(!html.includes('Advocacy Engine'));
+ for(const s of ['omw.life','Holding company','Retirement','The Cookbook'])assert.ok(html.includes(s),s);
 });
-test('Houses use one resource-card collection and Dinosaur platform logos label the actual platform',()=>{
+test('Product Houses live only in the Mothership and Dinosaur platform logos label the actual platform',()=>{
  const html=renderToStaticMarkup(<ClaimSections entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}} onAddSatellite={()=>{}}/>);
- assert.equal((html.match(/Bring one House online at a time/g)||[]).length,1);
- assert.equal((html.match(/Read Anthropic cookbooks/g)||[]).length,1);
- assert.ok(html.includes('Entryway')||html.includes('Open this House'));
+ assert.equal((html.match(/Bring one House online at a time/g)||[]).length,0);
+ assert.equal((html.match(/Read Anthropic cookbooks/g)||[]).length,0);
  assert.ok(html.includes('Sanctuary Cell'));assert.ok(!html.includes('Sanctuary Self'));
  assert.match(html,/alt="Shopify"[^>]*\/>\s*<span>Shopify<\/span>/);
  assert.ok(html.includes('♊ Gemini'));assert.ok(html.includes('♋ Cancer'));
