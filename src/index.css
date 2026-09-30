@@ -165,18 +165,27 @@ html { scroll-behavior: smooth; }
 .lm-dialogue-intro>div:first-child {flex:1;}
 .lm-save-notice {margin-top:18px;font-size:14px;}
 .lm-orb-wrap {display:flex;flex-direction:column;align-items:center;gap:10px;max-width:260px;flex-shrink:0;text-align:center;}
-.lm-voice-orb {width:210px;height:210px;position:relative;overflow:hidden;border-radius:50%;background:radial-gradient(circle at 32% 25%,#fff 0%,#e9e9e7 20%,#aaa 53%,#444 80%,#171717 100%);box-shadow:inset 0 0 26px #fff8,0 12px 30px #0002;}
-.lm-voice-orb span {position:absolute;inset:15%;border:1px solid #fffc;border-radius:43% 57% 51% 49%;animation:lm-orb-turn 12s linear infinite;}
-.lm-voice-orb span:nth-child(2) {inset:22%;animation-direction:reverse;animation-duration:16s;}
-.lm-voice-orb span:nth-child(3) {inset:9%;animation-duration:21s;transform:rotate(70deg);}
-.lm-voice-orb.is-listening {animation:lm-orb-breathe 1.5s ease-in-out infinite;}
-.lm-voice-orb.is-thinking span {animation-duration:3s;}
-.lm-voice-orb.is-saved {box-shadow:inset 0 0 26px #fff8,0 0 0 4px #ddd,0 12px 30px #0002;}
-.lm-voice-orb video {width:100%;height:100%;object-fit:cover;transform:scaleX(-1);}
+/* The orb is the founder's video (same as the voice app), clipped to a circle. */
+.lm-voice-orb {width:210px;height:210px;position:relative;border-radius:50%;isolation:isolate;}
+.lm-voice-orb.is-camera {overflow:hidden;background:#000;}
+.lm-orb-core {position:absolute;inset:0;z-index:1;border-radius:50%;overflow:hidden;background:#000;filter:brightness(.85) saturate(.9);transition:filter .6s ease,transform .6s ease;animation:lm-orb-breathe 5s ease-in-out infinite;}
+.lm-orb-core video,.lm-orb-glow video {display:block;width:100%;height:100%;object-fit:cover;}
+.lm-orb-core video {transform:scale(1.04);}
+/* Colored light that sweeps behind the orb while you talk; only shows on the black Story sky. */
+.lm-orb-glow {display:none;position:absolute;inset:-60%;z-index:0;opacity:0;mix-blend-mode:screen;transition:opacity .7s ease;pointer-events:none;-webkit-mask-image:radial-gradient(circle at center,#000 30%,transparent 70%);mask-image:radial-gradient(circle at center,#000 30%,transparent 70%);}
+.lm-story-thread .lm-orb-glow {display:block;}
+.lm-voice-orb.is-listening .lm-orb-core {transform:scale(1.04);filter:brightness(1.1) saturate(1.15);animation:lm-orb-breathe 1.6s ease-in-out infinite;}
+.lm-voice-orb.is-listening .lm-orb-glow {opacity:1;}
+.lm-voice-orb.is-thinking .lm-orb-core {transform:scale(.97);filter:brightness(1) hue-rotate(-12deg);}
+.lm-voice-orb.is-thinking .lm-orb-glow {opacity:.55;}
+.lm-voice-orb.is-saved .lm-orb-core {filter:brightness(1.05);}
+.lm-voice-orb.is-saved .lm-orb-glow {opacity:.35;}
+.lm-voice-orb video {width:100%;height:100%;object-fit:cover;}
+.lm-voice-orb.is-camera video {transform:scaleX(-1);}
 .lm-orb-caption {font-size:12px;}
 .lm-orb-wrap small {font-size:10px;max-width:160px;}
 .lm-orb-wrap.is-small {max-width:160px;}
-.lm-orb-wrap.is-small .lm-voice-orb {width:112px;height:112px;}
+.lm-orb-wrap.is-small .lm-voice-orb {width:128px;height:128px;}
 .lm-camera-toggle {font-size:12px;text-decoration:underline;text-underline-offset:4px;min-height:32px;}
 .lm-component-choice {max-width:900px;margin:0 auto;padding:0 28px;}
 .lm-component-choice label {display:block;}
@@ -265,26 +274,30 @@ html { scroll-behavior: smooth; }
 .lm-gate-tabs{flex-wrap:wrap;justify-content:center;overflow:visible!important}
 
 /* Story: one glowing orb on top, every entry stacked like a chat thread. */
-.lm-story-thread{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-.lm-thread-orb{position:sticky;top:84px;z-index:3;display:flex;justify-content:center;padding:14px 0 22px;background:linear-gradient(#fff 72%,#fff0)}
-.lm-thread-orb .lm-voice-orb{animation:lm-thread-glow 4s ease-in-out infinite}
-.lm-thread-orb .lm-voice-orb.is-listening{animation:lm-thread-glow 1.2s ease-in-out infinite}
+/* STORY: same night sky and orb as the voice app; entries stack and dissolve as they scroll under the orb. */
+.lm-story-thread{position:relative;isolation:isolate;max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding:0 16px 20px;background:#000;color:#fff;border-radius:24px;clip-path:inset(0 round 24px)}
+.lm-thread-sky{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.lm-thread-sky video{position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;opacity:.9}
+.lm-thread-sky span{position:fixed;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 78%,rgba(0,0,0,.6))}
+.lm-thread-orb{position:sticky;top:84px;z-index:3;display:flex;justify-content:center;padding:14px 0 22px}
+.lm-thread-orb .lm-voice-orb{filter:drop-shadow(0 0 26px rgba(255,255,255,.35))}
 .lm-thread-orb .lm-orb-caption{display:none}
-@keyframes lm-thread-glow{0%,100%{box-shadow:0 0 22px 4px #004aad22,0 0 60px 12px #ffffff}50%{box-shadow:0 0 38px 12px #004aad40,0 0 80px 20px #ffffff}}
 .lm-thread-stack{display:flex;flex-direction:column;gap:14px}
-.lm-thread-entry{max-width:88%;padding:14px 18px;border-radius:18px;white-space:pre-wrap;line-height:1.7}
-.lm-thread-entry small{display:block;font-family:var(--font-figtree);font-weight:600;font-size:12px;letter-spacing:.04em;margin-bottom:4px}
+.lm-thread-entry{max-width:88%;padding:14px 18px;border-radius:18px;white-space:pre-wrap;line-height:1.7;color:#fff;transform-origin:center bottom;will-change:opacity,transform}
+.lm-thread-entry small{display:block;font-family:var(--font-figtree);font-weight:600;font-size:12px;letter-spacing:.04em;margin-bottom:4px;color:#fff}
 .lm-thread-entry p{margin:0}
-.lm-thread-entry.is-hero{align-self:flex-end;background:#f0f0ee;color:#111;border-bottom-right-radius:6px}
-.lm-thread-entry.is-ai{align-self:flex-start;background:#fff;color:#111;border:1px solid #e2e2de;border-bottom-left-radius:6px;font-weight:300}
+.lm-thread-entry.is-hero{align-self:flex-end;background:rgba(255,255,255,.12);border-bottom-right-radius:6px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.lm-thread-entry.is-ai{align-self:flex-start;background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.35);border-bottom-left-radius:6px;font-weight:300}
 .lm-thread-entry.is-typing p{letter-spacing:.2em}
-.lm-thread-empty{text-align:center;font-weight:300;padding:24px 0}
-.lm-thread-composer{position:sticky;bottom:12px;z-index:3;display:flex;gap:10px;align-items:flex-end;padding:10px;border:1px solid #d8d8d4;border-radius:22px;background:#fff;box-shadow:0 6px 24px #0000001a}
-.lm-thread-composer textarea{flex:1;min-width:0;border:0;outline:none;resize:none;padding:10px;font-size:16px;background:transparent;color:#111}
+.lm-thread-empty{text-align:center;font-weight:300;padding:24px 0;color:#fff}
+.lm-thread-composer{position:sticky;bottom:12px;z-index:3;display:flex;gap:10px;align-items:flex-end;padding:10px;border:1px solid #fff;border-radius:22px;background:#111}
+.lm-thread-composer textarea{flex:1;min-width:0;border:0;outline:none;resize:none;padding:10px;font-size:16px;background:transparent;color:#fff}
+.lm-thread-composer textarea::placeholder{color:#fff;opacity:.6}
 .lm-thread-actions{display:flex;gap:8px}
+.lm-story-thread .lm-caption,.lm-story-thread .lm-caption a{color:#fff}
 .lm-thread-foot{text-align:center}
 @media(max-width:600px){.lm-thread-entry{max-width:96%}.lm-thread-composer{flex-direction:column;align-items:stretch}.lm-thread-actions{justify-content:flex-end}}
-@media(prefers-reduced-motion:reduce){.lm-thread-orb .lm-voice-orb{animation:none}}
+@media(prefers-reduced-motion:reduce){.lm-orb-core{animation:none!important}}
 
 /* Advocacy Engine: Rae's matrix. Houses sit where their hour sits on a clock. */
 .lm-engine-shell{max-width:1060px}
