@@ -9,8 +9,8 @@ Version 2026-09-16.1. Canonical source: [README](../README.md) and [machine-read
 |---|---|---|---|---|
 | 1 | Family Business | LORRAEN MADRE | Website | Six months |
 | 2 | Treasury | makeCENTS | Whop / web app | Hourly view |
-| 3 | Telecommunications | Wish Well GPT | GPT | Moon-phase ERP cycle |
-| 4 | Holistic Home Health | The Cookbook | Claude + physical/digital cookbook | Monthly |
+| 3 | Telecommunications | Wish Well GPT · The Cookbook · The Key | GPT + Claude | Moon-phase ERP cycle |
+| 4 | Holistic Home Health | Sanctuary Cell (home server) | Shopify | Monthly |
 | 5 | Work and Play | The Pride | Slack | Biweekly sprint + daily scorecard |
 | 6 | Systems and Habits | Fruitful Frameworks | Notion | Weekly |
 | 7 | Engines and Accountability | Woo Woo Watch | Apple Watch | 24-hour engine loop |
@@ -35,7 +35,7 @@ Software/hardware maintenance, subscriptions, energy usage, caps and limitations
 
 ### House 4 — Holistic Home Health
 
-Claude interaction, collaborative food and technology recipes; Soup Club offshoots. Calendar grid organized by lines of care.
+Sanctuary Cell: home server kits and family tech so the family office runs at home (founder correction 2026-10-07; The Cookbook moved to House 3).
 
 ### House 5 — Work and Play
 

@@ -3,8 +3,8 @@
  "summary": {
   "projects": 24,
   "money": 20,
-  "auto": 28,
-  "houses": 62,
+  "auto": 29,
+  "houses": 64,
   "system": 48,
   "onboarding": 43,
   "yesterday": {
@@ -212,7 +212,7 @@
    "id": "the-key",
    "name": "The Key",
    "sub": "Claude Cookbook extension + PDF",
-   "house": 4,
+   "house": 3,
    "c": {
     "G": 0,
     "O": 0,
@@ -270,6 +270,27 @@
    "money": 0,
    "auto": 17,
    "total": 8
+  },
+  {
+   "id": "sanctuary-cell",
+   "name": "Sanctuary Cell",
+   "sub": "home server store · Shopify",
+   "house": 4,
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0.5,
+    "C": 0.5,
+    "I": 0.5,
+    "A": 0
+   },
+   "tag": "Almost live",
+   "note": "Store is set up with 11 home-server and family-tech products written and priced (Raspberry Pi NAS case, 5-bay drive dock, mini server, kids GPS watch, trackers and more). All 11 are still drafts, so nothing is for sale yet; 0 orders. Still on sanctuary-cell.myshopify.com, not sanctuarycell.lorraenmadre.com.",
+   "change": "Now House 4",
+   "money": 25,
+   "auto": 33,
+   "total": 29
   },
   {
    "id": "lm-radio",
@@ -340,20 +361,24 @@
   {
    "n": 3,
    "dept": "Telecommunications · Goals",
-   "product": "Wish Well GPT",
-   "platform": "GPT",
+   "product": "Wish Well GPT + The Cookbook + The Key",
+   "platform": "GPT + Claude",
    "cadence": "3 × 28 days",
-   "pct": 50,
-   "note": "Goal rules written; Goal database not built."
+   "pct": 63,
+   "note": "Cookbook written and The Key PDF exists. Goal rules written; Goal database and the Key extension not built.",
+   "changed": true,
+   "was": "Wish Well GPT only"
   },
   {
    "n": 4,
    "dept": "Holistic Home Health",
-   "product": "The Cookbook + The Key",
-   "platform": "Claude + book",
+   "product": "Sanctuary Cell · home server",
+   "platform": "Shopify",
    "cadence": "Monthly",
-   "pct": 50,
-   "note": "Cookbook exists. The Key PDF exists; extension not built."
+   "pct": 63,
+   "note": "Store set up with 11 products in draft. Publish them and it can sell.",
+   "changed": true,
+   "was": "The Cookbook"
   },
   {
    "n": 5,

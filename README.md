@@ -1,4 +1,4 @@
-> House map correction 2026-10-07.1: House 2 makeCENTS, House 7 Woo Woo Watch, House 10 Newcastle (Digital Organization), House 12 Dream Backlog, House 13 The Wishing Reel. Founder status lives in src/founderStatus.json.
+> House map correction 2026-10-07.1: House 2 makeCENTS, House 3 Wish Well GPT + The Cookbook + The Key, House 4 Sanctuary Cell, House 7 Woo Woo Watch, House 10 Newcastle (Digital Organization), House 12 Dream Backlog, House 13 The Wishing Reel. Founder status lives in src/founderStatus.json.
 
 > Current planning rules: [WISH WELL 2026-09-24.1](WISH_WELL_PLANNING.md). Read this correction before older House 3/8/9 definitions.
 
@@ -64,8 +64,8 @@ Chiron, Juno and Vesta functions are confirmed; personal names are not supplied.
 |---|---|---|---|---|
 | 1 | Family Business | LORRAEN MADRE | Website | Six months |
 | 2 | Treasury | makeCENTS | Whop / web app | Hourly view |
-| 3 | Telecommunications | Wish Well GPT | GPT | Moon-phase ERP cycle |
-| 4 | Holistic Home Health | The Cookbook | Claude + physical/digital cookbook | Monthly |
+| 3 | Telecommunications | Wish Well GPT · The Cookbook · The Key | GPT + Claude | Moon-phase ERP cycle |
+| 4 | Holistic Home Health | Sanctuary Cell (home server) | Shopify | Monthly |
 | 5 | Work and Play | The Pride | Slack | Biweekly sprint + daily scorecard |
 | 6 | Systems and Habits | Fruitful Frameworks | Notion | Weekly |
 | 7 | Engines and Accountability | Woo Woo Watch | Apple Watch | 24-hour engine loop |
@@ -90,7 +90,7 @@ Software/hardware maintenance, subscriptions, energy usage, caps and limitations
 
 ### House 4 — Holistic Home Health
 
-Claude interaction, collaborative food and technology recipes; Soup Club offshoots. Calendar grid organized by lines of care.
+Sanctuary Cell: home server kits and family tech so the family office runs at home (founder correction 2026-10-07; The Cookbook moved to House 3).
 
 ### House 5 — Work and Play
 

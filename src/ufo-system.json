@@ -24,18 +24,18 @@
     {
       "number": 3,
       "department": "Goals and Cycly ERP",
-      "product": "Wish Well GPT",
-      "platform": "GPT",
+      "product": "Wish Well GPT · The Cookbook · The Key",
+      "platform": "GPT + Claude",
       "cadence": "Cycly: three four-week operating cycles",
-      "description": "Define a SMART Goal with eight measurable Outcomes in House 8 and one quarterly Mandalart Plan in House 9. Repeat eight ERP stages across three cycles. Keep astronomical timing separate."
+      "description": "Your WISH WELL brain: the Wish Well GPT, the Cookbook of recipes for running your family office with AI, and The Key, a Claude Cookbook extension with a PDF to follow. Define a SMART Goal with eight Outcomes; three four-week operating cycles."
     },
     {
       "number": 4,
       "department": "Holistic Home Health",
-      "product": "The Cookbook",
-      "platform": "Claude + physical/digital cookbook",
+      "product": "Sanctuary Cell",
+      "platform": "Shopify",
       "cadence": "Monthly",
-      "description": "Claude interaction, collaborative food and technology recipes; Soup Club offshoots. Calendar grid organized by lines of care."
+      "description": "Your home server: kits, Raspberry Pi and storage gear to run your own family office at home, sold through the Sanctuary Cell store."
     },
     {
       "number": 5,
