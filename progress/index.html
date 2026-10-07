@@ -1,0 +1,250 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>*{box-sizing:border-box}body{margin:0}</style></head><body><title>UFO Progress Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Belleza&family=Figtree:wght@500;600&family=Mulish:wght@400;600&display=swap">
+<style>
+/* One-column ledger in the LORRAEN MADRE codex: black and white, red = money, blue = automation, green terminal lines. Summary → projects → houses → onboarding → moves. */
+:root{
+ --bg:#ffffff;--panel:#ffffff;--ink:#111111;--ink2:#4a4a4a;--line:#dcdcdc;--track:#ececec;
+ --red:#f41c1c;--blue:#004aad;--green:#00a456;--term:#000000;--termtx:#00bf63;--tagbg:#111111;--tagfg:#ffffff;
+ --display:"Belleza","Didot",Georgia,serif;--body:"Mulish",system-ui,sans-serif;--ui:"Figtree",system-ui,sans-serif;--mono:"Courier New",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#0d0d0d;--ink:#ffffff;--ink2:#bdbdbd;--line:#2b2b2b;--track:#242424;--red:#ff4a4a;--blue:#4d8dff;--green:#00bf63;--term:#0d0d0d;--tagbg:#ffffff;--tagfg:#111111;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#0d0d0d;--ink:#ffffff;--ink2:#bdbdbd;--line:#2b2b2b;--track:#242424;--red:#ff4a4a;--blue:#4d8dff;--green:#00bf63;--term:#0d0d0d;--tagbg:#ffffff;--tagfg:#111111;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:32px 72px}
+.brand{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:1.15rem}
+.term{display:inline-block;margin-top:14px;background:var(--term);color:var(--termtx);font-family:var(--mono);font-size:.85rem;padding:6px 14px;border-radius:999px;border:1px solid var(--line)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,1.4rem + 2.4vw,2.8rem);margin:18px 0 0;line-height:1.1;text-wrap:balance}
+h2{font-family:var(--display);font-weight:400;font-size:1.6rem;margin:0 0 6px;text-wrap:balance}
+.eyebrow{font-family:var(--ui);font-weight:600;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink2)}
+.lede{color:var(--ink2);max-width:66ch;margin:10px 0 0}
+.sub{color:var(--ink2);font-size:.92rem;margin:0 0 16px;max-width:70ch}
+section{margin-top:52px}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:26px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;background:var(--panel)}
+.stat b{font-family:var(--display);font-weight:400;font-size:2.5rem;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:.86rem;color:var(--ink2)}
+.dl{font-family:var(--ui);font-weight:600;font-size:.75rem;color:var(--ink2)} .dl.up{color:var(--green)} .dl.dn{color:var(--red)}
+.bar{height:7px;background:var(--track);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:4px}
+.bar.red i{background:var(--red)} .bar.blue i{background:var(--blue)}
+.halves{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media(max-width:620px){.halves{grid-template-columns:1fr}}
+.half-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.half-card h3{margin:0;font-family:var(--ui);font-weight:600;font-size:.95rem;display:flex;justify-content:space-between}
+.half-card p{margin:0;font-size:.84rem;color:var(--ink2)}
+.key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--ink2);margin:10px 0 0}
+.key b{font-family:var(--mono);color:var(--ink)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:14px}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:.88rem}
+th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--ui);font-weight:600;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+td.name{font-family:var(--ui);font-weight:600;min-width:170px}
+td.name small{display:block;font-family:var(--body);font-weight:400;color:var(--ink2);font-size:.78rem}
+td.pct{width:110px} td.pct .p{font-family:var(--display);font-size:1.5rem;display:block;line-height:1.1;margin-bottom:4px;font-variant-numeric:tabular-nums}
+td.half{width:150px} .hv{display:grid;gap:3px;font-size:.74rem;color:var(--ink2);font-variant-numeric:tabular-nums}
+td.note{color:var(--ink2);font-size:.84rem;max-width:44ch;min-width:0}
+.dots{display:flex;gap:3px;font-family:var(--mono);font-size:.7rem}
+.dots span{width:21px;height:21px;display:grid;place-items:center;border:1px solid var(--line);border-radius:4px;color:var(--ink2)}
+.dots .f{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dots .h{background:linear-gradient(90deg,var(--ink) 50%,transparent 50%);border-color:var(--ink);color:transparent}
+.dots .sep{width:6px;border:0}
+.tag{display:inline-block;font-family:var(--ui);font-weight:600;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--tagbg);color:var(--tagfg);margin-right:6px}
+.chg{display:inline-block;font-family:var(--mono);font-size:.74rem;color:var(--green)}
+.houses{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
+.house{border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:7px;min-width:0;background:var(--panel)}
+.house.moved{border-color:var(--ink);border-width:2px;padding:13px}
+.house .hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.hn{font-family:var(--mono);font-size:.72rem;color:var(--ink2)} .pc{font-family:var(--display);font-size:1.35rem;font-variant-numeric:tabular-nums}
+.house h3{margin:0;font-family:var(--ui);font-weight:600;font-size:1rem}
+.house .meta{font-size:.78rem;color:var(--ink2)} .house p{margin:0;font-size:.83rem;color:var(--ink2)}
+.list{list-style:none;padding:0;margin:0;border:1px solid var(--line);border-radius:12px}
+.list li{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:.9rem}
+.list li:last-child{border-bottom:0}
+.list li b{font-family:var(--mono);font-weight:400;font-size:.8rem;color:var(--ink2)}
+.list li div{font-family:var(--ui);font-weight:600;min-width:0}
+.list li span{display:block;font-family:var(--body);font-weight:400;color:var(--ink2);font-size:.85rem}
+@media(max-width:520px){.list li{grid-template-columns:1fr;gap:2px}}
+.ready{display:grid;gap:8px;margin-top:16px}
+.ready li{grid-template-columns:110px 1fr}
+.moves{counter-reset:m;list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.moves li{counter-increment:m;display:grid;grid-template-columns:40px 1fr;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-family:var(--ui);font-weight:600}
+.moves li::before{content:counter(m);font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1}
+.moves li span{display:block;font-family:var(--body);font-weight:400;color:var(--ink2);font-size:.86rem}
+.foot{margin-top:44px;font-size:.8rem;color:var(--ink2);border-top:1px solid var(--line);padding-top:14px;max-width:80ch}
+</style>
+<div class="wrap">
+ <div class="brand">Lorraen Madre</div>
+ <div class="term">&gt; status as of Wed 7 Oct 2026 · Universal Family Office</div>
+ <h1>Where everything stands</h1>
+ <p class="lede">Every product is scored against one finish line: making money and running on its own. Each product is split in half. The money half is its Goal, eight Outcomes, a live deliverable and a tested checkout. The automation half is its Plan and tasks, connected tools, and work that runs without you.</p>
+
+ <div class="summary">
+  <div class="stat"><b>24%</b><span>Products, average toward automated + monetized</span><div class="bar " role="img" aria-label="24%"><i style="width:24%"></i></div><span class="dl up">+3 since yesterday</span></div>
+  <div class="stat"><b>62%</b><span>Houses 1–13 set up and running</span><div class="bar " role="img" aria-label="62%"><i style="width:62%"></i></div><span class="dl">now includes House 13</span></div>
+  <div class="stat"><b>48%</b><span>The UFO operating system itself</span><div class="bar " role="img" aria-label="48%"><i style="width:48%"></i></div><span class="dl">same as yesterday</span></div>
+  <div class="stat"><b>43%</b><span>Ready to start Asjai's sprint</span><div class="bar " role="img" aria-label="43%"><i style="width:43%"></i></div><span class="dl up">+17 since yesterday</span></div>
+ </div>
+ <div class="halves">
+  <div class="half-card"><h3><span>Money half</span><span>20%</span></h3><div class="bar red" role="img" aria-label="20%"><i style="width:20%"></i></div><p>Goal, 8 Outcomes, deliverable live, checkout tested. Lowest because no product has a written SMART Goal yet, and only the Amazon book has a checkout proven end to end.</p></div>
+  <div class="half-card"><h3><span>Automation half</span><span>28%</span></h3><div class="bar blue" role="img" aria-label="28%"><i style="width:28%"></i></div><p>Plan + tasks, tools connected, runs on its own. The hourly #ai-board runner, the daily transit brief and the daily grant report are real; nothing has published to social on its own yet.</p></div>
+ </div>
+
+ <section id="products">
+  <div class="eyebrow">Products</div>
+  <h2>Fourteen products, two halves each</h2>
+  <p class="sub">Each square is one check: filled is done, half-filled is started, empty is missing. Scored only on things that exist or that you or Leonardo reported; nothing is filled in for work that hasn't started.</p>
+  <div class="key"><span><b>G</b> Goal</span><span><b>O</b> 8 Outcomes</span><span><b>L</b> Deliverable live</span><span><b>C</b> Checkout tested</span><span>|</span><span><b>P</b> Plan + 64 tasks</span><span><b>I</b> Tools connected</span><span><b>A</b> Runs on its own</span></div>
+  <div class="tbl"><table>
+   <thead><tr><th>Product</th><th>Overall</th><th>Halves</th><th>G O P L C · I A</th><th>What's true right now</th></tr></thead>
+   <tbody><tr>
+<td class="name">The Wishing Reel<small>$13 2027 movie calendar · House 13</small></td>
+<td class="pct"><span class="p">44%</span><div class="bar " role="img" aria-label="44%"><i style="width:44%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 38%</span><div class="bar red" role="img" aria-label="38%"><i style="width:38%"></i></div><span>Automation 50%</span><div class="bar blue" role="img" aria-label="50%"><i style="width:50%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="f" title="Deliverable live: done">L</span><span class="h" title="Checkout tested: started">C</span><span class="sep" aria-hidden="true"></span><span class="h" title="Tools connected: started">I</span><span class="h" title="Runs on its own: started">A</span></div></td>
+<td class="note"><span class="tag">Live</span><span class="chg">Light Scouts trivia bot started</span><br>Site, $13 Stripe link and Discord invite are live. No test purchase yet, so delivery is unproven. The Light Scouts trivia bot for Discord points was started this morning (database only so far).</td></tr><tr>
+<td class="name">LORRAEN MADRE site<small>lorraenmadre.com · House 01</small></td>
+<td class="pct"><span class="p">35%</span><div class="bar " role="img" aria-label="35%"><i style="width:35%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 38%</span><div class="bar red" role="img" aria-label="38%"><i style="width:38%"></i></div><span>Automation 33%</span><div class="bar blue" role="img" aria-label="33%"><i style="width:33%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="f" title="Deliverable live: done">L</span><span class="h" title="Checkout tested: started">C</span><span class="sep" aria-hidden="true"></span><span class="h" title="Tools connected: started">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Live</span><br>Home page live with the $13 link. Work and Connect forms still save nowhere, and /smile/ returned 404 at yesterday&#x27;s check.</td></tr><tr>
+<td class="name">Lady and the Wish<small>Amazon book + Substack · House 09</small></td>
+<td class="pct"><span class="p">35%</span><div class="bar " role="img" aria-label="35%"><i style="width:35%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 38%</span><div class="bar red" role="img" aria-label="38%"><i style="width:38%"></i></div><span>Automation 33%</span><div class="bar blue" role="img" aria-label="33%"><i style="width:33%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="h" title="Deliverable live: started">L</span><span class="f" title="Checkout tested: done">C</span><span class="sep" aria-hidden="true"></span><span class="h" title="Tools connected: started">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Selling</span><br>Book is for sale on Amazon. Dream is nearly done. No daily posting yet.</td></tr><tr>
+<td class="name">OMW<small>Miami Family Travel Club · Mars</small></td>
+<td class="pct"><span class="p">29%</span><div class="bar " role="img" aria-label="29%"><i style="width:29%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 25%</span><div class="bar red" role="img" aria-label="25%"><i style="width:25%"></i></div><span>Automation 33%</span><div class="bar blue" role="img" aria-label="33%"><i style="width:33%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="f" title="Deliverable live: done">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="h" title="Tools connected: started">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Live</span><br>omw.life and omw.lorraenmadre.com are live. The Perplexity grant report arrives daily. No $111 or $333 checkout yet; grants wait on the $500 Florida filing.</td></tr><tr>
+<td class="name">Sunshine Pocket Therapy<small>North Node · North Node</small></td>
+<td class="pct"><span class="p">29%</span><div class="bar " role="img" aria-label="29%"><i style="width:29%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 25%</span><div class="bar red" role="img" aria-label="25%"><i style="width:25%"></i></div><span>Automation 33%</span><div class="bar blue" role="img" aria-label="33%"><i style="width:33%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="f" title="Deliverable live: done">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="" title="Tools connected: missing">I</span><span class="h" title="Runs on its own: started">A</span></div></td>
+<td class="note"><span class="tag">Live</span><br>Site live with no checkout or booking link.</td></tr><tr>
+<td class="name">28-day onboarding<small>Asjai · first sprint client · House 05</small></td>
+<td class="pct"><span class="p">29%</span><div class="bar " role="img" aria-label="29%"><i style="width:29%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 25%</span><div class="bar red" role="img" aria-label="25%"><i style="width:25%"></i></div><span>Automation 33%</span><div class="bar blue" role="img" aria-label="33%"><i style="width:33%"></i></div></div></td>
+<td><div class="dots"><span class="h" title="Goal: started">G</span><span class="h" title="8 Outcomes: started">O</span><span class="f" title="Plan + 64 tasks: done">P</span><span class="" title="Deliverable live: missing">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="" title="Tools connected: missing">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Intake in</span><span class="chg">Client notes received Oct 6</span><br>All 28 days are scripted. Asjai sent her full ecosystem notes on Oct 6, and her Shopify list gives eight ready-made Outcomes. Price, scope and invoice aren&#x27;t agreed.</td></tr><tr>
+<td class="name">LORRAEN MADRE Voice<small>CarPlay voice app · Sun</small></td>
+<td class="pct"><span class="p">27%</span><div class="bar " role="img" aria-label="27%"><i style="width:27%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 38%</span><div class="bar red" role="img" aria-label="38%"><i style="width:38%"></i></div><span>Automation 17%</span><div class="bar blue" role="img" aria-label="17%"><i style="width:17%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="" title="Plan + 64 tasks: missing">P</span><span class="f" title="Deliverable live: done">L</span><span class="h" title="Checkout tested: started">C</span><span class="sep" aria-hidden="true"></span><span class="h" title="Tools connected: started">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Live</span><span class="chg">Founder status page added today</span><br>Published at lorraenmadre.floot.app with a phone build. Talk, Board, Sky, 9×9 builds and LM Radio work. The $1/month and UFO checkouts are coded but no payment has gone through end to end. Notion, Slack and Trello aren&#x27;t wired in yet.</td></tr><tr>
+<td class="name">UFO app<small>lorraenmadre.app · Sun</small></td>
+<td class="pct"><span class="p">23%</span><div class="bar " role="img" aria-label="23%"><i style="width:23%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 12%</span><div class="bar red" role="img" aria-label="12%"><i style="width:12%"></i></div><span>Automation 33%</span><div class="bar blue" role="img" aria-label="33%"><i style="width:33%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="h" title="Deliverable live: started">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="h" title="Tools connected: started">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Live</span><span class="chg">Founder status added today</span><br>Front end live. The sign-in and connection server has never been deployed, so $1,111 onboarding can&#x27;t be bought here yet. House map and this status were added today.</td></tr><tr>
+<td class="name">LM Radio<small>hourly frequency + nature sound · —</small></td>
+<td class="pct"><span class="p">23%</span><div class="bar " role="img" aria-label="23%"><i style="width:23%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 12%</span><div class="bar red" role="img" aria-label="12%"><i style="width:12%"></i></div><span>Automation 33%</span><div class="bar blue" role="img" aria-label="33%"><i style="width:33%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="h" title="Deliverable live: started">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="h" title="Tools connected: started">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Inside Voice</span><span class="chg">Rescored: player already built</span><br>The radio already plays inside the Voice app header. No YouTube channel episode yet.</td></tr><tr>
+<td class="name">Newcastle<small>Digital Organization · House 10</small></td>
+<td class="pct"><span class="p">17%</span><div class="bar " role="img" aria-label="17%"><i style="width:17%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 0%</span><div class="bar red" role="img" aria-label="0%"><i style="width:0%"></i></div><span>Automation 33%</span><div class="bar blue" role="img" aria-label="33%"><i style="width:33%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="" title="Deliverable live: missing">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="h" title="Tools connected: started">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">In design</span><span class="chg">Now House 10</span><br>MVP spec exists and the Google Drive shared-brain folder is chosen. Not yet a working command center.</td></tr><tr>
+<td class="name">makeCENTS<small>Home Economy · $22 · House 02</small></td>
+<td class="pct"><span class="p">15%</span><div class="bar " role="img" aria-label="15%"><i style="width:15%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 12%</span><div class="bar red" role="img" aria-label="12%"><i style="width:12%"></i></div><span>Automation 17%</span><div class="bar blue" role="img" aria-label="17%"><i style="width:17%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="h" title="Deliverable live: started">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="" title="Tools connected: missing">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Built, not live</span><span class="chg">Now House 2</span><br>Home Economy page, PRD and a Whop neobank draft exist. Not on makecents.lorraenmadre.com and no $22 checkout. Ebony is the next likely client.</td></tr><tr>
+<td class="name">The Key<small>Claude Cookbook extension + PDF · House 04</small></td>
+<td class="pct"><span class="p">15%</span><div class="bar " role="img" aria-label="15%"><i style="width:15%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 12%</span><div class="bar red" role="img" aria-label="12%"><i style="width:12%"></i></div><span>Automation 17%</span><div class="bar blue" role="img" aria-label="17%"><i style="width:17%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="h" title="Deliverable live: started">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="" title="Tools connected: missing">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">New</span><span class="chg">New product</span><br>You have the digital PDF people follow; the technical Cookbook was drafted Oct 6. The extension itself isn&#x27;t built and there&#x27;s no sales page or price.</td></tr><tr>
+<td class="name">Woo Woo Watch<small>Apple Watch timing · House 07</small></td>
+<td class="pct"><span class="p">8%</span><div class="bar " role="img" aria-label="8%"><i style="width:8%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 0%</span><div class="bar red" role="img" aria-label="0%"><i style="width:0%"></i></div><span>Automation 17%</span><div class="bar blue" role="img" aria-label="17%"><i style="width:17%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="" title="Deliverable live: missing">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="" title="Tools connected: missing">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Concept</span><span class="chg">Now House 7</span><br>Moon phase and red, green, yellow, gray timing defined; Leonardo&#x27;s daily transit brief is the closest live piece. No watch build.</td></tr><tr>
+<td class="name">WISH WELL cards<small>Etsy, ten at a time · —</small></td>
+<td class="pct"><span class="p">8%</span><div class="bar " role="img" aria-label="8%"><i style="width:8%"></i></div></td>
+<td class="half"><div class="hv"><span>Money 0%</span><div class="bar red" role="img" aria-label="0%"><i style="width:0%"></i></div><span>Automation 17%</span><div class="bar blue" role="img" aria-label="17%"><i style="width:17%"></i></div></div></td>
+<td><div class="dots"><span class="" title="Goal: missing">G</span><span class="" title="8 Outcomes: missing">O</span><span class="h" title="Plan + 64 tasks: started">P</span><span class="" title="Deliverable live: missing">L</span><span class="" title="Checkout tested: missing">C</span><span class="sep" aria-hidden="true"></span><span class="" title="Tools connected: missing">I</span><span class="" title="Runs on its own: missing">A</span></div></td>
+<td class="note"><span class="tag">Specified</span><br>Needs the first ten finished cards and one Etsy listing.</td></tr></tbody></table></div>
+ </section>
+
+ <section id="houses">
+  <div class="eyebrow">Houses</div>
+  <h2>Departments 1–13</h2>
+  <p class="sub">Four checks per House, 25% each: the department is defined, its product exists, its platform is connected, and it runs on its cadence. Houses outlined in bold changed today: 2 makeCENTS, 7 Woo Woo Watch, 10 Newcastle, 12 Dream Backlog, 13 the Wishing Reel.</p>
+  <div class="houses"><div class="house"><div class="hd"><span class="hn">HOUSE 01 · 6 months</span><span class="pc">75%</span></div><div class="bar " role="img" aria-label="75%"><i style="width:75%"></i></div>
+<h3>LORRAEN MADRE</h3><div class="meta">Family Business · Website</div><p>Site live. No six-month plan running.</p></div><div class="house moved"><div class="hd"><span class="hn">HOUSE 02 · Hourly</span><span class="pc">50%</span></div><div class="bar " role="img" aria-label="50%"><i style="width:50%"></i></div>
+<h3>makeCENTS</h3><div class="meta">Treasury · Whop / web</div><span class="chg">New · was Woo Woo Watch</span><p>Home Economy built. No domain or checkout yet.</p></div><div class="house"><div class="hd"><span class="hn">HOUSE 03 · 3 × 28 days</span><span class="pc">50%</span></div><div class="bar " role="img" aria-label="50%"><i style="width:50%"></i></div>
+<h3>Wish Well GPT</h3><div class="meta">Telecommunications · Goals · GPT</div><p>Goal rules written; Goal database not built.</p></div><div class="house"><div class="hd"><span class="hn">HOUSE 04 · Monthly</span><span class="pc">50%</span></div><div class="bar " role="img" aria-label="50%"><i style="width:50%"></i></div>
+<h3>The Cookbook + The Key</h3><div class="meta">Holistic Home Health · Claude + book</div><p>Cookbook exists. The Key PDF exists; extension not built.</p></div><div class="house"><div class="hd"><span class="hn">HOUSE 05 · 2-week sprint</span><span class="pc">63%</span></div><div class="bar " role="img" aria-label="63%"><i style="width:63%"></i></div>
+<h3>The Pride</h3><div class="meta">Work and Play · Slack</div><p>#ai-board posts every hour. SPRINT v1 still has no dates.</p></div><div class="house"><div class="hd"><span class="hn">HOUSE 06 · Weekly</span><span class="pc">88%</span></div><div class="bar " role="img" aria-label="88%"><i style="width:88%"></i></div>
+<h3>Fruitful Frameworks</h3><div class="meta">Systems and Habits · Notion</div><p>Built. Not reviewed weekly yet.</p></div><div class="house moved"><div class="hd"><span class="hn">HOUSE 07 · 24 hours</span><span class="pc">38%</span></div><div class="bar " role="img" aria-label="38%"><i style="width:38%"></i></div>
+<h3>Woo Woo Watch</h3><div class="meta">Engines and Accountability · Apple Watch</div><span class="chg">New · was Newcastle</span><p>The hourly runner is live; the watch is concept only.</p></div><div class="house"><div class="hd"><span class="hn">HOUSE 08 · On event</span><span class="pc">50%</span></div><div class="bar " role="img" aria-label="50%"><i style="width:50%"></i></div>
+<h3>Mona Lisa Smile</h3><div class="meta">Outcomes and Exits · Miro</div><p>Outcome register not built. /smile/ down.</p></div><div class="house"><div class="hd"><span class="hn">HOUSE 09 · Quarterly</span><span class="pc">75%</span></div><div class="bar " role="img" aria-label="75%"><i style="width:75%"></i></div>
+<h3>Lady and the Wish</h3><div class="meta">Trust, Travel, Plans · Amazon</div><p>Book on sale. No quarterly plan yet.</p></div><div class="house moved"><div class="hd"><span class="hn">HOUSE 10 · Birthday</span><span class="pc">63%</span></div><div class="bar " role="img" aria-label="63%"><i style="width:63%"></i></div>
+<h3>Newcastle · Digital Organization</h3><div class="meta">Story and Standards · Google</div><span class="chg">New · was Dream Backlog</span><p>Drive is connected; the command center isn&#x27;t built.</p></div><div class="house"><div class="hd"><span class="hn">HOUSE 11 · Seasonal</span><span class="pc">25%</span></div><div class="bar " role="img" aria-label="25%"><i style="width:25%"></i></div>
+<h3>Water Wine</h3><div class="meta">Community Network · GoHighLevel</div><p>CRM not set up. Forms save nowhere.</p></div><div class="house moved"><div class="hd"><span class="hn">HOUSE 12 · Yearly</span><span class="pc">88%</span></div><div class="bar " role="img" aria-label="88%"><i style="width:88%"></i></div>
+<h3>Dream Backlog</h3><div class="meta">Mind, Body, Soul · Trello</div><span class="chg">New · was Jungle Book</span><p>Board built and holding Wishes. Two empty duplicate boards to delete.</p></div><div class="house moved"><div class="hd"><span class="hn">HOUSE 13 · Daily</span><span class="pc">88%</span></div><div class="bar " role="img" aria-label="88%"><i style="width:88%"></i></div>
+<h3>The Wishing Reel</h3><div class="meta">Creation · Stripe + Discord</div><span class="chg">New · was You, choosing in the present</span><p>Live with a $13 link. Daily posts are drafted, not yet published.</p></div></div>
+ </section>
+
+
+ <section id="ufo">
+  <div class="eyebrow">The UFO itself</div>
+  <h2>Is the operating system complete? 48%</h2>
+  <p class="sub">Eleven parts a client needs before they can run on it. Done counts 1, partial ½.</p>
+  <ul class="list ready">
+   <li><b>Done</b><div>Wish intake → Trello Dream Backlog<span>Rabbit Hole, House lists, N/S/E/W, Players (the Pride). Now House 12.</span></div></li>
+   <li><b>Done</b><div>Hero Inbox, Task Queue, Approval Queue in Notion</div></li>
+   <li><b>Mostly</b><div>13 House pages + 7 weekday Gate views<span>Live views wired. Nav strip still to paste onto each page.</span></div></li>
+   <li><b>Partial</b><div>Shared brain: Obsidian vault + #ai-board + AI Handoff log<span>Claude and Leonardo both log here. ChatGPT has no direct vault access.</span></div></li>
+   <li><b>Partial</b><div>Runners while you're away<span>Improved: the #ai-board runner checks in every hour, Leonardo posts a daily transit brief, Perplexity sends the daily grant report. None of them publishes or sells yet.</span></div></li>
+   <li><b>Partial</b><div>Publishing through Metricool<span>IG, TikTok, Pinterest, YouTube connected. No post confirmed published from the pipeline.</span></div></li>
+   <li><b>Partial</b><div>Payments<span>Stripe $13 link live; Voice app checkout coded. No purchase tested end to end.</span></div></li>
+   <li><b>Spec only</b><div>Goal → 8 Outcomes → Quarterly Plan databases<span>Rules written Sep 24. No database relations built.</span></div></li>
+   <li><b>Empty</b><div>Current sprint<span>SPRINT v1 still has no dates, Goal or tasks. Asjai's sprint is the natural first one.</span></div></li>
+   <li><b>Missing</b><div>CRM (House 11)<span>Form submissions from the sites aren't stored anywhere.</span></div></li>
+   <li><b>Missing</b><div>UFO app back end<span>server.ts with the Google and Nango connections is not deployed.</span></div></li>
+  </ul>
+  <ul class="list ready" style="margin-top:12px">
+   <li><b>Assigned</b><div>Support pipelines: Perplexity (grants), Polar (trading research), Metricool (scheduling)<span>Grant report arriving daily. No grant application or scheduled post confirmed yet.</span></div></li>
+   <li><b>Blocked</b><div>Symphony UGC campaign<span>Out of AI credits since Oct 5; waiting on a plan decision.</span></div></li>
+  </ul>
+ </section>
+ <section id="onboarding">
+  <div class="eyebrow">First client</div>
+  <h2>Asjai's notes against the 28 days</h2>
+  <p class="sub">Her Oct 6 email, "Asjai Lou Digital Ecosystem", already answers most of Sprint 1. Here is where each part of it lands. Her first deliverable is the Shopify store.</p>
+  <ul class="list"><li><b>D01</b><div>A place for your wish<span>One connected world around Asjai Lou, not a pile of separate sites.</span></div></li><li><b>D02</b><div>Tell me the story<span>Diary of Asjai Lou: the series that turns casting followers into fans.</span></div></li><li><b>D04</b><div>Meet your Projects<span>AsjaiLou.com · Now Casting on Substack · Shopify · course platform · AsjaiLouCasting.com</span></div></li><li><b>D05</b><div>Give the Goal a shape<span>First deliverable: the Shopify store, live with checkout, by the end of Sprint 1.</span></div></li><li><b>D06</b><div>Recognize an Outcome<span>Her Shopify list is already eight: design, categories, physical pages, digital pages, service pages, checkout, mobile, TikTok Shop. Moving her Stan offers is task-level.</span></div></li><li><b>D10</b><div>What makes a Deal?<span>Now Casting+ at $2.99/month founding price; Industry Insider guests.</span></div></li><li><b>D11</b><div>Your daily Engine<span>TikTok post → “join Now Casting free” → Substack email. One loop, repeated.</span></div></li><li><b>D13</b><div>Meet your Pride<span>Her graphic designer, available one or two more weeks. Brand identity for Asjai Lou and Lou Lou&#x27;s World should land while he&#x27;s there.</span></div></li><li><b>D16–D17</b><div>Houses 1 and 2<span>House 1: Asjai Lou brand. House 2: Shopify + Now Casting+ revenue.</span></div></li><li><b>D18 · D26</b><div>Houses 3 and 11<span>Substack and TikTok as communication; audience tagging and the Reality TV quiz as her network.</span></div></li><li><b>D23</b><div>House 8<span>Her tracking list (source, clicks, free-to-paid, sales) becomes the Outcome evidence.</span></div></li></ul>
+
+  <details style="margin-top:14px"><summary class="eyebrow" style="cursor:pointer">All 28 days</summary>
+  <div class="halves">
+   <div class="half-card"><h3>Sprint 1 · Learn to tell your world</h3><p>D01 A place for your wish · D02 Tell me the story · D03 Make room for the dream · D04 Meet your Projects · D05 Give the Goal a shape · D06 Recognize an Outcome · D07 Give the Plan a home · D08 One Task you can recognize · D09 Keep the idea, release the pressure · D10 What makes a Deal? · D11 Your daily Engine and scorecard · D12 See your story in time · D13 Meet your Pride · D14 Look at what you can now explain</p></div>
+   <div class="half-card"><h3>Sprint 2 · Put your world to work</h3><p>D15 House 12 · D16 House 1 · D17 House 2 · D18 House 3 · D19 House 4 · D20 House 5 · D21 House 6 · D22 House 7 · D23 House 8 · D24 House 9 · D25 House 10 · D26 House 11 · D27 Follow one thread through your world · D28 Choose your next chapter</p></div>
+  </div>
+  <p class="sub" style="margin-top:8px">USB starter kit stays separate from the pilot; buy one sample after Days 1–4 pass.</p></details>
+  <h2 style="margin-top:28px;font-size:1.25rem">Ready to start her: 43%</h2>
+  <ul class="list ready">
+   <li><b>Done</b><div>Scripts, prompts and proof for all 28 days<span>Leonardo's manuscript, Oct 6.</span></div></li>
+   <li><b>Done</b><div>Her intake<span>Full ecosystem notes received; eight Shopify Outcomes are already named.</span></div></li>
+   <li><b>Partial</b><div>Where her answers save<span>Her Trello card and Notion home are defined, not created.</span></div></li>
+   <li><b>Partial</b><div>Fairy Godmother videos<span>Reuse the existing flashcards with a voiceover for the first version.</span></div></li>
+   <li><b>Your call</b><div>Price, scope and invoice<span>$1,111 onboarding is the listed price; her reported interest was $1,000.</span></div></li>
+   <li><b>Not built</b><div>One reusable lesson page<span>Prompt, save, reopen link and progress. Build once for all 28 days.</span></div></li>
+   <li><b>Not started</b><div>Days 1–4 tested by you first</div></li>
+  </ul>
+  <p class="sub" style="margin-top:12px">Next in line: Ebony, who liked makeCENTS. She needs the $22 Home Economy checkout live before she can start.</p>
+ </section>
+
+ <section id="next">
+  <div class="eyebrow">Biggest moves</div>
+  <h2>What raises the numbers fastest</h2>
+  <ol class="moves"><li><div>Agree Asjai&#x27;s scope and send the invoice.<span>Pilot = the Shopify store in Sprint 1. Turns her notes into your first onboarding revenue.</span></div></li><li><div>Write one SMART Goal and eight Outcomes for the Wishing Reel and for makeCENTS.<span>Fills the two empty money checks on both. One sitting.</span></div></li><li><div>Make one $13 test purchase on the Wishing Reel.<span>Proves checkout through delivery, or shows where it breaks.</span></div></li><li><div>Put makeCENTS on makecents.lorraenmadre.com with its $22 link.<span>So Ebony has something to buy when you onboard her.</span></div></li><li><div>Give The Key a price and a sales page in the Library.<span>The PDF already exists; it needs a way to be bought.</span></div></li><li><div>Get one Story Post exported and scheduled in Metricool.<span>The first automated post with a live link.</span></div></li><li><div>Fix the two silent leaks.<span>/smile/ returns 404, and the Work and Connect forms save nowhere.</span></div></li></ol>
+ </section>
+
+ <p class="foot">Built from yesterday's board, the UFO app repository, the Voice app on Floot (published, phone build succeeded Sep 25), Slack #ai-board through 07:05 today, the Notion House Index, Leonardo's Oct 6 onboarding correction, Asjai's Oct 6 email and the Perplexity grant report. Sites were not re-opened today, so live-site notes carry over from yesterday's check. The money/automation split is new today, so the overall project score moved partly from the reweighting: yesterday's 21% used seven equal checks.</p>
+</div>
+</body></html>
