@@ -11,6 +11,7 @@ import WelcomeJourney from './components/WelcomeJourney';
 import GateOnboarding from './components/GateOnboarding';
 import EngineJourney from './components/EngineJourney';
 import EngineGrid from './components/EngineGrid';
+import FounderStatus from './components/FounderStatus';
 import VoiceOrb from './components/VoiceOrb';
 import StoryThread from './components/StoryThread';
 import {useJourney,JOURNEY_DAYS,addContribution} from './journey';
@@ -282,6 +283,7 @@ export default function App() {
             {/* Lorraine Chat Top */}
             <GateOnboarding key={user?.uid||'preview'} scope={user?.uid||'preview'} onHistory={setGateDrafts}/>
             <EngineGrid scope={user?.uid||'preview'} journey={journey} onSelect={component=>{updateJourney({...journey,component});}} onOpenHouse={id=>{setSelectedEntityId(id);window.scrollTo({top:0});}}/>
+            {viewMode === 'business' && <FounderStatus />}
 
 
 

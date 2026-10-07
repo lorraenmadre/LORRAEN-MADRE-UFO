@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-24.1",
+  "version": "2026-10-07.1",
   "brand": "LORRAEN MADRE",
   "mothership": "Sterling Drive Consulting",
   "structure": "Universal Family Office (UFO)",
@@ -16,10 +16,10 @@
     {
       "number": 2,
       "department": "Treasury",
-      "product": "Woo Woo Watch",
-      "platform": "Apple Watch",
+      "product": "makeCENTS",
+      "platform": "Whop / web app",
       "cadence": "Hourly view",
-      "description": "Cash, credit and crypto; hourly trade opportunity view. Watch concept displays moon phase and red/green/yellow/gray timing."
+      "description": "Home Economy: cash, credit and crypto run as departments of your family bank, the 13 Bulls, with money made per hour on one chart. $22 one-time for your own Home Economy."
     },
     {
       "number": 3,
@@ -56,10 +56,10 @@
     {
       "number": 7,
       "department": "Engines and Accountability",
-      "product": "Newcastle",
-      "platform": "Google",
+      "product": "Woo Woo Watch",
+      "platform": "Apple Watch",
       "cadence": "24-hour engine loop",
-      "description": "Daily agent execution for content, leads, trading or other defined workflows. Receipts and accountability use House 5 timing."
+      "description": "Daily timing for the engine: moon phase and red/green/yellow/gray signals on the wrist. Daily agent execution and receipts use House 5 timing."
     },
     {
       "number": 8,
@@ -80,10 +80,10 @@
     {
       "number": 10,
       "department": "Story and Standards",
-      "product": "Dream Backlog",
-      "platform": "Trello",
-      "cadence": "Intentions; cadence not specified",
-      "description": "Capture intentions and wishes. Goals, intentions and manifestations are distinct linked objects."
+      "product": "Newcastle",
+      "platform": "Google",
+      "cadence": "Birthday",
+      "description": "Digital Organization: the private command center for your documents, Drive folders, house dashboards and timeline. Paired with ST. MADRE. RAE."
     },
     {
       "number": 11,
@@ -96,18 +96,18 @@
     {
       "number": 12,
       "department": "Mind, Body, Soul Activation",
-      "product": "Jungle Book",
-      "platform": "Unassigned",
-      "cadence": "Whole-system integration",
-      "description": "Stories and manifestations across all houses. Three general manifestations per house become mantras; goals can support them. One existing manifestation page is intended for this."
+      "product": "Dream Backlog",
+      "platform": "Trello",
+      "cadence": "Yearly",
+      "description": "Capture every wish before it gets lost. Wishes are cleaned with SOAP, sorted North/South/East/West or kept in Wonderland, and become Goals, Tasks or Deals."
     },
     {
       "number": 13,
       "department": "Creation",
-      "product": null,
-      "platform": null,
-      "cadence": "Present moment",
-      "description": "You are the 13th house: choice, action or inaction, and how you manage the twelve houses now. Keep the principle; do not invent a separate product or platform."
+      "product": "The Wishing Reel",
+      "platform": "Stripe + Discord",
+      "cadence": "Daily",
+      "description": "The 365-day movie calendar: one story a day, a family trip behind every movie, and Light Scouts trivia points. You are still the 13th house: the story you choose today."
     }
   ],
   "portfolio": [
@@ -549,8 +549,6 @@
   "unresolved": [
     "Dinosaur spellings marked unconfirmed must not be normalized silently.",
     "Gemini first-house statement conflicts with later dinosaur house-number references; store signs/platforms separately from house routing.",
-    "Jungle Book has no selected platform.",
-    "House 13 has no separate product/platform; it represents the person choosing in the present.",
     "Personal project names for Chiron, Juno and Vesta remain unconfirmed.",
     "Existing sprint dates/ceremony times and lunar-phase task assignments must be verified before scheduling."
   ],

@@ -25,9 +25,9 @@ export const ENGINE_HOUSES: { n: number; title: string; text: string }[] = [
   { n: 7, title: 'Contracts / Accountability', text: 'Court dates, agreements, service, follow-through.' },
   { n: 8, title: 'Insurance / Risk', text: 'Evidence, safety, money risk, discipline.' },
   { n: 9, title: 'Trust / Travel / Therapy', text: 'Legal doctrine, travel logistics, the bigger path.' },
-  { n: 10, title: 'Story / Legacy', text: 'Backlog of tasks and important story records.' },
+  { n: 10, title: 'Story / Legacy', text: 'Digital organization: documents, folders and important story records.' },
   { n: 11, title: 'Community Network', text: 'Data governance and CRM.' },
-  { n: 12, title: 'Longevity', text: 'Mind, body and soul activation of the Hero’s journey.' },
+  { n: 12, title: 'Longevity', text: 'Mind, body and soul activation; the Dream Backlog keeps every wish.' },
 ];
 
 const hourNow = () => { const h = new Date().getHours() % 12; return h === 0 ? 12 : h; };

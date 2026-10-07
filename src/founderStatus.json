@@ -1,0 +1,449 @@
+{
+ "asOf": "2026-10-07",
+ "summary": {
+  "projects": 24,
+  "money": 20,
+  "auto": 28,
+  "houses": 62,
+  "system": 48,
+  "onboarding": 43,
+  "yesterday": {
+   "projects": 21,
+   "houses": 59,
+   "system": 48,
+   "onboarding": 26
+  }
+ },
+ "projects": [
+  {
+   "id": "wishing-reel",
+   "name": "The Wishing Reel",
+   "sub": "$13 2027 movie calendar",
+   "house": 13,
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 1,
+    "C": 0.5,
+    "I": 0.5,
+    "A": 0.5
+   },
+   "tag": "Live",
+   "note": "Site, $13 Stripe link and Discord invite are live. No test purchase yet, so delivery is unproven. The Light Scouts trivia bot for Discord points was started this morning (database only so far).",
+   "change": "Light Scouts trivia bot started",
+   "money": 38,
+   "auto": 50,
+   "total": 44
+  },
+  {
+   "id": "lm-site",
+   "name": "LORRAEN MADRE site",
+   "sub": "lorraenmadre.com",
+   "house": 1,
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 1,
+    "C": 0.5,
+    "I": 0.5,
+    "A": 0
+   },
+   "tag": "Live",
+   "note": "Home page live with the $13 link. Work and Connect forms still save nowhere, and /smile/ returned 404 at yesterday's check.",
+   "change": "",
+   "money": 38,
+   "auto": 33,
+   "total": 35
+  },
+  {
+   "id": "lady-wish",
+   "name": "Lady and the Wish",
+   "sub": "Amazon book + Substack",
+   "house": 9,
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0.5,
+    "C": 1,
+    "I": 0.5,
+    "A": 0
+   },
+   "tag": "Selling",
+   "note": "Book is for sale on Amazon. Dream is nearly done. No daily posting yet.",
+   "change": "",
+   "money": 38,
+   "auto": 33,
+   "total": 35
+  },
+  {
+   "id": "omw",
+   "name": "OMW",
+   "sub": "Miami Family Travel Club",
+   "house": null,
+   "planet": "Mars",
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 1,
+    "C": 0,
+    "I": 0.5,
+    "A": 0
+   },
+   "tag": "Live",
+   "note": "omw.life and omw.lorraenmadre.com are live. The Perplexity grant report arrives daily. No $111 or $333 checkout yet; grants wait on the $500 Florida filing.",
+   "change": "",
+   "money": 25,
+   "auto": 33,
+   "total": 29
+  },
+  {
+   "id": "spt",
+   "name": "Sunshine Pocket Therapy",
+   "sub": "North Node",
+   "house": null,
+   "planet": "North Node",
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 1,
+    "C": 0,
+    "I": 0,
+    "A": 0.5
+   },
+   "tag": "Live",
+   "note": "Site live with no checkout or booking link.",
+   "change": "",
+   "money": 25,
+   "auto": 33,
+   "total": 29
+  },
+  {
+   "id": "ufo-app",
+   "name": "UFO app",
+   "sub": "lorraenmadre.app",
+   "house": null,
+   "planet": "Sun",
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0.5,
+    "C": 0,
+    "I": 0.5,
+    "A": 0
+   },
+   "tag": "Live",
+   "note": "Front end live. The sign-in and connection server has never been deployed, so $1,111 onboarding can't be bought here yet. House map and this status were added today.",
+   "change": "Founder status added today",
+   "money": 12,
+   "auto": 33,
+   "total": 23
+  },
+  {
+   "id": "voice",
+   "name": "LORRAEN MADRE Voice",
+   "sub": "CarPlay voice app",
+   "house": null,
+   "planet": "Sun",
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0,
+    "L": 1,
+    "C": 0.5,
+    "I": 0.5,
+    "A": 0
+   },
+   "tag": "Live",
+   "note": "Published at lorraenmadre.floot.app with a phone build. Talk, Board, Sky, 9×9 builds and LM Radio work. The $1/month and UFO checkouts are coded but no payment has gone through end to end. Notion, Slack and Trello aren't wired in yet.",
+   "change": "Founder status page added today",
+   "money": 38,
+   "auto": 17,
+   "total": 27
+  },
+  {
+   "id": "onboarding",
+   "name": "28-day onboarding",
+   "sub": "Asjai · first sprint client",
+   "house": 5,
+   "c": {
+    "G": 0.5,
+    "O": 0.5,
+    "P": 1,
+    "L": 0,
+    "C": 0,
+    "I": 0,
+    "A": 0
+   },
+   "tag": "Intake in",
+   "note": "All 28 days are scripted. Asjai sent her full ecosystem notes on Oct 6, and her Shopify list gives eight ready-made Outcomes. Price, scope and invoice aren't agreed.",
+   "change": "Client notes received Oct 6",
+   "money": 25,
+   "auto": 33,
+   "total": 29
+  },
+  {
+   "id": "makecents",
+   "name": "makeCENTS",
+   "sub": "Home Economy · $22",
+   "house": 2,
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0.5,
+    "C": 0,
+    "I": 0,
+    "A": 0
+   },
+   "tag": "Built, not live",
+   "note": "Home Economy page, PRD and a Whop neobank draft exist. Not on makecents.lorraenmadre.com and no $22 checkout. Ebony is the next likely client.",
+   "change": "Now House 2",
+   "money": 12,
+   "auto": 17,
+   "total": 15
+  },
+  {
+   "id": "the-key",
+   "name": "The Key",
+   "sub": "Claude Cookbook extension + PDF",
+   "house": 4,
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0.5,
+    "C": 0,
+    "I": 0,
+    "A": 0
+   },
+   "tag": "New",
+   "note": "You have the digital PDF people follow; the technical Cookbook was drafted Oct 6. The extension itself isn't built and there's no sales page or price.",
+   "change": "New product",
+   "money": 12,
+   "auto": 17,
+   "total": 15
+  },
+  {
+   "id": "newcastle",
+   "name": "Newcastle",
+   "sub": "Digital Organization",
+   "house": 10,
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0,
+    "C": 0,
+    "I": 0.5,
+    "A": 0
+   },
+   "tag": "In design",
+   "note": "MVP spec exists and the Google Drive shared-brain folder is chosen. Not yet a working command center.",
+   "change": "Now House 10",
+   "money": 0,
+   "auto": 33,
+   "total": 17
+  },
+  {
+   "id": "woowoo",
+   "name": "Woo Woo Watch",
+   "sub": "Apple Watch timing",
+   "house": 7,
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0,
+    "C": 0,
+    "I": 0,
+    "A": 0
+   },
+   "tag": "Concept",
+   "note": "Moon phase and red, green, yellow, gray timing defined; Leonardo's daily transit brief is the closest live piece. No watch build.",
+   "change": "Now House 7",
+   "money": 0,
+   "auto": 17,
+   "total": 8
+  },
+  {
+   "id": "lm-radio",
+   "name": "LM Radio",
+   "sub": "hourly frequency + nature sound",
+   "house": null,
+   "planet": "",
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0.5,
+    "C": 0,
+    "I": 0.5,
+    "A": 0
+   },
+   "tag": "Inside Voice",
+   "note": "The radio already plays inside the Voice app header. No YouTube channel episode yet.",
+   "change": "Rescored: player already built",
+   "money": 12,
+   "auto": 33,
+   "total": 23
+  },
+  {
+   "id": "cards",
+   "name": "WISH WELL cards",
+   "sub": "Etsy, ten at a time",
+   "house": null,
+   "planet": "",
+   "c": {
+    "G": 0,
+    "O": 0,
+    "P": 0.5,
+    "L": 0,
+    "C": 0,
+    "I": 0,
+    "A": 0
+   },
+   "tag": "Specified",
+   "note": "Needs the first ten finished cards and one Etsy listing.",
+   "change": "",
+   "money": 0,
+   "auto": 17,
+   "total": 8
+  }
+ ],
+ "houses": [
+  {
+   "n": 1,
+   "dept": "Family Business",
+   "product": "LORRAEN MADRE",
+   "platform": "Website",
+   "cadence": "6 months",
+   "pct": 75,
+   "note": "Site live. No six-month plan running."
+  },
+  {
+   "n": 2,
+   "dept": "Treasury",
+   "product": "makeCENTS",
+   "platform": "Whop / web",
+   "cadence": "Hourly",
+   "pct": 50,
+   "note": "Home Economy built. No domain or checkout yet.",
+   "changed": true,
+   "was": "Woo Woo Watch"
+  },
+  {
+   "n": 3,
+   "dept": "Telecommunications · Goals",
+   "product": "Wish Well GPT",
+   "platform": "GPT",
+   "cadence": "3 × 28 days",
+   "pct": 50,
+   "note": "Goal rules written; Goal database not built."
+  },
+  {
+   "n": 4,
+   "dept": "Holistic Home Health",
+   "product": "The Cookbook + The Key",
+   "platform": "Claude + book",
+   "cadence": "Monthly",
+   "pct": 50,
+   "note": "Cookbook exists. The Key PDF exists; extension not built."
+  },
+  {
+   "n": 5,
+   "dept": "Work and Play",
+   "product": "The Pride",
+   "platform": "Slack",
+   "cadence": "2-week sprint",
+   "pct": 63,
+   "note": "#ai-board posts every hour. SPRINT v1 still has no dates."
+  },
+  {
+   "n": 6,
+   "dept": "Systems and Habits",
+   "product": "Fruitful Frameworks",
+   "platform": "Notion",
+   "cadence": "Weekly",
+   "pct": 88,
+   "note": "Built. Not reviewed weekly yet."
+  },
+  {
+   "n": 7,
+   "dept": "Engines and Accountability",
+   "product": "Woo Woo Watch",
+   "platform": "Apple Watch",
+   "cadence": "24 hours",
+   "pct": 38,
+   "note": "The hourly runner is live; the watch is concept only.",
+   "changed": true,
+   "was": "Newcastle"
+  },
+  {
+   "n": 8,
+   "dept": "Outcomes and Exits",
+   "product": "Mona Lisa Smile",
+   "platform": "Miro",
+   "cadence": "On event",
+   "pct": 50,
+   "note": "Outcome register not built. /smile/ down."
+  },
+  {
+   "n": 9,
+   "dept": "Trust, Travel, Plans",
+   "product": "Lady and the Wish",
+   "platform": "Amazon",
+   "cadence": "Quarterly",
+   "pct": 75,
+   "note": "Book on sale. No quarterly plan yet."
+  },
+  {
+   "n": 10,
+   "dept": "Story and Standards",
+   "product": "Newcastle · Digital Organization",
+   "platform": "Google",
+   "cadence": "Birthday",
+   "pct": 63,
+   "note": "Drive is connected; the command center isn't built.",
+   "changed": true,
+   "was": "Dream Backlog"
+  },
+  {
+   "n": 11,
+   "dept": "Community Network",
+   "product": "Water Wine",
+   "platform": "GoHighLevel",
+   "cadence": "Seasonal",
+   "pct": 25,
+   "note": "CRM not set up. Forms save nowhere."
+  },
+  {
+   "n": 12,
+   "dept": "Mind, Body, Soul",
+   "product": "Dream Backlog",
+   "platform": "Trello",
+   "cadence": "Yearly",
+   "pct": 88,
+   "note": "Board built and holding Wishes. Two empty duplicate boards to delete.",
+   "changed": true,
+   "was": "Jungle Book"
+  },
+  {
+   "n": 13,
+   "dept": "Creation",
+   "product": "The Wishing Reel",
+   "platform": "Stripe + Discord",
+   "cadence": "Daily",
+   "pct": 88,
+   "note": "Live with a $13 link. Daily posts are drafted, not yet published.",
+   "changed": true,
+   "was": "You, choosing in the present"
+  }
+ ],
+ "homeless": null
+}

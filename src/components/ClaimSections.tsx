@@ -11,7 +11,7 @@ interface Props{entities:Entity[];onAddSatellite:(e:Entity)=>void;onSelect:(id:s
 const STEPS:Record<string,string[]>={
  planets:['Name the project that lives on this planet.','Set one goal for the next six months: what will be true, how you will measure it, and by when.','Build it out in the voice app: 1 goal, 8 outcomes, 64 tasks.','Check the Time view to see when the planet is lit, and push it forward then.'],
  dinosaurs:['Connect the social media account shown on the card (Instagram, TikTok, YouTube and so on).','Name the dinosaur and give it the part of your family office it runs, like brand, story or community.','Let it post, answer and report back for that domain on its own rhythm.'],
- houses:['Open a House to see its product and where it lives.','Do that House’s work there: money in Woo Woo Watch, recipes in The Cookbook, and so on.','Come back here to see how far along each House is.'],
+ houses:['Open a House to see its product and where it lives.','Do that House’s work there: money in makeCENTS, recipes in The Cookbook, and so on.','Come back here to see how far along each House is.'],
  satellites:['Add each outside tool or partner you rely on.','Name what it does for your family office.'],
 };
 const SECTIONS=[

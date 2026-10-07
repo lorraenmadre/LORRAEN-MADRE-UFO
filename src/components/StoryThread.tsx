@@ -152,7 +152,7 @@ export default function StoryThread({ scope, entries }: { scope: string; entries
         </div>
       </form>
       {notice && <p role="status" className="lm-caption">{notice}</p>}
-      <p className="lm-caption lm-thread-foot">Saved on this browser. <a className="underline underline-offset-4" href="https://junglebook.lorraenmadre.com/" target="_blank" rel="noopener noreferrer">Jungle Book · Story Calendar ↗</a></p>
+      <p className="lm-caption lm-thread-foot">Saved on this browser. <a className="underline underline-offset-4" href="https://wishingreel.lorraenmadre.com/" target="_blank" rel="noopener noreferrer">The Wishing Reel · Story Calendar ↗</a></p>
     </section>
   );
 }

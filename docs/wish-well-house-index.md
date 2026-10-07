@@ -8,18 +8,18 @@ Version 2026-09-16.1. Canonical source: [README](../README.md) and [machine-read
 | House | Department | Product | Platform | Cadence |
 |---|---|---|---|---|
 | 1 | Family Business | LORRAEN MADRE | Website | Six months |
-| 2 | Treasury | Woo Woo Watch | Apple Watch | Hourly view |
+| 2 | Treasury | makeCENTS | Whop / web app | Hourly view |
 | 3 | Telecommunications | Wish Well GPT | GPT | Moon-phase ERP cycle |
 | 4 | Holistic Home Health | The Cookbook | Claude + physical/digital cookbook | Monthly |
 | 5 | Work and Play | The Pride | Slack | Biweekly sprint + daily scorecard |
 | 6 | Systems and Habits | Fruitful Frameworks | Notion | Weekly |
-| 7 | Engines and Accountability | Newcastle | Google | 24-hour engine loop |
+| 7 | Engines and Accountability | Woo Woo Watch | Apple Watch | 24-hour engine loop |
 | 8 | Risk and Exits | Mona Lisa Smile | Miro | Dated life events |
 | 9 | Trust, Travel and Therapy | Lady and the Wish Book | Amazon book series/store | Quarterly / 90 days |
-| 10 | Story and Standards | Dream Backlog | Trello | Intentions; cadence not specified |
+| 10 | Story and Standards | Newcastle (Digital Organization) | Google | Birthday |
 | 11 | Community Network | Water Wine | GoHighLevel | CRM; cadence not specified |
-| 12 | Mind, Body, Soul Activation | Jungle Book | Unassigned | Whole-system integration |
-| 13 | Creation | Not assigned | Not assigned | Present moment |
+| 12 | Mind, Body, Soul Activation | Dream Backlog | Trello | Yearly |
+| 13 | Creation | The Wishing Reel | Stripe + Discord | Daily |
 
 ### House 1 — Family Business
 
@@ -27,7 +27,7 @@ Help mothers create their own motherships and navigate/build their UFO. Read eac
 
 ### House 2 — Treasury
 
-Cash, credit and crypto; hourly trade opportunity view. Watch concept displays moon phase and red/green/yellow/gray timing.
+makeCENTS Home Economy: cash, credit and crypto as departments of the family bank (the 13 Bulls); money made per hour on one chart. $22 one-time. (Founder correction 2026-10-07; Woo Woo Watch moved to House 7.)
 
 ### House 3 — Telecommunications
 
@@ -47,7 +47,7 @@ Every house has all seven weekday dashboards, filtered to its area of life and l
 
 ### House 7 — Engines and Accountability
 
-Daily agent execution for content, leads, trading or other defined workflows. Receipts and accountability use House 5 timing.
+Woo Woo Watch: moon phase and red/green/yellow/gray timing for the daily engine. Daily agent execution for content, leads, trading or other defined workflows; receipts use House 5 timing. (2026-10-07; Newcastle moved to House 10.)
 
 ### House 8 — Risk and Exits
 
@@ -59,7 +59,7 @@ Equinox/solstice board meetings with travel, trust education, therapy and feelin
 
 ### House 10 — Story and Standards
 
-Capture intentions and wishes. Goals, intentions and manifestations are distinct linked objects.
+Newcastle, Digital Organization: private command center for documents, Drive folders, house dashboards and timeline. (2026-10-07; Dream Backlog moved to House 12.)
 
 ### House 11 — Community Network
 
@@ -67,13 +67,13 @@ GoHighLevel CRM template and connected relationship views in Notion.
 
 ### House 12 — Mind, Body, Soul Activation
 
-Stories and manifestations across all houses. Three general manifestations per house become mantras; goals can support them. One existing manifestation page is intended for this.
+Dream Backlog (Trello) captures every wish; stories and manifestations across all houses. Three general manifestations per house become mantras. (2026-10-07.)
 
 ### House 13 — Creation
 
-You are the 13th house: choice, action or inaction, and how you manage the twelve houses now. Keep the principle; do not invent a separate product or platform.
+You are the 13th house: choice, action or inaction, and how you manage the twelve houses now. Product: The Wishing Reel, the daily movie calendar (founder correction 2026-10-07).
 
-House 12 integrates all houses. Jungle Book's platform is unassigned. House 13 remains the human choice principle, without a separate product/platform. OMW.life is Mars/business activation; Ninth House Homeschool is Venus/content libraries. Those portfolio assignments do not replace the House 1 and House 9 products.
+House 12 integrates all houses through the Dream Backlog. House 13 remains the human choice principle; its product is The Wishing Reel. OMW.life is Mars/business activation; Ninth House Homeschool is Venus/content libraries. Those portfolio assignments do not replace the House 1 and House 9 products.
 
 ## Weekly rhythm inside every house
 
