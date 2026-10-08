@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LM Radio · AM · FM · LM</title>
+<meta name="description" content="LM Radio: a new natural frequency every hour, mixed with nature sound. Free inside the Lorraen Madre app.">
+<meta property="og:title" content="LM Radio · AM · FM · LM">
+<meta property="og:description" content="Tune into your frequency. A new natural frequency every hour, mixed with nature sound.">
+<meta property="og:image" content="https://radio.lorraenmadre.com/icon-512.png">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Belleza&family=Figtree:wght@500;700;800&family=Mulish:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--line:#262626;--blue:#004aad;--red:#f41c1c;--green:#00bf63;--gold:#c9a227;--gold-h:#d9b33a;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;color:#fff;font-family:"Mulish",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+a{color:#fff}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+.belleza{font-family:"Belleza","Optima","Gill Sans",sans-serif}
+.term{font-family:"Courier New",monospace;color:var(--green)}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 20px;font-family:"Figtree",sans-serif;font-weight:800;font-size:14px;text-decoration:none;border:1.5px solid #fff;background:#fff;color:#000;cursor:pointer}
+.pill.blue{background:var(--blue);border-color:var(--blue);color:#fff}
+.pill.red{background:var(--red);border-color:var(--red);color:#fff}
+.pill.ghost{background:transparent;color:#fff}
+.pill.gold{background:var(--gold);border-color:var(--gold);color:#111}
+.pill.gold:hover{background:var(--gold-h);border-color:var(--gold-h)}
+.pill[aria-disabled="true"]{opacity:.55;cursor:default}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:34px;height:34px;border-radius:8px;border:1px solid #333}
+.brand span{font-family:"Belleza",sans-serif;letter-spacing:.16em;text-transform:uppercase;font-size:15px}
+nav.links{display:flex;gap:18px;font-family:"Figtree",sans-serif;font-weight:700;font-size:13px}
+nav.links a{text-decoration:none;opacity:.85}
+@media(max-width:720px){nav.links{display:none}}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:56px 40px}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-block:36px 24px}}
+.kicker{font-family:"Figtree",sans-serif;font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;opacity:.7;margin:0 0 10px}
+h1{font-family:"Belleza",sans-serif;font-weight:400;font-size:clamp(46px,9vw,92px);line-height:.95;margin:0;letter-spacing:.02em;text-wrap:balance}
+h2{font-family:"Belleza",sans-serif;font-weight:400;font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0 0 12px;text-wrap:balance}
+.lede{font-size:18px;max-width:34em;margin:18px 0 22px}
+.tune{font-family:"Belleza",sans-serif;font-size:clamp(22px,3.4vw,30px);margin:6px 0 24px;min-height:1.3em}
+.tune .blank{display:inline-block;border-bottom:2px solid #fff;padding:0 4px;min-width:6ch;transition:opacity .35s}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px}
+.now{margin-top:22px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 7px;font-size:13px}
+.air{background:var(--red);color:#fff;border-radius:999px;padding:2px 9px;font-family:"Figtree",sans-serif;font-weight:800;font-size:10px;letter-spacing:.1em;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.55}}
+.phones{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.phone{position:relative;width:250px;max-width:100%;height:510px;background:#000;border:9px solid #1b1b1b;border-radius:40px;box-shadow:0 0 0 1px #3a3a3a,0 30px 60px -30px rgba(255,255,255,.12);padding:12px 13px;display:flex;flex-direction:column;overflow:hidden}
+.phone .isl{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:76px;height:21px;border-radius:999px;background:#121212}
+.phone .sb{display:flex;justify-content:space-between;font-size:10px;font-weight:700;padding:1px 8px 0}
+.phone .hd{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.phone .hd b{font-family:"Belleza",sans-serif;font-weight:400;letter-spacing:.14em;font-size:12px;text-transform:uppercase}
+.phone .hd i{font-style:normal;font-family:"Figtree",sans-serif;font-size:9px;font-weight:700;border:1px solid #fff;border-radius:999px;padding:2px 8px}
+.rbar{display:flex;align-items:center;gap:6px;margin-top:8px;border:1px solid #2a2a2a;border-radius:999px;padding:4px 8px;font-family:"Courier New",monospace;font-size:9.5px}
+.rbar .pb{width:16px;height:16px;border-radius:50%;background:#fff;color:#000;display:inline-flex;align-items:center;justify-content:center;font-size:7px;flex:none}
+.rbar .rd{flex:1;color:var(--green);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rbar .air{font-size:8px;padding:1px 6px}
+.orb{display:block;width:104px;height:104px;border-radius:50%;object-fit:cover;margin:16px auto 6px;background:#000}
+.ph-ask{text-align:center;font-family:"Belleza",sans-serif;font-size:15px;margin:4px 0}
+.ph-cap{margin-top:auto;text-align:center;font-family:"Figtree",sans-serif;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.home{width:84px;height:3px;border-radius:9px;background:#fff;opacity:.7;margin:8px auto 0}
+.dial{position:relative;margin:12px 0 8px;height:46px;border:1px solid #2a2a2a;border-radius:10px;overflow:hidden}
+.dial .ticks{position:absolute;inset:0;background:repeating-linear-gradient(90deg,#444 0 1px,transparent 1px 9px);opacity:.8}
+.dial .needle{position:absolute;top:4px;bottom:4px;width:2px;background:var(--red);left:10%;transition:left 1.2s cubic-bezier(.6,0,.2,1)}
+.dial .lab{position:absolute;bottom:3px;right:8px;font-family:"Courier New",monospace;font-size:10px;color:var(--green)}
+.sl{display:flex;align-items:center;gap:8px;font-family:"Courier New",monospace;font-size:9.5px;color:var(--green);margin:6px 0}
+.sl .tr{flex:1;height:3px;background:#2a2a2a;border-radius:3px;position:relative}
+.sl .tr span{position:absolute;inset:0 auto 0 0;background:#fff;border-radius:3px;transition:width 1.2s}
+.big{font-family:"Belleza",sans-serif;text-align:center;font-size:40px;margin:10px 0 0;line-height:1}
+.big small{font-size:14px;margin-left:3px}
+.nat{text-align:center;font-size:12px;opacity:.75}
+.log{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 40%);mask-image:linear-gradient(transparent,#000 40%)}
+.msg{max-width:84%;padding:6px 10px;border-radius:13px;font-size:11px;line-height:1.35;animation:rise .4s ease-out both}
+.msg.y{align-self:flex-end;background:#fff;color:#000;border-bottom-right-radius:4px}
+.msg.l{align-self:flex-start;background:#161616;border:1px solid #2c2c2c;border-bottom-left-radius:4px}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+.duck{font-family:"Courier New",monospace;font-size:9px;color:var(--green);text-align:center;margin:4px 0;transition:opacity .4s}
+section{padding-block:56px;border-top:1px solid var(--line)}
+.sub{max-width:40em;opacity:.85;margin:0 0 28px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{border:1px solid var(--line);border-radius:18px;padding:20px}
+.step .n{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--blue);align-items:center;justify-content:center;font-family:"Figtree",sans-serif;font-weight:800;font-size:13px;margin-bottom:10px}
+.step h3,.feat h3{font-family:"Figtree",sans-serif;font-size:17px;margin:0 0 6px}
+.step p,.feat p{margin:0;opacity:.85;font-size:15px}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px 28px}
+.feat{border-left:2px solid #fff;padding-left:14px}
+.chan-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.track{display:flex;gap:16px;width:max-content;animation:slide 60s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.vid{width:240px;flex:none}
+.thumb{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid #2a2a2a;background:radial-gradient(circle at 30% 40%,#1d1d1d,#000 70%);display:flex;align-items:center;justify-content:center}
+.thumb .hz{font-family:"Belleza",sans-serif;font-size:44px;line-height:1}
+.thumb .hz small{font-size:14px;margin-left:2px}
+.thumb .nat{position:absolute;left:10px;bottom:8px;font-family:"Courier New",monospace;color:var(--green);font-size:11px;opacity:1}
+.thumb .soon{position:absolute;right:8px;top:8px;background:#fff;color:#000;font-family:"Figtree",sans-serif;font-weight:800;font-size:9px;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 8px}
+.vid.live .thumb{border-color:var(--red)}
+.vid.live .soon{background:var(--red);color:#fff}
+.vt{margin:8px 0 0;font-size:14px}
+.vi{margin:0;font-size:13px;opacity:.7}
+@media(prefers-reduced-motion:reduce){.track{animation:none}.marquee{overflow-x:auto}.air{animation:none}}
+.sched{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px}
+@media(max-width:700px){.sched{grid-template-columns:1fr}}
+.sched li{display:grid;grid-template-columns:56px 70px 1fr;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.sched .t{font-family:"Figtree",sans-serif;font-weight:800}
+.sched .f{font-family:"Courier New",monospace;color:var(--green)}
+.sched .i{grid-column:3;opacity:.7;font-size:13px}
+.sched li.on .t::after{content:" ●";color:var(--red)}
+.stores{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.store{display:flex;align-items:center;gap:12px;border:1.5px solid #fff;border-radius:14px;padding:12px 14px;text-decoration:none}
+.store svg{width:26px;height:26px;flex:none}
+.store b{display:block;font-family:"Figtree",sans-serif;font-size:16px;line-height:1.1}
+.store small{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.1em}
+.store .tag{margin-left:auto;font-family:"Figtree",sans-serif;font-weight:800;font-size:9px;letter-spacing:.08em;text-transform:uppercase;border:1px solid #fff;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.omw{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.omw p{margin:0}
+.socials{display:flex;flex-wrap:wrap;gap:10px}
+footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:13px;opacity:.8}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+.note{font-size:12px;opacity:.6;margin-top:14px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="1024" height="1024" rx="228" fill="#000"/><circle cx="512" cy="330" r="30" fill="#fff"/><path d="M450.7 278.6A80 80 0 0 1 573.3 278.6" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round"/><path d="M404.8 240.0A140 140 0 0 1 619.2 240.0" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity="0.75"/><path d="M358.8 201.4A200 200 0 0 1 665.2 201.4" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" opacity="0.5"/><g transform="translate(251.9 640) scale(0.378 -0.378)" fill="#fff"><path d="M90 0V662H188V54Q214 47 240.5 41.5Q267 36 286 36L467 67L455 0Z"/><path transform="translate(487 0)" d="M82 0 119 662H212L443 157L664 662H766L803 0H701L674 569H670L418 0H404L157 546H153L126 0Z"/></g><rect x="232" y="758" width="560" height="4" fill="#fff"/><rect x="230" y="742" width="4" height="36" fill="#fff"/><rect x="270" y="750" width="4" height="20" fill="#fff"/><rect x="310" y="750" width="4" height="20" fill="#fff"/><rect x="350" y="742" width="4" height="36" fill="#fff"/><rect x="390" y="750" width="4" height="20" fill="#fff"/><rect x="430" y="750" width="4" height="20" fill="#fff"/><rect x="470" y="742" width="4" height="36" fill="#fff"/><rect x="510" y="750" width="4" height="20" fill="#fff"/><rect x="550" y="750" width="4" height="20" fill="#fff"/><rect x="590" y="742" width="4" height="36" fill="#fff"/><rect x="630" y="750" width="4" height="20" fill="#fff"/><rect x="670" y="750" width="4" height="20" fill="#fff"/><rect x="710" y="742" width="4" height="36" fill="#fff"/><rect x="750" y="750" width="4" height="20" fill="#fff"/><rect x="790" y="750" width="4" height="20" fill="#fff"/><rect x="790" y="750" width="4" height="20" fill="#fff"/><rect x="596" y="704" width="10" height="112" rx="5" fill="#f41c1c"/></svg><span>LM Radio</span></a>
+  <nav class="links"><a href="#demos">Demos</a><a href="#how">How it works</a><a href="#channel">Channel</a><a href="#schedule">Schedule</a><a href="#download">Download</a></nav>
+  <a class="pill red" href="#download">Get the app</a>
+</div></header>
+<main>
+<div class="wrap hero">
+  <div>
+    <p class="kicker">Lorraen Madre · LM Radio</p>
+    <h1>AM · FM · LM</h1>
+    <p class="lede">A new natural frequency every hour, mixed with real-feeling nature sound. Press play, let it run in the background, and get in tune with your wishes.</p>
+    <p class="tune">Tune into your frequency on <span class="blank" id="blank">YouTube</span></p>
+    <div class="cta-row">
+      <button class="pill" id="sample" type="button">▶ Hear this hour</button>
+      <a class="pill blue" href="#download">Where to download</a>
+    </div>
+    <div class="now"><span class="air">ON AIR</span><span id="nowtxt" class="term">—</span></div>
+  </div>
+  <div class="phones" aria-hidden="true">
+    <div class="phone" id="heroPhone"><div class="isl"></div><div class="sb"><span>9:41</span><span>●●● ▮</span></div><div class="hd"><b>Lorraen Madre</b><i>Menu</i></div>
+      <div class="rbar"><span class="pb">❚❚</span><span class="rd" data-now>LM RADIO</span><span class="air">ON AIR</span></div>
+      <video class="orb" src="https://cdn.jsdelivr.net/gh/lorraenmadre/Lorraen-Madre-Website@main/assets/video/voice-app/lm-orb.mp4" poster="https://cdn.jsdelivr.net/gh/lorraenmadre/Lorraen-Madre-Website@main/assets/video/voice-app/lm-orb-poster.jpg" autoplay muted loop playsinline></video>
+      <div class="big" data-hz>528<small>Hz</small></div>
+      <div class="nat" data-nat>rain</div>
+      <p class="ph-cap">Playing in the background</p><div class="home"></div>
+    </div>
+  </div>
+</div>
+<section id="demos"><div class="wrap">
+  <p class="kicker">Demos</p>
+  <h2>See it play.</h2>
+  <p class="sub">Three moments from the Lorraen Madre app. The radio lives in the header, so it keeps playing while you work on your wishes.</p>
+  <div class="phones" aria-hidden="true">
+    <div class="phone"><div class="isl"></div><div class="sb"><span>9:41</span><span>●●● ▮</span></div><div class="hd"><b>Lorraen Madre</b><i>Menu</i></div>
+      <div class="rbar"><span class="pb">▶</span><span class="rd">LM RADIO · tap to play</span></div>
+      <video class="orb" src="https://cdn.jsdelivr.net/gh/lorraenmadre/Lorraen-Madre-Website@main/assets/video/voice-app/lm-orb.mp4" poster="https://cdn.jsdelivr.net/gh/lorraenmadre/Lorraen-Madre-Website@main/assets/video/voice-app/lm-orb-poster.jpg" autoplay muted loop playsinline></video>
+      <p class="ph-ask">One tap, on air.</p>
+      <p style="font-size:11px;text-align:center;opacity:.75;margin:4px 6px">Press play in the header. The station follows the clock, so every hour has its own sound.</p>
+      <p class="ph-cap">01 · Play</p><div class="home"></div>
+    </div>
+    <div class="phone"><div class="isl"></div><div class="sb"><span>9:41</span><span>●●● ▮</span></div><div class="hd"><b>Lorraen Madre</b><i>Menu</i></div>
+      <div class="rbar"><span class="pb">❚❚</span><span class="rd" id="dialRd">LM RADIO · tuning</span><span class="air">ON AIR</span></div>
+      <div class="big" id="dialHz">396<small>Hz</small></div>
+      <div class="nat" id="dialNat">birds</div>
+      <div class="dial"><div class="ticks"></div><div class="needle" id="needle"></div><div class="lab">DIAL</div></div>
+      <div class="sl">TONE<div class="tr"><span id="sTone" style="width:40%"></span></div></div>
+      <div class="sl">NATURE<div class="tr"><span id="sNat" style="width:70%"></span></div></div>
+      <p class="ph-cap">02 · Tune the dial</p><div class="home"></div>
+    </div>
+    <div class="phone"><div class="isl"></div><div class="sb"><span>9:41</span><span>●●● ▮</span></div><div class="hd"><b>Lorraen Madre</b><i>Menu</i></div>
+      <div class="rbar"><span class="pb">❚❚</span><span class="rd" data-now>LM RADIO</span><span class="air">ON AIR</span></div>
+      <video class="orb" style="width:80px;height:80px;margin-top:10px" src="https://cdn.jsdelivr.net/gh/lorraenmadre/Lorraen-Madre-Website@main/assets/video/voice-app/lm-orb.mp4" poster="https://cdn.jsdelivr.net/gh/lorraenmadre/Lorraen-Madre-Website@main/assets/video/voice-app/lm-orb-poster.jpg" autoplay muted loop playsinline></video>
+      <div class="duck" id="duck">♪ radio lowers while you speak</div>
+      <div class="log" id="log"></div>
+      <p class="ph-cap">03 · Speak a wish</p><div class="home"></div>
+    </div>
+  </div>
+</div></section>
+<section id="how"><div class="wrap">
+  <p class="kicker">How it works</p>
+  <h2>Press play. Let the hour do the rest.</h2>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><h3>Open the app</h3><p>Sign in to the Lorraen Madre app. LM Radio sits in the header on every screen.</p></div>
+    <div class="step"><span class="n">2</span><h3>Press play</h3><p>The station matches the hour. At the top of each hour it glides to the next frequency.</p></div>
+    <div class="step"><span class="n">3</span><h3>Make it yours</h3><p>Tap Tune to turn the dial, or set your own mix of tone and nature sound.</p></div>
+  </div>
+</div></section>
+<section><div class="wrap">
+  <p class="kicker">Features</p>
+  <h2>Small radio. Big calm.</h2>
+  <div class="feats">
+    <div class="feat"><h3>12 hourly stations</h3><p>A different natural frequency each hour, from 111 Hz to 963 Hz.</p></div>
+    <div class="feat"><h3>Nature mixed in</h3><p>Birds, creek, rain, ocean, campfire, crickets and more, layered under the tone.</p></div>
+    <div class="feat"><h3>Your mix</h3><p>Two sliders: how much tone, how much nature.</p></div>
+    <div class="feat"><h3>Ducks for your voice</h3><p>When you speak a wish, the radio softens so you can hear yourself think.</p></div>
+    <div class="feat"><h3>Background play</h3><p>Keep it on while you plan, drive, cook or rest.</p></div>
+    <div class="feat"><h3>Free with omw.life</h3><p>Members get LM Radio included.</p></div>
+  </div>
+</div></section>
+<section id="channel"><div class="wrap">
+  <div class="chan-head">
+    <div><p class="kicker">The channel</p><h2>Every hour, its own video.</h2><p class="sub" style="margin:0">Twelve frequencies, twelve scenes. The LM Radio channel opens on YouTube soon.</p></div>
+    <span class="pill ghost" aria-disabled="true">YouTube channel · coming soon</span>
+  </div>
+</div>
+  <div class="marquee"><div class="track"><article class="vid" data-h="1"><div class="thumb"><span class="hz">396<small>Hz</small></span><span class="nat">birds</span><span class="soon">Coming soon</span></div><p class="vt"><b>1:00</b> · 396 Hz + birds</p><p class="vi">Let go</p></article><article class="vid" data-h="2"><div class="thumb"><span class="hz">417<small>Hz</small></span><span class="nat">creek</span><span class="soon">Coming soon</span></div><p class="vt"><b>2:00</b> · 417 Hz + creek</p><p class="vi">Begin again</p></article><article class="vid" data-h="3"><div class="thumb"><span class="hz">741<small>Hz</small></span><span class="nat">wind</span><span class="soon">Coming soon</span></div><p class="vt"><b>3:00</b> · 741 Hz + wind</p><p class="vi">Clear the noise</p></article><article class="vid" data-h="4"><div class="thumb"><span class="hz">528<small>Hz</small></span><span class="nat">rain</span><span class="soon">Coming soon</span></div><p class="vt"><b>4:00</b> · 528 Hz + rain</p><p class="vi">Make it real</p></article><article class="vid" data-h="5"><div class="thumb"><span class="hz">432<small>Hz</small></span><span class="nat">ocean</span><span class="soon">Coming soon</span></div><p class="vt"><b>5:00</b> · 432 Hz + ocean</p><p class="vi">Find your rhythm</p></article><article class="vid" data-h="6"><div class="thumb"><span class="hz">285<small>Hz</small></span><span class="nat">campfire</span><span class="soon">Coming soon</span></div><p class="vt"><b>6:00</b> · 285 Hz + campfire</p><p class="vi">Gather home</p></article><article class="vid" data-h="7"><div class="thumb"><span class="hz">639<small>Hz</small></span><span class="nat">crickets</span><span class="soon">Coming soon</span></div><p class="vt"><b>7:00</b> · 639 Hz + crickets</p><p class="vi">Connect</p></article><article class="vid" data-h="8"><div class="thumb"><span class="hz">174<small>Hz</small></span><span class="nat">deep sea</span><span class="soon">Coming soon</span></div><p class="vt"><b>8:00</b> · 174 Hz + deep sea</p><p class="vi">Rest deep</p></article><article class="vid" data-h="9"><div class="thumb"><span class="hz">852<small>Hz</small></span><span class="nat">open-road wind</span><span class="soon">Coming soon</span></div><p class="vt"><b>9:00</b> · 852 Hz + open-road wind</p><p class="vi">See the path</p></article><article class="vid" data-h="10"><div class="thumb"><span class="hz">111<small>Hz</small></span><span class="nat">night forest</span><span class="soon">Coming soon</span></div><p class="vt"><b>10:00</b> · 111 Hz + night forest</p><p class="vi">Stand tall</p></article><article class="vid" data-h="11"><div class="thumb"><span class="hz">444<small>Hz</small></span><span class="nat">river</span><span class="soon">Coming soon</span></div><p class="vt"><b>11:00</b> · 444 Hz + river</p><p class="vi">Flow with it</p></article><article class="vid" data-h="12"><div class="thumb"><span class="hz">963<small>Hz</small></span><span class="nat">ocean at night</span><span class="soon">Coming soon</span></div><p class="vt"><b>12:00</b> · 963 Hz + ocean at night</p><p class="vi">Wish wisely</p></article><article class="vid" data-h="1"><div class="thumb"><span class="hz">396<small>Hz</small></span><span class="nat">birds</span><span class="soon">Coming soon</span></div><p class="vt"><b>1:00</b> · 396 Hz + birds</p><p class="vi">Let go</p></article><article class="vid" data-h="2"><div class="thumb"><span class="hz">417<small>Hz</small></span><span class="nat">creek</span><span class="soon">Coming soon</span></div><p class="vt"><b>2:00</b> · 417 Hz + creek</p><p class="vi">Begin again</p></article><article class="vid" data-h="3"><div class="thumb"><span class="hz">741<small>Hz</small></span><span class="nat">wind</span><span class="soon">Coming soon</span></div><p class="vt"><b>3:00</b> · 741 Hz + wind</p><p class="vi">Clear the noise</p></article><article class="vid" data-h="4"><div class="thumb"><span class="hz">528<small>Hz</small></span><span class="nat">rain</span><span class="soon">Coming soon</span></div><p class="vt"><b>4:00</b> · 528 Hz + rain</p><p class="vi">Make it real</p></article><article class="vid" data-h="5"><div class="thumb"><span class="hz">432<small>Hz</small></span><span class="nat">ocean</span><span class="soon">Coming soon</span></div><p class="vt"><b>5:00</b> · 432 Hz + ocean</p><p class="vi">Find your rhythm</p></article><article class="vid" data-h="6"><div class="thumb"><span class="hz">285<small>Hz</small></span><span class="nat">campfire</span><span class="soon">Coming soon</span></div><p class="vt"><b>6:00</b> · 285 Hz + campfire</p><p class="vi">Gather home</p></article><article class="vid" data-h="7"><div class="thumb"><span class="hz">639<small>Hz</small></span><span class="nat">crickets</span><span class="soon">Coming soon</span></div><p class="vt"><b>7:00</b> · 639 Hz + crickets</p><p class="vi">Connect</p></article><article class="vid" data-h="8"><div class="thumb"><span class="hz">174<small>Hz</small></span><span class="nat">deep sea</span><span class="soon">Coming soon</span></div><p class="vt"><b>8:00</b> · 174 Hz + deep sea</p><p class="vi">Rest deep</p></article><article class="vid" data-h="9"><div class="thumb"><span class="hz">852<small>Hz</small></span><span class="nat">open-road wind</span><span class="soon">Coming soon</span></div><p class="vt"><b>9:00</b> · 852 Hz + open-road wind</p><p class="vi">See the path</p></article><article class="vid" data-h="10"><div class="thumb"><span class="hz">111<small>Hz</small></span><span class="nat">night forest</span><span class="soon">Coming soon</span></div><p class="vt"><b>10:00</b> · 111 Hz + night forest</p><p class="vi">Stand tall</p></article><article class="vid" data-h="11"><div class="thumb"><span class="hz">444<small>Hz</small></span><span class="nat">river</span><span class="soon">Coming soon</span></div><p class="vt"><b>11:00</b> · 444 Hz + river</p><p class="vi">Flow with it</p></article><article class="vid" data-h="12"><div class="thumb"><span class="hz">963<small>Hz</small></span><span class="nat">ocean at night</span><span class="soon">Coming soon</span></div><p class="vt"><b>12:00</b> · 963 Hz + ocean at night</p><p class="vi">Wish wisely</p></article></div></div>
+</section>
+<section id="schedule"><div class="wrap">
+  <p class="kicker">Schedule</p>
+  <h2>The dial, hour by hour.</h2>
+  <p class="sub">The same 12 stations run in the morning and again at night, following your phone's clock.</p>
+  <ul class="sched" id="sched"><li data-h="1"><span class="t">1:00</span><span class="f">396 Hz</span><span class="n">birds</span><span class="i">Let go</span></li><li data-h="2"><span class="t">2:00</span><span class="f">417 Hz</span><span class="n">creek</span><span class="i">Begin again</span></li><li data-h="3"><span class="t">3:00</span><span class="f">741 Hz</span><span class="n">wind</span><span class="i">Clear the noise</span></li><li data-h="4"><span class="t">4:00</span><span class="f">528 Hz</span><span class="n">rain</span><span class="i">Make it real</span></li><li data-h="5"><span class="t">5:00</span><span class="f">432 Hz</span><span class="n">ocean</span><span class="i">Find your rhythm</span></li><li data-h="6"><span class="t">6:00</span><span class="f">285 Hz</span><span class="n">campfire</span><span class="i">Gather home</span></li><li data-h="7"><span class="t">7:00</span><span class="f">639 Hz</span><span class="n">crickets</span><span class="i">Connect</span></li><li data-h="8"><span class="t">8:00</span><span class="f">174 Hz</span><span class="n">deep sea</span><span class="i">Rest deep</span></li><li data-h="9"><span class="t">9:00</span><span class="f">852 Hz</span><span class="n">open-road wind</span><span class="i">See the path</span></li><li data-h="10"><span class="t">10:00</span><span class="f">111 Hz</span><span class="n">night forest</span><span class="i">Stand tall</span></li><li data-h="11"><span class="t">11:00</span><span class="f">444 Hz</span><span class="n">river</span><span class="i">Flow with it</span></li><li data-h="12"><span class="t">12:00</span><span class="f">963 Hz</span><span class="n">ocean at night</span><span class="i">Wish wisely</span></li></ul>
+  <p class="note">LM Radio is for relaxation and focus. It is a calming sound experience, not a medical treatment.</p>
+</div></section>
+<section id="download"><div class="wrap">
+  <p class="kicker">Download</p>
+  <h2>Where you'll find it.</h2>
+  <p class="sub">LM Radio comes inside the Lorraen Madre app. Here is everywhere it will live.</p>
+  <div class="stores">
+    <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" fill="#fff"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 4.9c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span><small>Download on the</small><b>App Store</b></span><span class="tag">Coming soon</span></span>
+    <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" fill="#fff"><path d="M3.6 1.8 13.4 12l-9.8 10.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2zM14.8 13.4l2.4 2.4-11 6.3 8.6-8.7zm0-2.8L6.2 1.9l11 6.3-2.4 2.4zm3.7 1.4 2.6 1.5c.8.5.8 1.6 0 2.1l-2.6 1.5-2.6-2.6 2.6-2.5z"/></svg><span><small>Get it on</small><b>Google Play</b></span><span class="tag">Coming soon</span></span>
+    <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="5" width="20" height="12" rx="3"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span><small>In the car with</small><b>CarPlay</b></span><span class="tag">Coming soon</span></span>
+    <a class="store" href="https://lorraenmadre.app"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg><span><small>On the web</small><b>lorraenmadre.app</b></span><span class="tag">Visit</span></a>
+  </div>
+  <div class="omw">
+    <p><b>Free LM Radio with omw.life.</b> Join the Miami Family Travel Club and the radio comes with it.</p>
+    <a class="pill gold" href="https://omw.life">Join omw.life</a>
+  </div>
+</div></section>
+<section id="follow"><div class="wrap">
+  <p class="kicker">Follow</p>
+  <h2>Follow the frequency.</h2>
+  <p class="sub">New hours, new scenes, and the first look at the app as it lands.</p>
+  <div class="socials">
+    <a class="pill" href="https://instagram.com/rael_emard">Instagram · @rael_emard</a>
+    <span class="pill ghost" aria-disabled="true">YouTube · soon</span>
+    <span class="pill ghost" aria-disabled="true">TikTok · soon</span>
+    <span class="pill ghost" aria-disabled="true">Spotify · soon</span>
+    <span class="pill ghost" aria-disabled="true">Apple Music · soon</span>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <span class="belleza">LM Radio · a Lorraen Madre station · Wish wisely</span>
+  <span><a href="https://lorraenmadre.com">lorraenmadre.com</a> · <a href="https://lorraenmadre.app">lorraenmadre.app</a></span>
+</div></footer>
+<script>
+const ST=[[1, 396, "birds", "Let go"], [2, 417, "creek", "Begin again"], [3, 741, "wind", "Clear the noise"], [4, 528, "rain", "Make it real"], [5, 432, "ocean", "Find your rhythm"], [6, 285, "campfire", "Gather home"], [7, 639, "crickets", "Connect"], [8, 174, "deep sea", "Rest deep"], [9, 852, "open-road wind", "See the path"], [10, 111, "night forest", "Stand tall"], [11, 444, "river", "Flow with it"], [12, 963, "ocean at night", "Wish wisely"]];
+const hour12=()=>{const h=new Date().getHours()%12;return h===0?12:h};
+const station=()=>ST[hour12()-1];
+function paintNow(){const [h,hz,nat]=station();
+  document.getElementById('nowtxt').textContent=`${h}:00 · ${hz} Hz + ${nat}`;
+  document.querySelectorAll('[data-now]').forEach(e=>e.textContent=`LM RADIO · ${hz} Hz · ${nat}`);
+  const hp=document.getElementById('heroPhone');hp.querySelector('[data-hz]').innerHTML=`${hz}<small>Hz</small>`;hp.querySelector('[data-nat]').textContent=nat;
+  document.querySelectorAll('#sched li').forEach(li=>li.classList.toggle('on',+li.dataset.h===h));
+  document.querySelectorAll('.vid').forEach(v=>{const on=+v.dataset.h===h;v.classList.toggle('live',on);v.querySelector('.soon').textContent=on?'On air now':'Coming soon'});
+}
+paintNow();setInterval(paintNow,60000);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const BLANKS=['YouTube','Spotify','Apple Music','the Lorraen Madre app','CarPlay','your morning drive','your night walk','your wish list'];
+let bi=0;const blank=document.getElementById('blank');
+if(!reduce)setInterval(()=>{blank.style.opacity=0;setTimeout(()=>{bi=(bi+1)%BLANKS.length;blank.textContent=BLANKS[bi];blank.style.opacity=1},350)},2200);
+let di=0;const order=[...ST].sort((a,b)=>a[1]-b[1]);
+function dial(){const [h,hz,nat]=ST[di%12];const rank=order.findIndex(s=>s[1]===hz);
+  document.getElementById('needle').style.left=(6+rank*(88/11))+'%';
+  document.getElementById('dialHz').innerHTML=`${hz}<small>Hz</small>`;document.getElementById('dialNat').textContent=nat;
+  document.getElementById('dialRd').textContent=`LM RADIO · ${hz} Hz · ${nat}`;
+  document.getElementById('sTone').style.width=(25+(di*37)%60)+'%';document.getElementById('sNat').style.width=(35+(di*53)%55)+'%';di++}
+dial();if(!reduce)setInterval(dial,2400);
+const CHAT=[['y','Lower the radio, I have a wish.'],['l','Got it. Say it messy.'],['y','I want a slower morning with my kids.'],['l','What would 7:00 look like on a good day?'],['y','Music on, breakfast together, no rush.'],['l','Saved. I made it a task for tomorrow. ✦']];
+const log=document.getElementById('log');let ci=0;
+function chat(){if(ci%CHAT.length===0&&ci)log.innerHTML='';const [w,t]=CHAT[ci%CHAT.length];const d=document.createElement('div');d.className='msg '+w;d.textContent=t;log.appendChild(d);
+  document.getElementById('duck').style.opacity=w==='y'?1:.35;ci++}
+if(reduce){CHAT.forEach(()=>chat())}else{chat();setInterval(chat,1900)}
+let ctx,stopT;const btn=document.getElementById('sample');
+btn.addEventListener('click',()=>{
+  if(ctx){ctx.close();ctx=null;clearTimeout(stopT);btn.textContent='▶ Hear this hour';return}
+  ctx=new (window.AudioContext||window.webkitAudioContext)();const [,hz]=station();
+  const g=ctx.createGain();g.gain.setValueAtTime(0,ctx.currentTime);g.gain.linearRampToValueAtTime(.08,ctx.currentTime+2);g.connect(ctx.destination);
+  const o=ctx.createOscillator();o.frequency.value=hz;o.connect(g);o.start();
+  const len=ctx.sampleRate*2,buf=ctx.createBuffer(1,len,ctx.sampleRate),d=buf.getChannelData(0);let last=0;for(let i=0;i<len;i++){last=(last+.02*(Math.random()*2-1))/1.02;d[i]=last*3}
+  const n=ctx.createBufferSource();n.buffer=buf;n.loop=true;const ng=ctx.createGain();ng.gain.value=.35;const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=900;n.connect(f).connect(ng).connect(ctx.destination);n.start();
+  btn.textContent='❚❚ Stop';stopT=setTimeout(()=>{if(ctx){ctx.close();ctx=null;btn.textContent='▶ Hear this hour'}},20000);
+});
+</script>
+</body>
+</html>
