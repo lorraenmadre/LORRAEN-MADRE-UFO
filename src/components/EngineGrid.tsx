@@ -142,7 +142,7 @@ export default function EngineGrid({ onOpenHouse, scope = 'preview' }: { journey
           <label>What exists or needs doing next?<textarea value={part.next} onChange={(e) => save(house.n, { ...part, next: e.target.value })} /></label>
           <label className="lm-engine-check"><input type="checkbox" checked={part.enabled} onChange={(e) => save(house.n, { ...part, enabled: e.target.checked })} /> This House is activated</label>
           <div className="lm-engine-detail-actions">
-            <a className="lm-pill lm-pill-blue" href={resource?.url || START_FALLBACK_URL} target="_blank" rel="noopener noreferrer" onClick={() => { if (!part.enabled) save(house.n, { ...part, enabled: true }); }}>
+            <a className="lm-pill lm-pill-gold" href={resource?.url || START_FALLBACK_URL} target="_blank" rel="noopener noreferrer" onClick={() => { if (!part.enabled) save(house.n, { ...part, enabled: true }); }}>
               {resource ? `Activate · ${resource.label}` : `Activate · request ${product?.product || 'this product'}`} ↗
             </a>
             {onOpenHouse && <button type="button" className="lm-pill lm-pill-white" onClick={() => onOpenHouse(`product-house-${house.n}`)}>Open this House</button>}
