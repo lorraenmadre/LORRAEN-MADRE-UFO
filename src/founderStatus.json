@@ -30,8 +30,8 @@
     "A": 0.5
    },
    "tag": "Live",
-   "note": "Site, $13 Stripe link and Discord invite are live. No test purchase yet, so delivery is unproven. The Light Scouts trivia bot for Discord points was started this morning (database only so far).",
-   "change": "Light Scouts trivia bot started",
+   "note": "Site, $13 Stripe link and Discord invite are live. No test purchase yet, so delivery is unproven. The Light Scouts trivia bot for Discord points was started Oct 7 (database only so far).",
+   "change": "",
    "money": 38,
    "auto": 50,
    "total": 44
@@ -138,8 +138,8 @@
     "A": 0
    },
    "tag": "Live",
-   "note": "Front end live. The sign-in and connection server has never been deployed, so $1,111 onboarding can't be bought here yet. House map and this status were added today.",
-   "change": "Founder status added today",
+   "note": "Front end live. The sign-in and connection server has never been deployed, so $1,111 onboarding can't be bought here yet. House map and this status were added Oct 7.",
+   "change": "",
    "money": 12,
    "auto": 33,
    "total": 23
@@ -161,7 +161,7 @@
    },
    "tag": "Live",
    "note": "Published at lorraenmadre.floot.app with a phone build. Talk, Board, Sky, 9×9 builds and LM Radio work. The $1/month and UFO checkouts are coded but no payment has gone through end to end. Notion, Slack and Trello aren't wired in yet.",
-   "change": "Founder status page added today",
+   "change": "",
    "money": 38,
    "auto": 17,
    "total": 27
@@ -309,7 +309,7 @@
    },
    "tag": "Inside Voice",
    "note": "The radio already plays inside the Voice app header. No YouTube channel episode yet.",
-   "change": "Rescored: player already built",
+   "change": "",
    "money": 12,
    "auto": 33,
    "total": 23
