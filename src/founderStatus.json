@@ -1,17 +1,17 @@
 {
- "asOf": "2026-10-07",
+ "asOf": "2026-10-08",
  "summary": {
-  "projects": 24,
-  "money": 20,
-  "auto": 29,
-  "houses": 64,
-  "system": 48,
-  "onboarding": 43,
+  "projects": 29,
+  "money": 25,
+  "auto": 33,
+  "houses": 70,
+  "system": 52,
+  "onboarding": 57,
   "yesterday": {
-   "projects": 21,
-   "houses": 59,
+   "projects": 24,
+   "houses": 64,
    "system": 48,
-   "onboarding": 26
+   "onboarding": 43
   }
  },
  "projects": [
@@ -47,15 +47,15 @@
     "P": 0.5,
     "L": 1,
     "C": 0.5,
-    "I": 0.5,
-    "A": 0
+    "I": 1,
+    "A": 0.5
    },
    "tag": "Live",
-   "note": "Home page live with the $13 link. Work and Connect forms still save nowhere, and /smile/ returned 404 at yesterday's check.",
-   "change": "",
+   "note": "Home page live with the $13 link. /smile now opens the Mona Lisa app, and /connect and /work open a form that saves every message; a daily task copies them to the Website Forms sheet in Google Drive. The form embedded on the home page itself still needs the site's source code to fix.",
+   "change": "/smile and forms fixed",
    "money": 38,
-   "auto": 33,
-   "total": 35
+   "auto": 67,
+   "total": 52
   },
   {
    "id": "lady-wish",
@@ -172,20 +172,20 @@
    "sub": "Asjai · first sprint client",
    "house": 5,
    "c": {
-    "G": 0.5,
+    "G": 1,
     "O": 0.5,
     "P": 1,
-    "L": 0,
-    "C": 0,
-    "I": 0,
-    "A": 0
+    "L": 0.5,
+    "C": 0.5,
+    "I": 0.5,
+    "A": 0.5
    },
-   "tag": "Intake in",
-   "note": "All 28 days are scripted. Asjai sent her full ecosystem notes on Oct 6, and her Shopify list gives eight ready-made Outcomes. Price, scope and invoice aren't agreed.",
-   "change": "Client notes received Oct 6",
-   "money": 25,
-   "auto": 33,
-   "total": 29
+   "tag": "Booking live",
+   "note": "Agreed: $555 per two-week sprint, paid one sprint at a time. sprint.lorraenmadre.com takes payment by Stripe, and a daily task turns each payment into kickoff, check-in, demo and wrap-up invites plus text-update reminders for you. Waiting on Asjai's first payment; Sprint 1 deliverable is her Shopify store.",
+   "change": "$555 sprint page + auto-scheduling",
+   "money": 62,
+   "auto": 67,
+   "total": 65
   },
   {
    "id": "makecents",
@@ -196,17 +196,17 @@
     "G": 0,
     "O": 0,
     "P": 0.5,
-    "L": 0.5,
+    "L": 1,
     "C": 0,
     "I": 0,
     "A": 0
    },
-   "tag": "Built, not live",
-   "note": "Home Economy page, PRD and a Whop neobank draft exist. Not on makecents.lorraenmadre.com and no $22 checkout. Ebony is the next likely client.",
-   "change": "Now House 2",
-   "money": 12,
+   "tag": "Demo live",
+   "note": "makecents.lorraenmadre.com is live as a demo with pretend money and clear not-a-bank, not-financial-advice notices. The $22 button doesn't take payment yet, and a buyer's numbers only live in their own browser. Ready for Ebony as a paid beta tester, not for public sale.",
+   "change": "Live demo checked",
+   "money": 25,
    "auto": 17,
-   "total": 15
+   "total": 21
   },
   {
    "id": "the-key",
@@ -218,16 +218,16 @@
     "O": 0,
     "P": 0.5,
     "L": 0.5,
-    "C": 0,
+    "C": 0.5,
     "I": 0,
     "A": 0
    },
-   "tag": "New",
-   "note": "You have the digital PDF people follow; the technical Cookbook was drafted Oct 6. The extension itself isn't built and there's no sales page or price.",
-   "change": "New product",
-   "money": 12,
+   "tag": "Page live",
+   "note": "key.lorraenmadre.com sells The Key at $77 (key-shaped drive + the Cookbook + Newcastle early access), with shipping collected at checkout. The $777 home server kit is listed as later. No Keys in stock or loaded yet, so the first order ships by hand.",
+   "change": "$77 page + checkout live",
+   "money": 25,
    "auto": 17,
-   "total": 15
+   "total": 21
   },
   {
    "id": "newcastle",
@@ -280,17 +280,17 @@
     "G": 0,
     "O": 0,
     "P": 0.5,
-    "L": 0.5,
+    "L": 1,
     "C": 0.5,
     "I": 0.5,
     "A": 0
    },
-   "tag": "Almost live",
-   "note": "Store is set up with 11 home-server and family-tech products written and priced (Raspberry Pi NAS case, 5-bay drive dock, mini server, kids GPS watch, trackers and more). All 11 are still drafts, so nothing is for sale yet; 0 orders. Still on sanctuary-cell.myshopify.com, not sanctuarycell.lorraenmadre.com.",
-   "change": "Now House 4",
-   "money": 25,
+   "tag": "Live",
+   "note": "All 11 products are active and repriced above cost (2× under $50, 1.6× from $50, ending in .99), and the storefront password is off. The sanctuarycell.lorraenmadre.com DNS record is set; the last step is connecting that domain inside Shopify admin. 0 orders.",
+   "change": "Published + repriced",
+   "money": 38,
    "auto": 33,
-   "total": 29
+   "total": 35
   },
   {
    "id": "lm-radio",
@@ -345,7 +345,7 @@
    "platform": "Website",
    "cadence": "6 months",
    "pct": 75,
-   "note": "Site live. No six-month plan running."
+   "note": "Site live; forms and /smile fixed. No six-month plan running."
   },
   {
    "n": 2,
@@ -353,8 +353,8 @@
    "product": "makeCENTS",
    "platform": "Whop / web",
    "cadence": "Hourly",
-   "pct": 50,
-   "note": "Home Economy built. No domain or checkout yet.",
+   "pct": 63,
+   "note": "Demo live on makecents.lorraenmadre.com. No $22 checkout yet.",
    "changed": true,
    "was": "Woo Woo Watch"
   },
@@ -364,8 +364,8 @@
    "product": "Wish Well GPT + The Cookbook + The Key",
    "platform": "GPT + Claude",
    "cadence": "3 × 28 days",
-   "pct": 63,
-   "note": "Cookbook written and The Key PDF exists. Goal rules written; Goal database and the Key extension not built.",
+   "pct": 75,
+   "note": "Cookbook written; The Key sells at $77 on key.lorraenmadre.com. Goal database not built.",
    "changed": true,
    "was": "Wish Well GPT only"
   },
@@ -375,8 +375,8 @@
    "product": "Sanctuary Cell · home server",
    "platform": "Shopify",
    "cadence": "Monthly",
-   "pct": 63,
-   "note": "Store set up with 11 products in draft. Publish them and it can sell.",
+   "pct": 75,
+   "note": "11 products active and priced. Domain record set; connect it in Shopify admin.",
    "changed": true,
    "was": "The Cookbook"
   },
@@ -386,8 +386,8 @@
    "product": "The Pride",
    "platform": "Slack",
    "cadence": "2-week sprint",
-   "pct": 63,
-   "note": "#ai-board posts every hour. SPRINT v1 still has no dates."
+   "pct": 75,
+   "note": "Sprint booking live at $555; payments become calendar invites daily."
   },
   {
    "n": 6,
@@ -415,8 +415,8 @@
    "product": "Mona Lisa Smile",
    "platform": "Miro",
    "cadence": "On event",
-   "pct": 50,
-   "note": "Outcome register not built. /smile/ down."
+   "pct": 63,
+   "note": "/smile opens the Mona Lisa app. Outcome register and insurance story not built."
   },
   {
    "n": 9,
@@ -444,8 +444,8 @@
    "product": "Water Wine",
    "platform": "GoHighLevel",
    "cadence": "Seasonal",
-   "pct": 25,
-   "note": "CRM not set up. Forms save nowhere."
+   "pct": 50,
+   "note": "Forms now save and copy daily to Google Drive. CRM not set up."
   },
   {
    "n": 12,
