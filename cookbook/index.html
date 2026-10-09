@@ -9,10 +9,19 @@
 <meta property="og:description" content="Meet Dice, an AI bot extension that helps you set up your Cook Book. Don't worry, we have soup too.">
 <meta property="og:image" content="https://cookbook.lorraenmadre.com/img/dice.png">
 <link rel="icon" href="img/wish-well-logo.png">
-<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.lm-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 24px;background:#0a0a0a;color:#fff}
+.lm-nav a{color:inherit;text-decoration:none}
+.lm-nav .mark{font-family:Belleza,Optima,"Gill Sans",sans-serif;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;line-height:1.1}
+.lm-nav .mark span{display:block;font-family:"Figtree",'Helvetica Neue',Arial,system-ui,sans-serif;font-weight:600;font-size:.5rem;letter-spacing:.24em;opacity:.62;margin-top:3px}
+.lm-cal{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:#d6a441;color:#6e4e15!important;font-family:"Figtree",'Helvetica Neue',Arial,system-ui,sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+.lm-cal svg{width:13px;height:13px}
+.lm-cal:hover{background:#fff;color:#0a0a0a!important}
+@media (max-width:560px){.lm-nav{padding:8px 14px}.lm-nav .mark span{display:none}.lm-nav .mark{font-size:.88rem}.lm-cal{font-size:.58rem;padding:7px 12px}}
+</style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Belleza&family=Caveat:wght@600&family=Figtree:wght@500;600&family=Mulish:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Belleza&family=Caveat:wght@600&family=Figtree:wght@500;600;700&family=Mulish:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <style>
 /* Layout: a printed cookbook on white pages; cover, contents, then recipe cards with prep/serves/difficulty headers */
 :root{
@@ -154,9 +163,12 @@ footer{border-top:1px solid var(--line);padding-top:24px;display:grid;gap:8px;fo
 <body>
 
 
+<header class="lm-nav">
+<a href="https://lorraenmadre.com" class="mark">Lorraen&nbsp;Madre<span>Time . space + Story</span></a>
+<a class="lm-cal" href="https://wishingreel.lorraenmadre.com"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.9 5.9 21.4l1.4-6.8L2.2 9.9l6.9-.8z"></path></svg>Get the calendar</a>
+</header>
 <header class="cover" style="--marble:url(img/marble.jpg)">
   <div class="cover-inner">
-    <p class="eyebrow">Lorraen Madre</p>
     <img class="logo" src="img/wish-well-logo.png" width="447" height="447" alt="WISH WELL">
     <p class="ufo">Universal Family Office</p>
     <h1>Cook Book</h1>
