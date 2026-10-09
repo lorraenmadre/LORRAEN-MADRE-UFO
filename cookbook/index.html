@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WISH WELL Cook Book</title>
+<meta name="description" content="Lorraen Madre's WISH WELL Cook Book for the Universal Family Office. Meet Dice, an AI bot extension that helps you set up the digital organization of your home, family, and paperwork.">
+<meta property="og:title" content="WISH WELL Cook Book">
+<meta property="og:description" content="Meet Dice, an AI bot extension that helps you set up your Cook Book. Don't worry, we have soup too.">
+<meta property="og:image" content="https://cookbook.lorraenmadre.com/img/dice.png">
+<link rel="icon" href="img/wish-well-logo.png">
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Belleza&family=Caveat:wght@600&family=Figtree:wght@500;600&family=Mulish:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: a printed cookbook on white pages; cover, contents, then recipe cards with prep/serves/difficulty headers */
+:root{
+  --paper:#ffffff; --ink:#141414; --soft:#5e5c5a; --line:#e4e1de; --wash:#f7f6f4;
+  --rose:#c58f95; --gold:#b98a2e; --ok:#2f7d55; --warn:#a0521e;
+  --term-bg:#161616; --term-fg:#f2f2f2;
+  --f-display:"Belleza","Avenir Next","Helvetica Neue",sans-serif;
+  --f-body:"Mulish","Segoe UI",system-ui,sans-serif;
+  --f-ui:"Figtree","Segoe UI",system-ui,sans-serif;
+  --f-term:"Courier New",ui-monospace,Menlo,monospace;
+  --f-hand:"Caveat","Segoe Print",cursive;
+  color-scheme:light;
+}
+body{background:var(--paper);color:var(--ink);font:16px/1.65 var(--f-body)}
+.wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:24px 64px}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;letter-spacing:.03em;margin:0}
+h2{font-size:1.6rem;text-transform:uppercase}
+h3{font-size:1.15rem}
+p{margin:0}
+a{color:inherit;text-underline-offset:3px}
+code{font-family:var(--f-term)}
+.hand{font-family:var(--f-hand);font-weight:600;color:var(--soft);font-size:1.4rem;line-height:1.2}
+.muted{color:var(--soft)}
+.eyebrow{font:600 .75rem var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+section{display:grid;gap:14px;padding-block:36px;border-top:1px solid var(--line)}
+
+/* cover */
+.cover svg{width:min(100%,420px);height:auto}
+.ufo{font:600 .75rem var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin:0}
+.postit{background:#fff;width:min(230px,70vw);padding:22px 18px 26px;transform:rotate(-2.5deg);box-shadow:0 1px 1px rgba(0,0,0,.08),0 10px 18px -6px rgba(0,0,0,.22);border-bottom-right-radius:18px 4px;margin-block:6px}
+.postit .hand{margin:0}
+.signoff{font:400 1.4rem var(--f-display);letter-spacing:.04em;color:var(--ink)}
+.cover h1{font-size:clamp(2.4rem,9vw,3.8rem);letter-spacing:.08em;text-transform:uppercase;line-height:1}
+.wordmark{font:400 clamp(1.1rem,3.5vw,1.4rem) var(--f-display);letter-spacing:.42em;text-transform:uppercase;margin-right:-.42em}
+.dice-photo{margin:6px 0 0;display:grid;gap:6px;justify-items:center}
+.dice-photo img{width:200px;height:auto;border-radius:4px}
+.dice-photo figcaption{font:600 .72rem var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.cta{display:inline-block;font:600 1rem var(--f-ui);background:var(--gold);color:#fff;text-decoration:none;border-radius:999px;padding:12px 26px;margin-top:6px}
+.cta:hover{filter:brightness(1.07)}
+.cta:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.service{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;align-content:start}
+.service h3{font-size:1.05rem}
+.cover .sub{font:400 1.05rem var(--f-display);letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.cover .promise{max-width:52ch;font-size:1.05rem}
+.rule{width:64px;height:1px;background:var(--ink);margin-block:6px}
+
+/* foreword */
+.foreword p{max-width:62ch}
+.foreword .dropcap::first-letter{font:400 3.2rem/0.9 var(--f-display);float:left;padding:4px 10px 0 0}
+
+/* contents */
+.toc{display:grid;gap:22px}
+.chapter{display:grid;gap:6px}
+.chapter h3{font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase}
+.chapter ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.chapter li{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;border-bottom:1px dotted var(--line);padding-block:4px}
+.chapter li span:first-child{min-width:0}
+.status{font:600 .72rem var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--soft);white-space:nowrap}
+.status.ready{color:var(--ok)}
+.chapter li a{text-decoration:none}
+.chapter li a:hover{text-decoration:underline}
+
+/* recipe header */
+.recipe-head{display:grid;gap:10px}
+.recipe-head h2{font-size:clamp(1.7rem,5vw,2.3rem)}
+.meta{display:flex;flex-wrap:wrap;gap:0;border-block:1px solid var(--ink)}
+.meta div{flex:1 1 120px;padding:10px 12px;display:grid;gap:2px;border-right:1px solid var(--line)}
+.meta div:last-child{border-right:0}
+.meta b{font:600 .7rem var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.meta span{font:400 1.05rem var(--f-display)}
+.headnote{font-style:italic;max-width:62ch}
+
+.ingredients{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ingredients li{display:grid;grid-template-columns:22px 1fr;gap:10px}
+.ingredients li::before{content:"";width:12px;height:12px;border:1.5px solid var(--ink);border-radius:3px;margin-top:6px}
+
+.dice-says{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;background:var(--wash);border-radius:14px;padding:12px 16px}
+.dice-says svg{width:56px;height:auto}
+.dice-says p{min-width:0}
+
+/* kitchen picker */
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{font:600 .95rem var(--f-ui);border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:999px;padding:9px 16px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.tab:focus-visible,.copy:focus-visible,summary:focus-visible,.chapter a:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+.which{background:var(--wash);border-radius:12px;padding:14px 16px;font-size:.95rem}
+
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:22px}
+ol.steps>li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px}
+ol.steps>li::before{content:counter(s);font:400 1.3rem var(--f-display);width:36px;height:36px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center}
+.step{display:grid;gap:8px;min-width:0}
+.why{font-size:.96rem;color:var(--soft)}
+.see{font-size:.93rem;border-left:3px solid var(--ok);padding-left:10px}
+.see b{color:var(--ok);font-family:var(--f-ui)}
+.note{font-size:.93rem;border-left:3px solid var(--warn);padding-left:10px}
+.note b{color:var(--warn);font-family:var(--f-ui)}
+
+.term{background:var(--term-bg);color:var(--term-fg);border-radius:10px;overflow:hidden}
+.term-top{display:flex;justify-content:space-between;align-items:center;padding:6px 8px 6px 12px;font:600 .75rem var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:#a3a3a8}
+.term pre{margin:0;padding:4px 14px 14px;overflow-x:auto;font:15px/1.55 var(--f-term);white-space:pre}
+.copy{font:600 .8rem var(--f-ui);background:#2c2c30;color:#fff;border:0;border-radius:6px;padding:6px 12px;cursor:pointer}
+.copy.done{background:var(--ok)}
+
+details{border:1px solid var(--line);border-radius:12px;padding:0 16px}
+.faq{display:grid;gap:8px}
+summary{cursor:pointer;padding:14px 0;font:600 1rem var(--f-ui);list-style:none;display:grid;grid-template-columns:1fr auto;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 1.3rem var(--f-display)}
+details[open] summary::after{content:"–"}
+summary code{font:600 .9rem var(--f-term);background:var(--wash);padding:1px 6px;border-radius:4px;word-break:break-word}
+details .body{display:grid;gap:10px;padding-bottom:16px}
+
+.rules{margin:0;padding-left:1.2em;display:grid;gap:8px}
+footer{border-top:1px solid var(--line);padding-top:24px;display:grid;gap:8px;font-size:.88rem;color:var(--soft)}
+@media (prefers-reduced-motion:no-preference){.whisk{transform-origin:286px 116px;animation:sniff 2.6s ease-in-out infinite}}
+@keyframes sniff{0%,100%{transform:rotate(0)}50%{transform:rotate(3deg)}}
+
+.cover{background:var(--marble) center/1600px auto repeat,#f6f5f3;border-bottom:1px solid var(--line);padding-inline:20px;padding-block:32px 40px}
+.cover-inner{max-width:760px;margin:0 auto;display:grid;gap:10px;justify-items:center;text-align:center}
+.logo{width:min(210px,56vw);height:auto;margin-block:-6px -18px}
+.dice-cut{width:min(300px,78vw);height:auto;filter:drop-shadow(0 10px 10px rgba(0,0,0,.12));margin-top:4px}
+.cover .promise{max-width:52ch;font-size:1.05rem}
+.cta{min-width:160px;text-align:center;letter-spacing:.04em}
+.kitchen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.tool{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;grid-template-rows:auto auto 1fr auto;gap:8px;background:var(--paper)}
+.tool-top{display:flex;align-items:center;gap:10px}
+.mono{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;font:400 1.1rem var(--f-display);background:var(--wash);border:1px solid var(--line);flex:none}
+.tool h3{font-size:1.05rem;min-width:0}
+.tag{font:600 .68rem var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.tool p{font-size:.93rem;color:var(--soft)}
+.get{justify-self:start;font:600 .88rem var(--f-ui);color:var(--ink);text-decoration:none;border:1.5px solid var(--ink);border-radius:999px;padding:6px 14px}
+.get:hover{background:var(--ink);color:var(--paper)}
+.get:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+.soon{justify-self:start;font:600 .82rem var(--f-ui);color:var(--gold);border:1.5px dashed var(--gold);border-radius:999px;padding:5px 12px}
+.tool.featured{border-color:var(--gold)}
+</style>
+</head>
+<body>
+
+
+<header class="cover" style="--marble:url(img/marble.jpg)">
+  <div class="cover-inner">
+    <p class="eyebrow">Lorraen Madre</p>
+    <img class="logo" src="img/wish-well-logo.png" width="447" height="447" alt="WISH WELL">
+    <p class="ufo">Universal Family Office</p>
+    <h1>Cook Book</h1>
+    <img class="dice-cut" src="img/dice.png" width="380" height="212" alt="Dice, a hooded pet rat with a charcoal head and white body">
+    <p class="promise">Meet Dice, an AI bot extension that helps you set up your Cook Book: the digital organization of your home, your family, and your paperwork.</p>
+    <div class="postit"><p class="hand">Don't worry, we have soup too.</p></div>
+    <a class="cta" href="#kitchen">Cook</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+
+
+<!-- KITCHEN -->
+<section id="kitchen" aria-labelledby="k">
+  <p class="eyebrow">The Kitchen</p>
+  <h2 id="k">Tools for your Cook Book</h2>
+  <p>Everything the recipes call for, in one drawer. Each link goes to the maker's official download page.</p>
+  <div class="kitchen-grid">
+    <div class="tool featured"><div class="tool-top"><span class="mono" aria-hidden="true">D</span><h3>Dice</h3></div><p class="tag">Your Cook Book helper</p><p>The WISH WELL AI bot extension. Dice reads the recipes with you and answers questions.</p><span class="soon">Coming soon</span></div>
+    <div class="tool featured"><div class="tool-top"><span class="mono" aria-hidden="true">P</span><h3>Printable Cook Book</h3></div><p class="tag">Digital download · $33</p><p>The whole WISH WELL Cook Book as a printable PDF for your kitchen binder.</p><span class="soon">Coming soon · $33</span></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">W</span><h3>WISH WELL GPT</h3></div><p class="tag">AI · ChatGPT</p><p>Your WISH WELL brain inside ChatGPT: set a SMART goal, eight outcomes, and three four-week cycles.</p><span class="soon">Coming soon</span></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">U</span><h3>Claude UFO skill</h3></div><p class="tag">AI · Claude</p><p>The Universal Family Office skill for Claude, from the Lorraen Madre repository.</p><a class="get" href="https://github.com/lorraenmadre/LORRAEN-MADRE-UFO" target="_blank" rel="noopener">Download</a></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">C</span><h3>Claude app</h3></div><p class="tag">AI · Mac & Windows</p><p>The Claude desktop app. Chat, write, and plan, with a helper that can work with files on your computer.</p><a class="get" href="https://claude.ai/download" target="_blank" rel="noopener">Download</a></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">C</span><h3>Claude in Chrome</h3></div><p class="tag">AI · Browser</p><p>Claude in a side panel of Google Chrome, able to read and help on the page you’re on.</p><a class="get" href="https://support.claude.com/en/articles/12012173" target="_blank" rel="noopener">Download</a></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">O</span><h3>Odysseus</h3></div><p class="tag">AI · Your own computer</p><p>A free AI workspace that runs on your own machine. Recipe No. 1 walks you through it.</p><a class="get" href="https://github.com/odysseus-dev/odysseus" target="_blank" rel="noopener">Download</a></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">O</span><h3>Ollama</h3></div><p class="tag">AI · Local models</p><p>Runs AI models privately on your computer, for Odysseus and other apps.</p><a class="get" href="https://ollama.com/download" target="_blank" rel="noopener">Download</a></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">C</span><h3>Composio</h3></div><p class="tag">AI · Connections</p><p>Connects your AI helper to the apps you already use, like Gmail, Calendar, and Drive.</p><a class="get" href="https://composio.dev" target="_blank" rel="noopener">Download</a></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">B</span><h3>Bitwarden</h3></div><p class="tag">Pantry · Passwords</p><p>A free password manager for the whole family, on every phone and computer.</p><a class="get" href="https://bitwarden.com/download/" target="_blank" rel="noopener">Download</a></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">P</span><h3>Python</h3></div><p class="tag">Basics</p><p>The language Odysseus is built with. Get version 3.12 or 3.13.</p><a class="get" href="https://www.python.org/downloads/" target="_blank" rel="noopener">Download</a></div>
+    <div class="tool"><div class="tool-top"><span class="mono" aria-hidden="true">G</span><h3>Git</h3></div><p class="tag">Basics</p><p>Downloads projects like Odysseus from GitHub. Macs offer it automatically the first time.</p><a class="get" href="https://git-scm.com/downloads" target="_blank" rel="noopener">Download</a></div>
+  </div>
+</section>
+
+<!-- FOREWORD -->
+<section class="foreword" aria-labelledby="fw">
+  <p class="eyebrow">Foreword</p>
+  <h2 id="fw">Why a cookbook</h2>
+  <p class="dropcap">Most technology guides are written for the people who built the technology. This book is written for the rest of the family: the godmother who keeps every birthday card, the aunty who runs the household on a paper calendar, the cousin who closes the laptop the second a black window opens. Recipes work because they tell you what you need, what to do with your hands, and what it should look like when it's right.</p>
+  <p>Dice, our AI bot extension, reads every recipe with you and will soon live on your computer as a little assistant you can ask questions. Dice doesn't take over the stove. Dice points, explains, and waits for you.</p>
+  <p class="hand">Wish wisely.</p>
+</section>
+
+<!-- CONTENTS -->
+<section aria-labelledby="contents">
+  <p class="eyebrow">Contents</p>
+  <h2 id="contents">What's cooking</h2>
+  <div class="toc">
+    <div class="chapter"><h3>I. Setting up the kitchen</h3><ul>
+      <li><span><a href="#recipe-1">No. 1 · Your own AI workspace (Odysseus)</a></span><span class="status ready">Ready</span></li>
+      <li><span>No. 2 · The Claude app on your computer</span><span class="status">In the test kitchen</span></li>
+      <li><span>No. 3 · Claude in your web browser</span><span class="status">In the test kitchen</span></li>
+    </ul></div>
+    <div class="chapter"><h3>II. The pantry: keeping things safe</h3><ul>
+      <li><span>No. 4 · One password manager for the whole family</span><span class="status">In the test kitchen</span></li>
+      <li><span>No. 5 · Two-step sign-in on email and bank</span><span class="status">In the test kitchen</span></li>
+      <li><span>No. 6 · Backups that happen while you sleep</span><span class="status">In the test kitchen</span></li>
+    </ul></div>
+    <div class="chapter"><h3>III. The recipe box: family paperwork</h3><ul>
+      <li><span>No. 7 · Scan, name, and file important papers</span><span class="status">In the test kitchen</span></li>
+      <li><span>No. 8 · A family document vault</span><span class="status">In the test kitchen</span></li>
+      <li><span>No. 9 · Who can open it if something happens to you</span><span class="status">In the test kitchen</span></li>
+    </ul></div>
+    <div class="chapter"><h3>IV. Sunday dinner: the life you're planning</h3><ul>
+      <li><span>No. 10 · A shared family calendar</span><span class="status">In the test kitchen</span></li>
+      <li><span>No. 11 · Your wish list, turned into a plan</span><span class="status">In the test kitchen</span></li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- RECIPE 1 -->
+<section id="recipe-1" aria-labelledby="r1">
+  <div class="recipe-head">
+    <p class="eyebrow">Chapter I · Recipe No. 1</p>
+    <h2 id="r1">Your own AI workspace</h2>
+    <div class="meta">
+      <div><b>Prep</b><span>10 min</span></div>
+      <div><b>Cook</b><span>30–45 min</span></div>
+      <div><b>Serves</b><span>1 computer</span></div>
+      <div><b>Difficulty</b><span>Medium</span></div>
+    </div>
+    <p class="headnote">Odysseus is a free AI workspace that runs on your own computer instead of someone else's. You'll copy a few short lines into a program called Terminal (PowerShell on Windows). Every step says what it does and what you should see.</p>
+  </div>
+
+  <h3>Ingredients</h3>
+  <ul class="ingredients">
+    <li><span>A Mac or Windows PC, ideally with <b>16 GB of memory</b> (8 GB works, slowly).</span></li>
+    <li><span><b>20 GB of free space</b>.</span></li>
+    <li><span>A steady internet connection.</span></li>
+    <li><span>Pen and paper for the <b>admin password</b> you'll make. There's no "forgot password" email later.</span></li>
+  </ul>
+
+  <div class="dice-says">
+    <svg viewBox="0 0 80 60" aria-hidden="true"><path d="M8 34 C22 14 46 10 60 22 C66 27 72 32 76 36 C72 40 62 42 54 44 C40 50 22 48 8 34 Z" fill="#2f2f34"/><ellipse cx="44" cy="18" rx="7" ry="8" fill="#d9ab9e"/><circle cx="58" cy="30" r="2.6" fill="#000"/><circle cx="76" cy="36" r="2.4" fill="#e3a3a6"/></svg>
+    <p><b>Kitchen rule:</b> paste one grey box at a time, press Return, and wait for the line ending in <code>$</code> (or <code>&gt;</code> on Windows) to come back before the next one.</p>
+  </div>
+
+  <h3>Which kitchen is yours?</h3>
+  <div class="tabs" role="tablist" aria-label="Your computer">
+    <button class="tab" role="tab" id="t-apple" aria-controls="p-apple" aria-selected="true">Mac with Apple chip</button>
+    <button class="tab" role="tab" id="t-intel" aria-controls="p-intel" aria-selected="false">Mac with Intel chip</button>
+    <button class="tab" role="tab" id="t-win" aria-controls="p-win" aria-selected="false">Windows PC</button>
+  </div>
+  <p class="which"><b>Not sure which Mac?</b> Apple menu (top-left) → <b>About This Mac</b>. <b>Chip: Apple M1</b> (or M2, M3, M4) means Apple chip. <b>Processor: Intel</b> means Intel.</p>
+
+  <div id="p-apple" role="tabpanel" aria-labelledby="t-apple">
+  <h3>Method</h3>
+  <ol class="steps">
+    <li><div class="step"><h3>Open Terminal</h3><p class="why">Press <b>⌘ + Space</b>, type <b>Terminal</b>, press Return.</p></div></li>
+    <li><div class="step"><h3>Install Homebrew</h3><p class="why">Homebrew is the standard Mac tool installer. Odysseus uses it to fetch its parts.</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre></div>
+      <p class="note"><b>Heads up:</b> it asks for your Mac login password; nothing appears as you type. At the end it shows <b>Next steps</b> with two or three lines. Run those too.</p></div></li>
+    <li><div class="step"><h3>Download Odysseus</h3><p class="why">If a box offers "command line developer tools," click Install, wait, then paste this again.</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>cd ~
+git clone --branch main https://github.com/odysseus-dev/odysseus.git</pre></div>
+      <p class="see"><b>You should see:</b> "Receiving objects… done."</p></div></li>
+    <li><div class="step"><h3>Start it and make your password</h3><p class="why">Press Return to keep the username <code>admin</code>, then type the password you wrote down.</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>cd ~/odysseus
+./start-macos.sh</pre></div></div></li>
+    <li><div class="step"><h3>Serve</h3><p class="why">Leave Terminal open, then visit this address and sign in as <code>admin</code>.</p>
+      <div class="term"><div class="term-top">Browser address<button class="copy">Copy</button></div><pre>http://127.0.0.1:7860</pre></div></div></li>
+  </ol>
+  </div>
+
+  <div id="p-intel" role="tabpanel" aria-labelledby="t-intel" hidden>
+  <h3>Method</h3>
+  <p class="muted">Intel Macs skip Homebrew, which no longer supports them. Same dish, a few more steps.</p>
+  <ol class="steps">
+    <li><div class="step"><h3>Get a newer Python</h3><p class="why">At <b>python.org/downloads/macos</b>, download the newest <b>Python 3.13</b> "macOS 64-bit universal2 installer" and click through. Then double-click <b>Install Certificates.command</b> in the window that opens.</p></div></li>
+    <li><div class="step"><h3>Open Terminal and check</h3>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>python3.13 --version</pre></div>
+      <p class="see"><b>You should see:</b> <code>Python 3.13.</code> and a number.</p></div></li>
+    <li><div class="step"><h3>Download Odysseus</h3>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>cd ~
+git clone --branch main https://github.com/odysseus-dev/odysseus.git</pre></div></div></li>
+    <li><div class="step"><h3>Set out its own mixing bowl</h3><p class="why">A private space for Odysseus's parts. Afterward your prompt starts with <code>(venv)</code>.</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>cd ~/odysseus
+python3.13 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip</pre></div></div></li>
+    <li><div class="step"><h3>Add the ingredients</h3><p class="why">A few minutes of scrolling text. That's normal.</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>pip install -r requirements.txt</pre></div>
+      <p class="see"><b>You should see:</b> "Successfully installed…" If there's red text about <b>cryptography</b>, see "When the soufflé falls" below.</p></div></li>
+    <li><div class="step"><h3>Make your password</h3>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>python setup.py</pre></div></div></li>
+    <li><div class="step"><h3>Serve</h3><p class="why">Leave this window open, then visit <b>http://127.0.0.1:7860</b>.</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>python -m uvicorn app:app --host 127.0.0.1 --port 7860</pre></div></div></li>
+  </ol>
+  </div>
+
+  <div id="p-win" role="tabpanel" aria-labelledby="t-win" hidden>
+  <h3>Method</h3>
+  <p class="muted">The Odysseus team tests Windows less than Mac, so expect the odd lump in the batter.</p>
+  <ol class="steps">
+    <li><div class="step"><h3>Install two helpers</h3><p class="why"><b>Git for Windows</b> from git-scm.com and <b>Python 3.12</b> from python.org. On Python's first screen, tick <b>"Add python.exe to PATH"</b>.</p></div></li>
+    <li><div class="step"><h3>Open PowerShell</h3><p class="why">Start → type <b>PowerShell</b> → open it.</p></div></li>
+    <li><div class="step"><h3>Download Odysseus</h3>
+      <div class="term"><div class="term-top">PowerShell<button class="copy">Copy</button></div><pre>cd ~
+git clone --branch main https://github.com/odysseus-dev/odysseus.git</pre></div></div></li>
+    <li><div class="step"><h3>Start it and make your password</h3>
+      <div class="term"><div class="term-top">PowerShell<button class="copy">Copy</button></div><pre>cd ~\odysseus
+powershell -ExecutionPolicy Bypass -File .\launch-windows.ps1</pre></div></div></li>
+    <li><div class="step"><h3>Serve</h3>
+      <div class="term"><div class="term-top">Browser address<button class="copy">Copy</button></div><pre>http://localhost:7000</pre></div></div></li>
+  </ol>
+  </div>
+
+  <h3>To finish: give it a brain</h3>
+  <ul class="ingredients">
+    <li><span><b>Easiest, any computer:</b> get an API key from a model service such as OpenRouter or OpenAI and paste it into Odysseus <b>Settings</b>. Costs a little per message.</span></li>
+    <li><span><b>Free and private, newer computers:</b> install Ollama from ollama.com and add <code>http://localhost:11434/v1</code> in Settings.</span></li>
+  </ul>
+
+  <h3>Leftovers: turning it on again</h3>
+  <div class="term"><div class="term-top">Mac with Apple chip<button class="copy">Copy</button></div><pre>cd ~/odysseus &amp;&amp; ./start-macos.sh</pre></div>
+  <div class="term"><div class="term-top">Mac with Intel chip<button class="copy">Copy</button></div><pre>cd ~/odysseus &amp;&amp; source venv/bin/activate &amp;&amp; python -m uvicorn app:app --host 127.0.0.1 --port 7860</pre></div>
+  <div class="term"><div class="term-top">Windows<button class="copy">Copy</button></div><pre>cd ~\odysseus; powershell -ExecutionPolicy Bypass -File .\launch-windows.ps1</pre></div>
+</section>
+
+<!-- TROUBLESHOOTING -->
+<section aria-labelledby="falls">
+  <p class="eyebrow">Recipe No. 1 · Notes</p>
+  <h2 id="falls">When the soufflé falls</h2>
+  <p class="hand">It happens to every cook. Here's what I see most.</p>
+  <div class="faq">
+    <details><summary><span><code>docker: command not found</code></span></summary><div class="body"><p>That was a Docker recipe from another guide. You don't need Docker; use the recipe for your computer above.</p></div></details>
+    <details><summary><span><code>Homebrew on macOS is only supported on Apple Silicon</code></span></summary><div class="body"><p>Your Mac has an Intel chip. Switch to the Intel tab.</p></div></details>
+    <details><summary><span>Python says <code>3.9.6</code></span></summary><div class="body"><p>Install Python 3.13 (Intel step 1) and type <code>python3.13</code> instead of <code>python3</code>.</p></div></details>
+    <details><summary><span><code>Failed building wheel for cryptography</code></span></summary><div class="body">
+      <p>One security ingredient has no ready-made version for your Mac. Use a slightly older ready-made one, then add the ingredients again:</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>pip install "cryptography&lt;50" --only-binary=cryptography
+pip install -r requirements.txt</pre></div>
+      <p class="muted">If it says "No matching distribution found," ask for help and share the last few lines.</p></div></details>
+    <details><summary><span><code>No module named 'httpx'</code></span></summary><div class="body"><p>The ingredients step didn't finish. Find the red error above it, fix that, then run <code>pip install -r requirements.txt</code> again.</p></div></details>
+    <details><summary><span>I forgot my admin password</span></summary><div class="body">
+      <p>Nobody can look it up. On a fresh install, close Odysseus (Control + C) and make a new one:</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>cd ~/odysseus
+mv data/auth.json data/auth.json.old
+python setup.py</pre></div>
+      <p class="note"><b>Note:</b> this resets every account on that Odysseus.</p></div></details>
+    <details><summary><span><code>localhost:7000</code> won't open on my Mac</span></summary><div class="body"><p>Macs use 7000 for AirPlay. Use <b>http://127.0.0.1:7860</b>.</p></div></details>
+    <details><summary><span>I typed my password at the regular prompt</span></summary><div class="body">
+      <p>It went nowhere, but Terminal remembers it. Clear that, and change the password if you use it elsewhere.</p>
+      <div class="term"><div class="term-top">Terminal<button class="copy">Copy</button></div><pre>history -c</pre></div></div></details>
+  </div>
+</section>
+
+<section aria-labelledby="safety">
+  <p class="eyebrow">Before you cook anything</p>
+  <h2 id="safety">Kitchen safety</h2>
+  <ul class="rules">
+    <li>Lines starting with <code>#</code> in other guides are notes. Don't paste them.</li>
+    <li>Download Odysseus only from <b>github.com/odysseus-dev/odysseus</b>. There's no installer file or app-store version.</li>
+    <li>Setup help is never something you have to pay for.</li>
+    <li>Connect email, files, and calendar to any AI one at a time, after you're comfortable with it.</li>
+    <li>Never share your passwords, API keys, or a file named <code>.env</code>.</li>
+    <li>The paperwork recipes show you how to keep documents safe and findable. Wills, trusts, and deeds themselves are for your attorney.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="hand">
+  <p class="eyebrow">Extra services</p>
+  <h2 id="hand">Want a hand in the kitchen?</h2>
+  <p>Every recipe here is free to cook yourself. If you'd rather have someone cook with you, book extra help from Lorraen Madre.</p>
+  <div class="services">
+    <div class="service"><h3>Cook-along session</h3><p class="why">We set up one recipe together on your computer, start to finish.</p></div>
+    <div class="service"><h3>Pantry stock-up</h3><p class="why">Passwords, two-step sign-in, and backups set up for your household.</p></div>
+    <div class="service"><h3>Recipe box</h3><p class="why">Your family papers scanned, named, and organized into a vault.</p></div>
+    <div class="service"><h3>Newcastle Key</h3><p class="why">The get-started plug-in for Newcastle, your private family command center: connect your Google Drive, map your houses, and keep every document tagged and findable.</p></div>
+  </div>
+  <a class="cta" href="https://sanctuary-cell.myshopify.com" target="_blank" rel="noopener">See services</a>
+</section>
+
+<footer>
+  <p class="signoff">Wish wisely.</p>
+  <p>The WISH WELL Cook Book is from Lorraen Madre for the Universal Family Office, with Dice as its AI bot extension. It isn't made by or affiliated with Odysseus or Anthropic. Recipe No. 1 was checked against the official Odysseus repository and community guides in October 2026. Software changes often; if a step looks different, the official instructions win.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function pick(id){
+    tabs.forEach(function(t){var on=t.id===id;t.setAttribute('aria-selected',on?'true':'false');document.getElementById(t.getAttribute('aria-controls')).hidden=!on;});
+    try{localStorage.setItem('dice-kitchen',id)}catch(e){}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){pick(t.id)})});
+  try{var s=localStorage.getItem('dice-kitchen');if(s&&document.getElementById(s))pick(s)}catch(e){}
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var pre=b.closest('.term').querySelector('pre'),txt=pre.textContent;
+      function done(){b.textContent='Copied';b.classList.add('done');setTimeout(function(){b.textContent='Copy';b.classList.remove('done')},1800)}
+      function fallback(){var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);b.textContent='Press ⌘C / Ctrl+C'}
+      try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
