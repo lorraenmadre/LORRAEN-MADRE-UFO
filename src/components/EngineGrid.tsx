@@ -105,7 +105,7 @@ export default function EngineGrid({ onOpenHouse, scope = 'preview' }: { journey
       </div>
       {house && part && (
         <div className="lm-engine-detail" aria-live="polite">
-          <span className="lm-engine-cell-top"><small>HOUSE {String(house.number).padStart(2, '0')} · {house.department.toUpperCase()}</small><Gate h={house} /></span>
+          <small>HOUSE {String(house.number).padStart(2, '0')} · {house.department.toUpperCase()}</small>
           <h3>{house.gate}</h3>
           <p><strong>{house.product}</strong> · {house.price}</p>
           <p>{house.description}</p>
