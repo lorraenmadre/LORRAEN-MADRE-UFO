@@ -8,27 +8,13 @@ export default function OperatingMap() {
       <p className="text-base leading-relaxed">{system.identity}</p>
       <p className="text-base">This is the founder’s named example. Your own UFO can have its own names, agents and satellites.</p>
     </div>
-    <details open className="border border-black p-5">
-      <summary className="cursor-pointer text-xl font-belleza">Houses, products + cadences</summary>
-      <div className="overflow-x-auto mt-5">
-        <table className="w-full text-left text-base border-collapse">
-          <caption className="text-left pb-4">Twelve operating departments; Creation is the person acting across them in the present.</caption>
-          <thead><tr>{['House', 'Product / platform', 'Cadence + purpose'].map(h => <th className="p-3 border-b border-black" scope="col" key={h}>{h}</th>)}</tr></thead>
-          <tbody>{system.houses.map(h => <tr key={h.number}>
-            <th scope="row" className="p-3 border-b border-gray-200 align-top min-w-40">{h.number}. {h.department}</th>
-            <td className="p-3 border-b border-gray-200 align-top min-w-40">{h.product || 'You, in the present'}<br/><span className="text-black">{h.platform || 'No separate platform'}</span></td>
-            <td className="p-3 border-b border-gray-200 align-top min-w-56"><strong>{h.cadence}</strong><p className="mt-2">{h.description}</p></td>
-          </tr>)}</tbody>
-        </table>
-      </div>
-    </details>
     <details className="border border-black p-5">
       <summary className="cursor-pointer text-xl font-belleza">The week inside every house</summary>
       <div className="grid md:grid-cols-2 gap-5 mt-5">{system.weekdays.map(d => <article key={d.day}><h3 className="font-bold">{d.day} — {d.theme}</h3><p className="mt-2">{d.scope}</p></article>)}</div>
     </details>
     <details className="border border-black p-5">
       <summary className="cursor-pointer text-xl font-belleza">24-hour engines + daily scorecard</summary>
-      <p className="mt-5">House 5 supplies the sprint tasks and timing scorecard. House 7 coordinates agent execution, handoffs and completion receipts. Honey from the Rock is the overall daily routine.</p>
+      <p className="mt-5">House 5 (Tasks) supplies the sprint tasks and timing scorecard. House 6 (Engines) coordinates agent execution, handoffs and completion receipts. Honey from the Rock is the overall daily routine.</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 my-5">{system.blocks.map(b => <div key={b.name} className="border border-gray-300 p-4"><h3 className="font-bold">{b.name}</h3><p>{b.start}–{b.end}</p><p className="text-sm text-black mt-2">Timing source awaiting verification</p></div>)}</div>
       <p>Red, green, yellow and gray are timing guidance. No live timing is fabricated here, and a timing light never grants permission to trade, spend or publish.</p>
       <p className="mt-3">Engine design: trigger → inputs → agent work → permitted action or human handoff → output receipt → carry forward unfinished work → next daily cycle.</p>

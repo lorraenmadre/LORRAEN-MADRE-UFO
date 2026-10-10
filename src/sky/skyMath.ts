@@ -13,10 +13,10 @@ export const SIGNS = [
   { name: "Capricorn", glyph: "♑︎" }, { name: "Aquarius", glyph: "♒︎" }, { name: "Pisces", glyph: "♓︎" },
 ];
 
-/** Short, plain-language keyword for each of the 12 houses. */
+/** The Library matrix name for each of the 12 houses (lorraenmadre.com/library). */
 export const HOUSE_THEMES = [
-  "Self & timing", "Value & assets", "Voice & tech", "Home & roots", "Creativity & play", "Systems & habits",
-  "Partners & deals", "Shared money & change", "Vision & learning", "Career & legacy", "Community & network", "Dreams & rest",
+  "Business identity", "Asset & home economics", "Telecommunications + energy", "Healthcare & dependency", "Work + creative process", "Culture & systems",
+  "Legal accounts", "Insurance & tech", "Education & travel", "Intention & vision", "CRM & mission", "Manifestation & legacy",
 ];
 
 export const NAKSHATRAS = [
