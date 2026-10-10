@@ -114,7 +114,7 @@ export default function TimeView({ entities, onSelect, founder = false }: Props)
   const selPlan = sel ? planFor(sel.id) : null;
 
   return (
-    <section aria-label="Time — Rabbit Hole" className={styles.wrap}><h2 className="lm-section-title">Time · Rabbit Hole</h2><p>Your sky wheel and six-month view of time.</p>
+    <section aria-label="Time — Rabbit Hole" className={styles.wrap}>
       <div className={styles.head}>
         <div className={styles.controls}>
           <div className={styles.segment} role="group" aria-label="Chart">

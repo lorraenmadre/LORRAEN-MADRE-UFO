@@ -311,8 +311,9 @@ html { scroll-behavior: smooth; }
 .lm-engine-cell-top{display:flex;justify-content:space-between;align-items:center;gap:6px}
 .lm-matrix>.lm-engine-cell small{font-family:var(--font-belleza);font-weight:400;font-size:clamp(16px,2vw,24px);line-height:1}
 .lm-matrix>.lm-engine-cell strong{font-family:var(--font-figtree);font-weight:600;font-size:clamp(9px,1vw,11px);letter-spacing:.12em;text-transform:uppercase;line-height:1.35;color:inherit;opacity:.75}
-.lm-matrix>.lm-engine-cell em{font-style:normal;margin-top:auto;font-family:var(--font-figtree);font-weight:700;font-size:clamp(12px,1.5vw,17px);line-height:1.25}
-.lm-matrix>.lm-engine-cell i{font-style:normal;font-family:var(--font-figtree);font-size:clamp(10px,1.2vw,13px)}
+.lm-matrix>.lm-engine-cell .lm-office-text{font-family:var(--font-mulish);font-size:clamp(11px,1.3vw,14px);line-height:1.4;margin-top:auto}
+.lm-office-meter{display:block;height:5px;border-radius:3px;background:rgba(17,17,17,.12);overflow:hidden;width:100%}.lm-office-meter>span{display:block;height:100%;background:currentColor}
+.lm-gate-steps{margin:18px auto 0;text-align:left}
 .lm-gate-chip{font-family:var(--font-figtree);font-weight:700;font-size:clamp(8px,.9vw,10px);letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid rgba(0,0,0,.18);white-space:nowrap}
 .lm-matrix>.lm-engine-cell:hover,.lm-matrix>.lm-engine-cell[aria-pressed=true],.lm-matrix>.lm-engine-cell[data-lit=true]{background:#111!important;color:#fff!important}
 .lm-matrix>.lm-engine-cell[aria-pressed=true]{outline:none!important}
@@ -332,4 +333,12 @@ html { scroll-behavior: smooth; }
 .lm-engine-detail label{display:grid;gap:6px;font-family:var(--font-figtree);font-weight:600;font-size:14px}
 .lm-engine-detail input:not([type=checkbox]),.lm-engine-detail textarea{width:100%;border:1px solid #111;border-radius:8px;padding:10px 12px;font-family:var(--font-mulish);font-weight:400;font-size:16px;background:#fff;color:#111}
 .lm-engine-detail .lm-engine-check{display:flex;align-items:center;gap:10px}
-@media(max-width:640px){.lm-matrix>.lm-engine-cell strong,.lm-matrix>.lm-engine-cell i{display:none}.lm-gate-chip{padding:2px 5px}}
+@media(max-width:640px){.lm-matrix>.lm-engine-cell .lm-office-text{display:none}.lm-gate-chip{padding:2px 5px}}
+
+/* Demo bar: the app opens straight into a preview Motherboard. */
+.lm-demo-bar{background:#000;color:#fff;padding:14px 24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:center;text-align:center}
+.lm-demo-bar p{margin:0;font-family:var(--font-figtree);font-size:14px;max-width:640px}
+.lm-demo-bar .lm-demo-note{flex-basis:100%;font-size:12px;color:#cfcfcf}
+/* Time, Space and Story: title, place name, description. */
+.lm-view-intro h2{margin-bottom:0}
+.lm-view-sub{font-family:var(--font-figtree);font-weight:700;font-size:12px;letter-spacing:.24em;text-transform:uppercase;margin:4px 0 10px}

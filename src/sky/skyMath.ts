@@ -27,21 +27,21 @@ export const NAKSHATRAS = [
 
 /** Bodies drawn as tracks, outermost first. `window` = days of motion shown either side of the moment. */
 export const BODIES: { id: BodyId; glyph: string; window: number }[] = [
-  { id: "Pluto", glyph: "♇", window: 120 },
-  { id: "Neptune", glyph: "♆", window: 120 },
-  { id: "Uranus", glyph: "♅", window: 120 },
-  { id: "Chiron", glyph: "⚷", window: 120 },
-  { id: "Saturn", glyph: "♄", window: 90 },
-  { id: "Jupiter", glyph: "♃", window: 90 },
-  { id: "Rahu", glyph: "☊", window: 90 },
-  { id: "Lilith", glyph: "⚸", window: 60 },
-  { id: "Juno", glyph: "⚵", window: 40 },
-  { id: "Vesta", glyph: "⚶", window: 40 },
-  { id: "Mars", glyph: "♂", window: 30 },
-  { id: "Venus", glyph: "♀", window: 20 },
-  { id: "Mercury", glyph: "☿", window: 15 },
-  { id: "Sun", glyph: "☉", window: 15 },
-  { id: "Moon", glyph: "☽", window: 1.2 },
+  { id: "Pluto", glyph: "♇︎", window: 120 },
+  { id: "Neptune", glyph: "♆︎", window: 120 },
+  { id: "Uranus", glyph: "♅︎", window: 120 },
+  { id: "Chiron", glyph: "⚷︎", window: 120 },
+  { id: "Saturn", glyph: "♄︎", window: 90 },
+  { id: "Jupiter", glyph: "♃︎", window: 90 },
+  { id: "Rahu", glyph: "☊︎", window: 90 },
+  { id: "Lilith", glyph: "⚸︎", window: 60 },
+  { id: "Juno", glyph: "⚵︎", window: 40 },
+  { id: "Vesta", glyph: "⚶︎", window: 40 },
+  { id: "Mars", glyph: "♂︎", window: 30 },
+  { id: "Venus", glyph: "♀︎", window: 20 },
+  { id: "Mercury", glyph: "☿︎", window: 15 },
+  { id: "Sun", glyph: "☉︎", window: 15 },
+  { id: "Moon", glyph: "☽︎", window: 1.2 },
 ];
 
 const norm = (d: number) => ((d % 360) + 360) % 360;
@@ -167,7 +167,7 @@ export const computeSky = (
   const ids: BodyId[] = BODIES.map((b) => b.id);
   if (mode === "vedic") ids.splice(ids.indexOf("Rahu") + 1, 0, "Ketu");
   const bodies = ids.map((id) => {
-      const meta = BODIES.find((b) => b.id === id) ?? { glyph: "☋", window: 90 };
+      const meta = BODIES.find((b) => b.id === id) ?? { glyph: "☋︎", window: 90 };
       const l = bodyLon(id, date, mode);
       const soon = bodyLon(id, new Date(date.getTime() + 3600_000 * 6), mode);
       const delta = ((soon - l + 540) % 360) - 180;
@@ -191,7 +191,7 @@ export const computeSky = (
       }
       return {
         id,
-        glyph: id === "Ketu" ? "☋" : meta.glyph,
+        glyph: id === "Ketu" ? "☋︎" : meta.glyph,
         lon: l,
         sign,
         degInSign: l - sign * 30,
