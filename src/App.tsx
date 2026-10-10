@@ -17,6 +17,22 @@ import { motion, AnimatePresence } from 'motion/react';
 import { LogOut, Check } from 'lucide-react';
 
 type FirebaseUser = { uid: string };
+type ViewMode = 'framework' | 'business';
+
+/** Template = the blank framework anyone can fill in; Founder's Example = Lorraen's own. */
+function ViewSwitch({ viewMode, setViewMode, dark = false }: { viewMode: ViewMode; setViewMode: (v: ViewMode) => void; dark?: boolean }) {
+  const on = dark ? 'bg-white text-black' : 'bg-black text-white';
+  const off = dark ? 'text-white' : 'text-black';
+  return <>{([['framework', 'Template'], ['business', 'Founder’s Example']] as const).map(([v, label]) => (
+    <button key={v} type="button" onClick={() => setViewMode(v)} aria-pressed={viewMode === v} className={`min-h-[36px] px-4 rounded-full font-figtree font-semibold text-sm transition-all ${viewMode === v ? on : off}`}>{label}</button>
+  ))}</>;
+}
+
+const VIEWS = {
+  time: { title: 'Time', place: 'Rabbit Hole', text: 'A six-month view of every project, laid out like a Gantt chart. It starts from your birthday and the sky you were born under, so you can see when each project is lit and when to push it forward.' },
+  space: { title: 'Space', place: 'Wonderland', text: 'The board where your universe takes shape. Move your projects, plans and people around it and into the offices where they belong.' },
+  story: { title: 'Story', place: 'Neverland', text: 'Every wish you share becomes an entry here, stacked in order like a conversation. Wish for what you want, and feel free to wish out loud about what you don’t want too. Both belong to your story, and both show where the work is.' },
+} as const;
 
 export default function App() {
   const [drafts,setDrafts]=useState<StoryDraft[]>([]);
@@ -25,10 +41,10 @@ export default function App() {
   const [cleanEntities, setCleanEntities] = useState<Entity[]>(CLEAN_ENTITIES);
   const [mapLayout, setMapLayout] = useState<'space' | 'time' | 'story'>('space');
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<'framework' | 'business'>('business');
+  const [viewMode, setViewMode] = useState<ViewMode>('business');
   const [user, setUser] = useState<FirebaseUser | null>(null);
-  const {data:journey,update:updateJourney,storageError}=useJourney(user?.uid||'preview');
-  const [isPreviewMode, setIsPreviewMode] = useState(false);
+  const {data:journey,storageError}=useJourney(user?.uid||'preview');
+  const [isPreviewMode, setIsPreviewMode] = useState(true); // the app opens straight into the demo Motherboard
   const [isAuthReady, setIsAuthReady] = useState(false);
   const [authWarning, setAuthWarning] = useState<string | null>(null);
   const [googleConnected, setGoogleConnected] = useState(false);
@@ -56,6 +72,7 @@ export default function App() {
           if (!isMounted) return;
 
           setUser(u as FirebaseUser | null);
+          if (u) setIsPreviewMode(false);
           setIsAuthReady(true);
           window.clearTimeout(authFallback);
 
@@ -150,7 +167,7 @@ export default function App() {
     } catch (error) {
       console.error('Sign out failed', error);
     } finally {
-      setIsPreviewMode(false);
+      setIsPreviewMode(true);
       setUser(null);
     }
   };
@@ -167,35 +184,7 @@ export default function App() {
     };
   }, []);
 
-  if (!isAuthReady) return <div className="min-h-screen bg-white flex items-center justify-center"><span className="lm-terminal">&gt; waking lorraen</span></div>;
-
-  if (!user && !isPreviewMode) {
-    return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center space-y-12">
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-belleza uppercase tracking-[0.06em]">LORRAEN MADRE</h1>
-          <p className="text-sm uppercase tracking-[0.24em] font-figtree font-semibold">Universal Family Office</p>
-          {authWarning && (
-            <p className="max-w-lg mx-auto text-xs text-black leading-relaxed">{authWarning}</p>
-          )}
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-4">
-          <button 
-            onClick={handleLogin}
-            className="lm-pill lm-pill-white px-8"
-          >
-            Continue with Google
-          </button>
-          <button 
-            onClick={() => setIsPreviewMode(true)}
-            className="min-h-[44px] px-4 font-figtree font-semibold text-sm underline underline-offset-4"
-          >
-            Look around first
-          </button>
-        </div>
-      </div>
-    );
-  }
+  if (!isAuthReady && !isPreviewMode) return <div className="min-h-screen bg-white flex items-center justify-center"><span className="lm-terminal">&gt; waking lorraen</span></div>;
 
   const displayEntities = viewMode === 'framework' ? cleanEntities : entities;
   const selectedEntity = displayEntities.find(e => e.id === selectedEntityId);
@@ -223,37 +212,23 @@ export default function App() {
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <ActionPills className="!justify-end" />
-                  <div className="flex items-center border border-black rounded-full p-1">
-                  <button 
-                    onClick={() => setViewMode('framework')}
-                    aria-pressed={viewMode === 'framework'} className={`min-h-[36px] px-4 rounded-full font-figtree font-semibold text-sm transition-all ${viewMode === 'framework' ? 'bg-black text-white' : 'text-black'}`}
-                  >
-                    Framework
-                  </button>
-                  <button 
-                    onClick={() => setViewMode('business')}
-                    aria-pressed={viewMode === 'business'} className={`min-h-[36px] px-4 rounded-full font-figtree font-semibold text-sm transition-all ${viewMode === 'business' ? 'bg-black text-white' : 'text-black'}`}
-                  >
-                    Founder’s Example
-                  </button>
-                  <div className="w-px h-4 bg-black/20 mx-2 self-center" />
-                  <button 
-                    onClick={handleLogout}
-                    title={isPreviewMode ? 'Exit Preview' : 'Sign Out'}
-                    aria-label={isPreviewMode ? 'Exit preview' : 'Sign out'}
-                    className="min-h-[36px] min-w-[36px] flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors"
-                  >
-                    <LogOut className="w-4 h-4" />
-                  </button>
-                  </div>
+                  {isPreviewMode
+                    ? <button type="button" onClick={handleLogin} className="lm-pill lm-pill-white">Sign in</button>
+                    : <div className="flex items-center border border-black rounded-full p-1">
+                        <ViewSwitch viewMode={viewMode} setViewMode={setViewMode} />
+                        <div className="w-px h-4 bg-black/20 mx-2 self-center" />
+                        <button onClick={handleLogout} title="Sign out" aria-label="Sign out" className="min-h-[36px] min-w-[36px] flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors"><LogOut className="w-4 h-4" /></button>
+                      </div>}
                 </div>
               </div>
             </header>
 
             {/* Google Drive Connection Bar */}
             {isPreviewMode && (
-              <div className="bg-black py-3 px-6 text-center font-mono text-sm text-[#00bf63]">
-                &gt; preview: you're looking at Lorraen's UFO. Sign in to make it yours.
+              <div className="lm-demo-bar">
+                <p><strong>This is a preview of a Motherboard,</strong> a working demo of the Universal Family Office. Switch between the blank Template and the Founder’s Example, then sign in to make it yours.</p>
+                <div className="flex items-center border border-white rounded-full p-1"><ViewSwitch viewMode={viewMode} setViewMode={setViewMode} dark /></div>
+                {authWarning && <p className="lm-demo-note">{authWarning}</p>}
               </div>
             )}
 
@@ -278,7 +253,7 @@ export default function App() {
 
             {/* Lorraine Chat Top */}
             <GateOnboarding key={user?.uid||'preview'} scope={user?.uid||'preview'} onHistory={setGateDrafts}/>
-            <EngineGrid scope={user?.uid||'preview'} journey={journey} onSelect={component=>{updateJourney({...journey,component});}} onOpenHouse={id=>{setSelectedEntityId(id);window.scrollTo({top:0});}}/>
+            <EngineGrid scope={user?.uid||'preview'} />
             {viewMode === 'business' && <FounderStatus />}
 
 
@@ -296,7 +271,7 @@ export default function App() {
                 <div className="h-px w-8 bg-gray-200" />
                 <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-black">Your operating board</p>
               </div>
-              <p>Your operating board: project management, climate consciousness and business analysis through Time, Space and Story.</p>
+              <p>Three ways to see the same office. Time shows when, Space shows where, and Story shows why.</p>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap items-center gap-3">
@@ -307,12 +282,16 @@ export default function App() {
                   </button>
                 ))}
               </div>
-              <p className="text-sm">{viewMode === 'framework' ? 'Your framework — type a name into any black box to claim it.' : 'The founder’s example — explore each space.'} Board edits last for this session; onboarding progress is saved on this browser.</p>
+            </div>
+            <div className="max-w-7xl mx-auto px-6 pb-6 lm-view-intro">
+              <h2 className="lm-section-title">{VIEWS[mapLayout].title}</h2>
+              <p className="lm-view-sub">{VIEWS[mapLayout].place}</p>
+              <p className="lm-section-description">{VIEWS[mapLayout].text}</p>
             </div>
             <div className="max-w-7xl mx-auto px-6 pb-16">
               {mapLayout === 'space'
-                ? <SpaceBoard entities={displayEntities} onSelect={setSelectedEntityId} onUpdate={handleUpdateEntity} />
-                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><h2 className="lm-section-title">Story · Neverland</h2><p className="lm-section-description">Every wish you share is one entry in your story, stacked in order like a conversation.</p><StoryThread scope={user?.uid||'preview'} entries={[
+                ? <SpaceBoard />
+                : mapLayout === 'time' ? <TimeView entities={displayEntities} onSelect={setSelectedEntityId} founder={viewMode === 'business'} /> : <section aria-label="Story board"><StoryThread scope={user?.uid||'preview'} entries={[
                   ...journey.contributions.map(c=>({id:c.id,at:c.createdAt,who:'Hero' as const,label:`Day ${c.day+1} · ${c.kind}`,text:[c.wish,c.feeling?`How I feel: ${c.feeling}`:''].filter(Boolean).join('\n\n')})),
                   ...[...gateDrafts,...drafts].map(d=>({id:d.id,at:d.at,who:'Hero' as const,label:d.context.split(' · ')[0]||d.kind,text:d.text})),
                 ]}/></section>}

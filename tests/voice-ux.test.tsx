@@ -4,17 +4,12 @@ import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import SpaceBoard from '../src/components/SpaceBoard';
 import {INITIAL_ENTITIES} from '../src/constants';
-import {boardCells} from '../src/checkerboard';
 import {matchPlatform} from '../src/components/PlatformIcon';
 
-test('Plan board keeps exactly sixteen plan destinations and preserves Queen separately',()=>{
- const markup=renderToStaticMarkup(<SpaceBoard entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}}/>);
- assert.equal(boardCells(INITIAL_ENTITIES).filter(c=>c.group==='Planets'&&c.entity).length,16);
- assert.equal((markup.match(/class="lm-checker-cell /g)||[]).length,48);
- assert.equal(boardCells(INITIAL_ENTITIES).filter(c=>c.group==='Houses').length,0);
- assert.ok(!markup.includes('Houses · House'));
- assert.ok(markup.includes('Queen — view or assign person'));
- assert.ok(!markup.includes('53 named'));
+test('Wonderland board is cleared for now: 64 empty squares',()=>{
+ const markup=renderToStaticMarkup(<SpaceBoard/>);
+ assert.equal((markup.match(/class="lm-checker-cell/g)||[]).length,64);
+ assert.ok(!markup.includes('Gemini'));
 });
 test('unrelated platforms never borrow a misleading logo',()=>{
  assert.equal(matchPlatform('Claude'),null);
@@ -74,28 +69,25 @@ test('damaged browser data cannot create completion or an invalid active day',()
  assert.equal(JOURNEY_DAYS[0].title,'Vision & retirement');
  assert.equal(JOURNEY_DAYS[4].title,'Your home server');
 });
-test('Mothership is the Library matrix on one clock, with House 13 in the center',()=>{
+test('The Matrix is the Library clock with office descriptions, no products or prices',()=>{
  const pos=Object.entries(HOUSE_POSITIONS);
  assert.equal(pos.length,12);assert.equal(new Set(pos.map(([,x])=>x.join(','))).size,12);
  for(const [,[row,col]] of pos)assert.ok(row===1||row===4||col===1||col===4);
  assert.deepEqual([11,12,1,2].map(n=>HOUSE_POSITIONS[n]),[[1,1],[1,2],[1,3],[1,4]]);
  assert.deepEqual([5,6,7,8].map(n=>HOUSE_POSITIONS[n]),[[4,4],[4,3],[4,2],[4,1]]);
  assert.equal(HOUSES.length,13);
- const html=renderToStaticMarkup(<EngineGrid journey={emptyJourney()} onSelect={()=>{}}/>);
+ const html=renderToStaticMarkup(<EngineGrid/>);
  assert.equal((html.match(/class="lm-engine-cell"/g)||[]).length,12);
- for(const s of ['Mothership','Business Identity','Projects','Motherboard','$1,111','Newcastle Key','$777','The Wishing Reel','lm-clock'])assert.ok(html.includes(s),s);
- for(const s of ['Nodes','NORTH NODE','Holding company','omw.life','Woo Woo','Water Wine'])assert.ok(!html.includes(s),s);
+ for(const s of ['The Matrix','Business Identity','Projects','lm-clock','Who your family office is'])assert.ok(html.includes(s),s);
+ for(const h of HOUSES){assert.ok(!html.includes(h.product),h.product);assert.ok(!html.includes(h.price),h.price);}
+ assert.ok(!html.includes('Nodes'));assert.ok(!html.includes('lm-office-meter'),'no progress until an office is started');
 });
-test('Houses appear once: no House list in founder status, operating map or claim sections',()=>{
+test('Founder status keeps only the summary boxes; houses and products are not repeated',()=>{
  const founder=renderToStaticMarkup(<FounderStatus/>);
- assert.ok(!founder.includes('HOUSE 01'));assert.ok(!founder.includes('Woo Woo'));assert.ok(founder.includes('Newcastle Key'));
+ assert.ok(founder.includes('Money half'));assert.ok(founder.includes('Automation half'));
+ assert.ok(!founder.includes('<article'));assert.ok(!founder.includes('Newcastle Key'));
  const map=renderToStaticMarkup(<OperatingMap/>);
  assert.ok(!map.includes('Houses, products + cadences'));
- const claims=renderToStaticMarkup(<ClaimSections entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}} onAddSatellite={()=>{}}/>);
- assert.equal((claims.match(/lm-empty-card/g)||[]).length,INITIAL_ENTITIES.filter(e=>e.type!=='offering'&&/name to be chosen/i.test(e.name)).length);
- assert.ok(!claims.includes('Gemini'));assert.ok(claims.includes('Add Satellite'));
- const board=renderToStaticMarkup(<SpaceBoard entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}}/>);
- assert.ok(board.includes('♊ Gemini'));assert.ok(board.includes('Shopify'));
 });
 test('CTA row consistently applies shared brand styling and honors local actions',()=>{
  const links=renderToStaticMarkup(<ActionPills/>);

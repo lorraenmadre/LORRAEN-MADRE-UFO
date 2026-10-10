@@ -1,12 +1,20 @@
-import React,{useState} from 'react';
-import {Entity} from '../types';
-import {boardCells} from '../checkerboard';
-import {boxLabel} from '../entityOrder';
-import {calculateProgress} from '../progress';
-import EntityArt from './EntityArt';
-interface Props{entities:Entity[];onSelect:(id:string)=>void;onUpdate:(e:Entity)=>void}
-export default function SpaceBoard({entities,onSelect,onUpdate}:Props){
- const [editing,setEditing]=useState<string|null>(null);const entity=entities.find(e=>e.id===editing);const cells=boardCells(entities);const displayed=new Set(cells.flatMap(c=>c.entity?[c.entity.id]:[]));const overflow=entities.filter(e=>!e.isArchived&&e.type!=='offering'&&!displayed.has(e.id));
- return <section aria-label="Space board"><div className="lm-board-heading"><div><h2 className="lm-section-title">Space · your operating board</h2><p>Planets → Dinosaurs → Connections · your Houses live in the Mothership above</p></div></div><div className="lm-chess-scroll"><div className="lm-checkerboard" aria-label="Six by eight operating board">{cells.map((cell,i)=>{const e=cell.entity;const a=e?.assignment;return <article key={i} className={`lm-checker-cell ${(Math.floor(i/8)+i%8)%2?'is-dark':''}`}><small>{cell.group} · {e?boxLabel(e):'Open space'}</small>{e?<><span className="lm-checker-art" aria-hidden="true"><EntityArt entity={e} size={24} compact/></span><button className="lm-plan-open" onClick={()=>onSelect(e.id)}>{e.name||'Name this space'}</button>{e.platform&&<span className="lm-board-platform">{e.platform}</span>}<span className="lm-checker-meter" aria-label={`${calculateProgress(e)}% complete`}><span style={{width:`${calculateProgress(e)}%`}}/></span><button className={`lm-chess ${e.type==='church'?'is-queen':''}`} onClick={()=>setEditing(e.id)} aria-label={e.type==='church'?'Queen — view or assign person':`${boxLabel(e)}: ${a?.name||'assign a person'}`}><span aria-hidden="true">{e.type==='church'?'♛':a?.piece||'♙'}</span><span className="lm-person-popover"><strong>{a?.name||'No person assigned'}</strong><br/>Goals: {a?.goals.join('; ')||'None assigned'}<br/>Tasks: {a?.tasks.join('; ')||'None assigned'}</span></button></>:<span className="lm-open-square" aria-hidden="true">·</span>}</article>})}</div></div>{overflow.length>0&&<details><summary>More connections ({overflow.length})</summary>{overflow.map(e=><button className="lm-pill lm-pill-white" key={e.id} onClick={()=>onSelect(e.id)}>{e.name||boxLabel(e)}</button>)}</details>}{entity&&<Assignment key={entity.id} entity={entity} onClose={()=>setEditing(null)} onSave={e=>{onUpdate(e);setEditing(null)}}/>}</section>
+import React from 'react';
+
+/**
+ * Wonderland, the Space board. Cleared for now: an empty eight-by-eight board.
+ * Planets, Dinosaurs and Satellites are listed below the board with their progress.
+ */
+export default function SpaceBoard() {
+  return (
+    <section aria-label="Space board">
+      <div className="lm-chess-scroll">
+        <div className="lm-checkerboard" aria-label="Eight by eight board, cleared for now">
+          {Array.from({ length: 64 }).map((_, i) => (
+            <div key={i} className={`lm-checker-cell ${(Math.floor(i / 8) + i % 8) % 2 ? 'is-dark' : ''}`} aria-hidden="true" />
+          ))}
+        </div>
+      </div>
+      <p className="lm-caption">The board is clear for now. Your planets, dinosaurs and satellites are listed below.</p>
+    </section>
+  );
 }
-function Assignment({entity,onClose,onSave}:{entity:Entity;onClose:()=>void;onSave:(e:Entity)=>void}){const [name,setName]=useState(entity.assignment?.name||'');const [role,setRole]=useState(entity.assignment?.role||'');const [goals,setGoals]=useState(entity.assignment?.goals.join('\n')||'');const [tasks,setTasks]=useState(entity.assignment?.tasks.join('\n')||'');const [piece,setPiece]=useState(entity.assignment?.piece||'♙');return <section className="lm-assignment" aria-label="Person and assignments"><button className="lm-pill" onClick={onClose}>Close</button><h3>Who belongs in this space?</h3><p>{entity.name} · person details and assignments for this session</p><form onSubmit={e=>{e.preventDefault();const lines=(s:string)=>s.split('\n').map(x=>x.trim()).filter(Boolean);onSave({...entity,assignment:{name:name.trim(),role:role.trim(),goals:lines(goals),tasks:lines(tasks),piece}})}}><label>Person’s name<input required value={name} onChange={e=>setName(e.target.value)}/></label><label>Role<input value={role} onChange={e=>setRole(e.target.value)}/></label>{entity.type!=='church'&&<label>Chess piece<select value={piece} onChange={e=>setPiece(e.target.value)}>{['♙','♖','♘','♗','♔'].map(x=><option key={x}>{x}</option>)}</select></label>}<label>Assigned Goals · one per line<textarea value={goals} onChange={e=>setGoals(e.target.value)}/></label><label>Assigned Tasks · one per line<textarea value={tasks} onChange={e=>setTasks(e.target.value)}/></label><button className="lm-pill">Keep assignment</button></form></section>}

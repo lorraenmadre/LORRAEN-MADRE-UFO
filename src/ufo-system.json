@@ -11,6 +11,7 @@
       "gate": "Projects",
       "color": "#c8312b",
       "ink": "#fff",
+      "office": "Who your family office is: its name, its brand and the projects it carries.",
       "product": "Motherboard",
       "productId": "motherboard-onboarding",
       "price": "$1,111 · 2½ sprints",
@@ -38,6 +39,7 @@
       "gate": "Deals",
       "color": "#2e7d4f",
       "ink": "#fff",
+      "office": "How money moves at home: cash, credit, crypto and the deals you make.",
       "product": "makeCENTS",
       "productId": "makecents",
       "price": "$22",
@@ -65,6 +67,7 @@
       "gate": "Goals",
       "color": "#e8c21a",
       "ink": "#111",
+      "office": "Your devices, channels and power, and the goals they serve.",
       "product": "Sanctuary Cell Server",
       "productId": "sanctuary-cell-server",
       "price": "$3,333 · one-time",
@@ -88,6 +91,7 @@
       "gate": "Home",
       "color": "#7a4b26",
       "ink": "#fff",
+      "office": "Care for everyone who depends on you, and the home that holds them.",
       "product": "Sunshine Pocket Therapy",
       "productId": "sunshine-pocket-therapy",
       "price": "$44 / month · $444 / year",
@@ -109,6 +113,7 @@
       "gate": "Tasks",
       "color": "#6d3a99",
       "ink": "#fff",
+      "office": "The daily work: sprints, creative time and the tasks that move them.",
       "product": "Design Pride Sprint",
       "productId": "sprint",
       "price": "$555 · 2 weeks",
@@ -136,6 +141,7 @@
       "gate": "Engines",
       "color": "#ff2fb3",
       "ink": "#111",
+      "office": "The habits, routines and engines that keep the office running.",
       "product": "Fruitful Frameworks",
       "productId": "fruitful-frameworks",
       "price": "$66",
@@ -156,6 +162,7 @@
       "gate": "Documents",
       "color": "#d6d6d6",
       "ink": "#111",
+      "office": "Agreements, records, accounts and every document in writing.",
       "product": "Newcastle Key",
       "productId": "newcastle-key",
       "price": "$777",
@@ -177,6 +184,7 @@
       "gate": "Outcomes",
       "color": "#4d4d4d",
       "ink": "#fff",
+      "office": "Protection, risk and the evidence that shows what is working.",
       "product": "WISH WELL Cookbook",
       "productId": "cookbook",
       "price": "$88",
@@ -198,6 +206,7 @@
       "gate": "Plans",
       "color": "#ffffff",
       "ink": "#111",
+      "office": "Learning, travel and the plans that bring a goal together.",
       "product": "Ninth House Homeschool",
       "productId": "ninth-house-homeschool",
       "price": "$9.99 / quarter",
@@ -227,6 +236,7 @@
       "gate": "Backlog",
       "color": "#f28c28",
       "ink": "#111",
+      "office": "Where you are headed, and the backlog of everything still to do.",
       "product": "Mona Lisa Smile",
       "productId": "mona-lisa-smile",
       "price": "$1,010",
@@ -246,6 +256,7 @@
       "gate": "Wishes",
       "color": "#1d4ed8",
       "ink": "#fff",
+      "office": "Your people, your mission and the wishes you hear from them.",
       "product": "Light Year",
       "productId": "ufo-light-year",
       "price": "$11,111 · 22 sprints",
@@ -275,6 +286,7 @@
       "gate": "Dreams",
       "color": "#f4f000",
       "ink": "#111",
+      "office": "The dream you are growing toward and what you leave behind.",
       "product": "Dream Backlog",
       "productId": "dream-backlog",
       "price": "$12",
@@ -296,6 +308,7 @@
       "gate": "Routine",
       "color": "#00d5ff",
       "ink": "#111",
+      "office": "You, in the present: today’s story and the rhythm of your day.",
       "product": "The Wishing Reel",
       "productId": "wishing-reel",
       "price": "$13",
@@ -364,7 +377,7 @@
       "symbol": "Mars",
       "role": "Business activation",
       "name": "OMW.life",
-      "description": "Family business to teach and hand down to the children.",
+      "description": "Family business to teach and hand down to the children. OMW is linked from House 1 in the Library.",
       "cadence": "Six-month project plan + Lean Value Canvas"
     },
     {
@@ -373,7 +386,7 @@
       "symbol": "Venus",
       "role": "Content libraries",
       "name": "Ninth House Homeschool",
-      "description": "Portfolio project; separate from the House 9 book product.",
+      "description": "Content library project. The class itself is sold in the Library as House 9.",
       "cadence": "Six-month project plan + Lean Value Canvas"
     },
     {
@@ -472,7 +485,7 @@
       "symbol": "North Node",
       "role": "Retirement plan",
       "name": "Sunshine Pocket Therapy",
-      "description": "Proposed ERP benefits package: insurance, telemedicine and legal coordination for Universal Family Office design.",
+      "description": "Proposed ERP benefits package: insurance, telemedicine and legal coordination for Universal Family Office design. The member plan is sold in the Library as House 4.",
       "cadence": "Six-month project plan + Lean Value Canvas"
     },
     {
@@ -623,7 +636,7 @@
   "satellites": [
     {
       "name": "OpenAI",
-      "role": "AI interaction and Wish Well GPT",
+      "role": "AI interaction and the WISH WELL GPT",
       "status": "Registered",
       "method": "Manual / configured tools",
       "notes": "User-requested satellite; app API connection not verified."
@@ -647,7 +660,7 @@
       "role": "Cookbook interaction and implementation assistance",
       "status": "Planned",
       "method": "Manual / configured tools",
-      "notes": "House 4 interaction; no automatic connection claimed."
+      "notes": "Powers the WISH WELL Cookbook (House 8) and Dice; no automatic connection claimed."
     },
     {
       "name": "Globe Life / American Income Life",

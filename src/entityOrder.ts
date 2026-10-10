@@ -1,7 +1,7 @@
 import { Entity } from './types';
 import { PLAN_SLOTS, slotForEntity } from './planSlots';
 
-export const ZODIAC_GLYPHS:Record<string,string>={Aries:'♈',Taurus:'♉',Gemini:'♊',Cancer:'♋',Leo:'♌',Virgo:'♍',Libra:'♎',Scorpio:'♏',Sagittarius:'♐',Capricorn:'♑',Aquarius:'♒',Pisces:'♓'};
+export const ZODIAC_GLYPHS:Record<string,string>={Aries:'♈︎',Taurus:'♉︎',Gemini:'♊︎',Cancer:'♋︎',Leo:'♌︎',Virgo:'♍︎',Libra:'♎︎',Scorpio:'♏︎',Sagittarius:'♐︎',Capricorn:'♑︎',Aquarius:'♒︎',Pisces:'♓︎'};
 
 export const isUnnamed = (e: Entity) => !e.name || !e.name.trim() || /name to be chosen/i.test(e.name) || e.name.trim() === 'None';
 
@@ -9,7 +9,7 @@ export const isUnnamed = (e: Entity) => !e.name || !e.name.trim() || /name to be
 export const boxLabel = (e: Entity) => {
   const s = slotForEntity(e.id);
   if (s) return `${s.glyph} ${s.planet}`;
-  if (e.type === 'church') return '♛ Queen';
+  if (e.type === 'church') return '♛︎ Queen';
   if (e.type === 'holding_company') return 'UFO';
   if (e.type === 'offering') return e.house || 'House';
   if (e.type === 'dinosaur') return `${ZODIAC_GLYPHS[e.zodiacSign || ''] || ''} ${e.zodiacSign || 'Dinosaur'}`.trim();
