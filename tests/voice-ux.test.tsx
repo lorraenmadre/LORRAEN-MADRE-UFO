@@ -10,7 +10,9 @@ import {matchPlatform} from '../src/components/PlatformIcon';
 test('Plan board keeps exactly sixteen plan destinations and preserves Queen separately',()=>{
  const markup=renderToStaticMarkup(<SpaceBoard entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}}/>);
  assert.equal(boardCells(INITIAL_ENTITIES).filter(c=>c.group==='Planets'&&c.entity).length,16);
- assert.equal((markup.match(/class="lm-checker-cell /g)||[]).length,64);
+ assert.equal((markup.match(/class="lm-checker-cell /g)||[]).length,48);
+ assert.equal(boardCells(INITIAL_ENTITIES).filter(c=>c.group==='Houses').length,0);
+ assert.ok(!markup.includes('Houses · House'));
  assert.ok(markup.includes('Queen — view or assign person'));
  assert.ok(!markup.includes('53 named'));
 });
@@ -27,7 +29,9 @@ test('unrelated platforms never borrow a misleading logo',()=>{
 import LorraineMadreChat from '../src/components/LorraineMadreChat';
 import WelcomeJourney from '../src/components/WelcomeJourney';
 import {emptyJourney,addContribution,decodeJourney,hasContribution,JOURNEY_DAYS} from '../src/journey';
-import EngineGrid,{ENGINE_POSITIONS} from '../src/components/EngineGrid';
+import EngineGrid,{HOUSE_POSITIONS,HOUSES} from '../src/components/EngineGrid';
+import FounderStatus from '../src/components/FounderStatus';
+import OperatingMap from '../src/components/OperatingMap';
 import ClaimSections from '../src/components/ClaimSections';
 import ActionPills from '../src/components/ActionPills';
 import EngineJourney,{ENGINE_CATEGORIES} from '../src/components/EngineJourney';
@@ -70,21 +74,28 @@ test('damaged browser data cannot create completion or an invalid active day',()
  assert.equal(JOURNEY_DAYS[0].title,'Vision & retirement');
  assert.equal(JOURNEY_DAYS[4].title,'Your home server');
 });
-test('Engine occupies exactly the twelve perimeter cells and reserves the central four',()=>{
- assert.equal(ENGINE_POSITIONS.length,12);assert.equal(new Set(ENGINE_POSITIONS.map(x=>x.join(','))).size,12);
- for(const [row,col] of ENGINE_POSITIONS)assert.ok(row===1||row===4||col===1||col===4);
+test('Mothership is the Library matrix on one clock, with House 13 in the center',()=>{
+ const pos=Object.entries(HOUSE_POSITIONS);
+ assert.equal(pos.length,12);assert.equal(new Set(pos.map(([,x])=>x.join(','))).size,12);
+ for(const [,[row,col]] of pos)assert.ok(row===1||row===4||col===1||col===4);
+ assert.deepEqual([11,12,1,2].map(n=>HOUSE_POSITIONS[n]),[[1,1],[1,2],[1,3],[1,4]]);
+ assert.deepEqual([5,6,7,8].map(n=>HOUSE_POSITIONS[n]),[[4,4],[4,3],[4,2],[4,1]]);
+ assert.equal(HOUSES.length,13);
  const html=renderToStaticMarkup(<EngineGrid journey={emptyJourney()} onSelect={()=>{}}/>);
  assert.equal((html.match(/class="lm-engine-cell"/g)||[]).length,12);
- assert.ok(html.includes('Mothership'));assert.ok(!html.includes('Advocacy Engine'));
- for(const s of ['omw.life','Holding company','Retirement','The Cookbook'])assert.ok(html.includes(s),s);
+ for(const s of ['Mothership','Business Identity','Projects','Motherboard','$1,111','Newcastle Key','$777','The Wishing Reel','lm-clock'])assert.ok(html.includes(s),s);
+ for(const s of ['Nodes','NORTH NODE','Holding company','omw.life','Woo Woo','Water Wine'])assert.ok(!html.includes(s),s);
 });
-test('Product Houses live only in the Mothership and Dinosaur platform logos label the actual platform',()=>{
- const html=renderToStaticMarkup(<ClaimSections entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}} onAddSatellite={()=>{}}/>);
- assert.equal((html.match(/Bring one House online at a time/g)||[]).length,0);
- assert.equal((html.match(/Read Anthropic cookbooks/g)||[]).length,0);
- assert.ok(html.includes('Sanctuary Cell'));assert.ok(!html.includes('Sanctuary Self'));
- assert.match(html,/alt="Shopify"[^>]*\/>\s*<span>Shopify<\/span>/);
- assert.ok(html.includes('♊ Gemini'));assert.ok(html.includes('♋ Cancer'));
+test('Houses appear once: no House list in founder status, operating map or claim sections',()=>{
+ const founder=renderToStaticMarkup(<FounderStatus/>);
+ assert.ok(!founder.includes('HOUSE 01'));assert.ok(!founder.includes('Woo Woo'));assert.ok(founder.includes('Newcastle Key'));
+ const map=renderToStaticMarkup(<OperatingMap/>);
+ assert.ok(!map.includes('Houses, products + cadences'));
+ const claims=renderToStaticMarkup(<ClaimSections entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}} onAddSatellite={()=>{}}/>);
+ assert.equal((claims.match(/lm-empty-card/g)||[]).length,INITIAL_ENTITIES.filter(e=>e.type!=='offering'&&/name to be chosen/i.test(e.name)).length);
+ assert.ok(!claims.includes('Gemini'));assert.ok(claims.includes('Add Satellite'));
+ const board=renderToStaticMarkup(<SpaceBoard entities={INITIAL_ENTITIES} onSelect={()=>{}} onUpdate={()=>{}}/>);
+ assert.ok(board.includes('♊ Gemini'));assert.ok(board.includes('Shopify'));
 });
 test('CTA row consistently applies shared brand styling and honors local actions',()=>{
  const links=renderToStaticMarkup(<ActionPills/>);

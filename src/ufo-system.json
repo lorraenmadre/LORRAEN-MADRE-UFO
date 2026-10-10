@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-07.1",
+  "version": "2026-10-10.1",
   "brand": "LORRAEN MADRE",
   "mothership": "Sterling Drive Consulting",
   "structure": "Universal Family Office (UFO)",
@@ -7,107 +7,309 @@
   "houses": [
     {
       "number": 1,
-      "department": "Family Business",
-      "product": "omw.life",
-      "platform": "Website",
+      "department": "Business Identity",
+      "gate": "Projects",
+      "color": "#c8312b",
+      "ink": "#fff",
+      "product": "Motherboard",
+      "productId": "motherboard-onboarding",
+      "price": "$1,111 · 2½ sprints",
+      "status": "available",
+      "platform": "UFO app",
       "cadence": "Six months",
-      "description": "OMW · Miami Family Travel Club. Recurring family routes and travel coordination; the first product you download when you activate your mothership."
+      "description": "Two and a half sprints building your motherboard, the home base your family office runs on.",
+      "covers": [
+        "Two and a half Design Pride Sprints",
+        "Your motherboard set up and running",
+        "Dream Backlog included (every sprint includes it)"
+      ],
+      "explore": "https://lorraenmadre.app/",
+      "links": [
+        {
+          "label": "OMW Travel Club",
+          "short": "OMW",
+          "url": "https://omw.lorraenmadre.com/"
+        }
+      ]
     },
     {
       "number": 2,
-      "department": "Treasury",
+      "department": "Asset & Home Economics",
+      "gate": "Deals",
+      "color": "#2e7d4f",
+      "ink": "#fff",
       "product": "makeCENTS",
-      "platform": "Whop / web app",
+      "productId": "makecents",
+      "price": "$22",
+      "status": "available",
+      "platform": "Web app",
       "cadence": "Hourly view",
-      "description": "Home Economy: cash, credit and crypto run as departments of your family bank, the 13 Bulls, with money made per hour on one chart. $22 one-time for your own Home Economy."
+      "description": "Download your own family bank: the Home Economy, home economics for the Universal Family Office.",
+      "covers": [
+        "Your own Home Economy setup (download)",
+        "The Three Kings: cash, credit, crypto",
+        "Home economics lessons built in"
+      ],
+      "explore": "https://makecents.lorraenmadre.com/",
+      "links": [
+        {
+          "label": "Watch",
+          "short": "Watch",
+          "url": ""
+        }
+      ]
     },
     {
       "number": 3,
-      "department": "Goals and Cycly ERP",
-      "product": "Wish Well GPT · The Cookbook · The Key",
-      "platform": "GPT + Claude",
+      "department": "Telecommunications + Energy",
+      "gate": "Goals",
+      "color": "#e8c21a",
+      "ink": "#111",
+      "product": "Sanctuary Cell Server",
+      "productId": "sanctuary-cell-server",
+      "price": "$3,333 · one-time",
+      "status": "available",
+      "platform": "Shopify",
       "cadence": "Cycly: three four-week operating cycles",
-      "description": "Your WISH WELL brain: the Wish Well GPT, the Cookbook of recipes for running your family office with AI, and The Key, a Claude Cookbook extension with a PDF to follow. Define a SMART Goal with eight Outcomes; three four-week operating cycles."
+      "description": "Your complete DIY home server setup through Sanctuary Cell. A one-time setup that includes everything in the Library except the sprints.",
+      "covers": [
+        "Complete home server setup, done once",
+        "Newcastle, your digital home",
+        "Every House product: WISH WELL Cookbook, Newcastle Key, makeCENTS and more",
+        "Dream Backlog and the Wishing Reel",
+        "Not included: the Light Year's 22 Design Pride Sprints"
+      ],
+      "explore": "https://sanctuary-cell.myshopify.com/",
+      "links": []
     },
     {
       "number": 4,
-      "department": "Holistic Home Health",
-      "product": "Sanctuary Cell",
-      "platform": "Shopify",
+      "department": "Healthcare & Dependency",
+      "gate": "Home",
+      "color": "#7a4b26",
+      "ink": "#fff",
+      "product": "Sunshine Pocket Therapy",
+      "productId": "sunshine-pocket-therapy",
+      "price": "$44 / month · $444 / year",
+      "status": "available",
+      "platform": "Website",
       "cadence": "Monthly",
-      "description": "Your home server: kits, Raspberry Pi and storage gear to run your own family office at home, sold through the Sanctuary Cell store."
+      "description": "Family care coordination, in your pocket.",
+      "covers": [
+        "Member portal access",
+        "Family care coordination",
+        "Yearly plan includes Wishing Reel"
+      ],
+      "explore": "https://sunshinepockettherapy.lorraenmadre.com/",
+      "links": []
     },
     {
       "number": 5,
-      "department": "Work and Play",
-      "product": "The Pride",
-      "platform": "Slack",
+      "department": "Work + Creative Process",
+      "gate": "Tasks",
+      "color": "#6d3a99",
+      "ink": "#fff",
+      "product": "Design Pride Sprint",
+      "productId": "sprint",
+      "price": "$555 · 2 weeks",
+      "status": "available",
+      "platform": "Stripe",
       "cadence": "Biweekly sprint + daily scorecard",
-      "description": "Existing standup, introspection, retrospection and review ceremonies; four daily blocks with timing signals; task selection across all planning cadences and weekdays."
+      "description": "Two weeks, one new thing built together, live by the end.",
+      "covers": [
+        "One two-week Design Pride Sprint",
+        "One deliverable, live at the end",
+        "Dream Backlog included free"
+      ],
+      "explore": "",
+      "links": [
+        {
+          "label": "Light Scouts",
+          "short": "Light Scouts",
+          "url": "https://discord.gg/rgSa9WqhqD"
+        }
+      ]
     },
     {
       "number": 6,
-      "department": "Systems and Habits",
+      "department": "Culture & Systems",
+      "gate": "Engines",
+      "color": "#ff2fb3",
+      "ink": "#111",
       "product": "Fruitful Frameworks",
+      "productId": "fruitful-frameworks",
+      "price": "$66",
+      "status": "coming_soon",
       "platform": "Notion",
-      "cadence": "Weekly",
-      "description": "Every house has all seven weekday dashboards, filtered to its area of life and linked to canonical records."
+      "cadence": "Weekly dashboards + 24-hour engine loop",
+      "description": "Notion frameworks you duplicate into your own workspace.",
+      "covers": [
+        "Notion template download",
+        "House-by-house dashboards"
+      ],
+      "explore": "",
+      "links": []
     },
     {
       "number": 7,
-      "department": "Engines and Accountability",
-      "product": "Woo Woo Watch",
-      "platform": "Apple Watch",
-      "cadence": "24-hour engine loop",
-      "description": "Daily timing for the engine: moon phase and red/green/yellow/gray signals on the wrist. Daily agent execution and receipts use House 5 timing."
+      "department": "Legal Accounts",
+      "gate": "Documents",
+      "color": "#d6d6d6",
+      "ink": "#111",
+      "product": "Newcastle Key",
+      "productId": "newcastle-key",
+      "price": "$777",
+      "status": "available",
+      "platform": "Google",
+      "cadence": "Cadence not specified",
+      "description": "The get-started key to Newcastle, your private home base for the family's documents.",
+      "covers": [
+        "The Newcastle Key get-started plug-in",
+        "Newcastle, your private document home base",
+        "Connects to your Google Drive"
+      ],
+      "explore": "https://key.lorraenmadre.com/",
+      "links": []
     },
     {
       "number": 8,
-      "department": "Outcomes, Protection and Exits",
-      "product": "Mona Lisa Smile",
-      "platform": "Miro",
+      "department": "Insurance & Tech",
+      "gate": "Outcomes",
+      "color": "#4d4d4d",
+      "ink": "#fff",
+      "product": "WISH WELL Cookbook",
+      "productId": "cookbook",
+      "price": "$88",
+      "status": "available",
+      "platform": "Claude",
       "cadence": "Event-triggered outcome assessment",
-      "description": "Own the eight measurable Outcomes per Goal, their evidence, protection, risks and exit decision rules. Events trigger review; task completion alone does not prove an Outcome."
+      "description": "The WISH WELL Cook Book: a tech cookbook for setting up your digital home, with Dice to help.",
+      "covers": [
+        "The WISH WELL Cook Book",
+        "Complete install guides",
+        "Dice, the AI helper extension"
+      ],
+      "explore": "https://cookbook.lorraenmadre.com/",
+      "links": []
     },
     {
       "number": 9,
-      "department": "Quarterly Plans: Trust, Travel and Therapy",
-      "product": "Lady and the Wish Book",
-      "platform": "Amazon book series/store",
+      "department": "Education & Travel",
+      "gate": "Plans",
+      "color": "#ffffff",
+      "ink": "#111",
+      "product": "Ninth House Homeschool",
+      "productId": "ninth-house-homeschool",
+      "price": "$9.99 / quarter",
+      "status": "available",
+      "platform": "Website + Amazon",
       "cadence": "Quarterly; three operating cycles",
-      "description": "Coordinate one Goal, eight Outcomes and 64 task spaces in a 9x9 Mandalart grid. Link economic, natural-disaster and provisional personal/family-disruption plans to trust, travel and therapy."
+      "description": "Homeschool for the Universal Family Office, simple enough for a child to understand and a mom to teach.",
+      "covers": [
+        "One quarter of the Lorraen Madre class",
+        "Wishing Reel included",
+        "Dream Backlog included",
+        "makeCENTS included",
+        "Lady and the Wish reading (books on Amazon)"
+      ],
+      "explore": "https://homeschool.lorraenmadre.com/",
+      "links": [
+        {
+          "label": "Lady and the Wish",
+          "short": "Lady & Wish",
+          "url": "https://www.amazon.com/dp/B0H2NSWDYV"
+        }
+      ]
     },
     {
       "number": 10,
-      "department": "Story and Standards",
-      "product": "Newcastle",
-      "platform": "Google",
+      "department": "Intention & Vision",
+      "gate": "Backlog",
+      "color": "#f28c28",
+      "ink": "#111",
+      "product": "Mona Lisa Smile",
+      "productId": "mona-lisa-smile",
+      "price": "$1,010",
+      "status": "available",
+      "platform": "Miro",
       "cadence": "Birthday",
-      "description": "Digital Organization: the private command center for your documents, Drive folders, house dashboards and timeline. Paired with ST. MADRE. RAE."
+      "description": "The tech stack that smiles back.",
+      "covers": [
+        "Mona Lisa Smile access"
+      ],
+      "explore": "https://monalisa.lorraenmadre.com/",
+      "links": []
     },
     {
       "number": 11,
-      "department": "Community Network",
-      "product": "Water Wine",
-      "platform": "GoHighLevel",
-      "cadence": "CRM; cadence not specified",
-      "description": "GoHighLevel CRM template and connected relationship views in Notion."
+      "department": "CRM & Mission",
+      "gate": "Wishes",
+      "color": "#1d4ed8",
+      "ink": "#fff",
+      "product": "Light Year",
+      "productId": "ufo-light-year",
+      "price": "$11,111 · 22 sprints",
+      "status": "available",
+      "platform": "UFO app",
+      "cadence": "Yearly · 22 two-week sprints",
+      "description": "A whole year building your Universal Family Office. Everything in the Library is included.",
+      "covers": [
+        "44 weeks building with Lorraen Madre",
+        "22 Design Pride Sprints · 22 deliverables",
+        "The Sanctuary Cell Server, the Newcastle Key and the WISH WELL Cookbook",
+        "Fruitful Frameworks + every House product",
+        "Dream Backlog, Wishing Reel and makeCENTS"
+      ],
+      "explore": "",
+      "links": [
+        {
+          "label": "LM Radio",
+          "short": "LM Radio",
+          "url": "https://radio.lorraenmadre.com/"
+        }
+      ]
     },
     {
       "number": 12,
-      "department": "Mind, Body, Soul Activation",
+      "department": "Manifestation & Legacy",
+      "gate": "Dreams",
+      "color": "#f4f000",
+      "ink": "#111",
       "product": "Dream Backlog",
+      "productId": "dream-backlog",
+      "price": "$12",
+      "status": "preorder",
       "platform": "Trello",
       "cadence": "Yearly",
-      "description": "Capture every wish before it gets lost. Wishes are cleaned with SOAP, sorted North/South/East/West or kept in Wonderland, and become Goals, Tasks or Deals."
+      "description": "A Trello backlog that wakes your dreams up. Free with any sprint.",
+      "covers": [
+        "Your Dream Backlog Trello board",
+        "Wish cleaning with SOAP",
+        "Free with any sprint"
+      ],
+      "explore": "",
+      "links": []
     },
     {
       "number": 13,
-      "department": "Creation",
+      "department": "Story",
+      "gate": "Routine",
+      "color": "#00d5ff",
+      "ink": "#111",
       "product": "The Wishing Reel",
+      "productId": "wishing-reel",
+      "price": "$13",
+      "status": "available",
       "platform": "Stripe + Discord",
       "cadence": "Daily",
-      "description": "The 365-day movie calendar: one story a day, a family trip behind every movie, and Light Scouts trivia points. You are still the 13th house: the story you choose today."
+      "description": "A 365-night story calendar. Free with anything you buy for a year.",
+      "covers": [
+        "2027 calendar with 365 story nights",
+        "Each night links to where to watch",
+        "Free with every yearly purchase"
+      ],
+      "explore": "https://wishingreel.lorraenmadre.com/",
+      "links": []
     }
   ],
   "portfolio": [
@@ -626,5 +828,6 @@
         "stage": "Execution"
       }
     ]
-  }
+  },
+  "library": "https://lorraenmadre.com/library"
 }

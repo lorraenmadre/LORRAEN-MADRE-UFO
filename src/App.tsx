@@ -6,19 +6,15 @@ import TimeView from './components/TimeView';
 import ClaimSections from './components/ClaimSections';
 import OperatingMap from './components/OperatingMap';
 import EntitySnapshot from './components/EntitySnapshot';
-import LorraineMadreChat from './components/LorraineMadreChat';
-import WelcomeJourney from './components/WelcomeJourney';
 import GateOnboarding from './components/GateOnboarding';
-import EngineJourney from './components/EngineJourney';
 import EngineGrid from './components/EngineGrid';
 import FounderStatus from './components/FounderStatus';
-import VoiceOrb from './components/VoiceOrb';
 import StoryThread from './components/StoryThread';
-import {useJourney,JOURNEY_DAYS,addContribution} from './journey';
+import {useJourney} from './journey';
 import type { StoryDraft } from './components/LorraineMadreChat';
 import ActionPills from './components/ActionPills';
 import { motion, AnimatePresence } from 'motion/react';
-import { Globe, LayoutGrid, Info, LogOut, ChevronRight, Check } from 'lucide-react';
+import { LogOut, Check } from 'lucide-react';
 
 type FirebaseUser = { uid: string };
 

@@ -39,8 +39,7 @@
   {
    "id": "lm-site",
    "name": "LORRAEN MADRE site",
-   "sub": "lorraenmadre.com",
-   "house": 1,
+   "sub": "lorraenmadre.com + the Library",
    "c": {
     "G": 0,
     "O": 0,
@@ -60,8 +59,7 @@
   {
    "id": "lady-wish",
    "name": "Lady and the Wish",
-   "sub": "Amazon book + Substack",
-   "house": 9,
+   "sub": "Amazon book + Substack · button in House 9",
    "c": {
     "G": 0,
     "O": 0,
@@ -81,8 +79,7 @@
   {
    "id": "omw",
    "name": "OMW",
-   "sub": "Miami Family Travel Club",
-   "house": null,
+   "sub": "Miami Family Travel Club · button in House 1",
    "planet": "Mars",
    "c": {
     "G": 0,
@@ -103,9 +100,8 @@
   {
    "id": "spt",
    "name": "Sunshine Pocket Therapy",
-   "sub": "North Node",
-   "house": null,
-   "planet": "North Node",
+   "sub": "$44 / month · $444 / year",
+   "house": 4,
    "c": {
     "G": 0,
     "O": 0,
@@ -124,10 +120,9 @@
   },
   {
    "id": "ufo-app",
-   "name": "UFO app",
-   "sub": "lorraenmadre.app",
-   "house": null,
-   "planet": "Sun",
+   "name": "Motherboard · UFO app",
+   "sub": "lorraenmadre.app · $1,111",
+   "house": 1,
    "c": {
     "G": 0,
     "O": 0,
@@ -210,9 +205,9 @@
   },
   {
    "id": "the-key",
-   "name": "The Key",
-   "sub": "Claude Cookbook extension + PDF",
-   "house": 3,
+   "name": "Newcastle Key",
+   "sub": "$777 · the key to Newcastle",
+   "house": 7,
    "c": {
     "G": 0,
     "O": 0,
@@ -223,38 +218,16 @@
     "A": 0
    },
    "tag": "Page live",
-   "note": "key.lorraenmadre.com sells The Key at $77 (key-shaped drive + the Cookbook + Newcastle early access), with shipping collected at checkout. The $777 home server kit is listed as later. No Keys in stock or loaded yet, so the first order ships by hand.",
-   "change": "$77 page + checkout live",
+   "note": "The Library now lists the Newcastle Key at $777, but key.lorraenmadre.com still sells The Key at $77 (key-shaped drive + the Cookbook + Newcastle early access), so that page needs the new price. Newcastle itself: the MVP spec exists and the Google Drive shared-brain folder is chosen; it is not yet a working command center.",
+   "change": "",
    "money": 25,
    "auto": 17,
    "total": 21
   },
   {
-   "id": "newcastle",
-   "name": "Newcastle",
-   "sub": "Digital Organization",
-   "house": 10,
-   "c": {
-    "G": 0,
-    "O": 0,
-    "P": 0.5,
-    "L": 0,
-    "C": 0,
-    "I": 0.5,
-    "A": 0
-   },
-   "tag": "In design",
-   "note": "MVP spec exists and the Google Drive shared-brain folder is chosen. Not yet a working command center.",
-   "change": "Now House 10",
-   "money": 0,
-   "auto": 33,
-   "total": 17
-  },
-  {
    "id": "woowoo",
-   "name": "Woo Woo Watch",
-   "sub": "Apple Watch timing",
-   "house": 7,
+   "name": "Watch",
+   "sub": "Apple Watch timing · button in House 2",
    "c": {
     "G": 0,
     "O": 0,
@@ -266,16 +239,16 @@
    },
    "tag": "Concept",
    "note": "Moon phase and red, green, yellow, gray timing defined; Leonardo's daily transit brief is the closest live piece. No watch build.",
-   "change": "Now House 7",
+   "change": "",
    "money": 0,
    "auto": 17,
    "total": 8
   },
   {
    "id": "sanctuary-cell",
-   "name": "Sanctuary Cell",
-   "sub": "home server store · Shopify",
-   "house": 4,
+   "name": "Sanctuary Cell Server",
+   "sub": "$3,333 home server setup · Shopify",
+   "house": 3,
    "c": {
     "G": 0,
     "O": 0,
@@ -295,7 +268,7 @@
   {
    "id": "lm-radio",
    "name": "LM Radio",
-   "sub": "hourly frequency + nature sound",
+   "sub": "hourly frequency + nature sound · button in House 11",
    "house": null,
    "planet": "",
    "c": {
@@ -336,139 +309,5 @@
    "auto": 17,
    "total": 8
   }
- ],
- "houses": [
-  {
-   "n": 1,
-   "dept": "Family Business",
-   "product": "LORRAEN MADRE",
-   "platform": "Website",
-   "cadence": "6 months",
-   "pct": 75,
-   "note": "Site live; forms and /smile fixed. No six-month plan running."
-  },
-  {
-   "n": 2,
-   "dept": "Treasury",
-   "product": "makeCENTS",
-   "platform": "Whop / web",
-   "cadence": "Hourly",
-   "pct": 63,
-   "note": "Demo live on makecents.lorraenmadre.com. No $22 checkout yet.",
-   "changed": true,
-   "was": "Woo Woo Watch"
-  },
-  {
-   "n": 3,
-   "dept": "Telecommunications · Goals",
-   "product": "Wish Well GPT + The Cookbook + The Key",
-   "platform": "GPT + Claude",
-   "cadence": "3 × 28 days",
-   "pct": 75,
-   "note": "Cookbook written; The Key sells at $77 on key.lorraenmadre.com. Goal database not built.",
-   "changed": true,
-   "was": "Wish Well GPT only"
-  },
-  {
-   "n": 4,
-   "dept": "Holistic Home Health",
-   "product": "Sanctuary Cell · home server",
-   "platform": "Shopify",
-   "cadence": "Monthly",
-   "pct": 75,
-   "note": "11 products active and priced. Domain record set; connect it in Shopify admin.",
-   "changed": true,
-   "was": "The Cookbook"
-  },
-  {
-   "n": 5,
-   "dept": "Work and Play",
-   "product": "The Pride",
-   "platform": "Slack",
-   "cadence": "2-week sprint",
-   "pct": 75,
-   "note": "Sprint booking live at $555; payments become calendar invites daily."
-  },
-  {
-   "n": 6,
-   "dept": "Systems and Habits",
-   "product": "Fruitful Frameworks",
-   "platform": "Notion",
-   "cadence": "Weekly",
-   "pct": 88,
-   "note": "Built. Not reviewed weekly yet."
-  },
-  {
-   "n": 7,
-   "dept": "Engines and Accountability",
-   "product": "Woo Woo Watch",
-   "platform": "Apple Watch",
-   "cadence": "24 hours",
-   "pct": 38,
-   "note": "The hourly runner is live; the watch is concept only.",
-   "changed": true,
-   "was": "Newcastle"
-  },
-  {
-   "n": 8,
-   "dept": "Outcomes and Exits",
-   "product": "Mona Lisa Smile",
-   "platform": "Miro",
-   "cadence": "On event",
-   "pct": 63,
-   "note": "/smile opens the Mona Lisa app. Outcome register and insurance story not built."
-  },
-  {
-   "n": 9,
-   "dept": "Trust, Travel, Plans",
-   "product": "Lady and the Wish",
-   "platform": "Amazon",
-   "cadence": "Quarterly",
-   "pct": 75,
-   "note": "Book on sale. No quarterly plan yet."
-  },
-  {
-   "n": 10,
-   "dept": "Story and Standards",
-   "product": "Newcastle · Digital Organization",
-   "platform": "Google",
-   "cadence": "Birthday",
-   "pct": 63,
-   "note": "Drive is connected; the command center isn't built.",
-   "changed": true,
-   "was": "Dream Backlog"
-  },
-  {
-   "n": 11,
-   "dept": "Community Network",
-   "product": "Water Wine",
-   "platform": "GoHighLevel",
-   "cadence": "Seasonal",
-   "pct": 50,
-   "note": "Forms now save and copy daily to Google Drive. CRM not set up."
-  },
-  {
-   "n": 12,
-   "dept": "Mind, Body, Soul",
-   "product": "Dream Backlog",
-   "platform": "Trello",
-   "cadence": "Yearly",
-   "pct": 88,
-   "note": "Board built and holding Wishes. Two empty duplicate boards to delete.",
-   "changed": true,
-   "was": "Jungle Book"
-  },
-  {
-   "n": 13,
-   "dept": "Creation",
-   "product": "The Wishing Reel",
-   "platform": "Stripe + Discord",
-   "cadence": "Daily",
-   "pct": 88,
-   "note": "Live with a $13 link. Daily posts are drafted, not yet published.",
-   "changed": true,
-   "was": "You, choosing in the present"
-  }
- ],
- "homeless": null
+ ]
 }

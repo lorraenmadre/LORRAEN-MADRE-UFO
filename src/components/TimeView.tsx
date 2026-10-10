@@ -207,7 +207,7 @@ export default function TimeView({ entities, onSelect, founder = false }: Props)
               <p className={styles.whyText}>
                 {sel.id} sits at {formatDeg(sel.degInSign)} {SIGNS[sel.sign].name}
                 {sel.retro && sel.id !== 'Rahu' && sel.id !== 'Ketu' ? ', moving backward (retrograde)' : ''}. {showingBirth && profile ? `At birth in ${profile.place}` : `From ${place.label}`}, {ascSign.name} {showingBirth ? 'was' : 'is'} rising, so this plan{' '}
-                {showingBirth ? 'was born' : 'is lit'} in your <strong>{ordinal(sel.house)} house</strong> — {HOUSE_THEMES[sel.house - 1].toLowerCase()}.
+                {showingBirth ? 'was born' : 'is lit'} in your <strong>{ordinal(sel.house)} house</strong> — {HOUSE_THEMES[sel.house - 1]}.
               </p>
               {selPlan?.entity && (
                 <button type="button" className={styles.open} onClick={() => onSelect(selPlan.entity!.id)}>

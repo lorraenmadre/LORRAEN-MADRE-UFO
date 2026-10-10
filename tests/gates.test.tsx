@@ -21,12 +21,11 @@ test('gate progress distinguishes opening, recorded words, and review and surviv
  assert.deepEqual(readGates(JSON.stringify(state)),state);
  assert.deepEqual(readGates('{broken'),freshGates());
 });
-test('8x8 board groups two rows each without fabricating missing Houses or losing founder entries',()=>{
- const cells=boardCells(INITIAL_ENTITIES);assert.equal(cells.length,64);
- for(let i=0;i<64;i++)assert.equal(cells[i].group,['Houses','Planets','Dinosaurs','Connections'][Math.floor(i/16)]);
- assert.equal(cells.slice(0,16).filter(c=>c.entity).length,12);
- assert.equal(cells.slice(16,32).filter(c=>c.entity).length,16);
- assert.equal(cells.slice(32,48).filter(c=>c.entity).length,12);
+test('board groups two rows each, leaves product Houses to the Mothership and loses no founder entry',()=>{
+ const cells=boardCells(INITIAL_ENTITIES);assert.equal(cells.length,48);
+ for(let i=0;i<48;i++)assert.equal(cells[i].group,['Planets','Dinosaurs','Connections'][Math.floor(i/16)]);
+ assert.equal(cells.slice(0,16).filter(c=>c.entity).length,16);
+ assert.equal(cells.slice(16,32).filter(c=>c.entity).length,12);
  const ids=cells.flatMap(c=>c.entity?[c.entity.id]:[]);assert.equal(new Set(ids).size,ids.length);
- assert.deepEqual(new Set(ids),new Set(INITIAL_ENTITIES.map(e=>e.id)));
+ assert.deepEqual(new Set(ids),new Set(INITIAL_ENTITIES.filter(e=>e.type!=='offering').map(e=>e.id)));
 });

@@ -3,7 +3,7 @@ import status from '../founderStatus.json';
 
 type Project = (typeof status.projects)[number];
 
-/** The founder's own progress, shown only in the Founder's Example. Source: founderStatus.json (same data as the UFO Progress Board). */
+/** The founder's own progress, shown only in the Founder's Example. Source: founderStatus.json. The Houses themselves are shown once, in the Mothership. */
 const Bar = ({ value, tone = '#111' }: { value: number; tone?: string }) => (
   <div style={{ height: 6, background: 'rgba(17,17,17,.1)', borderRadius: 3, overflow: 'hidden' }} role="img" aria-label={`${value}%`}>
     <div style={{ width: `${value}%`, height: '100%', background: tone, borderRadius: 3 }} />
@@ -58,18 +58,6 @@ export default function FounderStatus() {
         ))}
       </div>
 
-      <h3 className="lm-section-title" style={{ fontSize: 24, marginTop: 36 }}>Houses</h3>
-      <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))' }}>
-        {status.houses.map((h) => (
-          <div key={h.n} className={`rounded-xl p-3 grid gap-1 ${(h as any).changed ? 'border-2 border-black' : 'border border-black/15'}`}>
-            <span className="font-mono text-xs flex justify-between"><span>HOUSE {String(h.n).padStart(2, '0')}</span><span>{h.pct}%</span></span>
-            <Bar value={h.pct} />
-            <strong className="font-figtree" style={{ fontSize: 15 }}>{h.product}</strong>
-            <span className="lm-caption">{h.dept} · {h.platform}</span>
-            {(h as any).changed && <span className="font-mono text-xs" style={{ color: '#00853f' }}>&gt; new · was {(h as any).was}</span>}
-          </div>
-        ))}
-      </div>
     </section>
   );
 }

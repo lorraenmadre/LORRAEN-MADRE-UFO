@@ -98,6 +98,8 @@ button:focus-visible, textarea:focus-visible, a:focus-visible, input:focus-visib
 /* Gold = any button that buys or activates a product (founder choice). */
 .lm-pill-gold { background: #c9a227; color: #111; border-color: #c9a227; font-weight: 700; }
 .lm-pill-gold:hover { background: #d9b33a; border-color: #d9b33a; }
+.lm-pill-black { background: #000; color: #fff; border-color: #000; }
+.lm-pill-black:hover { background: #262626; }
 .lm-pill-red { background: var(--lm-red); color: #fff; border-color: var(--lm-red); }
 .lm-pill:hover, .lm-pill:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000; outline: none; }
 
@@ -302,38 +304,32 @@ html { scroll-behavior: smooth; }
 @media(max-width:600px){.lm-thread-entry{max-width:96%}.lm-thread-composer{flex-direction:column;align-items:stretch}.lm-thread-actions{justify-content:flex-end}}
 @media(prefers-reduced-motion:reduce){.lm-orb-core{animation:none!important}}
 
-/* Advocacy Engine: Rae's matrix. Houses sit where their hour sits on a clock. */
+/* Mothership: the Library's matrix on one clock. Houses sit where the Library puts them; House 13 sits with the clock. */
 .lm-engine-shell{max-width:1060px}
-.lm-engine-center-toggle{display:inline-flex;border:1px solid #111;border-radius:999px;padding:3px;gap:2px;margin-top:6px}
-.lm-engine-center-toggle button{min-height:40px;padding:0 18px;border-radius:999px;font-weight:600;font-size:14px}
-.lm-engine-center-toggle button[aria-pressed=true]{background:#111;color:#fff}
 .lm-matrix{grid-template-rows:repeat(4,auto)!important;gap:clamp(8px,2vw,22px)!important}
-.lm-matrix>.lm-engine-cell{aspect-ratio:1;border:1.5px solid #111!important;border-radius:0!important;background:#fff!important;color:#111!important;padding:clamp(8px,1.6vw,18px)!important;display:flex;flex-direction:column;gap:4px;text-align:left;overflow:hidden;transition:background .2s}
-.lm-matrix>.lm-engine-cell small{font-family:var(--font-figtree);font-weight:700;font-size:clamp(12px,1.4vw,16px)}
-.lm-matrix>.lm-engine-cell strong{font-family:var(--font-figtree);font-weight:700;font-size:clamp(12px,1.5vw,17px);line-height:1.25}
-.lm-matrix>.lm-engine-cell span{font-family:var(--font-mulish)!important;font-size:clamp(11px,1.35vw,16px)!important;line-height:1.35}
+.lm-matrix>.lm-engine-cell{aspect-ratio:1;border:1.5px solid #111!important;border-radius:0!important;background:#fff!important;color:#111!important;padding:clamp(8px,1.6vw,18px)!important;display:flex;flex-direction:column;gap:4px;text-align:left;overflow:hidden;min-width:0}
+.lm-engine-cell-top{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.lm-matrix>.lm-engine-cell small{font-family:var(--font-belleza);font-weight:400;font-size:clamp(16px,2vw,24px);line-height:1}
+.lm-matrix>.lm-engine-cell strong{font-family:var(--font-figtree);font-weight:600;font-size:clamp(9px,1vw,11px);letter-spacing:.12em;text-transform:uppercase;line-height:1.35;color:inherit;opacity:.75}
+.lm-matrix>.lm-engine-cell em{font-style:normal;margin-top:auto;font-family:var(--font-figtree);font-weight:700;font-size:clamp(12px,1.5vw,17px);line-height:1.25}
+.lm-matrix>.lm-engine-cell i{font-style:normal;font-family:var(--font-figtree);font-size:clamp(10px,1.2vw,13px)}
+.lm-gate-chip{font-family:var(--font-figtree);font-weight:700;font-size:clamp(8px,.9vw,10px);letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid rgba(0,0,0,.18);white-space:nowrap}
 .lm-matrix>.lm-engine-cell:hover,.lm-matrix>.lm-engine-cell[aria-pressed=true],.lm-matrix>.lm-engine-cell[data-lit=true]{background:#111!important;color:#fff!important}
 .lm-matrix>.lm-engine-cell[aria-pressed=true]{outline:none!important}
-.lm-matrix .lm-engine-center{grid-area:2/2/4/4;position:relative;display:flex;align-items:center;justify-content:center;min-height:0}
-.lm-matrix .lm-engine-center.is-clock{background:#000;aspect-ratio:1;width:100%;padding:8%}
-.lm-clock,.lm-clock svg{width:100%;height:100%}
-.lm-nodes{position:relative;width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
-.lm-nodes-field{position:absolute;inset:-12%;width:124%;height:124%}
-.lm-magnet{position:relative;width:78%;height:22%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:linear-gradient(90deg,#dcdcdc 50%,#bdbdbd 50%);font-family:var(--font-figtree);font-weight:700;font-size:clamp(20px,4vw,40px);color:#fff}
-.lm-magnet span{text-align:center}
-.lm-castle{width:clamp(40px,8vw,84px);height:clamp(40px,8vw,84px);color:#6b6b6b;margin-top:-30%}
-.lm-node-label{position:absolute;display:flex;flex-direction:column;font-family:var(--font-figtree);font-size:clamp(11px,1.4vw,16px);line-height:1.35;margin:0}
-.lm-node-label strong{font-weight:700}
-.lm-node-label.is-north{left:12%;top:8%}
-.lm-node-label.is-south{right:12%;bottom:8%}
+.lm-matrix .lm-engine-center{grid-area:2/2/4/4;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4%;min-height:0;background:#000;aspect-ratio:1;width:100%;padding:6% 8% 4%}
+.lm-clock{flex:1;min-height:0;width:100%}.lm-clock svg{width:100%;height:100%}
+.lm-engine-13{display:flex;align-items:baseline;justify-content:center;gap:10px;width:100%;border-top:1px solid #fff;padding:10px 4px 2px;color:#fff;background:none;font-family:var(--font-figtree);flex-wrap:wrap}
+.lm-engine-13 span{font-family:var(--font-belleza);font-size:clamp(16px,2vw,22px)}
+.lm-engine-13 strong{font-weight:600;font-size:clamp(12px,1.4vw,16px)}
+.lm-engine-13 i{font-style:normal;font-size:clamp(10px,1.2vw,13px);color:#cfcfcf}
+.lm-engine-13[aria-pressed=true]{box-shadow:inset 0 3px 0 #c9a227}
 .lm-engine-detail{margin-top:18px;padding:20px 22px;border:1.5px solid #111;display:grid;gap:8px}
 .lm-engine-detail small{font-family:var(--font-figtree);font-weight:700;letter-spacing:.08em}
 .lm-engine-detail h3{font-family:var(--font-belleza);font-size:26px;margin:0}
-.lm-engine-detail-actions{display:flex;gap:10px;flex-wrap:wrap}
-
-/* Mothership matrix: each House shows its part, its product and whether it is activated. */
-.lm-matrix>.lm-engine-cell em{font-style:normal;margin-top:auto;font-family:var(--font-figtree);font-weight:600;font-size:clamp(11px,1.3vw,14px)}
+.lm-engine-covers{margin:0;padding-left:18px;display:grid;gap:3px}
+.lm-engine-detail-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.lm-engine-detail-actions [aria-disabled=true]{color:#6f6f6f;border-color:#e4e2dc;cursor:default}
 .lm-engine-detail label{display:grid;gap:6px;font-family:var(--font-figtree);font-weight:600;font-size:14px}
 .lm-engine-detail input:not([type=checkbox]),.lm-engine-detail textarea{width:100%;border:1px solid #111;border-radius:8px;padding:10px 12px;font-family:var(--font-mulish);font-weight:400;font-size:16px;background:#fff;color:#111}
 .lm-engine-detail .lm-engine-check{display:flex;align-items:center;gap:10px}
-@media(max-width:640px){.lm-matrix>.lm-engine-cell span{display:none}}
+@media(max-width:640px){.lm-matrix>.lm-engine-cell strong,.lm-matrix>.lm-engine-cell i{display:none}.lm-gate-chip{padding:2px 5px}}
