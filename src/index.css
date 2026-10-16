@@ -342,3 +342,8 @@ html { scroll-behavior: smooth; }
 /* Time, Space and Story: title, place name, description. */
 .lm-view-intro h2{margin-bottom:0}
 .lm-view-sub{font-family:var(--font-figtree);font-weight:700;font-size:12px;letter-spacing:.24em;text-transform:uppercase;margin:4px 0 10px}
+
+/* Tall watercolor Tree of Life (wishwell-tree.webp, 520x1192): keep it narrow so the whole tree fits beside the gates */
+.lm-gate-map{max-width:340px}
+.lm-gate-spot.is-circle,.lm-gate-spot.is-engine{width:22%}
+@media(min-width:900px){.lm-gate-layout{grid-template-columns:340px minmax(0,1fr)!important;align-items:start}.lm-gate-layout>div:first-child{position:sticky;top:16px}}
