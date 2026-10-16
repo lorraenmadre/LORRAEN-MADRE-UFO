@@ -375,3 +375,9 @@ html { scroll-behavior: smooth; }
 @media(max-width:600px){.lm-gate-panel{grid-template-columns:100px minmax(0,1fr);gap:12px;padding:14px}.lm-gate-tabs button{padding:8px 6px;font-size:12px;letter-spacing:0}.lm-gate-tabs .lm-gate-dot{width:8px;height:8px}.lm-gate-panel .lm-dialogue{padding:12px}.lm-gate-panel .lm-section-title{font-size:24px}}
 
 .lm-gate-panel .lm-dialogue .lm-pill:not(.lm-pill-white){border-color:#777}
+
+/* Motherboard polish: terminal 'start anywhere', status-only header, one-line whisper */
+.lm-gate-panel>.lm-gate-start{grid-column:1/-1;justify-self:start;margin:0;border:1px solid #1f1f1f}
+.lm-dialogue-top.is-status-only{justify-content:center;text-align:center}
+.lm-orb-whisper{text-wrap:balance}
+@media(min-width:1000px){.lm-orb-whisper{white-space:nowrap}}

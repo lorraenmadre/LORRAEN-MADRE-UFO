@@ -50,7 +50,7 @@ export default function VoiceOrb({ state = 'ready', small = false, allowVideo = 
           </>
         )}
       </div>
-      <span className="lm-orb-caption">{state === 'listening' ? 'Listening to your story' : state === 'thinking' ? 'Finding the next piece' : state === 'saved' ? 'Wish logged' : 'LORRAEN MADRE'}</span>
+      {state !== 'ready' && <span className="lm-orb-caption">{state === 'listening' ? 'Listening to your story' : state === 'thinking' ? 'Finding the next piece' : 'Wish logged'}</span>}
       {allowVideo && <><button type="button" className="lm-camera-toggle" disabled={starting} onClick={toggleCamera}>{starting ? 'Opening camera…' : camera ? 'Turn video off' : 'Show my video'}</button><small>Local video · no recording or upload</small>{error && <p role="status">{error}</p>}</>}
     </div>
   );

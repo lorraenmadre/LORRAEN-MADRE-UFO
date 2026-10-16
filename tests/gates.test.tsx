@@ -31,7 +31,7 @@ test('every founder planet, dinosaur, satellite and the mothership is listed onc
 });
 test('dots carry the gate colors and the Motherboard intro gives instructions',()=>{
  const html=renderToStaticMarkup(<GateOnboarding scope="t"/>);
- assert.ok(html.includes('YOUR MOTHERBOARD'));assert.ok(html.includes('Click a circle on the Tree of Life'));
+ assert.ok(html.includes('The Motherboard'));assert.ok(html.includes('Click a circle on the Tree of Life'));
  for(const c of ['#c8312b','#2e7d4f','#e8c21a','#7a4b26','#6d3a99','#ff2fb3','#d6d6d6','#4d4d4d','#f28c28','#1d4ed8','#f4f000','#00d5ff'])assert.ok(html.includes(`background:${c}`),c);
 });
 
