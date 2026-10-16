@@ -16,7 +16,7 @@ export interface Gate {
   x: number;
   y: number;
 }
-export const GATES: Gate[] = [
+const GATE_DEFINITIONS: Gate[] = [
  {key:'6',house:null,title:'Pride',day:'Your people',prompt:'Who is beside you, what comes naturally to you, and what would you like more room for?',detail:'Relationships, talents and the support you want. Share only what feels useful.',context:'Pride is the small product team behind the Design Pride Sprint in House 5. Juno: relationships; Vesta: talents; Chiron: healing/trauma. Invite strengths and support needs; never require trauma disclosure.',color:'#111111',shape:'circle',x:49.08,y:58.35},
  {key:'4',house:4,title:'Base',day:'Your home base',prompt:'Where does your life happen—and where do your files, tools and unfinished ideas live?',detail:'Begin with your existing home and digital base.',context:'Google can be the initial digital base, with a pathway to a personal home server. Do not assume either is connected.',color:'#7a4b26',shape:'circle',x:50.63,y:93.91},
  {key:'5',house:5,title:'Task',day:'Your real day',prompt:'Walk me through a real day. What keeps asking for your attention?',detail:'Small actions, responsibilities and things you want off your mind.',context:'Tasks belong to House 5. Distinguish an action from a project or outcome without correcting the Hero.',color:'#6d3a99',shape:'circle',x:50.63,y:71.59},
@@ -32,8 +32,14 @@ export const GATES: Gate[] = [
  {key:'7',house:6,title:'Engine',day:'How it keeps working',prompt:'What would help this keep moving when life gets busy?',detail:'Support, coordination and a rhythm you can return to.',context:'House 6, Culture & Systems, coordinates the daily Engine at the center of the map. Lines of care: telemedicine, insurance, legal, travel, technology, financial. Connections require verification.',color:'#ff2fb3',shape:'engine',x:49.44,y:30.83},
  {key:'12',house:12,title:'Dream',day:'Your happily ever after',prompt:'With all of this in place, what does the life you are growing toward feel like?',detail:'Your Dream holds the whole picture and the manifestations of every House.',context:'House 12 is the Dream, at the top of the Tree in this WISH WELL interpretation. It contains goals, plans, tasks, outcomes, prides and bases. Do not present this product map as historical doctrine.',color:'#f4f000',shape:'circle',x:47.89,y:7.58},
 ];
+// Display order is independent of saved gate IDs and Tree of Life positions.
+export const GATES: Gate[] = ['1','2','3','4','5','7','document','8','9','10','11','12','13','6'].map(key => {
+ const gate = GATE_DEFINITIONS.find(g => g.key === key)!;
+ const titles: Record<string,string> = {'1':'Projects','2':'Deals','3':'Goals','5':'Tasks',document:'Documents'};
+ return {...gate,title:titles[key] || gate.title};
+});
 export type GateRecord={opened?:boolean;wish:string;feeling:string;reviewed?:boolean;history?:{wish:string;feeling:string;at:string}[]};
-export type GateState={version:1;selected:string;records:Record<string,GateRecord>};
-export const freshGates=():GateState=>({version:1,selected:'6',records:{}});
-export function readGates(raw:string|null):GateState{try{const p=JSON.parse(raw||'null');const s=freshGates();if(p?.version!==1)return s;const sel=String(p.selected);if(GATES.some(g=>g.key===sel))s.selected=sel;for(const g of GATES){const r=p.records?.[g.key];if(r&&typeof r.wish==='string'&&typeof r.feeling==='string')s.records[g.key]={...r,opened:r.opened===true,reviewed:r.reviewed===true,history:Array.isArray(r.history)?r.history.filter((v:any)=>v&&typeof v.wish==='string'&&typeof v.feeling==='string'&&typeof v.at==='string'):[]};}return s;}catch{return freshGates();}}
+export type GateState={version:1;selected:string;draft?:{wish:string;feeling:string};records:Record<string,GateRecord>};
+export const freshGates=():GateState=>({version:1,selected:'1',records:{}});
+export function readGates(raw:string|null):GateState{try{const p=JSON.parse(raw||'null');const s=freshGates();if(p?.version!==1)return s;if(typeof p.draft?.wish==='string'&&typeof p.draft?.feeling==='string')s.draft={wish:p.draft.wish,feeling:p.draft.feeling};const sel=String(p.selected);if(GATES.some(g=>g.key===sel))s.selected=sel;for(const g of GATES){const r=p.records?.[g.key];if(r&&typeof r.wish==='string'&&typeof r.feeling==='string')s.records[g.key]={...r,opened:r.opened===true,reviewed:r.reviewed===true,history:Array.isArray(r.history)?r.history.filter((v:any)=>v&&typeof v.wish==='string'&&typeof v.feeling==='string'&&typeof v.at==='string'):[]};}return s;}catch{return freshGates();}}
 export const gateProgress=(r?:GateRecord)=>r?.reviewed&&r.history?.length?100:r?.history?.length?60:r?.opened?15:0;

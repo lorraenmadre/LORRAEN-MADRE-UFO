@@ -8,10 +8,10 @@ import ClaimSections from '../src/components/ClaimSections';
 import GateOnboarding from '../src/components/GateOnboarding';
 import {INITIAL_ENTITIES} from '../src/constants';
 test('14-part WISH WELL map has unique keys and starts with intention, not mandatory disclosure',()=>{
- assert.equal(GATES.length,14);assert.equal(new Set(GATES.map(g=>g.key)).size,14);assert.equal(freshGates().selected,'6');
+ assert.equal(GATES.length,14);assert.equal(new Set(GATES.map(g=>g.key)).size,14);assert.equal(freshGates().selected,'1');
  const html=renderToStaticMarkup(<GateTree state={freshGates()} onSelect={()=>{}}/>);
  assert.equal((html.match(/aria-pressed=/g)||[]).length,14);
- assert.ok(GATES[0].context.includes('never require trauma disclosure'));
+ assert.ok(GATES.find(g=>g.title==='Pride')!.context.includes('never require trauma disclosure'));
 });
 test('gate progress distinguishes opening, recorded words, and review and survives serialization',()=>{
  assert.equal(gateProgress(),0);
@@ -33,4 +33,12 @@ test('dots carry the gate colors and the Motherboard intro gives instructions',(
  const html=renderToStaticMarkup(<GateOnboarding scope="t"/>);
  assert.ok(html.includes('YOUR MOTHERBOARD'));assert.ok(html.includes('Click a circle on the Tree of Life'));
  for(const c of ['#c8312b','#2e7d4f','#e8c21a','#7a4b26','#6d3a99','#ff2fb3','#d6d6d6','#4d4d4d','#f28c28','#1d4ed8','#f4f000','#00d5ff'])assert.ok(html.includes(`background:${c}`),c);
+});
+
+test('shared wish survives gate changes and reload without replacing archived gate words',()=>{
+ const state={...freshGates(),draft:{wish:'My ongoing wish',feeling:'Hopeful'},records:{'2':{wish:'Earlier deal',feeling:'Curious'}}};
+ const restored=readGates(JSON.stringify({...state,selected:'2'}));
+ assert.deepEqual(restored.draft,state.draft);
+ assert.equal(restored.records['2'].wish,'Earlier deal');
+ assert.deepEqual(GATES.map(g=>g.title),['Projects','Deals','Goals','Base','Tasks','Engine','Documents','Outcome','Plan','Backlog','Wish','Dream','Routine','Pride']);
 });
