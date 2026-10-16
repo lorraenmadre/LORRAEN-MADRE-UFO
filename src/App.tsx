@@ -194,7 +194,7 @@ export default function App() {
   };
 
   return (
-    <div className="lm-motherboard min-h-screen bg-black text-white selection:bg-white selection:text-black">
+    <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       <AnimatePresence mode="wait">
         {!selectedEntityId ? (
           <motion.div
@@ -205,17 +205,17 @@ export default function App() {
             className="pb-20"
           >
             {/* Nav Header */}
-            <header className="border-b border-white/20 py-4 px-6 sticky top-0 bg-black z-50">
+            <header className="border-b border-black/15 py-4 px-6 sticky top-0 bg-white z-50">
               <div className="max-w-7xl mx-auto flex flex-wrap gap-4 justify-between items-center">
                 <div className="flex items-center gap-4">
-                  <a href="https://lorraenmadre.com/" className="text-2xl font-belleza uppercase tracking-[0.06em] no-underline text-white">LORRAEN MADRE</a>
+                  <a href="https://lorraenmadre.com/" className="text-2xl font-belleza uppercase tracking-[0.06em] no-underline text-black">LORRAEN MADRE</a>
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <ActionPills className="!justify-end" />
                   {isPreviewMode
                     ? <button type="button" onClick={handleLogin} className="lm-pill lm-pill-white">Sign in</button>
                     : <div className="flex items-center border border-black rounded-full p-1">
-                        <ViewSwitch viewMode={viewMode} setViewMode={setViewMode} dark />
+                        <ViewSwitch viewMode={viewMode} setViewMode={setViewMode} />
                         <div className="w-px h-4 bg-black/20 mx-2 self-center" />
                         <button onClick={handleLogout} title="Sign out" aria-label="Sign out" className="min-h-[36px] min-w-[36px] flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors"><LogOut className="w-4 h-4" /></button>
                       </div>}
@@ -277,7 +277,7 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap items-center gap-3">
               <div className="flex items-center border border-black rounded-full p-1" role="group" aria-label="View">
                 {(['time', 'space', 'story'] as const).map(layout => (
-                  <button key={layout} type="button" aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`min-h-[40px] px-5 rounded-full font-figtree font-semibold text-sm uppercase tracking-[0.24em] ${mapLayout === layout ? 'bg-white text-black' : 'text-white'}`}>
+                  <button key={layout} type="button" aria-pressed={mapLayout === layout} onClick={() => setMapLayout(layout)} className={`min-h-[40px] px-5 rounded-full font-figtree font-semibold text-sm uppercase tracking-[0.24em] ${mapLayout === layout ? 'bg-black text-white' : 'text-black'}`}>
                     {layout === 'time' ? 'Time' : layout === 'space' ? 'Space' : 'Story'}
                   </button>
                 ))}

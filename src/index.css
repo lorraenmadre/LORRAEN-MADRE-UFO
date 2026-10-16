@@ -348,13 +348,9 @@ html { scroll-behavior: smooth; }
 .lm-gate-spot.is-circle,.lm-gate-spot.is-engine{width:22%}
 @media(min-width:900px){.lm-gate-layout{grid-template-columns:340px minmax(0,1fr)!important;align-items:start}.lm-gate-layout>div:first-child{position:sticky;top:16px}}
 
-/* Motherboard: black canvas, centered original artwork and one persistent wish. */
-body{background:#000}
-.lm-motherboard{--lm-line:rgba(255,255,255,.24)}
-.lm-motherboard>div>header{color:#fff}
-.lm-motherboard #operating-board .text-black{color:#fff}
-.lm-motherboard .lm-view-intro,.lm-motherboard footer{color:#fff}
-.lm-gate-onboarding,.lm-gate-intro,.lm-gate-panel{background:#000;color:#fff}
+/* White motherboard with a contained black wish screen. */
+.lm-gate-onboarding,.lm-gate-intro{background:#fff;color:#111}
+.lm-gate-panel{background:#000;color:#fff;padding:24px;border-radius:24px;--lm-line:rgba(255,255,255,.24)}
 .lm-gate-layout{display:grid;grid-template-columns:minmax(0,1fr)!important;max-width:1060px}
 .lm-gate-layout>div:first-child{position:static!important}
 .lm-gate-map{width:min(100%,340px);margin:0 auto}
@@ -370,17 +366,12 @@ body{background:#000}
 .lm-gate-panel .lm-dialogue{background:#080808;color:#fff;border-color:#444}
 .lm-gate-panel .lm-dialogue textarea{background:#111;color:#fff;border-color:#666}
 .lm-gate-panel .lm-dialogue textarea::placeholder{color:#aaa}
-.lm-gate-panel .lm-kicker,.lm-gate-panel .lm-caption,.lm-gate-legend,.lm-gate-intro .lm-kicker{color:#ccc}
+.lm-gate-panel .lm-kicker,.lm-gate-panel .lm-caption{color:#ccc}
+.lm-gate-legend,.lm-gate-intro .lm-kicker{color:#111}
 .lm-gate-cue{padding:12px 0;font-style:italic}
 .lm-gate-panel .lm-dialogue-top{color:#ccc;border-color:#444}
 .lm-gate-panel .lm-human-response,.lm-gate-panel .lm-ai-response{background:#171717;color:#fff;border-color:#444}
 .lm-gate-panel .lm-orb-whisper{color:#bbb}
-@media(max-width:600px){.lm-gate-panel{grid-template-columns:115px minmax(0,1fr);gap:12px}.lm-gate-tabs button{padding:8px 6px;font-size:12px;letter-spacing:0}.lm-gate-tabs .lm-gate-dot{width:8px;height:8px}.lm-gate-panel .lm-dialogue{padding:12px}.lm-gate-panel .lm-section-title{font-size:24px}}
+@media(max-width:600px){.lm-gate-panel{grid-template-columns:100px minmax(0,1fr);gap:12px;padding:14px}.lm-gate-tabs button{padding:8px 6px;font-size:12px;letter-spacing:0}.lm-gate-tabs .lm-gate-dot{width:8px;height:8px}.lm-gate-panel .lm-dialogue{padding:12px}.lm-gate-panel .lm-section-title{font-size:24px}}
 
-.lm-motherboard .orbit-scroll{color:#111}
-.lm-motherboard #founder-status .border{border-color:#444}
-.lm-motherboard #founder-status [role=img]{background:#333!important}
-.lm-motherboard #founder-status [role=img]>div{background:#ddd!important}
-.lm-motherboard .lm-engine-detail{border-color:#555}
-.lm-motherboard [aria-label="View"]{border-color:#777}
 .lm-gate-panel .lm-dialogue .lm-pill:not(.lm-pill-white){border-color:#777}
